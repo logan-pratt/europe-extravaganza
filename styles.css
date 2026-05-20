@@ -208,6 +208,20 @@ h1 {
 .route-strip strong { display: block; font-family: Georgia, serif; font-size: 1.8rem; }
 .route-strip span { color: rgba(255, 247, 233, .86); font-size: .92rem; }
 
+.collab-note {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 247, 233, .24);
+  border-radius: var(--radius);
+  color: rgba(255, 247, 233, .86);
+  background: rgba(255, 247, 233, .1);
+  line-height: 1.5;
+}
+
+.collab-note strong {
+  color: #fff7e9;
+}
+
 .city-grid {
   width: min(1180px, calc(100% - 56px));
   margin: 0 auto;
