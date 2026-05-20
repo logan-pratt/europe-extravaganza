@@ -176,9 +176,11 @@ h1 {
 }
 
 .btn.disabled {
-  color: var(--green);
-  background: color-mix(in srgb, var(--gold) 18%, var(--paper2));
+  color: rgba(255, 247, 233, .72);
+  background: rgba(255, 247, 233, .1);
+  border-color: rgba(255, 247, 233, .18);
   cursor: default;
+  box-shadow: inset 0 0 0 1px rgba(255, 247, 233, .04);
 }
 
 .btn.disabled:hover {
