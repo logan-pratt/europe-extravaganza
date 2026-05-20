@@ -260,7 +260,7 @@ h1 {
 }
 
 .lisbon .city-image {
-  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Tram%20through%20Alfama%20%2845633482212%29.jpg?width=1400");
+  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("assets/lisbon.jpg");
 }
 
 .kilkea .city-image {
@@ -272,7 +272,7 @@ h1 {
 }
 
 .dublin .city-image {
-  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Ha%27penny%20Bridge%20over%20River%20Liffey%2C%20Dublin%20%2814167446457%29.jpg?width=1400");
+  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("assets/dublin-temple-bar.jpg");
 }
 
 .london .city-image {
