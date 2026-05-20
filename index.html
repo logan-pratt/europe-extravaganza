@@ -3,97 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>London Love Letter · July 2026</title>
-  <meta name="description" content="Interactive London trip planner for July 5–9, 2026." />
+  <title>Europe Extravaganza · July 2026</title>
+  <meta name="description" content="A cinematic Europe trip hub for Dublin and London, July 2026." />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="enhancements.css" />
 </head>
 <body>
   <div class="grain"></div>
-  <header class="hero" id="top">
-    <div class="hero-bg"></div>
+  <main class="landing">
     <nav class="topbar">
-      <div class="brand"><span class="crest">✦</span><span>London Love Letter</span></div>
+      <a class="brand" href="#top"><span class="crest">✦</span><span>Europe Extravaganza</span></a>
       <div class="navlinks">
-        <a href="#plan">Plan</a><a href="#wednesday">Wednesday</a><a href="#food">Food</a><a href="#prices">Prices</a><a href="#actions">Book</a>
-        <button id="themeToggle" class="ghost">☾</button>
+        <a href="dublin/">Dublin</a>
+        <a href="london/">London</a>
       </div>
     </nav>
-    <div class="hero-content">
-      <p class="eyebrow">July 5–9, 2026 · Kimpton Fitzroy · Bath · Wimbledon · West End</p>
-      <h1>A cinematic London plan that still has room to breathe.</h1>
-      <p class="lede">Built for a romantic, literary, food-loving London finale: keep Bath, do Wimbledon properly, and protect Wednesday from becoming a logistics spreadsheet.</p>
-      <div class="hero-actions"><a class="btn primary" href="#plan">Explore the plan</a><a class="btn glass" href="#wednesday">Pick Wednesday</a><button class="btn glass" id="copyHero">Copy summary</button></div>
-      <div class="stat-strip"><div><strong>4</strong><span>nights</span></div><div><strong>1</strong><span>day trip</span></div><div><strong>1</strong><span>Wimbledon day</span></div><div><strong>3</strong><span>Wednesday paths</span></div></div>
-    </div>
-  </header>
-  <main>
-    <section class="section reveal" id="verdict">
-      <div class="section-head"><p class="eyebrow">Final verdict</p><h2>The answer is not “do less.” It’s “protect the right things.”</h2></div>
-      <div class="verdict-grid">
-        <article class="verdict-card keep"><span class="label">Keep</span><h3>Bath on Monday</h3><p>Claude’s defense wins here: Georgian romance + Roman Baths + rooftop thermal spa are not redundant with Lisbon, Dublin, Kilkea, or the Cliffs.</p></article>
-        <article class="verdict-card keep"><span class="label">Keep</span><h3>Wimbledon Tuesday</h3><p>But treat it as a grounds/Hill experience. Arrive 6:30–7am. Centre/Court 1 resale is dessert, not dinner.</p></article>
-        <article class="verdict-card adjust"><span class="label">Choose</span><h3>Friend dinner vibe</h3><p>Trullo for a foodie friend. Tamil Prince for a more fun, buzzy, social night out.</p></article>
-        <article class="verdict-card cut"><span class="label">Do not</span><h3>Overstuff Wednesday</h3><p>Studio Tour + show + Clos Maggiore technically works only if you enjoy clock-watching. Pick a lane.</p></article>
+
+    <section class="hero" id="top">
+      <p class="eyebrow">July 3-9, 2026 · Dublin → London</p>
+      <h1>Two city finales, one cinematic trip hub.</h1>
+      <p class="lede">Dublin brings the pub warmth, Georgian green, literary stops, and two-couple energy. London carries the romantic final act: Bath, Wimbledon, theater, food, and a proper love-letter finish.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="dublin/">Open Dublin</a>
+        <a class="btn glass" href="london/">Open London</a>
+      </div>
+      <div class="route-strip">
+        <div><strong>Jul 3-5</strong><span>Dublin finale</span></div>
+        <div><strong>Jul 5-9</strong><span>London love letter</span></div>
+        <div><strong>4</strong><span>travelers in Dublin</span></div>
+        <div><strong>2</strong><span>static planners</span></div>
       </div>
     </section>
-    <section class="section reveal" id="chapters"><div class="section-head"><p class="eyebrow">Film chapters</p><h2>The trip, cut like a romantic London movie</h2><p>Each day gets a title card, a mood, and a stamp-worthy moment.</p></div><div class="chapter-grid" id="chapterGrid"></div></section>
-    <section class="section reveal" id="couple-dashboard"><div class="section-head"><p class="eyebrow">Couple dashboard</p><h2>Where your reactions become decisions</h2><p>As Logan and Emily react, this turns the planning conversation into a clear read.</p></div><div class="decision-dashboard" id="decisionDashboard"></div></section>
-    <section class="section reveal" id="trip-map"><div class="section-head"><p class="eyebrow">London constellation</p><h2>A private map of the moments</h2><p>Tap a pin to jump into the part of the plan it belongs to.</p></div><div class="love-map" id="loveMap"></div></section>
-    <section class="section reveal" id="passport"><div class="section-head"><p class="eyebrow">Passport stamps</p><h2>Choose the moments that make the cut</h2><p>Click a stamp when it feels like it belongs in your version of London.</p></div><div class="passport-grid" id="passportGrid"></div></section>
-    <section class="section reveal" id="final-cut"><div class="section-head"><p class="eyebrow">Our final cut</p><h2>The site’s read on your notes</h2><p>Once you both react, this separates must-do moments from maybes, cuts, and things to discuss.</p></div><div class="final-cut-grid" id="finalCutGrid"></div></section>
-    <section class="section reveal" id="plan">
-      <div class="section-head"><p class="eyebrow">Day-by-day</p><h2>Your recommended itinerary</h2><p>Click a day to expand the timeline, maps, links, and logistics notes.</p></div>
-      <div class="day-tabs" id="dayTabs"></div><div id="dayDetail" class="day-detail"></div>
+
+    <section class="city-grid" aria-label="Trip sections">
+      <article class="city-card dublin">
+        <div class="city-image"></div>
+        <div class="city-content">
+          <p class="eyebrow">Dublin · July 3-5</p>
+          <h2>Pints, Pages & Proper Craic</h2>
+          <p>Galway train arrival, Marlin Hotel, Mister S, Georgian walks, Marsh’s Library, Delahunt, Cobblestone, O’Donoghue’s, and four-person notes.</p>
+          <ul>
+            <li>Two-couple decision dashboard</li>
+            <li>Add / Maybe / Skip cards</li>
+            <li>Share packet import/export</li>
+          </ul>
+          <a class="btn primary" href="dublin/">Enter Dublin</a>
+        </div>
+      </article>
+
+      <article class="city-card london">
+        <div class="city-image"></div>
+        <div class="city-content">
+          <p class="eyebrow">London · July 5-9</p>
+          <h2>London Love Letter</h2>
+          <p>Kimpton Fitzroy, Bath, Wimbledon, Wednesday path decisions, romantic restaurants, hidden walks, final-cut logic, and couple notes.</p>
+          <ul>
+            <li>Day-by-day itinerary</li>
+            <li>Wednesday path picker</li>
+            <li>Booking and price reality boards</li>
+          </ul>
+          <a class="btn primary" href="london/">Enter London</a>
+        </div>
+      </article>
     </section>
-    <section class="section reveal" id="wednesday">
-      <div class="section-head"><p class="eyebrow">The big decision</p><h2>Choose your Wednesday personality</h2><p>You’ve already seen Cursed Child, so Wednesday is now about Studio Tour vs. classic London atmosphere.</p></div>
-      <div class="path-picker" id="pathPicker"></div>
-      <div class="path-stage"><div class="path-photo" id="pathPhoto"></div><div class="path-info"><div class="micro">Selected path</div><h3 id="pathName"></h3><p id="pathBest"></p><div class="scorebars" id="pathScores"></div><div class="timeline compact" id="pathTimeline"></div><div class="callout"><strong>Why this works:</strong> <span id="pathWhy"></span></div><div class="callout subtle"><strong>Tradeoff:</strong> <span id="pathTradeoff"></span></div></div></div>
-      <div class="calculator-panel" id="pathCalculator"></div>
-    </section>
-    <section class="section reveal" id="food">
-      <div class="section-head"><p class="eyebrow">Food & romance</p><h2>Restaurants, ranked by job-to-be-done</h2><p>Each pick has a role. The mistake would be using the right restaurant for the wrong night.</p></div>
-      <div class="filters"><button class="chip active" data-filter="all">All</button><button class="chip" data-filter="romance">Romance</button><button class="chip" data-filter="friend">Friend dinner</button><button class="chip" data-filter="near">Near hotel</button></div>
-      <div class="restaurant-grid" id="restaurantGrid"></div>
-    </section>
-    <section class="section reveal" id="prices">
-      <div class="section-head"><p class="eyebrow">Price reality</p><h2>The romance is real. So are the receipts.</h2><p>Use this as the budget guardrail before adding tickets, trains, or late-night flourishes.</p></div>
-      <div class="price-grid" id="priceGrid"></div>
-    </section>
-    <section class="section reveal" id="wildcards">
-      <div class="section-head"><p class="eyebrow">Optional nights</p><h2>Wildcard nights, clearly labeled</h2><p>Nothing here belongs in the core itinerary unless it makes the trip better instead of louder.</p></div>
-      <div class="status-grid" id="wildcardGrid"></div>
-    </section>
-    <section class="section reveal" id="seasonal">
-      <div class="section-head"><p class="eyebrow">Seasonal London</p><h2>July extras to keep behind a filter</h2><p>Rainy-day culture and arrival-day temptations, kept safely outside the main plan.</p></div>
-      <div class="filters status-filters"><button class="chip active" data-season-filter="all">All</button><button class="chip" data-season-filter="add">Add</button><button class="chip" data-season-filter="maybe">Maybe</button><button class="chip" data-season-filter="skip">Skip</button></div>
-      <div class="status-grid" id="seasonalGrid"></div>
-    </section>
-    <section class="section split reveal" id="wimbledon">
-      <div><p class="eyebrow">Wimbledon</p><h2>Quarterfinal day: realistic expectations</h2><p>The correct strategy is not “get Centre Court tickets.” The correct strategy is “arrive early, enjoy the grounds, and let resale be a lucky bonus.”</p><div class="meter-card"><div class="meter-head"><span>Recommended arrival</span><strong>6:30–7:00am</strong></div><input id="arrivalSlider" type="range" min="5.5" max="9" step=".5" value="6.5" /><p id="arrivalText"></p></div></div>
-      <div class="photo-card tall" style="--img:url('https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1200&q=80')"><div><span class="label">Bring</span><h3>Water, sunscreen, charger, patience.</h3><p>And do not build the whole day around a resale fantasy.</p></div></div>
-    </section>
-    <section class="section reveal" id="romance"><div class="section-head"><p class="eyebrow">Romantic upgrades</p><h2>Small choices that make the trip feel like yours</h2></div><div class="upgrade-grid" id="upgradeGrid"></div></section>
-    <section class="section reveal" id="warnings"><div class="section-head"><p class="eyebrow">Do less, better</p><h2>Anti-overstuffing warnings</h2></div><div class="warning-grid" id="warningGrid"></div></section>
-    <section class="section reveal" id="walks"><div class="section-head"><p class="eyebrow">Walks & hidden gems</p><h2>The London moments that make the trip feel personal</h2></div><div class="experience-grid" id="experienceGrid"></div></section>
-    <section class="section reveal" id="actions">
-      <div class="section-head"><p class="eyebrow">Book by date</p><h2>The timeline that keeps the whole thing calm</h2></div>
-      <div class="countdown-grid" id="countdownGrid"></div>
-      <div class="book-timeline" id="bookTimeline"></div>
-      <div class="section-head booking-subhead"><p class="eyebrow">Booking board</p><h2>Priority reservations</h2></div>
-      <div class="booking-board">
-        <div class="booking-card urgent"><span class="label">Hardest</span><h3>Clos Maggiore conservatory</h3><p>Book as early as possible once your date opens. Put the conservatory request in writing.</p><a href="https://www.closmaggiore.com/" target="_blank" rel="noopener">Open site ↗</a></div>
-        <div class="booking-card"><span class="label">Timed</span><h3>Andrew Edmunds</h3><p>Dinner bookings open 30 calendar days ahead at 5:30pm London time. For July 6, target June 6.</p><a href="https://www.andrewedmunds.com/reservations" target="_blank" rel="noopener">Reservations ↗</a></div>
-        <div class="booking-card"><span class="label">Optional</span><h3>Studio Tour</h3><p>Only book if choosing Wednesday Path A or C. Avoid pretending it’s a quick side quest.</p><a href="https://www.wbstudiotour.co.uk/" target="_blank" rel="noopener">Tickets ↗</a></div>
-        <div class="booking-card"><span class="label">If Path B/C</span><h3>The Mousetrap</h3><p>Best as the intimate, old-London theater choice. It fits your literary/cinematic vibe.</p><a href="https://stmartinstheatre.co.uk/" target="_blank" rel="noopener">Tickets ↗</a></div>
-      </div>
-      <div class="checklist-card"><h3>Shared prep checklist</h3><p class="muted">Saved locally in this browser.</p><div id="checklist"></div></div>
-    </section>
-    <section class="section reveal" id="notes"><div class="section-head"><p class="eyebrow">Shared notes</p><h2>Your two-person reaction board</h2><p>Notes save on this browser. Export them when you want me to read the room and recommend changes.</p></div><div class="notes-review" id="notesReview"></div></section>
-    <section class="section reveal" id="share"><div class="share-panel"><div><p class="eyebrow">Mac-friendly sharing</p><h2>Make it presentation-ready</h2><p>Use this for a laptop reveal, then print/save as PDF if you want a clean shareable version.</p></div><div class="share-actions"><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn" id="copyFull">Copy final plan</button><button class="btn" id="copyNotes">Copy notes</button><a class="btn" href="#top">Back to top</a></div></div></section>
   </main>
-  <div id="toast" role="status" aria-live="polite"></div>
-  <script src="data.js"></script><script src="notes-logic.js"></script><script src="app.js"></script>
 </body>
 </html>

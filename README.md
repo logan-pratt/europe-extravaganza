@@ -1,10 +1,12 @@
-# London Love Letter · Interactive Trip Website
+# Europe Extravaganza · Interactive Trip Websites
 
 Open `index.html` in your browser.
 
-## Best local option
+## Sections
 
-Double-click `index.html`.
+- `index.html` — Europe Extravaganza trip selector
+- `dublin/` — Dublin, July 3-5, 2026
+- `london/` — London, July 5-9, 2026
 
 ## Optional local server
 
@@ -18,11 +20,13 @@ Then open:
 
 ```text
 http://localhost:8000
+http://localhost:8000/dublin/
+http://localhost:8000/london/
 ```
 
 ## Notes
 
 - This is a static site: no install, no build process, no dependencies.
 - It uses remote photos where possible, so the visuals look best with an internet connection.
-- Checklist selections, dark mode, selected day, and selected Wednesday path are saved locally in your browser.
+- Notes, checklist selections, selected days, path choices, and stamps are saved locally in your browser.
 - Use the Print / Save PDF button to create a clean shareable PDF.
