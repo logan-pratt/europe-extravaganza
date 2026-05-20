@@ -1,0 +1,313 @@
+.calculator-panel {
+  display: grid;
+  grid-template-columns: .95fr 1.05fr;
+  gap: 18px;
+  margin-top: 18px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--blue) 11%, var(--paper2)), color-mix(in srgb, var(--claret) 7%, var(--paper2)));
+}
+
+.calculator-copy h3 {
+  font-size: 2.35rem;
+  line-height: .95;
+  margin: 8px 0 10px;
+}
+
+.calculator-copy p:not(.eyebrow),
+.price-card p,
+.status-card p,
+.upgrade-card p,
+.warning-card p,
+.book-step li {
+  color: var(--muted);
+}
+
+.slider-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.calc-slider {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 14px 16px;
+  background: color-mix(in srgb, var(--paper2) 78%, transparent);
+}
+
+.calc-slider span {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.calc-slider em {
+  font-style: normal;
+  font-weight: 900;
+  color: var(--claret);
+}
+
+.calc-slider input {
+  margin: 0;
+}
+
+.calc-score-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.calc-pill {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper2);
+  color: var(--ink);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.calc-pill.active {
+  background: var(--blue);
+  color: #fff7ec;
+}
+
+.calc-pill span {
+  font-weight: 900;
+}
+
+.price-grid,
+.status-grid,
+.upgrade-grid,
+.warning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.price-card,
+.status-card,
+.upgrade-card,
+.warning-card,
+.book-step {
+  background: color-mix(in srgb, var(--paper2) 92%, transparent);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.price-card,
+.status-card,
+.upgrade-card,
+.warning-card {
+  min-height: 260px;
+  padding: 22px;
+}
+
+.price-card h3,
+.status-card h3,
+.upgrade-card h3,
+.warning-card h3,
+.book-step h3 {
+  font-size: 1.65rem;
+  line-height: 1;
+  margin: 14px 0 10px;
+}
+
+.action-line {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--gold) 12%, var(--paper2));
+  font-weight: 800;
+}
+
+.status-card a,
+.upgrade-card a {
+  color: var(--claret);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .72rem;
+}
+
+.status-card.add,
+.warning-card.add {
+  border-color: color-mix(in srgb, var(--green) 50%, var(--line));
+  background: color-mix(in srgb, var(--green) 8%, var(--paper2));
+}
+
+.status-card.maybe,
+.warning-card.maybe {
+  border-color: color-mix(in srgb, var(--gold) 65%, var(--line));
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper2));
+}
+
+.status-card.skip,
+.warning-card.skip {
+  border-color: color-mix(in srgb, var(--claret) 55%, var(--line));
+  background: color-mix(in srgb, var(--claret) 7%, var(--paper2));
+}
+
+.add .status-badge {
+  background: color-mix(in srgb, var(--green) 18%, var(--paper2));
+  color: var(--green);
+}
+
+.maybe .status-badge {
+  background: color-mix(in srgb, var(--gold) 22%, var(--paper2));
+  color: #865d12;
+}
+
+.skip .status-badge {
+  background: color-mix(in srgb, var(--claret) 15%, var(--paper2));
+  color: var(--claret);
+}
+
+.tiny-note {
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 800;
+}
+
+.card-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.order-card details,
+.upgrade-card details {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.order-card summary,
+.upgrade-card summary {
+  cursor: pointer;
+  font-weight: 900;
+  color: var(--claret);
+}
+
+.order-card ul,
+.upgrade-card ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.booking-subhead {
+  margin-top: 42px;
+}
+
+.book-timeline {
+  display: grid;
+  gap: 14px;
+}
+
+.book-step {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 18px;
+  padding: 22px;
+}
+
+.book-date {
+  font-family: Georgia, serif;
+  font-size: 1.3rem;
+  line-height: 1.05;
+  color: var(--claret);
+}
+
+.book-step.high {
+  border-color: color-mix(in srgb, var(--claret) 48%, var(--line));
+}
+
+.book-step.medium {
+  border-color: color-mix(in srgb, var(--gold) 60%, var(--line));
+}
+
+.book-step.low {
+  opacity: .82;
+}
+
+.warning-card {
+  min-height: 190px;
+}
+
+.warning-card h3 {
+  font-size: 1.45rem;
+}
+
+.status-filters {
+  margin-top: -8px;
+}
+
+@media (max-width: 980px) {
+  .calculator-panel,
+  .book-step {
+    grid-template-columns: 1fr;
+  }
+
+  .price-grid,
+  .status-grid,
+  .upgrade-grid,
+  .warning-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .price-grid,
+  .status-grid,
+  .upgrade-grid,
+  .warning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-panel {
+    padding: 18px;
+  }
+
+  .card-topline {
+    display: grid;
+  }
+
+  .book-step {
+    padding: 18px;
+  }
+
+  .book-date {
+    font-size: 1.1rem;
+  }
+
+  .navlinks {
+    max-width: calc(100vw - 36px);
+    overflow-x: auto;
+    border-radius: 22px;
+  }
+
+  .hero-content {
+    padding-bottom: 120px;
+  }
+}

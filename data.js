@@ -64,7 +64,7 @@ window.TRIP_DATA = {
       "date": "July 6",
       "title": "Bath Day Trip + Soho Dinner",
       "mood": "Georgian romance, Roman history, rooftop thermal water.",
-      "hero": "https://source.unsplash.com/1800x1100/?bath,england,georgian,architecture",
+      "hero": "https://images.unsplash.com/photo-1564594985645-4427056e22e2?auto=format&fit=crop&w=1800&q=80",
       "score": {
         "Romance": 10,
         "London": 4,
@@ -134,7 +134,7 @@ window.TRIP_DATA = {
       "date": "July 7",
       "title": "Wimbledon Quarterfinal Energy + Friend Dinner",
       "mood": "Early queue, strawberries, grass courts, London summer ritual.",
-      "hero": "https://source.unsplash.com/1800x1100/?wimbledon,tennis,grass",
+      "hero": "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1800&q=80",
       "score": {
         "Romance": 7,
         "London": 10,
@@ -200,7 +200,7 @@ window.TRIP_DATA = {
       "date": "July 8",
       "title": "Final London Day",
       "mood": "Your choice: London purist, HP-first, or ambitious compromise.",
-      "hero": "https://source.unsplash.com/1800x1100/?covent-garden,london,night",
+      "hero": "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=1800&q=80",
       "score": {
         "Romance": 10,
         "London": 10,
@@ -245,7 +245,7 @@ window.TRIP_DATA = {
       "date": "July 9",
       "title": "Departure",
       "mood": "Coffee, last look at Russell Square, airport buffer.",
-      "hero": "https://source.unsplash.com/1800x1100/?london,cafe,morning",
+      "hero": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80",
       "score": {
         "Romance": 5,
         "London": 6,
@@ -283,7 +283,7 @@ window.TRIP_DATA = {
       "badge": "Studio Tour + relaxed romantic dinner",
       "best": "If Harry Potter still matters most, even though you’ve already seen Cursed Child.",
       "verdict": "Least rushed HP version.",
-      "hero": "https://source.unsplash.com/1800x1100/?library,magic,castle",
+      "hero": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1800&q=80",
       "scores": {
         "Romance": 9,
         "London": 6,
@@ -361,7 +361,7 @@ window.TRIP_DATA = {
       "badge": "Studio Tour + early Clos Maggiore + Mousetrap",
       "best": "If you cannot bear to cut anything.",
       "verdict": "Possible, not recommended.",
-      "hero": "https://source.unsplash.com/1800x1100/?london,theatre,restaurant",
+      "hero": "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1800&q=80",
       "scores": {
         "Romance": 8,
         "London": 7,
@@ -407,7 +407,7 @@ window.TRIP_DATA = {
       "Late-arrival comfort, pub mood, no drama",
       "https://harrisonvenuelondon.com/food-and-drink-at-the-harrison-venue/",
       "https://www.google.com/maps/search/?api=1&query=The%20Harrison%20London%2028%20Harrison%20Street",
-      "https://source.unsplash.com/900x650/?london,pub,interior"
+      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=900&q=80"
     ],
     [
       "Andrew Edmunds",
@@ -417,7 +417,7 @@ window.TRIP_DATA = {
       "Cozy, romantic, old Soho, wine",
       "https://www.andrewedmunds.com/reservations",
       "https://www.google.com/maps/search/?api=1&query=Andrew%20Edmunds%2046%20Lexington%20Street%20London",
-      "https://source.unsplash.com/900x650/?soho,london,restaurant"
+      "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80"
     ],
     [
       "Trullo",
@@ -427,7 +427,7 @@ window.TRIP_DATA = {
       "Fresh pasta, serious but relaxed neighborhood meal",
       "https://www.trullorestaurant.com/",
       "https://www.google.com/maps/search/?api=1&query=Trullo%20Restaurant%20London",
-      "https://source.unsplash.com/900x650/?pasta,restaurant,london"
+      "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80"
     ],
     [
       "The Tamil Prince",
@@ -437,7 +437,7 @@ window.TRIP_DATA = {
       "Buzzy, fun, social, modern London",
       "https://www.thetamilprince.com/",
       "https://www.google.com/maps/search/?api=1&query=The%20Tamil%20Prince%20115%20Hemingford%20Road%20London",
-      "https://source.unsplash.com/900x650/?indian,restaurant,london"
+      "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80"
     ],
     [
       "Clos Maggiore",
@@ -447,7 +447,7 @@ window.TRIP_DATA = {
       "Last-night romance, candlelight, theatrical Covent Garden",
       "https://www.closmaggiore.com/",
       "https://www.google.com/maps/search/?api=1&query=Clos%20Maggiore%2033%20King%20Street%20London",
-      "https://source.unsplash.com/900x650/?romantic,restaurant,london"
+      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=900&q=80"
     ],
     [
       "Noble Rot Lamb’s Conduit",
@@ -457,8 +457,162 @@ window.TRIP_DATA = {
       "Bookish wine-bar energy close to the hotel",
       "https://noblerot.co.uk/restaurant/lambs-conduit",
       "https://www.google.com/maps/search/?api=1&query=Noble%20Rot%20Lambs%20Conduit%20London",
-      "https://source.unsplash.com/900x650/?wine,bar,london"
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80"
     ]
+  ],
+  "restaurantGuides": [
+    {
+      "name": "The Harrison",
+      "role": "Arrival-night pub / Sunday roast",
+      "best": "Sunday July 5",
+      "verdict": "Keep for arrival night. Not the meal of the trip, but exactly right after Heathrow.",
+      "order": ["Sunday roast — beef, pork, or lamb depending current menu", "Yorkshire pudding / roast potatoes", "Cask ale or simple pub pint", "Dessert only if not wiped out from travel"],
+      "price": "OpenTable category: £25 and under. Expect pub-roast pricing plus drinks.",
+      "booking": "Book Sunday dinner ahead if arriving around 7pm. Good fallback if Noble Rot feels too formal.",
+      "tags": ["near", "optional"],
+      "image": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=900&q=80",
+      "links": [["Official", "https://harrisonvenuelondon.com/food-and-drink-at-the-harrison-venue/"], ["Sunday roast", "https://theharrisonpub.com/sunday-roast-at-the-harrison-pub-kings-cross/"], ["Map", "https://www.google.com/maps/search/?api=1&query=The%20Harrison%2028%20Harrison%20Street%20London"]]
+    },
+    {
+      "name": "Andrew Edmunds",
+      "role": "Post-Bath Soho dinner",
+      "best": "Monday July 6",
+      "verdict": "Keep, but book no earlier than 8:15–8:30pm.",
+      "order": ["Whipped cod’s roe if on the menu", "Seasonal fish or game/meat main", "Ask for wine help", "Dessert only if Bath did not wipe you out"],
+      "price": "OpenTable category: £26–£40. Budget more with wine.",
+      "booking": "Bookings open 30 calendar days ahead at 5:30pm London time. For July 6, set June 6, 2026 at 9:30am Pacific.",
+      "tags": ["romance", "foodie"],
+      "image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80",
+      "links": [["Reservations", "https://www.andrewedmunds.com/reservations"], ["Official", "https://www.andrewedmunds.com/"], ["Map", "https://www.google.com/maps/search/?api=1&query=Andrew%20Edmunds%2046%20Lexington%20Street%20London"]]
+    },
+    {
+      "name": "Trullo",
+      "role": "Foodie friend dinner",
+      "best": "Tuesday July 7 after Wimbledon",
+      "verdict": "Best if your friend values food first.",
+      "order": ["Pappardelle with beef shin ragù if available", "One additional seasonal pasta", "One charcoal-grill main to share", "Tiramisu or ricotta doughnuts if on the menu"],
+      "price": "Pastas roughly £14–£22; mains roughly £26–£44; larger sharing cuts can be much more.",
+      "booking": "Book 8:30pm or later after Wimbledon. Calmer and more serious than The Tamil Prince.",
+      "tags": ["friend", "foodie"],
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80",
+      "links": [["Official/reservations", "https://www.trullorestaurant.com/"], ["Map", "https://www.google.com/maps/search/?api=1&query=Trullo%20Restaurant%20London"]]
+    },
+    {
+      "name": "The Tamil Prince",
+      "role": "Fun friend dinner",
+      "best": "Tuesday July 7 after Wimbledon",
+      "verdict": "Best if the goal is a lively night out with your friend.",
+      "order": ["Okra fries", "Chicken lollipop", "Special masala dosa", "Chettinad lamb curry", "Flaky roti", "Coconut pilau rice", "Gunpowder Margarita or Tamil Negroni"],
+      "price": "Snacks around £9–£14.50; curries around £16; cocktails around £13.50–£14.50.",
+      "booking": "Book 8:30pm or later after Wimbledon. Avoid if anyone has serious allergies due to cross-contamination risk.",
+      "tags": ["friend"],
+      "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80",
+      "links": [["Official/reservations", "https://www.thetamilprince.com/"], ["Menu PDF", "https://www.thetamilprince.com/s/The-Tamil-Prince-Menus-May.pdf"], ["Map", "https://www.google.com/maps/search/?api=1&query=The%20Tamil%20Prince%20115%20Hemingford%20Road%20London"]]
+    },
+    {
+      "name": "Clos Maggiore",
+      "role": "Romantic final dinner",
+      "best": "Wednesday July 8",
+      "verdict": "Keep if you can get conservatory seating.",
+      "order": ["Path B: à la carte / full romantic dinner after The Mousetrap", "Path C: pre-theatre menu only if seated 5:00–5:45pm", "Request conservatory seating in the reservation notes", "Consider wine pairing or a special bottle"],
+      "price": "Pre-theatre: £32.50 two courses with bubbles / £39.50 three courses. Full dinner with wine will be much higher.",
+      "booking": "Hardest romantic booking in the plan. Request conservatory seating explicitly.",
+      "tags": ["romance"],
+      "image": "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=900&q=80",
+      "links": [["Official/reservations", "https://www.closmaggiore.com/"], ["Map", "https://www.google.com/maps/search/?api=1&query=Clos%20Maggiore%2033%20King%20Street%20London"]]
+    },
+    {
+      "name": "Noble Rot Lamb’s Conduit",
+      "role": "Near-hotel wine-bar upgrade",
+      "best": "Sunday arrival, Wednesday lunch, or any Bloomsbury gap",
+      "verdict": "Strong near-hotel option that fits the Bloomsbury/literary mood.",
+      "order": ["Comté beignets", "Oysters if you like oysters", "Seasonal fish", "Set lunch if timing works", "Ask for wine help"],
+      "price": "Set lunch examples: £24 two courses / £28 three courses. Mains often £32–£43.",
+      "booking": "Good backup if The Harrison feels too casual. Wine list is part of the point.",
+      "tags": ["near", "romance", "foodie"],
+      "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80",
+      "links": [["Official", "https://noblerot.co.uk/restaurant/lambs-conduit"], ["Menu PDF", "https://api.noblerot.co.uk/media/nobleRot_LambsConduit_food.pdf"], ["Map", "https://www.google.com/maps/search/?api=1&query=Noble%20Rot%20Lambs%20Conduit%20London"]]
+    },
+    {
+      "name": "Fortitude Bakehouse",
+      "role": "Morning pastry / coffee stop",
+      "best": "Thursday departure morning or before transit",
+      "verdict": "Low-pressure morning win near the hotel.",
+      "order": ["Fermented cinnamon bun", "Bostock or seasonal pastry", "Coffee"],
+      "price": "Pastry and coffee budget.",
+      "booking": "Use as a flexible departure-morning stop.",
+      "tags": ["near"],
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80",
+      "links": [["Official", "https://fortitudebakehouse.com/"], ["Map", "https://www.google.com/maps/search/?api=1&query=Fortitude%20Bakehouse%20London"]]
+    },
+    {
+      "name": "Honey & Co",
+      "role": "Bloomsbury breakfast / casual meal",
+      "best": "Breakfast or low-pressure meal near hotel",
+      "verdict": "Good when you want delicious without a big production.",
+      "order": ["Shakshuka", "Bureka", "Meze / sharing plates", "Feta and honey cheesecake if available"],
+      "price": "Casual meal pricing; verify current menu.",
+      "booking": "Useful as a relaxed Bloomsbury anchor.",
+      "tags": ["near"],
+      "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80",
+      "links": [["Official", "https://honeyandco.co.uk/"], ["Michelin", "https://guide.michelin.com/us/en/greater-london/london/restaurant/honey-co-1202607"], ["Map", "https://www.google.com/maps/search/?api=1&query=Honey%20and%20Co%20Lambs%20Conduit%20Street"]]
+    },
+    {
+      "name": "Ciao Bella",
+      "role": "Comfort Italian fallback",
+      "best": "Easy pasta/pizza near Bloomsbury when you do not want to think",
+      "verdict": "The no-drama fallback.",
+      "order": ["Bruschetta", "Pizza", "Spaghetti alle vongole", "Classic pasta"],
+      "price": "Menu examples: bruschetta £6.50, Margherita £12.50, spaghetti alle vongole £18.",
+      "booking": "Keep it in your back pocket for a tired night.",
+      "tags": ["near"],
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80",
+      "links": [["Menu", "https://ciaobellarestaurant.co.uk/our-menu/"], ["Map", "https://www.google.com/maps/search/?api=1&query=Ciao%20Bella%20Restaurant%20Bloomsbury"]]
+    }
+  ],
+  "priceReality": [
+    {"name": "Bath train", "cost": "Roughly £50–£90pp return if booked sensibly; cheaper advance fares may appear.", "note": "Paddington → Bath Spa can be from £25 one-way in advance; fastest direct journeys around 1h12.", "action": "Book once train times are chosen.", "links": [["National Rail", "https://www.nationalrail.co.uk/"], ["Trainline", "https://www.thetrainline.com/train-times/london-paddington-to-bath-spa"]]},
+    {"name": "Roman Baths", "cost": "Likely around £26.50–£32 adult depending date/time; verify July 2026 pricing.", "note": "Timed entry matters more than squeezing in another museum.", "action": "Book timed entry after train times are chosen.", "links": [["Official", "https://www.romanbaths.co.uk/visit"], ["Tickets example", "https://www.romanbaths.co.uk/tickets/2026-01-january-0"]]},
+    {"name": "Thermae Bath Spa", "cost": "Thermae Welcome £44pp Monday–Friday.", "note": "Includes a two-hour spa session, towel, and robe.", "action": "Book a mid-afternoon slot.", "links": [["Spa sessions", "https://www.thermaebathspa.com/spa-sessions-new-royal-bath"]]},
+    {"name": "Wimbledon Grounds Pass", "cost": "2026 reports: about £33 first eight days, £26 days 9–11, £21 final three days; verify official pricing.", "note": "Centre/Court 1 resale is a bonus, not the plan.", "action": "Arrive Southfields around 6:30–7am.", "links": [["Queue", "https://www.wimbledon.com/en_GB/tickets/the_queue"], ["Schedule", "https://www.wimbledon.com/en_GB/the_championships/schedule"]]},
+    {"name": "The Mousetrap", "cost": "Official London Theatre lists tickets from £28; broader ranges can be higher.", "note": "Runtime about 2 hours including interval.", "action": "Book if choosing Wednesday Path B or C.", "links": [["St Martin’s Theatre", "https://stmartinstheatre.co.uk/"], ["Official London Theatre", "https://officiallondontheatre.com/show/the-mousetrap-92715/"]]},
+    {"name": "Warner Bros. Studio Tour", "cost": "From £58.50.", "note": "Allow 3–4 hours inside plus transport.", "action": "Only book if choosing Wednesday Path A or C.", "links": [["Tickets", "https://www.wbstudiotour.co.uk/tickets/"]]},
+    {"name": "Clos Maggiore", "cost": "Pre-theatre £32.50 two courses with bubbles / £39.50 three courses; full romantic dinner with wine much higher.", "note": "14.5% discretionary service charge noted by OpenTable; cancellation charge may apply within 48 hours.", "action": "Request conservatory seating.", "links": [["Official", "https://www.closmaggiore.com/"]]}
+  ],
+  "wildcards": [
+    {"name": "WAH In The City", "status": "skip", "date": "Sunday July 5, 2026 · 12:00pm–10:00pm", "location": "Silverworks Island, Docklands", "price": "RA lists £45+", "genre": "Drum & Bass / Jungle", "why": "Conflicts with arrival day and is too much after Dublin → Heathrow.", "links": [["Official", "https://www.wahinthecity.com/"], ["RA", "https://ra.co/events/2151208"]]},
+    {"name": "PARADOX at XOYO", "status": "maybe", "date": "Wednesday July 8, 2026 · 11:00pm–3:00am", "location": "XOYO, Shoreditch", "price": "Check listing", "genre": "Tech House / Deep House", "why": "Plausible after Path B, but very late before departure day.", "links": [["RA", "https://de.ra.co/events/2440337"], ["Venue", "https://www.xoyolondon.com/"]]},
+    {"name": "Sarah Nimmo at The Lower Third", "status": "skip", "date": "Tuesday July 7, 2026 · 7:00pm–11:00pm", "location": "The Lower Third, Soho", "price": "RA listed £13.50", "genre": "Electro / Pop", "why": "Conflicts with Wimbledon + friend dinner.", "links": [["RA", "https://ra.co/events/2413555"]]}
+  ],
+  "seasonalEvents": [
+    {"name": "Anish Kapoor at Hayward Gallery", "status": "add", "date": "June 16–October 18, 2026", "location": "Southbank Centre / Hayward Gallery", "price": "£22", "why": "Fits the Borough/South Bank/St Paul’s walking day better than a long museum slog.", "link": "https://www.southbankcentre.co.uk/whats-on/anish-kapoor/"},
+    {"name": "Frida: The Making of an Icon", "status": "maybe", "date": "June 25, 2026–January 3, 2027", "location": "Tate Modern", "price": "Check Tate ticketing closer to visit", "why": "Good rainy-day option near South Bank.", "link": "https://www.tate.org.uk/whats-on/tate-modern/frida-making-icon"},
+    {"name": "BST Hyde Park: Duran Duran", "status": "skip", "date": "Sunday July 5, 2026", "location": "Hyde Park", "price": "Starts at £79.95 + booking fees", "why": "Conflicts with arrival day unless you are big Duran Duran / Scissor Sisters fans.", "link": "https://www.bst-hydepark.com/events/duran-duran-5-july/"},
+    {"name": "Royal Society Summer Science Exhibition", "status": "skip", "date": "June 30–July 5, 2026", "location": "Royal Society", "price": "Free", "why": "Only possible if Sunday arrival is unusually early.", "link": "https://royalsociety.org/science-events-and-lectures/2026/06/summer-science-exhibition/"},
+    {"name": "Kew the Music", "status": "maybe", "date": "Monitor for July 2026 lineup", "location": "Kew Gardens", "price": "TBD", "why": "Monitor only; do not let it crowd the core plan.", "link": "https://www.kew.org/kew-the-music"}
+  ],
+  "romanticUpgrades": [
+    {"name": "Make Bath a spa date, not a sightseeing race", "cost": "Thermae Welcome £44pp plus train/Roman Baths/lunch", "when": "Monday July 6", "instructions": ["Do Roman Baths first", "Keep lunch simple", "Book Thermae mid-afternoon", "Do not add extra museums", "Return with enough time for Andrew Edmunds"], "why": "This is the difference between Bath being romantic and Bath being exhausting.", "link": "https://www.thermaebathspa.com/spa-sessions-new-royal-bath"},
+    {"name": "Clos Maggiore conservatory request", "cost": "Free request; dinner itself is the splurge", "when": "Wednesday July 8", "instructions": ["Put “conservatory seating requested for a romantic final night in London” in booking notes", "Call/email closer to confirm", "If they cannot offer conservatory seating, decide whether the booking is still worth it"], "why": "The conservatory is the emotional target, not just the restaurant name.", "link": "https://www.closmaggiore.com/"},
+    {"name": "Regent’s Canal to Primrose Hill sunset", "cost": "Free", "when": "Sunday if energized, Wednesday if not doing Studio Tour, or any flexible gap", "instructions": ["Start at King’s Cross / Coal Drops Yard", "Walk toward Camden", "Continue to Primrose Hill if weather is good", "Grab a casual drink nearby after"], "why": "Soft-focus London without another ticketed obligation.", "link": "https://www.google.com/maps/dir/?api=1&origin=Coal%20Drops%20Yard&destination=Primrose%20Hill&waypoints=Camden%20Market&travelmode=walking"},
+    {"name": "Ye Olde Mitre hidden pub stop", "cost": "Pint/snack budget", "when": "Wednesday afternoon if doing Path B", "instructions": ["Use it as a 45-minute atmospheric stop, not a full meal", "Pair with Soane’s / Holborn / Fleet Street walking"], "why": "A little secret-door London energy.", "link": "https://www.yeoldemitreholborn.co.uk/"},
+    {"name": "Dennis Severs’ House evening visit", "cost": "Relaxed day visits around £16; silent night visits around £25; special tours higher", "when": "Only if it naturally fits", "instructions": ["Book ahead", "Choose an evening/silent visit if available", "Do not combine with Path C"], "why": "Candlelit and theatrical, but only romantic when it has room.", "link": "https://www.dennissevershouse.co.uk/calendar"}
+  ],
+  "bookingTimeline": [
+    {"date": "Now / ASAP", "name": "Decide Wednesday path", "priority": "high", "actions": ["Path A: Studio Tour + Clos Maggiore", "Path B: London walk + Mousetrap + Clos Maggiore", "Path C: Studio Tour + early Clos Maggiore + Mousetrap; possible, not recommended"]},
+    {"date": "Now / ASAP", "name": "Clos Maggiore", "priority": "high", "actions": ["Book once July 8 availability is open", "Request conservatory seating", "If Path B, target ~9:45pm after The Mousetrap", "If Path C, target 5:00–5:15pm pre-theatre seating"]},
+    {"date": "June 6, 2026 at 9:30am Pacific", "name": "Andrew Edmunds", "priority": "high", "actions": ["Book 8:15pm or 8:30pm for Monday July 6", "Use Visa/Mastercard, not Amex"]},
+    {"date": "When tickets/trains are open", "name": "Bath logistics", "priority": "high", "actions": ["Book Paddington ↔ Bath Spa trains", "Book Roman Baths timed entry", "Book Thermae Bath Spa mid-afternoon slot"]},
+    {"date": "Now / when decided", "name": "Wednesday tickets", "priority": "medium", "actions": ["Path A/C: book Warner Bros. Studio Tour", "Path B/C: book The Mousetrap"]},
+    {"date": "1–2 weeks before trip", "name": "Wimbledon prep", "priority": "medium", "actions": ["Re-check official Queue guidance", "Decide exact hotel departure time", "Pack sunscreen, water bottle, portable charger, light layer"]},
+    {"date": "Week of trip", "name": "Nightlife/event scan", "priority": "low", "actions": ["Check Resident Advisor, Dice, Skiddle, and venue calendars", "Only add a late-night event if it does not wreck Bath, Wimbledon, or departure"]}
+  ],
+  "overstuffWarnings": [
+    {"name": "Path C", "level": "skip", "text": "This works on paper, but your day becomes transport + clocks + rushing dinner."},
+    {"name": "Sunday concert", "level": "skip", "text": "Arrival-day concerts are risky."},
+    {"name": "Post-Clos club", "level": "maybe", "text": "XOYO after Clos Maggiore is fun in theory, but you depart the next morning."},
+    {"name": "Bath early dinner", "level": "skip", "text": "Do not book Andrew Edmunds before 8:15pm after Bath."},
+    {"name": "Wimbledon late arrival", "level": "skip", "text": "Arriving after 7:30am on quarterfinal day turns the Wimbledon plan into a gamble."}
   ],
   "experiences": [
     [
