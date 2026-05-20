@@ -246,29 +246,37 @@ h1 {
   grid-column: span 2;
 }
 
+.image-credit {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  color: color-mix(in srgb, var(--muted) 86%, transparent);
+  font-size: .82rem;
+  line-height: 1.4;
+}
+
 .city-image {
   min-height: 310px;
   background: center/cover;
 }
 
 .lisbon .city-image {
-  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://images.unsplash.com/photo-1504730655501-24c39ac53f0e?auto=format&fit=crop&w=1400&q=80");
+  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Tram%20through%20Alfama%20%2845633482212%29.jpg?width=1400");
 }
 
 .kilkea .city-image {
-  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1400&q=80");
+  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Kilkea%20Castle%20-%20geograph.org.uk%20-%202329542.jpg?width=1400");
 }
 
 .galway .city-image {
-  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=1400&q=80");
+  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Cliffs%20of%20Moher%20%2827262979577%29.jpg?width=1400");
 }
 
 .dublin .city-image {
-  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=1400&q=80");
+  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Ha%27penny%20Bridge%20over%20River%20Liffey%2C%20Dublin%20%2814167446457%29.jpg?width=1400");
 }
 
 .london .city-image {
-  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1400&q=80");
+  background-image: linear-gradient(rgba(20, 10, 4, .08), rgba(20, 10, 4, .44)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Westminster%20Bridge%20and%20Big%20Ben%20in%20London.jpg?width=1400");
 }
 
 .city-content {
