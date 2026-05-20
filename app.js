@@ -1,9 +1,177 @@
 const DATA = window.TRIP_DATA;
+const NOTES = window.LONDON_NOTES;
 let selectedDay = localStorage.getItem('london.selectedDay') || 'sun';
 let selectedPath = localStorage.getItem('london.selectedPath') || 'B';
+let noteState = loadNoteState();
+let stampState = loadStampState();
+const noteLabels = {};
+const DAY_CHAPTERS = [
+  {
+    dayId: 'sun',
+    title: 'Soft Landing',
+    subtitle: 'Bloomsbury, pub glass, first-night London glow',
+    stamp: 'Bloomsbury'
+  },
+  {
+    dayId: 'mon',
+    title: 'The Spa Date',
+    subtitle: 'Bath turns into romance when the day has room',
+    stamp: 'Bath'
+  },
+  {
+    dayId: 'tue',
+    title: 'Grass Court Fever',
+    subtitle: 'Queue early, wander the grounds, make Wimbledon the ritual',
+    stamp: 'Wimbledon'
+  },
+  {
+    dayId: 'wed',
+    title: 'The Final London Night',
+    subtitle: 'Markets, river light, theater, and Clos Maggiore',
+    stamp: 'Covent Garden'
+  },
+  {
+    dayId: 'thu',
+    title: 'Last Look',
+    subtitle: 'Coffee, Russell Square, and enough airport buffer',
+    stamp: 'Departure'
+  }
+];
+const MAP_PINS = [
+  { id: 'hotel', label: 'Kimpton Fitzroy', x: 49, y: 35, target: '#plan' },
+  { id: 'bath', label: 'Bath day', x: 13, y: 67, day: 'mon' },
+  { id: 'wimbledon', label: 'Wimbledon', x: 34, y: 78, target: '#wimbledon' },
+  { id: 'soho', label: 'Andrew Edmunds', x: 43, y: 47, target: '#food' },
+  { id: 'borough', label: 'Borough walk', x: 58, y: 61, target: '#walks' },
+  { id: 'covent', label: 'Clos Maggiore', x: 50, y: 50, target: '#wednesday' },
+  { id: 'islington', label: 'Friend dinner', x: 62, y: 30, target: '#food' },
+  { id: 'studio', label: 'Studio Tour', x: 77, y: 16, path: 'A' }
+];
+const PASSPORT_STAMPS = [
+  ['bloomsbury', 'Bloomsbury', 'Arrival glow'],
+  ['bath', 'Bath', 'Spa date'],
+  ['wimbledon', 'Wimbledon', 'Grass courts'],
+  ['soho', 'Soho', 'Andrew Edmunds'],
+  ['south-bank', 'South Bank', 'River walk'],
+  ['covent-garden', 'Covent Garden', 'Final dinner'],
+  ['west-end', 'West End', 'The Mousetrap'],
+  ['primrose-hill', 'Primrose Hill', 'Sunset option']
+];
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  }[char]));
+}
+
+function slugify(value) {
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+function optionId(type, name) {
+  return `${type}:${slugify(name)}`;
+}
+
+function registerNoteLabel(id, label) {
+  noteLabels[id] = label;
+  return id;
+}
+
+function loadNoteState() {
+  try {
+    return NOTES.normalizeNotesState(JSON.parse(localStorage.getItem('london.notes') || '{}'));
+  } catch {
+    return NOTES.createEmptyNotesState();
+  }
+}
+
+function saveNoteState() {
+  localStorage.setItem('london.notes', JSON.stringify(noteState));
+}
+
+function loadStampState() {
+  try {
+    return JSON.parse(localStorage.getItem('london.stamps') || '{}');
+  } catch {
+    return {};
+  }
+}
+
+function saveStampState() {
+  localStorage.setItem('london.stamps', JSON.stringify(stampState));
+}
+
+function getOptionFeedback(id, author) {
+  return noteState.items[id]?.[author] || { reaction: '', note: '' };
+}
+
+function feedbackPanel(id, label) {
+  registerNoteLabel(id, label);
+  const feedbackCount = NOTES.countOptionFeedback(noteState, id);
+  const hasNotes = feedbackCount > 0;
+  return `
+    <details class="note-panel ${hasNotes ? 'has-notes' : ''}" data-note-id="${id}">
+      <summary class="note-panel-head">
+        <span>Notes</span>
+        <em>${hasNotes ? `${feedbackCount} saved` : 'Add reaction'}</em>
+      </summary>
+      <div class="note-authors">
+        ${NOTES.NOTE_AUTHORS.map((author) => {
+          const feedback = getOptionFeedback(id, author);
+          return `
+            <div class="note-author" data-author="${author}">
+              <div class="note-author-head">
+                <strong>${author}</strong>
+                <div class="reaction-row">
+                  ${NOTES.NOTE_REACTIONS.map(([value, text]) => `
+                    <button class="reaction-button ${feedback.reaction === value ? 'active' : ''}" type="button" data-reaction="${value}">${text}</button>
+                  `).join('')}
+                </div>
+              </div>
+              <textarea class="note-text" rows="2" placeholder="${author}'s note...">${escapeHtml(feedback.note)}</textarea>
+            </div>
+          `;
+        }).join('')}
+      </div>
+      <a class="review-notes-link" href="#notes">Review all notes</a>
+    </details>
+  `;
+}
+
+function updatePanelState(panel) {
+  const id = panel.dataset.noteId;
+  const feedbackCount = NOTES.countOptionFeedback(noteState, id);
+  panel.classList.toggle('has-notes', feedbackCount > 0);
+  const countLabel = panel.querySelector('.note-panel-head em');
+  if (countLabel) countLabel.textContent = feedbackCount ? `${feedbackCount} saved` : 'Add reaction';
+  panel.querySelectorAll('.note-author').forEach((authorBlock) => {
+    const author = authorBlock.dataset.author;
+    const feedback = getOptionFeedback(id, author);
+    authorBlock.querySelectorAll('.reaction-button').forEach((button) => {
+      button.classList.toggle('active', button.dataset.reaction === feedback.reaction);
+    });
+  });
+}
+
+function registerAllNoteLabels() {
+  DATA.days.forEach((day) => registerNoteLabel(`day:${day.id}`, `${day.day}: ${day.title}`));
+  Object.entries(DATA.paths).forEach(([id, path]) => registerNoteLabel(`path:${id}`, path.name));
+  DATA.restaurantGuides.forEach((item) => registerNoteLabel(optionId('restaurant', item.name), item.name));
+  DATA.priceReality.forEach((item) => registerNoteLabel(optionId('price', item.name), item.name));
+  DATA.wildcards.forEach((item) => registerNoteLabel(optionId('wildcard', item.name), item.name));
+  DATA.seasonalEvents.forEach((item) => registerNoteLabel(optionId('seasonal', item.name), item.name));
+  DATA.romanticUpgrades.forEach((item) => registerNoteLabel(optionId('upgrade', item.name), item.name));
+  DATA.overstuffWarnings.forEach((item) => registerNoteLabel(optionId('warning', item.name), item.name));
+  DATA.bookingTimeline.forEach((item) => registerNoteLabel(optionId('booking', item.name), item.name));
+  DATA.experiences.forEach((item) => registerNoteLabel(optionId('experience', item[0]), item[0]));
+}
 
 function toast(message) {
   const toastEl = $('#toast');
@@ -16,6 +184,163 @@ function setTheme() {
   const isDark = localStorage.getItem('london.dark') === 'true';
   document.documentElement.classList.toggle('dark', isDark);
   $('#themeToggle').textContent = isDark ? '☀' : '☾';
+}
+
+function renderDayChapters() {
+  $('#chapterGrid').innerHTML = DAY_CHAPTERS.map((chapter, index) => {
+    const day = DATA.days.find((item) => item.id === chapter.dayId);
+    return `
+      <article class="chapter-card" style="--img:url('${day.hero}')">
+        <div class="chapter-number">Chapter ${index + 1}</div>
+        <h3>${chapter.title}</h3>
+        <p>${chapter.subtitle}</p>
+        <button class="chapter-jump" type="button" data-day-jump="${chapter.dayId}">${chapter.stamp}</button>
+      </article>
+    `;
+  }).join('');
+
+  $$('.chapter-jump').forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedDay = button.dataset.dayJump;
+      localStorage.setItem('london.selectedDay', selectedDay);
+      renderDayTabs();
+      renderDayDetail();
+      document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+function renderCoupleDashboard() {
+  const analysis = NOTES.analyzeCoupleDecisions(noteState, noteLabels);
+  const cards = [
+    ['bothLove', 'Both love', 'Easy yes', 'These are the moments with no debate.'],
+    ['loganLoves', 'Logan loves', 'Make the case', 'Worth keeping if Emily is not against it.'],
+    ['emilyLoves', 'Emily loves', 'Protect these', 'These should get priority oxygen.'],
+    ['potentialConflict', 'Potential conflict', 'Talk it out', 'One person is excited, the other is wary.'],
+    ['logisticsConcern', 'Logistics concern', 'Stress check', 'Good idea, but watch the clock.']
+  ];
+
+  $('#decisionDashboard').innerHTML = cards.map(([key, title, badge, empty]) => {
+    const items = analysis[key];
+    return `
+      <article class="decision-card ${key}">
+        <span class="label">${badge}</span>
+        <h3>${title}</h3>
+        <strong class="decision-count">${items.length}</strong>
+        ${items.length ? `<ul>${items.slice(0, 4).map((item) => `<li>${item.label}</li>`).join('')}</ul>` : `<p>${empty}</p>`}
+      </article>
+    `;
+  }).join('');
+}
+
+function renderLoveMap() {
+  $('#loveMap').innerHTML = `
+    <div class="map-river"></div>
+    <div class="map-label west">Bath / west</div>
+    <div class="map-label centre">Central London</div>
+    <div class="map-label north">North London</div>
+    ${MAP_PINS.map((pin) => `
+      <button class="map-pin" type="button" style="--x:${pin.x}%;--y:${pin.y}%" data-pin="${pin.id}">
+        <span></span>
+        <strong>${pin.label}</strong>
+      </button>
+    `).join('')}
+  `;
+
+  $$('.map-pin').forEach((button) => {
+    button.addEventListener('click', () => {
+      const pin = MAP_PINS.find((item) => item.id === button.dataset.pin);
+      if (pin.day) {
+        selectedDay = pin.day;
+        localStorage.setItem('london.selectedDay', selectedDay);
+        renderDayTabs();
+        renderDayDetail();
+        document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      if (pin.path) {
+        selectedPath = pin.path;
+        localStorage.setItem('london.selectedPath', selectedPath);
+        renderPathPicker();
+        renderPathDetail();
+      }
+      document.querySelector(pin.target || '#top').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+function renderPassportStamps() {
+  const chosen = Object.values(stampState).filter(Boolean).length;
+  $('#passportGrid').innerHTML = `
+    <div class="passport-score">
+      <span class="label">Stamped</span>
+      <strong>${chosen}/${PASSPORT_STAMPS.length}</strong>
+      <p>Your chosen London motifs, saved on this browser.</p>
+    </div>
+    <div class="stamp-grid">
+      ${PASSPORT_STAMPS.map(([id, title, subtitle]) => `
+        <button class="stamp-card ${stampState[id] ? 'stamped' : ''}" type="button" data-stamp="${id}">
+          <span>${stampState[id] ? 'Stamped' : 'Stamp'}</span>
+          <strong>${title}</strong>
+          <em>${subtitle}</em>
+        </button>
+      `).join('')}
+    </div>
+  `;
+
+  $$('.stamp-card').forEach((button) => {
+    button.addEventListener('click', () => {
+      stampState = NOTES.toggleStamp(stampState, button.dataset.stamp);
+      saveStampState();
+      renderPassportStamps();
+    });
+  });
+}
+
+function listFinalCutItems(items, emptyText) {
+  if (!items.length) return `<p>${emptyText}</p>`;
+  return `<ul>${items.slice(0, 6).map((item) => `<li>${item.label}</li>`).join('')}</ul>`;
+}
+
+function renderFinalCut() {
+  const cut = NOTES.buildFinalCut(noteState, noteLabels);
+  $('#finalCutGrid').innerHTML = `
+    <article class="final-card must">
+      <span class="label">Must-do</span>
+      <h3>Protect these</h3>
+      ${listFinalCutItems(cut.mustDo, 'React to a few cards and the site will start calling the easy yeses.')}
+    </article>
+    <article class="final-card maybe">
+      <span class="label">Maybe</span>
+      <h3>Energy permitting</h3>
+      ${listFinalCutItems(cut.maybe, 'Your soft maybes will collect here.')}
+    </article>
+    <article class="final-card discuss">
+      <span class="label">Discuss</span>
+      <h3>Needs a conversation</h3>
+      ${listFinalCutItems(cut.discuss, 'Anything split between excitement and resistance lands here.')}
+    </article>
+    <article class="final-card cut">
+      <span class="label">Cut</span>
+      <h3>Let it go</h3>
+      ${listFinalCutItems(cut.cut, 'No hard cuts yet. That is either harmony or not enough reactions.')}
+    </article>
+  `;
+}
+
+function renderCountdown() {
+  $('#countdownGrid').innerHTML = NOTES.getCountdownItems(new Date()).map((item) => `
+    <article class="countdown-card ${item.status}">
+      <span>${item.status === 'past' ? 'Passed' : item.status === 'today' ? 'Today' : 'In'}</span>
+      <strong>${item.status === 'past' ? Math.abs(item.days) : item.days}</strong>
+      <p>${item.label}</p>
+    </article>
+  `).join('');
+}
+
+function refreshWowSurfaces() {
+  renderCoupleDashboard();
+  renderFinalCut();
 }
 
 function renderDayTabs() {
@@ -77,6 +402,7 @@ function renderDayDetail() {
       <div class="link-grid">
         ${day.links.map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${name} ↗</a>`).join('')}
       </div>
+      ${feedbackPanel(`day:${day.id}`, `${day.day}: ${day.title}`)}
     </div>
   `;
 }
@@ -123,6 +449,10 @@ function renderPathDetail() {
       <div>${text}</div>
     </div>
   `).join('');
+  const noteSlot = $('#pathNoteSlot') || document.createElement('div');
+  noteSlot.id = 'pathNoteSlot';
+  noteSlot.innerHTML = feedbackPanel(`path:${selectedPath}`, path.name);
+  if (!$('#pathNoteSlot')) $('.path-info').append(noteSlot);
 }
 
 function renderPathCalculator() {
@@ -226,6 +556,7 @@ function renderRestaurants(filter = 'all') {
         <div class="link-grid">
           ${restaurant.links.map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${name} ↗</a>`).join('')}
         </div>
+        ${feedbackPanel(optionId('restaurant', restaurant.name), restaurant.name)}
       </div>
     </article>
   `).join('');
@@ -240,6 +571,7 @@ function renderPriceReality() {
       <p>${item.note}</p>
       <div class="action-line">${item.action}</div>
       <div class="link-grid">${item.links.map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${name} ↗</a>`).join('')}</div>
+      ${feedbackPanel(optionId('price', item.name), item.name)}
     </article>
   `).join('');
 }
@@ -258,6 +590,7 @@ function renderWildcards() {
       <p>${item.why}</p>
       <p class="tiny-note">${item.price}</p>
       <div class="link-grid">${item.links.map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${name} ↗</a>`).join('')}</div>
+      ${feedbackPanel(optionId('wildcard', item.name), item.name)}
     </article>
   `).join('');
 }
@@ -272,6 +605,7 @@ function renderSeasonal(filter = 'all') {
       <p><strong>${item.price}</strong></p>
       <p>${item.why}</p>
       <a href="${item.link}" target="_blank" rel="noopener">Open site ↗</a>
+      ${feedbackPanel(optionId('seasonal', item.name), item.name)}
     </article>
   `).join('');
 }
@@ -288,6 +622,7 @@ function renderRomanticUpgrades() {
         <ul>${upgrade.instructions.map((item) => `<li>${item}</li>`).join('')}</ul>
       </details>
       <a href="${upgrade.link}" target="_blank" rel="noopener">Open details ↗</a>
+      ${feedbackPanel(optionId('upgrade', upgrade.name), upgrade.name)}
     </article>
   `).join('');
 }
@@ -298,6 +633,7 @@ function renderWarnings() {
       <span class="status-badge">${statusLabel(warning.level)}</span>
       <h3>${warning.name}</h3>
       <p>${warning.text}</p>
+      ${feedbackPanel(optionId('warning', warning.name), warning.name)}
     </article>
   `).join('');
 }
@@ -310,6 +646,7 @@ function renderBookingTimeline() {
         <span class="label">${item.priority}</span>
         <h3>${item.name}</h3>
         <ul>${item.actions.map((action) => `<li>${action}</li>`).join('')}</ul>
+        ${feedbackPanel(optionId('booking', item.name), item.name)}
       </div>
     </article>
   `).join('');
@@ -323,8 +660,212 @@ function renderExperiences() {
       <p><strong>Best when:</strong> ${experience[2]}</p>
       <p>${experience[3]}</p>
       <a href="${experience[4]}" target="_blank" rel="noopener">Open route/site ↗</a>
+      ${feedbackPanel(optionId('experience', experience[0]), experience[0])}
     </article>
   `).join('');
+}
+
+function renderNotesReview() {
+  const summary = NOTES.getFeedbackSummary(noteState);
+  const wrapper = $('#notesReview');
+  const collaboration = `
+    <div class="collab-grid">
+      <article class="collab-card">
+        <span class="label">Send notes</span>
+        <h3>Copy a share packet</h3>
+        <p>Emily can copy this from her device and send it to you. You can paste it below to merge her notes into yours.</p>
+        <button class="btn primary" type="button" id="copySharePacket">Copy share packet</button>
+      </article>
+      <article class="collab-card">
+        <span class="label">Import</span>
+        <h3>Merge someone else’s packet</h3>
+        <textarea id="sharePacketInput" rows="5" placeholder="Paste the LONDON_LOVE_LETTER_NOTES_V1 packet here"></textarea>
+        <button class="btn" type="button" id="importSharePacket">Import notes</button>
+      </article>
+      <article class="collab-card suggestion-card">
+        <span class="label">Missing idea</span>
+        <h3>Suggest something not on the site</h3>
+        <form id="suggestionForm">
+          <div class="form-row">
+            <select name="author" aria-label="Author"><option>Emily</option><option>Logan</option></select>
+            <select name="category" aria-label="Category"><option>Activity</option><option>Restaurant</option><option>Place</option><option>Nightlife</option><option>Other</option></select>
+          </div>
+          <input name="title" placeholder="Suggestion title" />
+          <input name="url" placeholder="Optional link" />
+          <textarea name="note" rows="3" placeholder="Why should this be considered?"></textarea>
+          <button class="btn primary" type="submit">Add suggestion</button>
+        </form>
+      </article>
+    </div>
+    <div class="suggestions-panel">
+      <div class="notes-toolbar"><span>Missing suggestions</span></div>
+      ${renderSuggestionsList()}
+    </div>
+  `;
+
+  if (!summary.length) {
+    wrapper.innerHTML = `
+      ${noteState.suggestions.length ? '' : `<div class="empty-notes">
+        <span class="label">No notes yet</span>
+        <h3>Leave reactions as you browse.</h3>
+        <p>Use Logan and Emily notes on any card, then come back here for the full readout.</p>
+      </div>`}
+      ${collaboration}
+    `;
+    bindCollaborationControls();
+    return;
+  }
+
+  wrapper.innerHTML = `
+    <div class="notes-toolbar">
+      <span>${summary.length} noted option${summary.length === 1 ? '' : 's'}</span>
+      <button class="btn" type="button" id="copyNotesInline">Copy notes</button>
+    </div>
+    <div class="notes-grid">
+      ${summary.map((item) => `
+        <article class="note-summary-card">
+          <h3>${noteLabels[item.optionId] || item.optionId}</h3>
+          ${NOTES.NOTE_AUTHORS.map((author) => {
+            const feedback = item[author];
+            if (!NOTES.hasFeedback(feedback)) return '';
+            const reaction = NOTES.formatReaction(feedback.reaction);
+            return `
+              <div class="summary-author">
+                <span>${author}</span>
+                <p>${reaction ? `<strong>${reaction}</strong>` : ''}${reaction && feedback.note ? ' · ' : ''}${escapeHtml(feedback.note)}</p>
+              </div>
+            `;
+          }).join('')}
+        </article>
+      `).join('')}
+    </div>
+    ${collaboration}
+  `;
+
+  const copyInline = $('#copyNotesInline');
+  if (copyInline) copyInline.addEventListener('click', copyNotes);
+  bindCollaborationControls();
+}
+
+function copyNotes() {
+  copyText(NOTES.exportFeedbackText(noteState, noteLabels));
+}
+
+function renderAllDynamicSections() {
+  const foodFilter = $('.chip[data-filter].active')?.dataset.filter || 'all';
+  const seasonalFilter = $('.chip[data-season-filter].active')?.dataset.seasonFilter || 'all';
+  renderDayTabs();
+  renderDayDetail();
+  renderPathPicker();
+  renderPathDetail();
+  renderRestaurants(foodFilter);
+  renderPriceReality();
+  renderWildcards();
+  renderSeasonal(seasonalFilter);
+  renderRomanticUpgrades();
+  renderWarnings();
+  renderExperiences();
+  renderBookingTimeline();
+  renderNotesReview();
+  refreshWowSurfaces();
+}
+
+function copySharePacket() {
+  copyText(NOTES.exportSharePacket(noteState));
+}
+
+function suggestionId(author, title) {
+  return `suggestion:${slugify(author)}:${slugify(title)}:${Date.now()}`;
+}
+
+function renderSuggestionsList() {
+  if (!noteState.suggestions.length) {
+    return '<p class="muted">No missing-place suggestions yet.</p>';
+  }
+  return `
+    <div class="suggestion-list">
+      ${noteState.suggestions.map((suggestion) => `
+        <article class="suggestion-item">
+          <span>${escapeHtml(suggestion.author)} · ${escapeHtml(suggestion.category)}</span>
+          <h4>${escapeHtml(suggestion.title)}</h4>
+          <p>${escapeHtml(suggestion.note)}</p>
+          ${suggestion.url ? `<a href="${escapeHtml(suggestion.url)}" target="_blank" rel="noopener">Open link ↗</a>` : ''}
+        </article>
+      `).join('')}
+    </div>
+  `;
+}
+
+function bindCollaborationControls() {
+  const copyPacket = $('#copySharePacket');
+  if (copyPacket) copyPacket.addEventListener('click', copySharePacket);
+
+  const importPacket = $('#importSharePacket');
+  if (importPacket) importPacket.addEventListener('click', () => {
+    const input = $('#sharePacketInput');
+    try {
+      const incoming = NOTES.parseSharePacket(input.value);
+      noteState = NOTES.mergeNotesStates(noteState, incoming);
+      saveNoteState();
+      renderAllDynamicSections();
+      toast('Imported notes');
+    } catch {
+      toast('Could not import that packet');
+    }
+  });
+
+  const suggestionForm = $('#suggestionForm');
+  if (suggestionForm) suggestionForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const form = new FormData(suggestionForm);
+    const title = String(form.get('title') || '').trim();
+    if (!title) {
+      toast('Add a suggestion title');
+      return;
+    }
+    noteState = NOTES.addSuggestion(noteState, {
+      id: suggestionId(form.get('author'), title),
+      author: String(form.get('author') || 'Emily'),
+      category: String(form.get('category') || 'Activity'),
+      title,
+      note: String(form.get('note') || '').trim(),
+      url: String(form.get('url') || '').trim()
+    });
+    saveNoteState();
+    renderAllDynamicSections();
+    toast('Suggestion saved');
+  });
+}
+
+function bindNoteEvents() {
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('.reaction-button');
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const panel = button.closest('.note-panel');
+    const author = button.closest('.note-author').dataset.author;
+    const id = panel.dataset.noteId;
+    const current = getOptionFeedback(id, author);
+    const nextReaction = current.reaction === button.dataset.reaction ? '' : button.dataset.reaction;
+    noteState = NOTES.saveOptionFeedback(noteState, id, author, { reaction: nextReaction });
+    saveNoteState();
+    updatePanelState(panel);
+    renderNotesReview();
+    refreshWowSurfaces();
+  });
+
+  document.addEventListener('input', (event) => {
+    if (!event.target.classList.contains('note-text')) return;
+    const panel = event.target.closest('.note-panel');
+    const author = event.target.closest('.note-author').dataset.author;
+    const id = panel.dataset.noteId;
+    noteState = NOTES.saveOptionFeedback(noteState, id, author, { note: event.target.value });
+    saveNoteState();
+    updatePanelState(panel);
+    renderNotesReview();
+    refreshWowSurfaces();
+  });
 }
 
 function renderChecklist() {
@@ -386,7 +927,11 @@ function copyText(text) {
 }
 
 function init() {
+  registerAllNoteLabels();
   setTheme();
+  renderDayChapters();
+  renderLoveMap();
+  renderPassportStamps();
   renderDayTabs();
   renderDayDetail();
   renderPathPicker();
@@ -400,8 +945,12 @@ function init() {
   renderWarnings();
   renderExperiences();
   renderBookingTimeline();
+  renderCountdown();
+  refreshWowSurfaces();
+  renderNotesReview();
   renderChecklist();
   updateArrivalText();
+  bindNoteEvents();
 
   $('#themeToggle').addEventListener('click', () => {
     const next = !(localStorage.getItem('london.dark') === 'true');
@@ -410,6 +959,7 @@ function init() {
   });
   $('#copyHero').addEventListener('click', () => copyText(finalSummary()));
   $('#copyFull').addEventListener('click', () => copyText(finalSummary()));
+  $('#copyNotes').addEventListener('click', copyNotes);
   $$('.chip[data-filter]').forEach((chip) => chip.addEventListener('click', () => {
     $$('.chip[data-filter]').forEach((item) => item.classList.remove('active'));
     chip.classList.add('active');

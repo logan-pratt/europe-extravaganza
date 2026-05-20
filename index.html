@@ -37,6 +37,11 @@
         <article class="verdict-card cut"><span class="label">Do not</span><h3>Overstuff Wednesday</h3><p>Studio Tour + show + Clos Maggiore technically works only if you enjoy clock-watching. Pick a lane.</p></article>
       </div>
     </section>
+    <section class="section reveal" id="chapters"><div class="section-head"><p class="eyebrow">Film chapters</p><h2>The trip, cut like a romantic London movie</h2><p>Each day gets a title card, a mood, and a stamp-worthy moment.</p></div><div class="chapter-grid" id="chapterGrid"></div></section>
+    <section class="section reveal" id="couple-dashboard"><div class="section-head"><p class="eyebrow">Couple dashboard</p><h2>Where your reactions become decisions</h2><p>As Logan and Emily react, this turns the planning conversation into a clear read.</p></div><div class="decision-dashboard" id="decisionDashboard"></div></section>
+    <section class="section reveal" id="trip-map"><div class="section-head"><p class="eyebrow">London constellation</p><h2>A private map of the moments</h2><p>Tap a pin to jump into the part of the plan it belongs to.</p></div><div class="love-map" id="loveMap"></div></section>
+    <section class="section reveal" id="passport"><div class="section-head"><p class="eyebrow">Passport stamps</p><h2>Choose the moments that make the cut</h2><p>Click a stamp when it feels like it belongs in your version of London.</p></div><div class="passport-grid" id="passportGrid"></div></section>
+    <section class="section reveal" id="final-cut"><div class="section-head"><p class="eyebrow">Our final cut</p><h2>The site’s read on your notes</h2><p>Once you both react, this separates must-do moments from maybes, cuts, and things to discuss.</p></div><div class="final-cut-grid" id="finalCutGrid"></div></section>
     <section class="section reveal" id="plan">
       <div class="section-head"><p class="eyebrow">Day-by-day</p><h2>Your recommended itinerary</h2><p>Click a day to expand the timeline, maps, links, and logistics notes.</p></div>
       <div class="day-tabs" id="dayTabs"></div><div id="dayDetail" class="day-detail"></div>
@@ -74,6 +79,7 @@
     <section class="section reveal" id="walks"><div class="section-head"><p class="eyebrow">Walks & hidden gems</p><h2>The London moments that make the trip feel personal</h2></div><div class="experience-grid" id="experienceGrid"></div></section>
     <section class="section reveal" id="actions">
       <div class="section-head"><p class="eyebrow">Book by date</p><h2>The timeline that keeps the whole thing calm</h2></div>
+      <div class="countdown-grid" id="countdownGrid"></div>
       <div class="book-timeline" id="bookTimeline"></div>
       <div class="section-head booking-subhead"><p class="eyebrow">Booking board</p><h2>Priority reservations</h2></div>
       <div class="booking-board">
@@ -84,9 +90,10 @@
       </div>
       <div class="checklist-card"><h3>Shared prep checklist</h3><p class="muted">Saved locally in this browser.</p><div id="checklist"></div></div>
     </section>
-    <section class="section reveal" id="share"><div class="share-panel"><div><p class="eyebrow">Mac-friendly sharing</p><h2>Make it presentation-ready</h2><p>Use this for a laptop reveal, then print/save as PDF if you want a clean shareable version.</p></div><div class="share-actions"><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn" id="copyFull">Copy final plan</button><a class="btn" href="#top">Back to top</a></div></div></section>
+    <section class="section reveal" id="notes"><div class="section-head"><p class="eyebrow">Shared notes</p><h2>Your two-person reaction board</h2><p>Notes save on this browser. Export them when you want me to read the room and recommend changes.</p></div><div class="notes-review" id="notesReview"></div></section>
+    <section class="section reveal" id="share"><div class="share-panel"><div><p class="eyebrow">Mac-friendly sharing</p><h2>Make it presentation-ready</h2><p>Use this for a laptop reveal, then print/save as PDF if you want a clean shareable version.</p></div><div class="share-actions"><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn" id="copyFull">Copy final plan</button><button class="btn" id="copyNotes">Copy notes</button><a class="btn" href="#top">Back to top</a></div></div></section>
   </main>
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="data.js"></script><script src="app.js"></script>
+  <script src="data.js"></script><script src="notes-logic.js"></script><script src="app.js"></script>
 </body>
 </html>
