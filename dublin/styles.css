@@ -271,24 +271,24 @@ h1 {
 .option-grid, .route-grid, .price-grid { grid-template-columns: repeat(3, 1fr); }
 .decision-dashboard { grid-template-columns: repeat(7, minmax(150px, 1fr)); overflow-x: auto; padding-bottom: 6px; }
 
-.verdict-card, .option-card, .route-card, .path-info, .day-detail, .decision-card, .final-card, .passport-score, .countdown-card, .price-card, .share-panel, .collab-card, .suggestions-panel, .empty-notes, .note-summary-card {
+.verdict-card, .option-card, .route-card, .path-info, .day-detail, .decision-card, .final-card, .passport-score, .countdown-card, .price-card, .share-panel, .collab-card, .suggestions-panel, .empty-notes, .note-summary-card, .send-instructions {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--paper2) 92%, transparent);
   box-shadow: var(--shadow);
 }
 
-.verdict-card, .option-card, .route-card, .decision-card, .final-card, .countdown-card, .price-card, .collab-card, .suggestions-panel, .empty-notes, .note-summary-card {
+.verdict-card, .option-card, .route-card, .decision-card, .final-card, .countdown-card, .price-card, .collab-card, .suggestions-panel, .empty-notes, .note-summary-card, .send-instructions {
   padding: 22px;
 }
 
-.verdict-card h3, .option-card h3, .route-card h3, .decision-card h3, .final-card h3, .price-card h3, .collab-card h3 {
+.verdict-card h3, .option-card h3, .route-card h3, .decision-card h3, .final-card h3, .price-card h3, .collab-card h3, .send-instructions h3 {
   margin: 14px 0 10px;
   font-size: 1.58rem;
   line-height: 1;
 }
 
-.verdict-card p, .option-card p, .route-card p, .decision-card p, .final-card p, .price-card p, .collab-card p, .empty-notes p, .passport-score p, .countdown-card p {
+.verdict-card p, .option-card p, .route-card p, .decision-card p, .final-card p, .price-card p, .collab-card p, .empty-notes p, .passport-score p, .countdown-card p, .send-instructions p, .send-instructions li {
   color: var(--muted);
   line-height: 1.5;
 }
@@ -654,6 +654,13 @@ h1 {
 .review-notes-link { display: inline-flex; margin-top: 12px; color: var(--green); text-decoration: none; font-size: .86rem; font-weight: 900; }
 
 .notes-review { display: grid; gap: 18px; }
+.send-instructions {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--green) 10%, var(--paper2)), color-mix(in srgb, var(--gold) 9%, var(--paper2)));
+}
+.send-instructions ol {
+  margin: 16px 0;
+  padding-left: 22px;
+}
 .notes-grid, .collab-grid, .suggestion-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

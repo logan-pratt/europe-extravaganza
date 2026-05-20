@@ -278,7 +278,7 @@ function renderPubs(filter = 'all') {
       <h3>${name}</h3>
       <p class="role">${role} · ${area}</p>
       <p>${note}</p>
-      <div class="link-grid"><a href="${link}" target="_blank" rel="noopener">Open site</a></div>
+      <div class="link-grid"><a href="${link}" target="_blank" rel="noopener">${link.includes('google.com/maps') ? 'Open map' : 'Open site'}</a></div>
       ${feedbackPanel(`pub:${id}`, name)}
     </article>
   `).join('');
@@ -467,6 +467,17 @@ function renderSuggestionsList() {
 function renderNotesReview() {
   const summary = NOTES.getFeedbackSummary(noteState);
   $('#notesReview').innerHTML = `
+    <div class="send-instructions">
+      <span class="label">How to send Logan your notes</span>
+      <h3>React as you browse, then send one packet.</h3>
+      <ol>
+        <li>Pick your name on any card and tap Love, Maybe, Nope, or Concern.</li>
+        <li>Add notes in the text boxes, plus any missing restaurant, pub, activity, or nightlife idea below.</li>
+        <li>Come back to this Shared notes section and tap Copy share packet.</li>
+        <li>Send the copied packet to Logan by text, Slack, email, or wherever the group is planning.</li>
+      </ol>
+      <p>Logan can paste that packet into Import notes to merge everyone’s feedback into one final cut.</p>
+    </div>
     ${summary.length ? `
       <div class="notes-toolbar"><span>${summary.length} noted option${summary.length === 1 ? '' : 's'}</span><button class="btn" type="button" id="copyNotesInline">Copy readable notes</button></div>
       <div class="notes-grid">
