@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dublin: Pints, Pages & Proper Craic · July 2026</title>
+  <meta name="description" content="Interactive Dublin trip planner for Logan, Emily, Ashley, and Max, July 3-5, 2026." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="hero" id="top">
+    <nav class="topbar">
+      <a class="brand" href="#top"><span class="crest">D</span><span>Dublin Finale</span></a>
+      <div class="navlinks">
+        <a href="#plan">Plan</a>
+        <a href="#restaurants">Food</a>
+        <a href="#pubs">Pubs</a>
+        <a href="#culture">Culture</a>
+        <a href="#notes">Notes</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <div class="rail-card" aria-label="Galway to Dublin train arrival">
+        <div class="rail-meta"><span>3:05pm · Depart Galway</span><span>5:44pm · Arrive Dublin</span></div>
+        <div class="rail-line"><span class="train">▰</span></div>
+        <div class="rail-stops"><strong>Galway</strong><strong>Dublin</strong></div>
+      </div>
+      <p class="eyebrow">July 3-5, 2026 · Logan · Emily · Ashley · Max</p>
+      <h1>From Galway rails to Dublin pints.</h1>
+      <p class="lede">A premium, pub-warm Dublin planner for the two-couple finale before London: Georgian green, whiskey gold, literary stops, real trad, and a clean final cut.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#plan">Open the plan</a>
+        <a class="btn glass" href="#final-cut">Final cut</a>
+        <button class="btn glass" id="copyHero" type="button">Copy summary</button>
+      </div>
+      <div class="stat-strip">
+        <div><strong>48</strong><span>hours</span></div>
+        <div><strong>4</strong><span>travelers</span></div>
+        <div><strong>1</strong><span>proper trad night</span></div>
+        <div><strong>0</strong><span>castle detours</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section reveal" id="verdict">
+      <div class="section-head"><p class="eyebrow">Executive strategy</p><h2>Use Dublin like a city, not a checklist.</h2><p>Real pubs, literary atmosphere, Georgian streets, one cultural anchor, careful dinner bookings, and room for the night to find itself.</p></div>
+      <div class="verdict-grid" id="verdictGrid"></div>
+    </section>
+
+    <section class="section reveal" id="chapters">
+      <div class="section-head"><p class="eyebrow">Film chapters</p><h2>The weekend, cut like a Dublin short film.</h2></div>
+      <div class="chapter-grid" id="chapterGrid"></div>
+    </section>
+
+    <section class="section reveal" id="plan">
+      <div class="section-head"><p class="eyebrow">Day by day</p><h2>The clean core itinerary.</h2><p>Optional ideas stay behind cards, filters, and decision surfaces so the main plan stays calm.</p></div>
+      <div class="day-tabs" id="dayTabs"></div>
+      <div class="day-detail" id="dayDetail"></div>
+    </section>
+
+    <section class="section reveal" id="paths">
+      <div class="section-head"><p class="eyebrow">Decision paths</p><h2>Pick the Dublin personality.</h2></div>
+      <div class="path-picker" id="pathPicker"></div>
+      <div id="pathDetail"></div>
+    </section>
+
+    <section class="section reveal" id="restaurants">
+      <div class="section-head"><p class="eyebrow">Restaurants</p><h2>Dinner strategy, ranked by job-to-be-done.</h2></div>
+      <div class="filters">
+        <button class="chip active" data-restaurant-filter="all" type="button">All</button>
+        <button class="chip" data-restaurant-filter="add" type="button">Add</button>
+        <button class="chip" data-restaurant-filter="maybe" type="button">Maybe</button>
+        <button class="chip" data-restaurant-filter="skip" type="button">Skip</button>
+        <button class="chip" data-restaurant-filter="group" type="button">Group</button>
+        <button class="chip" data-restaurant-filter="romance" type="button">Romance</button>
+        <button class="chip" data-restaurant-filter="near" type="button">Near Marlin</button>
+      </div>
+      <div class="option-grid" id="restaurantGrid"></div>
+    </section>
+
+    <section class="section reveal" id="pubs">
+      <div class="section-head"><p class="eyebrow">Pub / music / nightlife</p><h2>Real pints, trad, and late-night escape hatches.</h2></div>
+      <div class="filters">
+        <button class="chip active" data-pub-filter="all" type="button">All</button>
+        <button class="chip" data-pub-filter="add" type="button">Add</button>
+        <button class="chip" data-pub-filter="maybe" type="button">Maybe</button>
+      </div>
+      <div class="option-grid" id="pubGrid"></div>
+    </section>
+
+    <section class="section reveal" id="culture">
+      <div class="section-head"><p class="eyebrow">Cultural anchor chooser</p><h2>One strong stop beats a museum stack.</h2></div>
+      <div class="option-grid" id="cultureGrid"></div>
+    </section>
+
+    <section class="section reveal" id="warnings">
+      <div class="section-head"><p class="eyebrow">Closure / avoid cards</p><h2>Protect the weekend from dead ends.</h2></div>
+      <div class="option-grid" id="warningGrid"></div>
+    </section>
+
+    <section class="section reveal" id="events">
+      <div class="section-head"><p class="eyebrow">Confirmed events</p><h2>Useful listings, not automatic plans.</h2></div>
+      <div class="option-grid" id="eventGrid"></div>
+    </section>
+
+    <section class="section reveal" id="routes">
+      <div class="section-head"><p class="eyebrow">Dublin routes</p><h2>Walks and pub paths, with the bad cuts removed.</h2></div>
+      <div class="route-grid" id="routeGrid"></div>
+    </section>
+
+    <section class="section reveal" id="map">
+      <div class="section-head"><p class="eyebrow">Dublin constellation</p><h2>A stylized board of the weekend.</h2></div>
+      <div class="dublin-map" id="dublinMap"></div>
+    </section>
+
+    <section class="section reveal" id="dashboard">
+      <div class="section-head"><p class="eyebrow">Friend-group dashboard</p><h2>Where four reactions become a read.</h2></div>
+      <div class="decision-dashboard" id="decisionDashboard"></div>
+    </section>
+
+    <section class="section reveal" id="final-cut">
+      <div class="section-head"><p class="eyebrow">Final cut mode</p><h2>Must-do, maybe, cut, discuss.</h2></div>
+      <div class="final-cut-grid" id="finalCutGrid"></div>
+    </section>
+
+    <section class="section reveal" id="passport">
+      <div class="section-head"><p class="eyebrow">Passport stamps</p><h2>Tap the moments that make the trip.</h2></div>
+      <div class="passport-grid" id="passportGrid"></div>
+    </section>
+
+    <section class="section reveal" id="booking">
+      <div class="section-head"><p class="eyebrow">Countdown / booking timeline</p><h2>What keeps the weekend calm.</h2></div>
+      <div class="countdown-grid" id="countdownGrid"></div>
+      <div class="book-timeline" id="bookTimeline"></div>
+    </section>
+
+    <section class="section reveal" id="prices">
+      <div class="section-head"><p class="eyebrow">Price reality</p><h2>The charm is real. So are the receipts.</h2></div>
+      <div class="price-grid" id="priceGrid"></div>
+    </section>
+
+    <section class="section reveal" id="notes">
+      <div class="section-head"><p class="eyebrow">Shared notes</p><h2>Four-person reactions, export/import, and missing ideas.</h2><p>Notes save in this browser. Everyone can export a packet and send it back.</p></div>
+      <div class="notes-review" id="notesReview"></div>
+    </section>
+
+    <section class="section reveal" id="share">
+      <div class="share-panel">
+        <div><p class="eyebrow">Share / present</p><h2>Ready for the laptop reveal.</h2><p>Print, copy the clean plan, or copy the notes packet.</p></div>
+        <div class="share-actions">
+          <button class="btn primary" onclick="window.print()" type="button">Print / save PDF</button>
+          <button class="btn" id="copyFull" type="button">Copy plan</button>
+          <button class="btn" id="copyNotes" type="button">Copy notes</button>
+          <a class="btn" href="#top">Back to top</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="notes-logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
