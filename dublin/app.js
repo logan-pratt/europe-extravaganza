@@ -661,7 +661,7 @@ function init() {
 
   const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
-  }), { threshold: 0.12 });
+  }), { threshold: 0.01, rootMargin: '0px 0px -80px 0px' });
   $$('.reveal').forEach((element) => observer.observe(element));
 }
 
