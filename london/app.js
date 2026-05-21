@@ -1076,7 +1076,7 @@ function init() {
     localStorage.setItem('london.dark', next);
     setTheme();
   });
-  $('#copyHero').addEventListener('click', () => copyText(finalSummary()));
+  $('#copyHero')?.addEventListener('click', () => copyText(finalSummary()));
   $('#copyFull').addEventListener('click', () => copyText(finalSummary()));
   $('#copyNotes').addEventListener('click', copyNotes);
   $$('.chip[data-filter]').forEach((chip) => chip.addEventListener('click', () => {

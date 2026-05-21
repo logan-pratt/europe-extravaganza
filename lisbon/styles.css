@@ -329,8 +329,8 @@ body {
   margin: 0 auto 0;
   padding: 14px 20px;
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--claret) 10%, var(--paper2));
-  border: 1px solid color-mix(in srgb, var(--claret) 28%, var(--line));
+  background: color-mix(in srgb, var(--brick) 10%, var(--paper2));
+  border: 1px solid color-mix(in srgb, var(--brick) 28%, var(--line));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -340,11 +340,11 @@ body {
 
 .decisions-count {
   font-weight: 700;
-  color: var(--claret);
+  color: var(--brick);
 }
 
 .decisions-link {
-  color: var(--claret);
+  color: var(--brick);
   font-weight: 800;
   text-decoration: none;
 }

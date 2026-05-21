@@ -596,7 +596,7 @@ function init() {
   initSync();
   renderDecisionsBanner();
 
-  $('#copyHero').addEventListener('click', () => copyText(finalSummary()));
+  $('#copyHero')?.addEventListener('click', () => copyText(finalSummary()));
   $('#copyFull').addEventListener('click', () => copyText(finalSummary()));
   $('#copyNotes').addEventListener('click', copyNotes);
 
