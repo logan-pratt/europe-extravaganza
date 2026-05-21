@@ -1,11 +1,13 @@
 const DATA = window.DUBLIN_DATA;
 const NOTES = window.DUBLIN_NOTES;
+let submitAuthorName = '';
 
 let selectedDay = localStorage.getItem('dublin.selectedDay') || 'fri';
 let selectedPath = localStorage.getItem('dublin.selectedPath') || 'pints-pages';
 let noteState = loadNoteState();
 let stampState = loadStampState();
 const noteLabels = {};
+const TRIP_SLUG = 'dublin';
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
@@ -43,6 +45,33 @@ function loadNoteState() {
 
 function saveNoteState() {
   localStorage.setItem('dublin.notes', JSON.stringify(noteState));
+}
+
+function rowToFeedback(row) {
+  return { reaction: row.reaction || '', note: row.note || '' };
+}
+
+async function initSync() {
+  const result = await window.fetchReactions(TRIP_SLUG);
+  if (result.ok && result.data.length) {
+    result.data.forEach((row) => {
+      noteState = NOTES.saveOptionFeedback(noteState, row.card_id, row.author_name, rowToFeedback(row));
+    });
+    saveNoteState();
+    renderAllDynamicSections();
+  }
+
+  window.subscribeReactions(TRIP_SLUG, (payload) => {
+    if (!payload.new) return;
+    const row = payload.new;
+    noteState = NOTES.saveOptionFeedback(noteState, row.card_id, row.author_name, rowToFeedback(row));
+    saveNoteState();
+    const panel = document.querySelector(`.note-panel[data-note-id="${row.card_id}"]`);
+    if (panel) updatePanelState(panel);
+    renderNotesReview();
+    renderFinalCut();
+    renderGroupDashboard();
+  });
 }
 
 function loadStampState() {
@@ -499,6 +528,16 @@ function renderNotesReview() {
     <div class="collab-grid">
       <article class="collab-card">
         <span class="label">Export</span><h3>Copy share packet</h3><p>Send this to the group so another browser can import your notes.</p><button class="btn primary" type="button" id="copySharePacket">Copy share packet</button>
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+          <select id="submitAuthorSelect" style="flex:1;min-width:0">
+            <option value="">Your name</option>
+            <option>Logan</option>
+            <option>Emily</option>
+            <option>Ashley</option>
+            <option>Max</option>
+          </select>
+          <button class="btn" type="button" id="submitToLogan" disabled>Submit to Logan</button>
+        </div>
       </article>
       <article class="collab-card">
         <span class="label">Import</span><h3>Merge packet</h3><textarea id="sharePacketInput" rows="5" placeholder="Paste DUBLIN_TRIP_NOTES_V1 packet here"></textarea><button class="btn" type="button" id="importSharePacket">Import notes</button>
@@ -539,6 +578,34 @@ function suggestionId(author, title) {
 function bindCollaborationControls() {
   const copyPacket = $('#copySharePacket');
   if (copyPacket) copyPacket.addEventListener('click', copySharePacket);
+
+  const nameSelect = $('#submitAuthorSelect');
+  if (nameSelect) {
+    nameSelect.value = submitAuthorName;
+    nameSelect.addEventListener('change', () => {
+      submitAuthorName = nameSelect.value;
+      const btn = $('#submitToLogan');
+      if (btn) btn.disabled = !submitAuthorName;
+    });
+  }
+
+  const submitBtn = $('#submitToLogan');
+  if (submitBtn) {
+    submitBtn.disabled = !submitAuthorName;
+    submitBtn.addEventListener('click', async () => {
+      if (!submitAuthorName || !window.submitPacket) return;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      const result = await window.submitPacket('dublin', submitAuthorName, NOTES.buildSubmissionPacket(noteState));
+      if (result.ok) {
+        submitBtn.textContent = 'Sent ✓';
+      } else {
+        submitBtn.textContent = 'Copy share packet instead';
+        submitBtn.disabled = false;
+        submitBtn.addEventListener('click', copySharePacket, { once: true });
+      }
+    });
+  }
 
   const importPacket = $('#importSharePacket');
   if (importPacket) importPacket.addEventListener('click', () => {
@@ -588,6 +655,7 @@ function bindNoteEvents() {
     const nextReaction = current.reaction === button.dataset.reaction ? '' : button.dataset.reaction;
     noteState = NOTES.saveOptionFeedback(noteState, id, author, { reaction: nextReaction });
     saveNoteState();
+    window.upsertReaction(TRIP_SLUG, id, NOTES.cardTypeFromId(id), author, nextReaction, noteState.items[id]?.[author]?.note || '');
     updatePanelState(panel);
     renderNotesReview();
     renderFinalCut();
@@ -597,8 +665,11 @@ function bindNoteEvents() {
   document.addEventListener('input', (event) => {
     if (!event.target.classList.contains('note-text')) return;
     const panel = event.target.closest('.note-panel');
-    noteState = NOTES.saveOptionFeedback(noteState, panel.dataset.noteId, event.target.closest('.note-author').dataset.author, { note: event.target.value });
+    const id = panel.dataset.noteId;
+    const author = event.target.closest('.note-author').dataset.author;
+    noteState = NOTES.saveOptionFeedback(noteState, id, author, { note: event.target.value });
     saveNoteState();
+    window.upsertReaction(TRIP_SLUG, id, NOTES.cardTypeFromId(id), author, noteState.items[id]?.[author]?.reaction || '', event.target.value);
     updatePanelState(panel);
     renderNotesReview();
     renderFinalCut();
@@ -660,6 +731,7 @@ function init() {
   renderAllDynamicSections();
   bindNoteEvents();
   bindPresentationMode();
+  initSync();
 
   $('#copyHero').addEventListener('click', () => copyText(finalSummary()));
   $('#copyFull').addEventListener('click', () => copyText(finalSummary()));

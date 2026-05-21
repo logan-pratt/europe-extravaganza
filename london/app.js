@@ -1,10 +1,12 @@
 const DATA = window.TRIP_DATA;
 const NOTES = window.LONDON_NOTES;
+let submitAuthorName = '';
 let selectedDay = localStorage.getItem('london.selectedDay') || 'sun';
 let selectedPath = localStorage.getItem('london.selectedPath') || 'B';
 let noteState = loadNoteState();
 let stampState = loadStampState();
 const noteLabels = {};
+const TRIP_SLUG = 'london';
 const DAY_CHAPTERS = [
   {
     dayId: 'sun',
@@ -94,6 +96,32 @@ function loadNoteState() {
 
 function saveNoteState() {
   localStorage.setItem('london.notes', JSON.stringify(noteState));
+}
+
+function rowToFeedback(row) {
+  return { reaction: row.reaction || '', note: row.note || '' };
+}
+
+async function initSync() {
+  const result = await window.fetchReactions(TRIP_SLUG);
+  if (result.ok && result.data.length) {
+    result.data.forEach((row) => {
+      noteState = NOTES.saveOptionFeedback(noteState, row.card_id, row.author_name, rowToFeedback(row));
+    });
+    saveNoteState();
+    renderAllDynamicSections();
+  }
+
+  window.subscribeReactions(TRIP_SLUG, (payload) => {
+    if (!payload.new) return;
+    const row = payload.new;
+    noteState = NOTES.saveOptionFeedback(noteState, row.card_id, row.author_name, rowToFeedback(row));
+    saveNoteState();
+    const panel = document.querySelector(`.note-panel[data-note-id="${row.card_id}"]`);
+    if (panel) updatePanelState(panel);
+    renderNotesReview();
+    refreshWowSurfaces();
+  });
 }
 
 function loadStampState() {
@@ -675,6 +703,16 @@ function renderNotesReview() {
         <h3>Copy a share packet</h3>
         <p>Emily can copy this from her device and send it to you. You can paste it below to merge her notes into yours.</p>
         <button class="btn primary" type="button" id="copySharePacket">Copy share packet</button>
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+          <select id="submitAuthorSelect" style="flex:1;min-width:0">
+            <option value="">Your name</option>
+            <option>Logan</option>
+            <option>Emily</option>
+            <option>Ashley</option>
+            <option>Max</option>
+          </select>
+          <button class="btn" type="button" id="submitToLogan" disabled>Submit to Logan</button>
+        </div>
       </article>
       <article class="collab-card">
         <span class="label">Import</span>
@@ -800,6 +838,34 @@ function bindCollaborationControls() {
   const copyPacket = $('#copySharePacket');
   if (copyPacket) copyPacket.addEventListener('click', copySharePacket);
 
+  const nameSelect = $('#submitAuthorSelect');
+  if (nameSelect) {
+    nameSelect.value = submitAuthorName;
+    nameSelect.addEventListener('change', () => {
+      submitAuthorName = nameSelect.value;
+      const btn = $('#submitToLogan');
+      if (btn) btn.disabled = !submitAuthorName;
+    });
+  }
+
+  const submitBtn = $('#submitToLogan');
+  if (submitBtn) {
+    submitBtn.disabled = !submitAuthorName;
+    submitBtn.addEventListener('click', async () => {
+      if (!submitAuthorName || !window.submitPacket) return;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      const result = await window.submitPacket('london', submitAuthorName, NOTES.buildSubmissionPacket(noteState));
+      if (result.ok) {
+        submitBtn.textContent = 'Sent ✓';
+      } else {
+        submitBtn.textContent = 'Copy share packet instead';
+        submitBtn.disabled = false;
+        submitBtn.addEventListener('click', copySharePacket, { once: true });
+      }
+    });
+  }
+
   const importPacket = $('#importSharePacket');
   if (importPacket) importPacket.addEventListener('click', () => {
     const input = $('#sharePacketInput');
@@ -850,6 +916,7 @@ function bindNoteEvents() {
     const nextReaction = current.reaction === button.dataset.reaction ? '' : button.dataset.reaction;
     noteState = NOTES.saveOptionFeedback(noteState, id, author, { reaction: nextReaction });
     saveNoteState();
+    window.upsertReaction(TRIP_SLUG, id, NOTES.cardTypeFromId(id), author, nextReaction, noteState.items[id]?.[author]?.note || '');
     updatePanelState(panel);
     renderNotesReview();
     refreshWowSurfaces();
@@ -862,6 +929,7 @@ function bindNoteEvents() {
     const id = panel.dataset.noteId;
     noteState = NOTES.saveOptionFeedback(noteState, id, author, { note: event.target.value });
     saveNoteState();
+    window.upsertReaction(TRIP_SLUG, id, NOTES.cardTypeFromId(id), author, noteState.items[id]?.[author]?.reaction || '', event.target.value);
     updatePanelState(panel);
     renderNotesReview();
     refreshWowSurfaces();
@@ -968,6 +1036,7 @@ function init() {
   updateArrivalText();
   bindNoteEvents();
   bindPresentationMode();
+  initSync();
 
   $('#themeToggle').addEventListener('click', () => {
     const next = !(localStorage.getItem('london.dark') === 'true');
