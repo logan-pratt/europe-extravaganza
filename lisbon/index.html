@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lisbon: River Light, Old Streets & One Great Sintra Day · June 2026</title>
   <meta name="description" content="Interactive Lisbon trip planner for Logan, Emily, Ashley, and Max, June 25-30, 2026." />
-  <link rel="stylesheet" href="styles.css?v=20260520-lisbon-day-photos" />
+  <link rel="stylesheet" href="styles.css?v=20260520-presentation-mode" />
 </head>
-<body>
+<body class="lisbon-page">
   <div class="grain"></div>
   <header class="hero" id="top">
     <nav class="topbar">
@@ -44,6 +44,7 @@
         <a class="btn primary" href="#plan">Open the plan</a>
         <a class="btn glass" href="#final-cut">Final cut</a>
         <button class="btn glass" id="copyHero" type="button">Copy summary</button>
+        <button class="btn glass presentation-toggle" id="presentationToggle" type="button" aria-pressed="false">Presentation mode</button>
       </div>
       <div class="stat-strip">
         <div><strong>5</strong><span>Lisbon nights</span></div>
@@ -169,8 +170,8 @@
   </main>
 
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="data.js?v=20260520-lisbon-day-photos"></script>
-  <script src="notes-logic.js?v=20260520-lisbon-day-photos"></script>
-  <script src="app.js?v=20260520-lisbon-day-photos"></script>
+  <script src="data.js?v=20260520-presentation-mode"></script>
+  <script src="notes-logic.js?v=20260520-presentation-mode"></script>
+  <script src="app.js?v=20260520-presentation-mode"></script>
 </body>
 </html>

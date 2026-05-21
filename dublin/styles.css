@@ -47,6 +47,25 @@ button, input, textarea, select { font: inherit; }
     url("https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=2200&q=80") center/cover;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .48;
+  background:
+    linear-gradient(90deg, transparent 0 46%, rgba(255, 246, 232, .1) 46% 47%, transparent 47% 100%),
+    repeating-linear-gradient(0deg, transparent 0 34px, rgba(255, 246, 232, .06) 34px 35px);
+  mix-blend-mode: screen;
+}
+
+.dublin-page .hero::before {
+  background:
+    linear-gradient(112deg, transparent 0 36%, rgba(201, 141, 52, .18) 36% 37%, transparent 37% 100%),
+    repeating-linear-gradient(90deg, transparent 0 48px, rgba(255, 246, 232, .07) 48px 49px);
+}
+
 .hero::after {
   content: "";
   position: absolute;
@@ -382,6 +401,7 @@ h1 {
 .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0, 0, 0, .12); }
 .btn.primary { color: #fff6e8; background: linear-gradient(135deg, var(--green), var(--brick)); border-color: rgba(255, 246, 232, .18); }
 .btn.glass { color: #fff6e8; background: rgba(255, 246, 232, .12); border-color: rgba(255, 246, 232, .24); backdrop-filter: blur(12px); }
+.presentation-toggle[aria-pressed="true"] { background: linear-gradient(135deg, var(--gold), #fff0bf); color: #2c1a0f; }
 
 .stat-strip {
   display: grid;
@@ -847,6 +867,56 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+}
+
+body.presentation-mode .hero {
+  min-height: auto;
+}
+
+body.presentation-mode .hero-content {
+  padding-bottom: 96px;
+}
+
+body.presentation-mode .section {
+  padding: 54px 0;
+}
+
+body.presentation-mode .filters,
+body.presentation-mode .note-panel,
+body.presentation-mode .review-notes-link,
+body.presentation-mode #notes,
+body.presentation-mode #dashboard {
+  display: none !important;
+}
+
+body.dublin-page.presentation-mode #restaurants,
+body.dublin-page.presentation-mode #pubs,
+body.dublin-page.presentation-mode #culture,
+body.dublin-page.presentation-mode #warnings,
+body.dublin-page.presentation-mode #events,
+body.dublin-page.presentation-mode #routes {
+  display: none !important;
+}
+
+body.lisbon-page.presentation-mode #restaurants,
+body.lisbon-page.presentation-mode #bars,
+body.lisbon-page.presentation-mode #activities,
+body.lisbon-page.presentation-mode #warnings,
+body.lisbon-page.presentation-mode #events,
+body.lisbon-page.presentation-mode #routes,
+body.lisbon-page.presentation-mode #quick-facts {
+  display: none !important;
+}
+
+body.presentation-mode .day-detail,
+body.presentation-mode .path-info,
+body.presentation-mode .final-card,
+body.presentation-mode .book-step,
+body.presentation-mode .passport-score,
+body.presentation-mode .countdown-card,
+body.presentation-mode .price-card,
+body.presentation-mode .share-panel {
+  box-shadow: 0 14px 36px rgba(34, 20, 9, .1);
 }
 
 #toast {

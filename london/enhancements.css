@@ -491,6 +491,28 @@
   font-weight: 900;
 }
 
+.london-page .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .42;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 42px, rgba(255,247,236,.1) 42px 43px),
+    linear-gradient(180deg, rgba(196,155,84,.16), transparent 36%);
+  mix-blend-mode: screen;
+}
+
+.london-page .hero-content {
+  z-index: 2;
+}
+
+.presentation-toggle[aria-pressed="true"] {
+  background: linear-gradient(135deg, var(--gold), #fff0bf);
+  color: #2b170d;
+}
+
 .chapter-grid,
 .decision-dashboard,
 .final-cut-grid,
@@ -813,6 +835,44 @@
 .summary-author p {
   color: var(--muted);
   margin: 6px 0 0;
+}
+
+body.presentation-mode .hero {
+  min-height: auto;
+}
+
+body.presentation-mode .hero-content {
+  padding-bottom: 116px;
+}
+
+body.presentation-mode .section {
+  padding: 54px 0;
+}
+
+body.presentation-mode .filters,
+body.presentation-mode .note-panel,
+body.presentation-mode .review-notes-link,
+body.presentation-mode #notes,
+body.presentation-mode #couple-dashboard,
+body.presentation-mode #food,
+body.presentation-mode #wildcards,
+body.presentation-mode #seasonal,
+body.presentation-mode #romance,
+body.presentation-mode #warnings,
+body.presentation-mode #walks {
+  display: none !important;
+}
+
+body.presentation-mode .verdict-card,
+body.presentation-mode .path-info,
+body.presentation-mode .day-detail,
+body.presentation-mode .final-card,
+body.presentation-mode .booking-card,
+body.presentation-mode .checklist-card,
+body.presentation-mode .passport-score,
+body.presentation-mode .countdown-card,
+body.presentation-mode .share-panel {
+  box-shadow: 0 14px 36px rgba(20, 10, 4, .1);
 }
 
 @media (max-width: 980px) {

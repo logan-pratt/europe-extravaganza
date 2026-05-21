@@ -614,6 +614,22 @@ Sunday: coffee, one short stroll only, taxi/airport buffer for London.
 Avoid: Chester Beatty, Dublin Castle campus, Howth/Poolbeg, hop-on-hop-off, long museum blocks.`;
 }
 
+function applyPresentationMode(enabled) {
+  document.body.classList.toggle('presentation-mode', enabled);
+  localStorage.setItem('dublin.presentationMode', enabled ? 'true' : 'false');
+  const button = $('#presentationToggle');
+  if (!button) return;
+  button.textContent = enabled ? 'Exit presentation' : 'Presentation mode';
+  button.setAttribute('aria-pressed', String(enabled));
+}
+
+function bindPresentationMode() {
+  applyPresentationMode(localStorage.getItem('dublin.presentationMode') === 'true');
+  $('#presentationToggle')?.addEventListener('click', () => {
+    applyPresentationMode(!document.body.classList.contains('presentation-mode'));
+  });
+}
+
 function renderAllDynamicSections() {
   const restaurantFilter = $('.chip[data-restaurant-filter].active')?.dataset.restaurantFilter || 'all';
   const pubFilter = $('.chip[data-pub-filter].active')?.dataset.pubFilter || 'all';
@@ -643,6 +659,7 @@ function init() {
   registerAllNoteLabels();
   renderAllDynamicSections();
   bindNoteEvents();
+  bindPresentationMode();
 
   $('#copyHero').addEventListener('click', () => copyText(finalSummary()));
   $('#copyFull').addEventListener('click', () => copyText(finalSummary()));
