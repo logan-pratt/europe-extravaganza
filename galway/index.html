@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galway: Rails, Pubs & Cliffs · July 2026</title>
+  <meta name="description" content="Interactive Galway trip planner for Logan, Emily, Ashley, and Max, July 2-3, 2026." />
+  <link rel="stylesheet" href="styles.css?v=20260520-galway-launch" />
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="hero" id="top">
+    <nav class="topbar">
+      <a class="brand" href="#top"><span class="crest">G</span><span>Galway Coast</span></a>
+      <div class="navlinks">
+        <a href="../">Hub</a>
+        <a href="#plan">Plan</a>
+        <a href="#tour">Tour</a>
+        <a href="#logistics">Logistics</a>
+        <a href="#notes">Notes</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div class="rail-stack" aria-label="Galway rail plan">
+        <div class="rail-card outbound">
+          <div class="rail-card-head">
+            <div>
+              <span class="rail-kicker">July 2 · Outbound rail</span>
+              <strong>Dublin to Galway</strong>
+            </div>
+            <span class="rail-duration">2h 48m</span>
+          </div>
+          <div class="rail-meta"><span>1:02pm · Depart Dublin</span><span>3:50pm · Arrive Galway</span></div>
+          <div class="rail-line">
+            <span class="station-dot station-start" aria-hidden="true"></span>
+            <span class="station-dot station-end" aria-hidden="true"></span>
+            <span class="rail-fill"></span>
+            <span class="rail-glow"></span>
+            <span class="train" aria-hidden="true"><span class="train-window"></span><span class="train-light"></span></span>
+          </div>
+          <div class="rail-stops"><strong>Dublin</strong><strong>Galway</strong></div>
+        </div>
+
+        <div class="rail-card return">
+          <div class="rail-card-head">
+            <div>
+              <span class="rail-kicker">July 3 · Return rail</span>
+              <strong>Galway to Dublin</strong>
+            </div>
+            <span class="rail-duration">2h 39m</span>
+          </div>
+          <div class="rail-meta"><span>3:05pm · Depart Galway</span><span>5:44pm · Arrive Dublin</span></div>
+          <div class="rail-line">
+            <span class="station-dot station-start" aria-hidden="true"></span>
+            <span class="station-dot station-end" aria-hidden="true"></span>
+            <span class="rail-fill"></span>
+            <span class="rail-glow"></span>
+            <span class="train" aria-hidden="true"><span class="train-window"></span><span class="train-light"></span></span>
+          </div>
+          <div class="rail-stops"><strong>Galway</strong><strong>Dublin</strong></div>
+        </div>
+      </div>
+
+      <p class="eyebrow">July 2-3, 2026 · Logan · Emily · Ashley · Max</p>
+      <h1>Galway, with one clean Cliffs mission.</h1>
+      <p class="lede">A short west-coast Ireland chapter: arrive by rail, keep Galway loose and pub-warm, then make the confirmed Lally Tours half-day Cliffs of Moher trip before the train back to Dublin.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#plan">Open the plan</a>
+        <a class="btn glass" href="#tour">Cliffs tour</a>
+        <button class="btn glass" id="copyHero" type="button">Copy summary</button>
+      </div>
+      <div class="stat-strip">
+        <div><strong>26</strong><span>hours in Galway</span></div>
+        <div><strong>4</strong><span>travelers</span></div>
+        <div><strong>5h</strong><span>Cliffs tour</span></div>
+        <div><strong>7:45</strong><span>HYDE meetup</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section reveal" id="verdict">
+      <div class="section-head"><p class="eyebrow">Executive strategy</p><h2>Keep Galway short, confirmed, and easy to expand.</h2><p>The hard anchors are the two trains and the Cliffs tour. Everything else stays intentionally light until the restaurant/pub research lands.</p></div>
+      <div class="verdict-grid" id="verdictGrid"></div>
+    </section>
+
+    <section class="section reveal" id="chapters">
+      <div class="section-head"><p class="eyebrow">Film chapters</p><h2>The west-coast stop in three beats.</h2></div>
+      <div class="chapter-grid" id="chapterGrid"></div>
+    </section>
+
+    <section class="section reveal" id="plan">
+      <div class="section-head"><p class="eyebrow">Day by day</p><h2>The confirmed core itinerary.</h2><p>Restaurants, pubs, walks, and extra ideas can slot around these fixed times later.</p></div>
+      <div class="day-tabs" id="dayTabs"></div>
+      <div class="day-detail" id="dayDetail"></div>
+    </section>
+
+    <section class="section reveal" id="tour">
+      <div class="section-head"><p class="eyebrow">Confirmed tour</p><h2>From Galway: Cliffs of Moher Half-Day Express Trip.</h2></div>
+      <div class="tour-grid" id="tourGrid"></div>
+    </section>
+
+    <section class="section reveal" id="logistics">
+      <div class="section-head"><p class="eyebrow">Logistics cards</p><h2>The pieces that should not get fuzzy.</h2></div>
+      <div class="option-grid" id="logisticsGrid"></div>
+    </section>
+
+    <section class="section reveal" id="ideas">
+      <div class="section-head"><p class="eyebrow">Research parking lot</p><h2>Space for restaurants, pubs, and extra Galway texture.</h2></div>
+      <div class="option-grid" id="ideaGrid"></div>
+    </section>
+
+    <section class="section reveal" id="dashboard">
+      <div class="section-head"><p class="eyebrow">Group dashboard</p><h2>Where four reactions become a read.</h2></div>
+      <div class="decision-dashboard" id="decisionDashboard"></div>
+    </section>
+
+    <section class="section reveal" id="final-cut">
+      <div class="section-head"><p class="eyebrow">Final cut mode</p><h2>Must-do, maybe, cut, discuss.</h2></div>
+      <div class="final-cut-grid" id="finalCutGrid"></div>
+    </section>
+
+    <section class="section reveal" id="passport">
+      <div class="section-head"><p class="eyebrow">Passport stamps</p><h2>Tap the Galway moments as they happen.</h2></div>
+      <div class="passport-grid" id="passportGrid"></div>
+    </section>
+
+    <section class="section reveal" id="notes">
+      <div class="section-head"><p class="eyebrow">Shared notes</p><h2>Four-person reactions, export/import, and missing ideas.</h2><p>Notes save in this browser. Everyone can export a packet and send it back.</p></div>
+      <div class="notes-review" id="notesReview"></div>
+    </section>
+
+    <section class="section reveal" id="share">
+      <div class="share-panel">
+        <div><p class="eyebrow">Share / present</p><h2>Ready for the Galway reveal.</h2><p>Print, copy the clean plan, or copy the notes packet.</p></div>
+        <div class="share-actions">
+          <button class="btn primary" onclick="window.print()" type="button">Print / save PDF</button>
+          <button class="btn" id="copyFull" type="button">Copy plan</button>
+          <button class="btn" id="copyNotes" type="button">Copy notes</button>
+          <a class="btn" href="#top">Back to top</a>
+        </div>
+      </div>
+      <p class="image-credit">Photo: Cliffs of Moher, sourced from Wikimedia Commons.</p>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js?v=20260520-galway-launch"></script>
+  <script src="notes-logic.js?v=20260520-galway-launch"></script>
+  <script src="app.js?v=20260520-galway-launch"></script>
+</body>
+</html>
