@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lisbon: River Light, Old Streets & One Great Sintra Day · June 2026</title>
+  <meta name="description" content="Interactive Lisbon trip planner for Logan, Emily, Ashley, and Max, June 25-30, 2026." />
+  <link rel="stylesheet" href="styles.css?v=20260520-lisbon-day-photos" />
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="hero" id="top">
+    <nav class="topbar">
+      <a class="brand" href="#top"><span class="crest">L</span><span>Lisbon Opening</span></a>
+      <div class="navlinks">
+        <a href="../">Hub</a>
+        <a href="#plan">Plan</a>
+        <a href="#moods">Moods</a>
+        <a href="#restaurants">Food</a>
+        <a href="#bars">Bars</a>
+        <a href="#notes">Notes</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <div class="arrival-card" aria-label="Lisbon arrival and departure facts">
+        <div>
+          <span class="arrival-kicker">Home base</span>
+          <strong>Rua da Madalena 214</strong>
+          <p>Baixa, Alfama, Chiado, Rossio, and Praça do Comércio are all easy from here.</p>
+        </div>
+        <div class="arrival-grid">
+          <span><b>Thu</b> staggered morning arrivals</span>
+          <span><b>Sun</b> Sintra + Cascais big day</span>
+          <span><b>Mon</b> pack before dinner</span>
+          <span><b>Tue</b> 6:00am flight to Dublin</span>
+        </div>
+      </div>
+      <p class="eyebrow">June 25-30, 2026 · Logan · Emily · Ashley · Max</p>
+      <h1>Lisbon: River Light, Old Streets & One Great Sintra Day</h1>
+      <p class="lede">Lisbon is the soft-launch of the Europe trip: cinematic streets, vinho verde, seafood, viewpoints, fado if we want it, and one carefully edited Sintra day. The goal is not to checklist every landmark; it is to make each day feel beautiful, easy to choose, and hard to regret.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#plan">Open the plan</a>
+        <a class="btn glass" href="#final-cut">Final cut</a>
+        <button class="btn glass" id="copyHero" type="button">Copy summary</button>
+      </div>
+      <div class="stat-strip">
+        <div><strong>5</strong><span>Lisbon nights</span></div>
+        <div><strong>4</strong><span>travelers</span></div>
+        <div><strong>1</strong><span>edited Sintra day</span></div>
+        <div><strong>3:30</strong><span>airport leave</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section reveal" id="verdict">
+      <div class="section-head"><p class="eyebrow">Executive strategy</p><h2>Do less, better.</h2><p>Old streets, river light, seafood, wine, viewpoints, one excellent Sintra day, and enough slack that Lisbon can surprise us.</p></div>
+      <div class="verdict-grid" id="verdictGrid"></div>
+    </section>
+
+    <section class="section reveal" id="quick-facts">
+      <div class="section-head"><p class="eyebrow">Quick facts</p><h2>The trip at a glance.</h2></div>
+      <div class="fact-grid" id="factGrid"></div>
+    </section>
+
+    <section class="section reveal" id="chapters">
+      <div class="section-head"><p class="eyebrow">Film chapters</p><h2>Five days, each with a job.</h2></div>
+      <div class="chapter-grid" id="chapterGrid"></div>
+    </section>
+
+    <section class="section reveal" id="plan">
+      <div class="section-head"><p class="eyebrow">Day by day</p><h2>The calm core itinerary.</h2><p>Each day has a strong default, a low-energy branch, and a warning against overbuilding.</p></div>
+      <div class="day-tabs" id="dayTabs"></div>
+      <div class="day-detail" id="dayDetail"></div>
+    </section>
+
+    <section class="section reveal" id="moods">
+      <div class="section-head"><p class="eyebrow">Mood paths</p><h2>What are we in the mood for?</h2></div>
+      <div class="path-picker" id="pathPicker"></div>
+      <div id="pathDetail"></div>
+    </section>
+
+    <section class="section reveal" id="restaurants">
+      <div class="section-head"><p class="eyebrow">Restaurants</p><h2>Food decisions, ranked by trip utility.</h2></div>
+      <div class="filters">
+        <button class="chip active" data-place-filter="all" type="button">All</button>
+        <button class="chip" data-place-filter="top" type="button">Top</button>
+        <button class="chip" data-place-filter="romantic" type="button">Romantic</button>
+        <button class="chip" data-place-filter="group" type="button">Group</button>
+        <button class="chip" data-place-filter="seafood" type="button">Seafood</button>
+        <button class="chip" data-place-filter="wine" type="button">Wine</button>
+        <button class="chip" data-place-filter="final" type="button">Final night</button>
+        <button class="chip" data-place-filter="cascais" type="button">Cascais</button>
+        <button class="chip" data-place-filter="backup" type="button">Backup</button>
+      </div>
+      <div class="option-grid" id="restaurantGrid"></div>
+    </section>
+
+    <section class="section reveal" id="bars">
+      <div class="section-head"><p class="eyebrow">Bars / fado / sweets</p><h2>Atmosphere without forcing the night.</h2></div>
+      <div class="option-grid" id="barGrid"></div>
+    </section>
+
+    <section class="section reveal" id="activities">
+      <div class="section-head"><p class="eyebrow">Sights and utility pins</p><h2>Every key stop with a map.</h2></div>
+      <div class="option-grid" id="activityGrid"></div>
+    </section>
+
+    <section class="section reveal" id="warnings">
+      <div class="section-head"><p class="eyebrow">Skip / don't overbuild</p><h2>Protect the trip from fake must-dos.</h2></div>
+      <div class="option-grid" id="warningGrid"></div>
+    </section>
+
+    <section class="section reveal" id="events">
+      <div class="section-head"><p class="eyebrow">Optional event</p><h2>Rock in Rio only if it replaces a night.</h2></div>
+      <div class="option-grid" id="eventGrid"></div>
+    </section>
+
+    <section class="section reveal" id="routes">
+      <div class="section-head"><p class="eyebrow">Routes</p><h2>Walks and flows that fit the base.</h2></div>
+      <div class="route-grid" id="routeGrid"></div>
+    </section>
+
+    <section class="section reveal" id="map">
+      <div class="section-head"><p class="eyebrow">Lisbon constellation</p><h2>A stylized board of the trip.</h2></div>
+      <div class="lisbon-map" id="lisbonMap"></div>
+    </section>
+
+    <section class="section reveal" id="dashboard">
+      <div class="section-head"><p class="eyebrow">Group dashboard</p><h2>Where four reactions become a read.</h2></div>
+      <div class="decision-dashboard" id="decisionDashboard"></div>
+    </section>
+
+    <section class="section reveal" id="final-cut">
+      <div class="section-head"><p class="eyebrow">Final cut mode</p><h2>Must-do, maybe, cut, discuss.</h2></div>
+      <div class="final-cut-grid" id="finalCutGrid"></div>
+    </section>
+
+    <section class="section reveal" id="passport">
+      <div class="section-head"><p class="eyebrow">Passport stamps</p><h2>Tap the Lisbon memories as they happen.</h2></div>
+      <div class="passport-grid" id="passportGrid"></div>
+    </section>
+
+    <section class="section reveal" id="booking">
+      <div class="section-head"><p class="eyebrow">Countdown / booking timeline</p><h2>What keeps Lisbon easy.</h2></div>
+      <div class="countdown-grid" id="countdownGrid"></div>
+      <div class="book-timeline" id="bookTimeline"></div>
+    </section>
+
+    <section class="section reveal" id="notes">
+      <div class="section-head"><p class="eyebrow">Shared notes</p><h2>Four-person reactions, export/import, and missing ideas.</h2><p>Notes save in this browser. Everyone can export a packet and send it back.</p></div>
+      <div class="notes-review" id="notesReview"></div>
+    </section>
+
+    <section class="section reveal" id="share">
+      <div class="share-panel">
+        <div><p class="eyebrow">Share / present</p><h2>Ready for the Lisbon reveal.</h2><p>Print, copy the clean plan, or copy the notes packet.</p></div>
+        <div class="share-actions">
+          <button class="btn primary" onclick="window.print()" type="button">Print / save PDF</button>
+          <button class="btn" id="copyFull" type="button">Copy plan</button>
+          <button class="btn" id="copyNotes" type="button">Copy notes</button>
+          <a class="btn" href="#top">Back to top</a>
+        </div>
+      </div>
+      <p class="image-credit">Photos: Lisbon arrival image provided by the group; Santa Luzia by FlyingCrimsonPig, CC BY 2.0; Jerónimos by Szilas, CC0; Quinta da Regaleira by Bunks, CC0; Senhora do Monte by Reino Baptista, public domain; sourced from Wikimedia Commons.</p>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js?v=20260520-lisbon-day-photos"></script>
+  <script src="notes-logic.js?v=20260520-lisbon-day-photos"></script>
+  <script src="app.js?v=20260520-lisbon-day-photos"></script>
+</body>
+</html>

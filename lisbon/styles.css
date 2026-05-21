@@ -1,0 +1,239 @@
+@import url("../dublin/styles.css?v=20260520-train-share");
+
+:root {
+  --paper: #f6ead8;
+  --paper2: #fff8ec;
+  --ink: #22170f;
+  --muted: #75685d;
+  --line: rgba(70, 44, 26, .18);
+  --green: #214f3d;
+  --green2: #3f765d;
+  --gold: #d29535;
+  --wood: #2b170d;
+  --brick: #a0442f;
+  --blue: #2f6877;
+  --cream: #f0dec4;
+  --shadow: 0 24px 70px rgba(42, 22, 8, .18);
+  --radius: 8px;
+}
+
+body {
+  background:
+    radial-gradient(circle at 16% 8%, rgba(210, 149, 53, .34), transparent 25rem),
+    radial-gradient(circle at 86% 16%, rgba(47, 104, 119, .24), transparent 30rem),
+    radial-gradient(circle at 74% 52%, rgba(160, 68, 47, .16), transparent 26rem),
+    linear-gradient(180deg, #1f1109 0, #362016 34rem, #ead7bd 54rem, var(--paper) 100%);
+}
+
+.hero {
+  background:
+    linear-gradient(90deg, rgba(34, 17, 7, .9), rgba(31, 79, 61, .6) 42%, rgba(15, 37, 47, .78)),
+    url("../assets/lisbon.jpg") center/cover;
+}
+
+.hero-content {
+  padding-top: 54px;
+}
+
+.hero h1 {
+  max-width: 1060px;
+  font-size: clamp(3.7rem, 7.4vw, 8.2rem);
+}
+
+.arrival-card {
+  width: min(760px, 100%);
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 18px;
+  margin-bottom: 34px;
+  padding: 18px;
+  border: 1px solid rgba(255, 246, 232, .24);
+  border-radius: var(--radius);
+  color: #fff6e8;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(210, 149, 53, .28), transparent 34%),
+    linear-gradient(135deg, rgba(45, 23, 13, .78), rgba(12, 54, 48, .68)),
+    rgba(42, 23, 14, .58);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+  backdrop-filter: blur(14px);
+}
+
+.arrival-card strong {
+  display: block;
+  margin-top: 4px;
+  font-family: Georgia, Cambria, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 2.3vw, 2rem);
+  line-height: 1;
+}
+
+.arrival-card p {
+  margin: 10px 0 0;
+  color: rgba(255, 246, 232, .82);
+  line-height: 1.45;
+}
+
+.arrival-kicker {
+  color: var(--gold);
+  text-transform: uppercase;
+  font-size: .72rem;
+  font-weight: 950;
+}
+
+.arrival-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+
+.arrival-grid span {
+  min-height: 60px;
+  display: grid;
+  align-content: center;
+  border: 1px solid rgba(255, 246, 232, .16);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  background: rgba(255, 246, 232, .08);
+  color: rgba(255, 246, 232, .82);
+  font-size: .88rem;
+  font-weight: 800;
+}
+
+.arrival-grid b {
+  color: #fff6e8;
+}
+
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.fact-card {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--paper2) 92%, transparent);
+  box-shadow: var(--shadow);
+}
+
+.fact-card h3 {
+  margin: 14px 0 10px;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.fact-card p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.path-picker {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.verdict-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.chapter-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.chapter-card {
+  min-height: 380px;
+}
+
+.option-card h3,
+.route-card h3,
+.fact-card h3 {
+  overflow-wrap: anywhere;
+}
+
+.caution {
+  background: color-mix(in srgb, var(--brick) 9%, var(--paper2));
+}
+
+.lisbon-map {
+  min-height: 570px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background:
+    radial-gradient(circle at 16% 20%, rgba(47, 104, 119, .28), transparent 18rem),
+    radial-gradient(circle at 58% 62%, rgba(210, 149, 53, .2), transparent 20rem),
+    linear-gradient(112deg, rgba(47, 104, 119, .28) 0 19%, transparent 20% 100%),
+    color-mix(in srgb, var(--paper2) 82%, var(--green));
+}
+
+.lisbon-map .map-river {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  background:
+    linear-gradient(160deg, rgba(47, 104, 119, .38), rgba(47, 104, 119, .12)),
+    repeating-linear-gradient(100deg, transparent 0 26px, rgba(255, 248, 235, .18) 26px 28px);
+  clip-path: polygon(0 36%, 100% 8%, 100% 100%, 0 100%);
+}
+
+.lisbon-map .map-label.west { left: 8%; top: 13%; }
+.lisbon-map .map-label.centre { left: 42%; top: 18%; }
+.lisbon-map .map-label.east { right: 10%; top: 12%; }
+
+.map-pin span {
+  background: var(--brick);
+  box-shadow: 0 0 0 8px rgba(160, 68, 47, .12), 0 12px 28px rgba(20, 10, 4, .22);
+}
+
+.stamp-card {
+  border-radius: 42% 58% 46% 54% / 55% 44% 56% 45%;
+}
+
+@media (max-width: 1100px) {
+  .fact-grid,
+  .verdict-grid,
+  .chapter-grid,
+  .path-picker {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero h1 {
+    font-size: 3.18rem;
+    line-height: .9;
+  }
+
+  .arrival-card,
+  .arrival-grid,
+  .fact-grid,
+  .verdict-grid,
+  .chapter-grid,
+  .path-picker {
+    grid-template-columns: 1fr;
+  }
+
+  .arrival-card {
+    padding: 16px;
+  }
+
+  .lisbon-map {
+    min-height: 680px;
+  }
+}
+
+@media print {
+  .arrival-card {
+    color: var(--ink);
+    background: white;
+    box-shadow: none;
+  }
+}
+
+.image-credit {
+  margin: 14px 0 0;
+  color: color-mix(in srgb, var(--muted) 86%, transparent);
+  font-size: .82rem;
+  line-height: 1.45;
+}
