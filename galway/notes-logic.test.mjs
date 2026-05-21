@@ -64,15 +64,15 @@ test('builds Galway final cut and toggles passport stamps', () => {
   state = NOTES.saveOptionFeedback(state, 'tour:cliffs-half-day', 'Logan', { reaction: 'love' });
   state = NOTES.saveOptionFeedback(state, 'tour:cliffs-half-day', 'Emily', { reaction: 'love' });
   state = NOTES.saveOptionFeedback(state, 'tour:cliffs-half-day', 'Ashley', { reaction: 'love' });
-  state = NOTES.saveOptionFeedback(state, 'idea:pubs', 'Max', { reaction: 'concern' });
+  state = NOTES.saveOptionFeedback(state, 'bar:tig-coili', 'Max', { reaction: 'concern' });
 
   const finalCut = NOTES.buildFinalCut(state, {
     'tour:cliffs-half-day': 'Cliffs tour',
-    'idea:pubs': 'Pubs to research'
+    'bar:tig-coili': 'Tig Coili'
   });
 
   assert.deepEqual(finalCut.mustDo.map((item) => item.label), ['Cliffs tour']);
-  assert.deepEqual(finalCut.maybe.map((item) => item.label), ['Pubs to research']);
+  assert.deepEqual(finalCut.maybe.map((item) => item.label), ['Tig Coili']);
   assert.deepEqual(NOTES.toggleStamp({}, 'cliffs'), { cliffs: true });
 });
 
@@ -127,6 +127,7 @@ test('cardTypeFromId maps id prefixes to card type strings', () => {
   assert.equal(NOTES.cardTypeFromId('path:B'), 'decision');
   assert.equal(NOTES.cardTypeFromId('restaurant:trullo'), 'restaurant');
   assert.equal(NOTES.cardTypeFromId('bar:the-lamb'), 'bar');
+  assert.equal(NOTES.cardTypeFromId('lunch:merchant-bar'), 'restaurant');
   assert.equal(NOTES.cardTypeFromId('upgrade:bath-spa'), 'experience');
   assert.equal(NOTES.cardTypeFromId('booking:clos-maggiore'), 'logistics');
   assert.equal(NOTES.cardTypeFromId('unknown:foo'), 'activity');

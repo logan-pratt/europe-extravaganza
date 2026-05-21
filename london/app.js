@@ -729,29 +729,7 @@ function renderNotesReview() {
   const summary = NOTES.getFeedbackSummary(noteState);
   const wrapper = $('#notesReview');
   const collaboration = `
-    <div class="collab-grid">
-      <article class="collab-card">
-        <span class="label">Send notes</span>
-        <h3>Copy a share packet</h3>
-        <p>Emily can copy this from her device and send it to you. You can paste it below to merge her notes into yours.</p>
-        <button class="btn primary" type="button" id="copySharePacket">Copy share packet</button>
-        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
-          <select id="submitAuthorSelect" style="flex:1;min-width:0">
-            <option value="">Your name</option>
-            <option>Logan</option>
-            <option>Emily</option>
-            <option>Ashley</option>
-            <option>Max</option>
-          </select>
-          <button class="btn" type="button" id="submitToLogan" disabled>Submit to Logan</button>
-        </div>
-      </article>
-      <article class="collab-card">
-        <span class="label">Import</span>
-        <h3>Merge someone else’s packet</h3>
-        <textarea id="sharePacketInput" rows="5" placeholder="Paste the LONDON_LOVE_LETTER_NOTES_V1 packet here"></textarea>
-        <button class="btn" type="button" id="importSharePacket">Import notes</button>
-      </article>
+    <div class="collab-grid primary-collab">
       <article class="collab-card suggestion-card">
         <span class="label">Missing idea</span>
         <h3>Suggest something not on the site</h3>
@@ -771,6 +749,32 @@ function renderNotesReview() {
       <div class="notes-toolbar"><span>Missing suggestions</span></div>
       ${renderSuggestionsList()}
     </div>
+    <details class="backup-tools">
+      <summary>Backup tools</summary>
+      <div class="collab-grid">
+        <article class="collab-card">
+          <span class="label">Backup</span>
+          <h3>Copy local notes</h3>
+          <p>Use these only if database sync is unavailable or you need to move notes manually.</p>
+          <button class="btn" type="button" id="copyNotesInline">Copy notes</button>
+          <button class="btn" type="button" id="copySharePacket">Copy share packet</button>
+          <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+            <select id="submitAuthorSelect" style="flex:1;min-width:0">
+              <option value="">Your name</option>
+              <option>Logan</option>
+              <option>Emily</option>
+            </select>
+            <button class="btn" type="button" id="submitToLogan" disabled>Submit local backup</button>
+          </div>
+        </article>
+        <article class="collab-card">
+          <span class="label">Import</span>
+          <h3>Merge packet</h3>
+          <textarea id="sharePacketInput" rows="5" placeholder="Paste the LONDON_LOVE_LETTER_NOTES_V1 packet here"></textarea>
+          <button class="btn" type="button" id="importSharePacket">Import notes</button>
+        </article>
+      </div>
+    </details>
   `;
 
   if (!summary.length) {
@@ -778,7 +782,7 @@ function renderNotesReview() {
       ${noteState.suggestions.length ? '' : `<div class="empty-notes">
         <span class="label">No notes yet</span>
         <h3>Leave reactions as you browse.</h3>
-        <p>Use Logan and Emily notes on any card, then come back here for the full readout.</p>
+        <p>Reactions sync when the database is available; this browser also keeps a local copy.</p>
       </div>`}
       ${collaboration}
     `;
@@ -789,7 +793,6 @@ function renderNotesReview() {
   wrapper.innerHTML = `
     <div class="notes-toolbar">
       <span>${summary.length} noted option${summary.length === 1 ? '' : 's'}</span>
-      <button class="btn" type="button" id="copyNotesInline">Copy notes</button>
     </div>
     <div class="notes-grid">
       ${summary.map((item) => `

@@ -219,7 +219,7 @@
   }
 
   const CARD_TYPE_MAP = {
-    day: 'activity', path: 'decision', restaurant: 'restaurant', bar: 'bar',
+    day: 'activity', path: 'decision', restaurant: 'restaurant', bar: 'bar', lunch: 'restaurant',
     activity: 'activity', price: 'logistics', wildcard: 'activity', seasonal: 'activity',
     event: 'activity', upgrade: 'experience', warning: 'logistics', booking: 'logistics',
     experience: 'experience', route: 'experience', fact: 'logistics', verdict: 'logistics'

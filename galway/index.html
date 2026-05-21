@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Galway: Rails, Pubs & Cliffs · July 2026</title>
   <meta name="description" content="Interactive Galway trip planner for Logan, Emily, Ashley, and Max, July 2-3, 2026." />
-  <link rel="stylesheet" href="styles.css?v=20260520-galway-launch" />
+  <link rel="stylesheet" href="styles.css?v=20260521-galway-research" />
 </head>
 <body>
   <div class="grain"></div>
@@ -22,8 +22,9 @@
         </div>
         <div class="nav-divider"></div>
         <a href="#plan">Plan</a>
-        <a href="#tour">Tour</a>
-        <a href="#logistics">Logistics</a>
+        <a href="#food">Food</a>
+        <a href="#pubs">Pubs</a>
+        <a href="#booking">Booking</a>
         <a href="#notes">Notes</a>
       </div>
     </nav>
@@ -79,7 +80,7 @@
       <div class="stat-strip">
         <div><strong>26</strong><span>hours in Galway</span></div>
         <div><strong>4</strong><span>travelers</span></div>
-        <div><strong>5h</strong><span>Cliffs tour</span></div>
+        <div><strong>5.25h</strong><span>Cliffs tour</span></div>
         <div><strong>7:45</strong><span>HYDE meetup</span></div>
       </div>
     </div>
@@ -87,20 +88,35 @@
 
   <main>
     <div id="decisionsBanner" class="decisions-banner" hidden></div>
+    <section class="section reveal" id="timing">
+      <div id="timingBanner"></div>
+    </section>
+
+    <section class="section reveal" id="quick-facts">
+      <div class="section-head"><p class="eyebrow">Quick facts</p><h2>The anchors before choices.</h2><p>Rail times, dinner decision, tour meetup, and the real Friday lunch window.</p></div>
+      <div class="fact-grid" id="factGrid"></div>
+    </section>
+
     <section class="section reveal" id="verdict">
-      <div class="section-head"><p class="eyebrow">Executive strategy</p><h2>Keep Galway short, confirmed, and easy to expand.</h2><p>The hard anchors are the two trains and the Cliffs tour. Everything else stays intentionally light until the restaurant/pub research lands.</p></div>
+      <div class="section-head"><p class="eyebrow">Executive strategy</p><h2>Keep Galway short, confirmed, and easy.</h2><p>The hard anchors are the two trains and the Cliffs tour. Thursday gets one strong dinner, one trad pub, and a clean cutoff.</p></div>
       <div class="verdict-grid" id="verdictGrid"></div>
     </section>
 
     <section class="section reveal" id="chapters">
-      <div class="section-head"><p class="eyebrow">Film chapters</p><h2>The west-coast stop in three beats.</h2></div>
+      <div class="section-head"><p class="eyebrow">Film chapters</p><h2>The west-coast stop in four beats.</h2></div>
       <div class="chapter-grid" id="chapterGrid"></div>
     </section>
 
     <section class="section reveal" id="plan">
-      <div class="section-head"><p class="eyebrow">Day by day</p><h2>The confirmed core itinerary.</h2><p>Restaurants, pubs, walks, and extra ideas can slot around these fixed times later.</p></div>
+      <div class="section-head"><p class="eyebrow">Day by day</p><h2>The researched core itinerary.</h2><p>Compact Galway night, early Cliffs mission, fast lunch, and a protected train back to Dublin.</p></div>
       <div class="day-tabs" id="dayTabs"></div>
       <div class="day-detail" id="dayDetail"></div>
+    </section>
+
+    <section class="section reveal" id="paths">
+      <div class="section-head"><p class="eyebrow">Traveler paths</p><h2>Choose the Galway mode.</h2><p>Each version keeps the same rail and tour spine, but changes the Thursday evening emphasis.</p></div>
+      <div class="path-picker" id="pathPicker"></div>
+      <div id="pathDetail"></div>
     </section>
 
     <section class="section reveal" id="tour">
@@ -113,9 +129,54 @@
       <div class="option-grid" id="logisticsGrid"></div>
     </section>
 
-    <section class="section reveal" id="ideas">
-      <div class="section-head"><p class="eyebrow">Research parking lot</p><h2>Space for restaurants, pubs, and extra Galway texture.</h2></div>
-      <div class="option-grid" id="ideaGrid"></div>
+    <section class="section reveal" id="food">
+      <div class="section-head"><p class="eyebrow">Thursday dinner</p><h2>Cava vs Ard Bia is the real decision.</h2><p>Pick Cava Bodega for lively sharing-plates group energy. Pick Ard Bia at Nimmos for the most atmospheric Galway setting near Spanish Arch and the river.</p></div>
+      <div class="option-grid" id="restaurantGrid"></div>
+    </section>
+
+    <section class="section reveal" id="pubs">
+      <div class="section-head"><p class="eyebrow">Pubs + trad music</p><h2>Do pubs, not a crawl.</h2><p>Taaffes early if timing works, dinner, then Tig Coili or Tigh Neachtain. Aim to be done around 11pm.</p></div>
+      <div class="option-grid" id="barGrid"></div>
+    </section>
+
+    <section class="section reveal" id="lunch">
+      <div class="section-head"><p class="eyebrow">Friday quick lunch</p><h2>Fast, central, train-aware.</h2><p>Friday lunch is not the time to be ambitious. McDonagh’s works if the tour returns on time; Merchant Bar, Little Jungle, GBC, or Esquires work when timing is tight.</p></div>
+      <div class="option-grid" id="lunchGrid"></div>
+    </section>
+
+    <section class="section reveal" id="walks">
+      <div class="section-head"><p class="eyebrow">Walks + rain pivots</p><h2>Short Galway texture, no forced march.</h2><p>Use the Latin Quarter, Spanish Arch, and Long Walk only as far as weather and energy allow.</p></div>
+      <div class="option-grid" id="activityGrid"></div>
+    </section>
+
+    <section class="section reveal" id="routes">
+      <div class="section-head"><p class="eyebrow">Routes</p><h2>Four compact ways through the stop.</h2></div>
+      <div class="route-grid" id="routeGrid"></div>
+    </section>
+
+    <section class="section reveal" id="weather">
+      <div class="section-head"><p class="eyebrow">Weather + fatigue</p><h2>Galway rain changes the shape, not the plan.</h2></div>
+      <div class="weather-grid" id="weatherGrid"></div>
+    </section>
+
+    <section class="section reveal" id="warnings">
+      <div class="section-head"><p class="eyebrow">Warnings / skips</p><h2>Good ideas for a longer trip.</h2></div>
+      <div class="option-grid" id="warningGrid"></div>
+    </section>
+
+    <section class="section reveal" id="booking">
+      <div class="section-head"><p class="eyebrow">Booking timeline</p><h2>What keeps Galway easy.</h2></div>
+      <div class="book-timeline" id="bookTimeline"></div>
+    </section>
+
+    <section class="section reveal" id="map">
+      <div class="section-head"><p class="eyebrow">Map pins</p><h2>The compact Galway constellation.</h2></div>
+      <div class="pin-grid" id="mapPinGrid"></div>
+    </section>
+
+    <section class="section reveal" id="sources">
+      <div class="section-head"><p class="eyebrow">Source notes</p><h2>Claims to recheck before booking.</h2><p>Hours, sessions, and reservations should be reverified closer to July 2026.</p></div>
+      <div class="source-grid" id="sourceGrid"></div>
     </section>
 
     <section class="section reveal" id="dashboard">
@@ -134,15 +195,15 @@
     </section>
 
     <section class="section reveal" id="notes">
-      <div class="section-head"><p class="eyebrow">Shared notes</p><h2>Four-person reactions, export/import, and missing ideas.</h2><p>Notes save in this browser. Everyone can export a packet and send it back.</p></div>
+      <div class="section-head"><p class="eyebrow">Shared notes</p><h2>Four-person reactions, synced notes, and missing ideas.</h2><p>Reactions sync through the trip database when available. This browser keeps a local backup.</p></div>
       <div class="notes-review" id="notesReview"></div>
     </section>
 
     <section class="section" id="share">
       <details class="export-disclosure">
-        <summary>Export &amp; legacy sharing</summary>
+        <summary>Print &amp; backup tools</summary>
         <div class="share-panel">
-          <div><p class="eyebrow">Share / present</p><h2>Ready for the Galway reveal.</h2><p>Print, copy the clean plan, or copy the notes packet.</p></div>
+          <div><p class="eyebrow">Share / present</p><h2>Ready for the Galway reveal.</h2><p>Print or copy the clean plan.</p></div>
           <div class="share-actions">
             <button class="btn primary" onclick="window.print()" type="button">Print / save PDF</button>
             <button class="btn" id="copyFull" type="button">Copy plan</button>
@@ -160,11 +221,11 @@
   </main>
 
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="data.js?v=20260520-galway-launch"></script>
-  <script src="notes-logic.js?v=20260520-galway-launch"></script>
+  <script src="data.js?v=20260521-galway-research"></script>
+  <script src="notes-logic.js?v=20260521-galway-research"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="../shared/supabase-config.js"></script>
   <script src="../shared/submissions-api.js"></script>
-  <script src="app.js?v=20260520-galway-launch"></script>
+  <script src="app.js?v=20260521-galway-research"></script>
 </body>
 </html>

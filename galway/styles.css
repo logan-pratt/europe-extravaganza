@@ -410,32 +410,35 @@ h1 {
   line-height: 1.55;
 }
 
-.verdict-grid, .chapter-grid, .option-grid, .decision-dashboard, .final-cut-grid {
+.verdict-grid, .chapter-grid, .option-grid, .decision-dashboard, .final-cut-grid, .fact-grid, .route-grid, .weather-grid, .pin-grid, .source-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 .option-grid { grid-template-columns: repeat(3, 1fr); }
+.fact-grid { grid-template-columns: repeat(7, minmax(190px, 1fr)); overflow-x: auto; padding-bottom: 6px; }
+.route-grid, .weather-grid, .source-grid { grid-template-columns: repeat(3, 1fr); }
+.pin-grid { grid-template-columns: repeat(4, 1fr); }
 .decision-dashboard { grid-template-columns: repeat(7, minmax(150px, 1fr)); overflow-x: auto; padding-bottom: 6px; }
 
-.verdict-card, .option-card, .tour-card, .day-detail, .decision-card, .final-card, .passport-score, .share-panel, .collab-card, .suggestions-panel, .empty-notes, .note-summary-card, .send-instructions {
+.verdict-card, .option-card, .tour-card, .day-detail, .decision-card, .final-card, .passport-score, .share-panel, .collab-card, .suggestions-panel, .empty-notes, .note-summary-card, .send-instructions, .fact-card, .path-info, .route-card, .weather-card, .source-card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--paper2) 92%, transparent);
   box-shadow: var(--shadow);
 }
 
-.verdict-card, .option-card, .tour-card, .decision-card, .final-card, .collab-card, .suggestions-panel, .empty-notes, .note-summary-card, .send-instructions {
+.verdict-card, .option-card, .tour-card, .decision-card, .final-card, .collab-card, .suggestions-panel, .empty-notes, .note-summary-card, .send-instructions, .fact-card, .path-info, .route-card, .weather-card, .source-card {
   padding: 22px;
 }
 
-.verdict-card h3, .option-card h3, .tour-card h3, .decision-card h3, .final-card h3, .collab-card h3, .send-instructions h3 {
+.verdict-card h3, .option-card h3, .tour-card h3, .decision-card h3, .final-card h3, .collab-card h3, .send-instructions h3, .fact-card h3, .path-info h3, .route-card h3, .weather-card h3, .source-card h3 {
   margin: 14px 0 10px;
   font-size: 1.58rem;
   line-height: 1;
 }
 
-.verdict-card p, .option-card p, .tour-card p, .decision-card p, .final-card p, .collab-card p, .empty-notes p, .passport-score p, .send-instructions p, .send-instructions li {
+.verdict-card p, .option-card p, .tour-card p, .decision-card p, .final-card p, .collab-card p, .empty-notes p, .passport-score p, .send-instructions p, .send-instructions li, .fact-card p, .path-info p, .route-card p, .weather-card p, .source-card p, .weather-card li, .book-step li, .route-card li {
   color: var(--muted);
   line-height: 1.5;
 }
@@ -461,6 +464,154 @@ h1 {
 .option-card.add, .verdict-card.add, .final-card.must { border-color: color-mix(in srgb, var(--green) 40%, var(--line)); }
 .option-card.maybe, .verdict-card.maybe, .final-card.discuss { border-color: color-mix(in srgb, var(--gold) 56%, var(--line)); }
 .option-card.skip, .verdict-card.skip, .final-card.cut { border-color: color-mix(in srgb, var(--brick) 46%, var(--line)); }
+
+.timing-card {
+  border: 1px solid rgba(255, 246, 232, .22);
+  border-radius: var(--radius);
+  padding: clamp(24px, 4vw, 42px);
+  color: #fff6e8;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(200, 148, 62, .28), transparent 18rem),
+    linear-gradient(135deg, rgba(18, 63, 49, .96), rgba(41, 24, 15, .94));
+  box-shadow: var(--shadow);
+}
+.timing-card h2 {
+  max-width: 980px;
+  margin: 14px 0;
+  font-size: clamp(2rem, 5vw, 4.6rem);
+  line-height: .95;
+}
+.timing-card p {
+  max-width: 840px;
+  color: rgba(255, 246, 232, .84);
+  font-size: 1.12rem;
+  line-height: 1.55;
+}
+.timing-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.timing-facts span {
+  border: 1px solid rgba(255, 246, 232, .18);
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: rgba(255, 246, 232, .10);
+  font-weight: 900;
+}
+
+.fact-card {
+  min-width: 190px;
+}
+.fact-card h3 {
+  font-size: 1.35rem;
+}
+
+.card-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.rank {
+  display: inline-grid;
+  place-items: center;
+  min-width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: #fff6e8;
+  background: var(--green);
+  font-weight: 950;
+}
+.source-note {
+  font-size: .83rem;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.path-picker {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.path-button {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 248, 235, .68);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  padding: 18px;
+}
+.path-button.active {
+  color: #fff6e8;
+  background: linear-gradient(135deg, var(--green), var(--wood));
+  border-color: rgba(255, 246, 232, .18);
+  box-shadow: var(--shadow);
+}
+.path-button.active .label {
+  color: #2d1c0f;
+  background: var(--gold);
+}
+.path-button h3 {
+  margin: 12px 0 8px;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.path-button p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.path-button.active p {
+  color: rgba(255, 246, 232, .78);
+}
+.scorebars {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+}
+.score-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 28px;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-weight: 800;
+}
+.bar {
+  height: 9px;
+  border-radius: 999px;
+  background: var(--cream);
+  overflow: hidden;
+}
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green2), var(--gold));
+}
+.path-lists {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 18px 0;
+}
+.path-lists > div, .tiny-list {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: color-mix(in srgb, var(--green) 7%, var(--paper2));
+}
+.path-lists li, .tiny-list p {
+  color: var(--muted);
+  line-height: 1.45;
+}
+.callout.subtle {
+  background: color-mix(in srgb, var(--green) 7%, var(--paper2));
+}
 
 .chapter-card {
   min-height: 410px;
@@ -586,6 +737,74 @@ h1 {
 .role { font-weight: 900; }
 .mini-note { margin-top: 14px; color: var(--muted); }
 
+.route-card ol, .weather-card ul, .book-step ul {
+  margin: 14px 0 0;
+  padding-left: 20px;
+}
+.weather-card.wide {
+  grid-column: span 2;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--green) 13%, var(--paper2)), color-mix(in srgb, var(--gold) 10%, var(--paper2)));
+}
+.book-timeline {
+  display: grid;
+  gap: 14px;
+}
+.book-step {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: color-mix(in srgb, var(--paper2) 92%, transparent);
+  box-shadow: var(--shadow);
+}
+.book-step.high {
+  border-color: color-mix(in srgb, var(--brick) 40%, var(--line));
+}
+.book-step.medium {
+  border-color: color-mix(in srgb, var(--gold) 56%, var(--line));
+}
+.book-date {
+  color: var(--green);
+  font-weight: 950;
+  text-transform: uppercase;
+}
+.book-step h3 {
+  margin: 10px 0 8px;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+.pin-card {
+  min-height: 150px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  background: color-mix(in srgb, var(--paper2) 88%, transparent);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+.pin-card span {
+  color: var(--brick);
+  text-transform: uppercase;
+  font-size: .72rem;
+  font-weight: 950;
+}
+.pin-card strong {
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.pin-card em {
+  color: var(--muted);
+  font-style: normal;
+  line-height: 1.35;
+}
+
 .tour-grid { display: grid; }
 .tour-card {
   min-height: 420px;
@@ -600,7 +819,7 @@ h1 {
 }
 .tour-facts {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   margin: 22px 0;
 }
@@ -748,6 +967,25 @@ h1 {
   gap: 16px;
 }
 .collab-grid { grid-template-columns: repeat(3, 1fr); }
+.primary-collab .suggestion-card { grid-column: 1 / -1; }
+.backup-tools { padding-top: 6px; }
+.backup-tools > summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 800;
+  list-style: none;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.backup-tools > summary::-webkit-details-marker { display: none; }
+.backup-tools > summary::before { content: '+ '; }
+.backup-tools[open] > summary::before { content: '− '; }
+.backup-tools .collab-grid {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 8px;
+}
+.backup-tools .btn + .btn { margin-left: 8px; }
 .summary-author { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
 .summary-author span, .suggestion-item span { color: var(--green); font-weight: 900; }
 .summary-author p { color: var(--muted); margin: 6px 0 0; }
@@ -794,12 +1032,13 @@ h1 {
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 1100px) {
-  .rail-stack, .verdict-grid, .chapter-grid, .option-grid, .final-cut-grid {
+  .rail-stack, .verdict-grid, .chapter-grid, .option-grid, .final-cut-grid, .path-picker, .route-grid, .weather-grid, .pin-grid, .source-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .day-detail { grid-template-columns: 1fr; }
   .day-photo { min-height: 360px; }
   .collab-grid { grid-template-columns: 1fr; }
+  .backup-tools .collab-grid { grid-template-columns: 1fr; }
   .tour-facts { grid-template-columns: repeat(2, 1fr); }
   .stamp-grid { grid-template-columns: repeat(3, 1fr); }
 }
@@ -809,9 +1048,12 @@ h1 {
   .navlinks { max-width: calc(100vw - 36px); overflow-x: auto; border-radius: var(--radius); }
   .hero-content, .section { width: min(100% - 32px, 1180px); }
   h1 { font-size: 3.45rem; }
-  .rail-stack, .stat-strip, .verdict-grid, .chapter-grid, .option-grid, .final-cut-grid, .day-tabs, .variant-grid, .passport-grid, .stamp-grid, .notes-grid, .suggestion-list, .tour-facts {
+  .rail-stack, .stat-strip, .verdict-grid, .chapter-grid, .option-grid, .final-cut-grid, .day-tabs, .variant-grid, .passport-grid, .stamp-grid, .notes-grid, .suggestion-list, .tour-facts, .path-picker, .path-lists, .route-grid, .weather-grid, .pin-grid, .source-grid {
     grid-template-columns: 1fr;
   }
+  .weather-card.wide { grid-column: auto; }
+  .book-step { grid-template-columns: 1fr; }
+  .score-row { grid-template-columns: 1fr 1fr 28px; }
   .rail-card-head { flex-direction: column; }
   .timeline-item { grid-template-columns: 1fr; }
   .share-panel { flex-direction: column; align-items: flex-start; }

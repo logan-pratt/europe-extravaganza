@@ -541,19 +541,8 @@ function renderSuggestionsList() {
 function renderNotesReview() {
   const summary = NOTES.getFeedbackSummary(noteState);
   $('#notesReview').innerHTML = `
-    <div class="send-instructions">
-      <span class="label">How to send Logan your notes</span>
-      <h3>React as you browse, then send one packet.</h3>
-      <ol>
-        <li>Pick your name on any card and tap Love, Maybe, Nope, or Concern.</li>
-        <li>Add notes in the text boxes, plus any missing restaurant, bar, activity, or logistics idea below.</li>
-        <li>Come back to this Shared notes section and tap Copy share packet.</li>
-        <li>Send the copied packet to Logan by text, Slack, email, or wherever the group is planning.</li>
-      </ol>
-      <p>Logan can paste that packet into Import notes to merge everyone’s feedback into one final cut.</p>
-    </div>
     ${summary.length ? `
-      <div class="notes-toolbar"><span>${summary.length} noted option${summary.length === 1 ? '' : 's'}</span><button class="btn" type="button" id="copyNotesInline">Copy readable notes</button></div>
+      <div class="notes-toolbar"><span>${summary.length} noted option${summary.length === 1 ? '' : 's'}</span></div>
       <div class="notes-grid">
         ${summary.map((item) => `
           <article class="note-summary-card">
@@ -568,25 +557,9 @@ function renderNotesReview() {
         `).join('')}
       </div>
     ` : `
-      <div class="empty-notes"><span class="label">No notes yet</span><h3>Leave reactions as you browse.</h3><p>Four-person notes save locally in this browser.</p></div>
+      <div class="empty-notes"><span class="label">No notes yet</span><h3>Leave reactions as you browse.</h3><p>Reactions sync when the database is available; this browser also keeps a local copy.</p></div>
     `}
-    <div class="collab-grid">
-      <article class="collab-card">
-        <span class="label">Export</span><h3>Copy share packet</h3><p>Send this to the group so another browser can import your notes.</p><button class="btn primary" type="button" id="copySharePacket">Copy share packet</button>
-        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
-          <select id="submitAuthorSelect" style="flex:1;min-width:0">
-            <option value="">Your name</option>
-            <option>Logan</option>
-            <option>Emily</option>
-            <option>Ashley</option>
-            <option>Max</option>
-          </select>
-          <button class="btn" type="button" id="submitToLogan" disabled>Submit to Logan</button>
-        </div>
-      </article>
-      <article class="collab-card">
-        <span class="label">Import</span><h3>Merge packet</h3><textarea id="sharePacketInput" rows="5" placeholder="Paste LISBON_TRIP_NOTES_V1 packet here"></textarea><button class="btn" type="button" id="importSharePacket">Import notes</button>
-      </article>
+    <div class="collab-grid primary-collab">
       <article class="collab-card suggestion-card">
         <span class="label">Missing idea</span><h3>Add a suggestion</h3>
         <form id="suggestionForm">
@@ -602,6 +575,29 @@ function renderNotesReview() {
       </article>
     </div>
     <div class="suggestions-panel"><div class="notes-toolbar"><span>Missing suggestions</span></div>${renderSuggestionsList()}</div>
+    <details class="backup-tools">
+      <summary>Backup tools</summary>
+      <div class="collab-grid">
+        <article class="collab-card">
+          <span class="label">Backup</span><h3>Copy local notes</h3><p>Use these only if database sync is unavailable or you need to move notes manually.</p>
+          <button class="btn" type="button" id="copyNotesInline">Copy readable notes</button>
+          <button class="btn" type="button" id="copySharePacket">Copy share packet</button>
+          <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+            <select id="submitAuthorSelect" style="flex:1;min-width:0">
+              <option value="">Your name</option>
+              <option>Logan</option>
+              <option>Emily</option>
+              <option>Ashley</option>
+              <option>Max</option>
+            </select>
+            <button class="btn" type="button" id="submitToLogan" disabled>Submit local backup</button>
+          </div>
+        </article>
+        <article class="collab-card">
+          <span class="label">Import</span><h3>Merge packet</h3><textarea id="sharePacketInput" rows="5" placeholder="Paste LISBON_TRIP_NOTES_V1 packet here"></textarea><button class="btn" type="button" id="importSharePacket">Import notes</button>
+        </article>
+      </div>
+    </details>
   `;
   bindCollaborationControls();
   const inlineCopy = $('#copyNotesInline');

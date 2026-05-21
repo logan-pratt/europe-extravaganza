@@ -3,6 +3,7 @@ const NOTES = window.GALWAY_NOTES;
 let submitAuthorName = '';
 
 let selectedDay = localStorage.getItem('galway.selectedDay') || 'thu';
+let selectedPath = localStorage.getItem('galway.selectedPath') || 'pub-warm';
 let noteState = loadNoteState();
 let stampState = loadStampState();
 const noteLabels = {};
@@ -22,7 +23,7 @@ function escapeHtml(value) {
 }
 
 function slugify(value) {
-  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return String(value).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
 function optionId(type, name) {
@@ -93,8 +94,21 @@ function getOptionFeedback(id, author) {
 function statusClass(value) {
   const text = String(value || '').toLowerCase();
   if (text.includes('skip') || text.includes('avoid')) return 'skip';
-  if (text.includes('maybe') || text.includes('protect')) return 'maybe';
+  if (text.includes('maybe') || text.includes('protect') || text.includes('medium')) return 'maybe';
   return 'add';
+}
+
+function linkButtons(siteUrl, mapUrl) {
+  return `
+    <div class="link-grid">
+      ${siteUrl ? `<a href="${siteUrl}" target="_blank" rel="noopener">${siteUrl.includes('google.com/maps') ? 'Open map' : 'Open site'}</a>` : ''}
+      ${mapUrl ? `<a href="${mapUrl}" target="_blank" rel="noopener">Open map</a>` : ''}
+    </div>
+  `;
+}
+
+function labelize(value) {
+  return String(value).replace(/([A-Z])/g, ' $1').replace(/^./, (char) => char.toUpperCase());
 }
 
 function feedbackPanel(id, label) {
@@ -172,11 +186,19 @@ function updatePanelState(panel) {
 }
 
 function registerAllNoteLabels() {
+  DATA.quickFacts.forEach((item) => registerNoteLabel(optionId('fact', item[0]), item[0]));
   DATA.verdicts.forEach((item) => registerNoteLabel(optionId('verdict', item.title), item.title));
   DATA.days.forEach((day) => registerNoteLabel(`day:${day.id}`, `${day.day}: ${day.title}`));
+  DATA.paths.forEach((path) => registerNoteLabel(`path:${path.id}`, path.name));
   registerNoteLabel(`tour:${DATA.tour.id}`, DATA.tour.title);
   DATA.logistics.forEach((item) => registerNoteLabel(`logistics:${item[0]}`, item[1]));
-  DATA.ideas.forEach((item) => registerNoteLabel(`idea:${item[0]}`, item[1]));
+  DATA.restaurants.forEach((item) => registerNoteLabel(`restaurant:${item.id}`, item.name));
+  DATA.bars.forEach((item) => registerNoteLabel(`bar:${item[0]}`, item[2]));
+  DATA.lunch.forEach((item) => registerNoteLabel(`lunch:${item[0]}`, item[2]));
+  DATA.activities.forEach((item) => registerNoteLabel(`activity:${item.id}`, item.name));
+  DATA.routes.forEach((route) => registerNoteLabel(`route:${route.id}`, route.title));
+  DATA.warnings.forEach((item) => registerNoteLabel(`warning:${item[0]}`, item[1]));
+  DATA.bookingTimeline.forEach((item) => registerNoteLabel(optionId('booking', item[1]), item[1]));
 }
 
 function toast(message) {
@@ -201,6 +223,30 @@ function renderVerdicts() {
       <h3>${item.title}</h3>
       <p>${item.text}</p>
       ${feedbackPanel(optionId('verdict', item.title), item.title)}
+    </article>
+  `).join('');
+}
+
+function renderTimingBanner() {
+  const timing = DATA.criticalTiming;
+  $('#timingBanner').innerHTML = `
+    <article class="timing-card">
+      <span class="label">Critical timing</span>
+      <h2>${timing.title}</h2>
+      <p>${timing.text}</p>
+      <div class="timing-facts">${timing.facts.map((fact) => `<span>${fact}</span>`).join('')}</div>
+    </article>
+  `;
+}
+
+function renderFacts() {
+  $('#factGrid').innerHTML = DATA.quickFacts.map(([label, title, text, note]) => `
+    <article class="fact-card">
+      <span class="label">${label}</span>
+      <h3>${title}</h3>
+      <p>${text}</p>
+      <div class="mini-note">${note}</div>
+      ${feedbackPanel(optionId('fact', label), title)}
     </article>
   `).join('');
 }
@@ -249,6 +295,7 @@ function renderDayTabs() {
 
 function renderDayDetail() {
   const day = DATA.days.find((item) => item.id === selectedDay);
+  const variants = Object.entries(day.variants || {});
   $('#dayDetail').innerHTML = `
     <div class="day-photo" style="--img:url('${day.image}')">
       <div class="floating-note">
@@ -264,13 +311,53 @@ function renderDayDetail() {
         <div class="timeline-item"><div class="timeline-time">${time}</div><div>${text}</div></div>
       `).join('')}</div>
       <div class="variant-grid">
-        <div><strong>Low energy</strong><p>${day.variants.low}</p></div>
-        <div><strong>Rain plan</strong><p>${day.variants.rain}</p></div>
+        ${variants.map(([name, text]) => `<div><strong>${labelize(name)}</strong><p>${text}</p></div>`).join('')}
       </div>
-      <div class="watchouts"><strong>Watchouts</strong><ul>${day.watch.map((item) => `<li>${item}</li>`).join('')}</ul></div>
+      <div class="watchouts"><strong>Optional ideas</strong><ul>${day.optional.map((item) => `<li>${item}</li>`).join('')}</ul></div>
+      <div class="watchouts caution"><strong>Watchouts</strong><ul>${day.watch.map((item) => `<li>${item}</li>`).join('')}</ul></div>
       <div class="link-grid">${day.links.map(([name, url]) => `<a href="${url}" target="_blank" rel="noopener">${name}</a>`).join('')}</div>
       ${feedbackPanel(`day:${day.id}`, `${day.day}: ${day.title}`)}
     </div>
+  `;
+}
+
+function renderPaths() {
+  $('#pathPicker').innerHTML = DATA.paths.map((path) => `
+    <button class="path-button ${path.id === selectedPath ? 'active' : ''}" type="button" data-path="${path.id}">
+      <span class="label">${path.badge}</span>
+      <h3>${path.name}</h3>
+      <p>${path.best}</p>
+    </button>
+  `).join('');
+
+  $$('#pathPicker .path-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedPath = button.dataset.path;
+      localStorage.setItem('galway.selectedPath', selectedPath);
+      renderPaths();
+      renderPathDetail();
+    });
+  });
+}
+
+function renderPathDetail() {
+  const path = DATA.paths.find((item) => item.id === selectedPath) || DATA.paths[0];
+  $('#pathDetail').innerHTML = `
+    <article class="path-info">
+      <p class="eyebrow">Selected mood</p>
+      <h3>${path.name}</h3>
+      <p>${path.best}</p>
+      <div class="scorebars">${Object.entries(path.scores).map(([key, value]) => `
+        <div class="score-row"><span>${key}</span><div class="bar"><span style="width:${value * 10}%"></span></div><strong>${value}</strong></div>
+      `).join('')}</div>
+      <div class="path-lists">
+        <div><strong>Includes</strong><ul>${path.includes.map((item) => `<li>${item}</li>`).join('')}</ul></div>
+        <div><strong>Cuts</strong><ul>${path.cuts.map((item) => `<li>${item}</li>`).join('')}</ul></div>
+      </div>
+      <div class="callout"><strong>Why this works:</strong> ${path.why}</div>
+      <div class="callout subtle"><strong>Tradeoff:</strong> ${path.tradeoff}</div>
+      ${feedbackPanel(`path:${path.id}`, path.name)}
+    </article>
   `;
 }
 
@@ -286,10 +373,11 @@ function renderTour() {
         <div><span>Language</span><strong>${tour.language}</strong></div>
         <div><span>Duration</span><strong>${tour.duration}</strong></div>
         <div><span>Arrive by</span><strong>${tour.arriveBy}</strong></div>
+        <div><span>Return anchor</span><strong>${tour.returnAnchor}</strong></div>
       </div>
       <div class="mini-note"><strong>Meeting point:</strong> ${tour.meetingPoint}<br>${tour.address}</div>
       <div class="callout"><strong>Note from Lally Tours:</strong> ${tour.note}</div>
-      <div class="link-grid"><a href="${tour.link}" target="_blank" rel="noopener">Open map</a></div>
+      ${linkButtons(tour.link, tour.mapUrl)}
       ${feedbackPanel(`tour:${tour.id}`, tour.title)}
     </article>
   `;
@@ -304,6 +392,130 @@ function renderCardGrid(selector, items, type) {
       <div class="mini-note"><strong>Note:</strong> ${note}</div>
       ${link ? `<div class="link-grid"><a href="${link}" target="_blank" rel="noopener">${link.includes('google.com/maps') ? 'Open map' : 'Open site'}</a></div>` : ''}
       ${feedbackPanel(`${type}:${id}`, name)}
+    </article>
+  `).join('');
+}
+
+function renderRestaurants() {
+  $('#restaurantGrid').innerHTML = DATA.restaurants.map((item) => `
+    <article class="option-card ${statusClass(item.verdict)}">
+      <div class="card-topline"><span class="rank">#${item.rank}</span><span class="status-badge">${item.verdict}</span></div>
+      <h3>${item.name}</h3>
+      <p class="role">${item.role}</p>
+      <p>${item.why}</p>
+      <div class="mini-note"><strong>Booking:</strong> ${item.booking}</div>
+      ${item.sourceNote ? `<p class="source-note">${item.sourceNote}</p>` : ''}
+      ${linkButtons(item.siteUrl, item.mapUrl)}
+      ${feedbackPanel(`restaurant:${item.id}`, item.name)}
+    </article>
+  `).join('');
+}
+
+function renderRankedRows(selector, items, type) {
+  $(selector).innerHTML = items.map(([id, rank, name, role, verdict, note, siteUrl, mapUrl]) => `
+    <article class="option-card ${statusClass(verdict)}">
+      <div class="card-topline"><span class="rank">#${rank}</span><span class="status-badge">${verdict}</span></div>
+      <h3>${name}</h3>
+      <p class="role">${role}</p>
+      <p>${note}</p>
+      ${linkButtons(siteUrl, mapUrl)}
+      ${feedbackPanel(`${type}:${id}`, name)}
+    </article>
+  `).join('');
+}
+
+function renderActivities() {
+  $('#activityGrid').innerHTML = DATA.activities.map((item) => `
+    <article class="option-card ${statusClass(item.verdict)}">
+      <span class="status-badge">${item.verdict}</span>
+      <h3>${item.name}</h3>
+      <p>${item.why}</p>
+      <div class="mini-note"><strong>${item.price}</strong> · ${item.time}</div>
+      ${item.variants ? `<div class="tiny-list">${Object.entries(item.variants).map(([name, text]) => `<p><strong>${labelize(name)}:</strong> ${text}</p>`).join('')}</div>` : ''}
+      ${linkButtons(item.siteUrl, item.mapUrl)}
+      ${feedbackPanel(`activity:${item.id}`, item.name)}
+    </article>
+  `).join('');
+}
+
+function renderRoutes() {
+  $('#routeGrid').innerHTML = DATA.routes.map((route) => `
+    <article class="route-card">
+      <span class="label">${route.time}</span>
+      <h3>${route.title}</h3>
+      <ol>${route.stops.map((stop) => `<li>${stop}</li>`).join('')}</ol>
+      <p>${route.note}</p>
+      ${feedbackPanel(`route:${route.id}`, route.title)}
+    </article>
+  `).join('');
+}
+
+function renderWarnings() {
+  $('#warningGrid').innerHTML = DATA.warnings.map(([id, name, level, text, link]) => `
+    <article class="option-card ${level}">
+      <span class="status-badge">${level === 'skip' ? 'Avoid' : 'Conditional'}</span>
+      <h3>${name}</h3>
+      <p>${text}</p>
+      ${linkButtons('', link)}
+      ${feedbackPanel(`warning:${id}`, name)}
+    </article>
+  `).join('');
+}
+
+function renderWeather() {
+  const weather = DATA.weather;
+  $('#weatherGrid').innerHTML = `
+    <article class="weather-card wide">
+      <span class="label">July reality</span>
+      <h3>Rain shortens the plan, not the trip.</h3>
+      <p>${weather.galwayJuly}</p>
+      <div class="callout"><strong>Cliffs:</strong> ${weather.cliffsTourRain}</div>
+      <div class="callout subtle"><strong>Galway evening:</strong> ${weather.galwayEveningRain}</div>
+    </article>
+    <article class="weather-card">
+      <span class="label">Pack</span>
+      <h3>Cliffs kit</h3>
+      <ul>${weather.cliffsPacking.map((item) => `<li>${item}</li>`).join('')}</ul>
+    </article>
+    <article class="weather-card">
+      <span class="label">Fallbacks</span>
+      <h3>Warm and central</h3>
+      <ul>${weather.indoorFallbacks.map((item) => `<li>${item}</li>`).join('')}</ul>
+    </article>
+  `;
+}
+
+function renderBookingTimeline() {
+  $('#bookTimeline').innerHTML = DATA.bookingTimeline.map(([date, name, priority, actions]) => `
+    <article class="book-step ${priority}">
+      <div class="book-date">${date}</div>
+      <div>
+        <span class="label">${priority}</span>
+        <h3>${name}</h3>
+        <ul>${actions.map((action) => `<li>${action}</li>`).join('')}</ul>
+        ${feedbackPanel(optionId('booking', name), name)}
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderMapPins() {
+  $('#mapPinGrid').innerHTML = DATA.mapPins.map((pin) => `
+    <a class="pin-card ${pin.category}" href="${pin.mapUrl}" target="_blank" rel="noopener">
+      <span>${pin.category}</span>
+      <strong>${pin.label}</strong>
+      <em>${pin.note}</em>
+    </a>
+  `).join('');
+}
+
+function renderSourceNotes() {
+  $('#sourceGrid').innerHTML = DATA.sourceNotes.map((source) => `
+    <article class="source-card">
+      <span class="label">${source.accessed}</span>
+      <h3>${source.claim}</h3>
+      <p>${source.note}</p>
+      <div class="link-grid"><a href="${source.url}" target="_blank" rel="noopener">Open source</a></div>
     </article>
   `).join('');
 }
@@ -387,19 +599,8 @@ function renderSuggestionsList() {
 function renderNotesReview() {
   const summary = NOTES.getFeedbackSummary(noteState);
   $('#notesReview').innerHTML = `
-    <div class="send-instructions">
-      <span class="label">How to send Logan your notes</span>
-      <h3>React as you browse, then send one packet.</h3>
-      <ol>
-        <li>Pick your name on any card and tap Love, Maybe, Nope, or Concern.</li>
-        <li>Add notes in the text boxes, plus any missing restaurant, pub, activity, or logistics idea below.</li>
-        <li>Come back to this Shared notes section and tap Copy share packet.</li>
-        <li>Send the copied packet to Logan so feedback can be merged.</li>
-      </ol>
-      <p>Logan can paste that packet into Import notes to merge everyone’s feedback into one final cut.</p>
-    </div>
     ${summary.length ? `
-      <div class="notes-toolbar"><span>${summary.length} noted option${summary.length === 1 ? '' : 's'}</span><button class="btn" type="button" id="copyNotesInline">Copy readable notes</button></div>
+      <div class="notes-toolbar"><span>${summary.length} noted option${summary.length === 1 ? '' : 's'}</span></div>
       <div class="notes-grid">
         ${summary.map((item) => `
           <article class="note-summary-card">
@@ -414,25 +615,9 @@ function renderNotesReview() {
         `).join('')}
       </div>
     ` : `
-      <div class="empty-notes"><span class="label">No notes yet</span><h3>Leave reactions as you browse.</h3><p>Four-person notes save locally in this browser.</p></div>
+      <div class="empty-notes"><span class="label">No notes yet</span><h3>Leave reactions as you browse.</h3><p>Reactions sync when the database is available; this browser also keeps a local copy.</p></div>
     `}
-    <div class="collab-grid">
-      <article class="collab-card">
-        <span class="label">Export</span><h3>Copy share packet</h3><p>Send this to the group so another browser can import your notes.</p><button class="btn primary" type="button" id="copySharePacket">Copy share packet</button>
-        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
-          <select id="submitAuthorSelect" style="flex:1;min-width:0">
-            <option value="">Your name</option>
-            <option>Logan</option>
-            <option>Emily</option>
-            <option>Ashley</option>
-            <option>Max</option>
-          </select>
-          <button class="btn" type="button" id="submitToLogan" disabled>Submit to Logan</button>
-        </div>
-      </article>
-      <article class="collab-card">
-        <span class="label">Import</span><h3>Merge packet</h3><textarea id="sharePacketInput" rows="5" placeholder="Paste GALWAY_TRIP_NOTES_V1 packet here"></textarea><button class="btn" type="button" id="importSharePacket">Import notes</button>
-      </article>
+    <div class="collab-grid primary-collab">
       <article class="collab-card suggestion-card">
         <span class="label">Missing idea</span><h3>Add a suggestion</h3>
         <form id="suggestionForm">
@@ -448,6 +633,29 @@ function renderNotesReview() {
       </article>
     </div>
     <div class="suggestions-panel"><div class="notes-toolbar"><span>Missing suggestions</span></div>${renderSuggestionsList()}</div>
+    <details class="backup-tools">
+      <summary>Backup tools</summary>
+      <div class="collab-grid">
+        <article class="collab-card">
+          <span class="label">Backup</span><h3>Copy local notes</h3><p>Use these only if database sync is unavailable or you need to move notes manually.</p>
+          <button class="btn" type="button" id="copyNotesInline">Copy readable notes</button>
+          <button class="btn" type="button" id="copySharePacket">Copy share packet</button>
+          <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+            <select id="submitAuthorSelect" style="flex:1;min-width:0">
+              <option value="">Your name</option>
+              <option>Logan</option>
+              <option>Emily</option>
+              <option>Ashley</option>
+              <option>Max</option>
+            </select>
+            <button class="btn" type="button" id="submitToLogan" disabled>Submit local backup</button>
+          </div>
+        </article>
+        <article class="collab-card">
+          <span class="label">Import</span><h3>Merge packet</h3><textarea id="sharePacketInput" rows="5" placeholder="Paste GALWAY_TRIP_NOTES_V1 packet here"></textarea><button class="btn" type="button" id="importSharePacket">Import notes</button>
+        </article>
+      </div>
+    </details>
   `;
   bindCollaborationControls();
   const inlineCopy = $('#copyNotesInline');
@@ -570,19 +778,32 @@ function bindNoteEvents() {
 
 function finalSummary() {
   return `Galway July 2-3, 2026:
-Thursday July 2: Train Dublin to Galway, 1:02pm-3:50pm. Keep arrival evening flexible for dinner, pubs, or a short walk.
-Friday July 3: Lally Tours From Galway: Cliffs of Moher Half-Day Express Trip. Meet outside HYDE Hotel, Forster Street at 7:45am for 8:00am departure. Tour is 5 hours, English, 2 adults listed.
-Friday July 3: Train Galway to Dublin, 3:05pm-5:44pm.`;
+Thursday July 2: Train Dublin to Galway, 1:02pm-3:50pm. Optional compact walk, Cava Bodega or Ard Bia dinner, one trad pub, done around 11:00pm.
+Friday July 3: Lally Tours From Galway: Cliffs of Moher Half-Day Express Trip. Meet outside HYDE Hotel, Forster Street at 7:45am for 8:00am departure. Treat return as around 1:30pm.
+Friday July 3: Quick central lunch / bags / station buffer from about 1:30-2:30pm. Train Galway to Dublin, 3:05pm-5:44pm.`;
 }
 
 function renderAllDynamicSections() {
+  renderTimingBanner();
+  renderFacts();
   renderVerdicts();
   renderChapters();
   renderDayTabs();
   renderDayDetail();
+  renderPaths();
+  renderPathDetail();
   renderTour();
   renderCardGrid('#logisticsGrid', DATA.logistics, 'logistics');
-  renderCardGrid('#ideaGrid', DATA.ideas, 'idea');
+  renderRestaurants();
+  renderRankedRows('#barGrid', DATA.bars, 'bar');
+  renderRankedRows('#lunchGrid', DATA.lunch, 'lunch');
+  renderActivities();
+  renderRoutes();
+  renderWeather();
+  renderWarnings();
+  renderBookingTimeline();
+  renderMapPins();
+  renderSourceNotes();
   renderPassport();
   renderFinalCut();
   renderGroupDashboard();
