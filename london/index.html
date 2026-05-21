@@ -15,7 +15,15 @@
     <nav class="topbar">
       <div class="brand"><span class="crest">✦</span><span>London Love Letter</span></div>
       <div class="navlinks">
-        <a href="../">Hub</a><a href="#plan">Plan</a><a href="#wednesday">Wednesday</a><a href="#food">Food</a><a href="#prices">Prices</a><a href="#actions">Book</a>
+        <div class="city-pills">
+          <a class="city-pill" href="../">Hub</a>
+          <a class="city-pill" href="../lisbon/">L</a>
+          <a class="city-pill" href="../galway/">G</a>
+          <a class="city-pill" href="../dublin/">D</a>
+          <a class="city-pill active" aria-current="page" href="#">Lon</a>
+        </div>
+        <div class="nav-divider"></div>
+        <a href="#plan">Plan</a><a href="#wednesday">Wed</a><a href="#food">Food</a><a href="#prices">£</a><a href="#actions">Book</a>
         <button id="themeToggle" class="ghost">☾</button>
       </div>
     </nav>
@@ -94,6 +102,6 @@
     <section class="section reveal" id="share"><div class="share-panel"><div><p class="eyebrow">Mac-friendly sharing</p><h2>Make it presentation-ready</h2><p>Use this for a laptop reveal, then print/save as PDF if you want a clean shareable version.</p></div><div class="share-actions"><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn" id="copyFull">Copy final plan</button><button class="btn" id="copyNotes">Copy notes</button><a class="btn" href="#top">Back to top</a></div></div></section>
   </main>
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="data.js?v=20260520-presentation-mode"></script><script src="notes-logic.js?v=20260520-presentation-mode"></script><script src="app.js?v=20260520-presentation-mode"></script>
+  <script src="data.js?v=20260520-presentation-mode"></script><script src="notes-logic.js?v=20260520-presentation-mode"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="../shared/supabase-config.js"></script><script src="../shared/submissions-api.js"></script><script src="app.js?v=20260520-presentation-mode"></script>
 </body>
 </html>

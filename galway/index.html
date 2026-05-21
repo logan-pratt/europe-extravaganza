@@ -13,7 +13,14 @@
     <nav class="topbar">
       <a class="brand" href="#top"><span class="crest">G</span><span>Galway Coast</span></a>
       <div class="navlinks">
-        <a href="../">Hub</a>
+        <div class="city-pills">
+          <a class="city-pill" href="../">Hub</a>
+          <a class="city-pill" href="../lisbon/">L</a>
+          <a class="city-pill active" aria-current="page" href="#">G</a>
+          <a class="city-pill" href="../dublin/">D</a>
+          <a class="city-pill" href="../london/">Lon</a>
+        </div>
+        <div class="nav-divider"></div>
         <a href="#plan">Plan</a>
         <a href="#tour">Tour</a>
         <a href="#logistics">Logistics</a>
@@ -148,6 +155,9 @@
   <div id="toast" role="status" aria-live="polite"></div>
   <script src="data.js?v=20260520-galway-launch"></script>
   <script src="notes-logic.js?v=20260520-galway-launch"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="../shared/supabase-config.js"></script>
+  <script src="../shared/submissions-api.js"></script>
   <script src="app.js?v=20260520-galway-launch"></script>
 </body>
 </html>
