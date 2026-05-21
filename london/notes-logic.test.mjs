@@ -13,6 +13,7 @@ const {
   toggleStamp,
   countOptionFeedback,
   addSuggestion,
+  buildSubmissionPacket,
   exportSharePacket,
   parseSharePacket,
   mergeNotesStates
@@ -176,4 +177,64 @@ test('merges imported notes and suggestions without dropping local notes', () =>
   assert.equal(merged.items['restaurant:trullo'].Logan.reaction, 'love');
   assert.equal(merged.items['restaurant:trullo'].Emily.note, 'Need to check travel.');
   assert.equal(merged.suggestions.length, 1);
+});
+
+test('buildSubmissionPacket returns a plain object with version, exportedAt, and state', () => {
+  const state = saveOptionFeedback(createEmptyNotesState(), 'restaurant:trullo', 'Logan', {
+    reaction: 'love',
+    note: 'This one.'
+  });
+
+  const packet = buildSubmissionPacket(state);
+
+  assert.equal(typeof packet, 'object');
+  assert.equal(packet.version, 1);
+  assert.equal(typeof packet.exportedAt, 'string');
+  assert.deepEqual(packet.state, state);
+});
+
+test('exportSharePacket text contains the same data as buildSubmissionPacket', () => {
+  const state = saveOptionFeedback(createEmptyNotesState(), 'restaurant:trullo', 'Logan', {
+    reaction: 'love',
+    note: ''
+  });
+
+  const packet = buildSubmissionPacket(state);
+  const text = exportSharePacket(state);
+
+  assert.ok(text.startsWith('LONDON_LOVE_LETTER_NOTES_V1'));
+  const parsed = JSON.parse(text.replace(/^LONDON_LOVE_LETTER_NOTES_V1\s*/, ''));
+  assert.deepEqual(parsed.state, packet.state);
+});
+
+test('getReactionSummary groups authors by reaction type for a card', () => {
+  let state = createEmptyNotesState();
+  state = saveOptionFeedback(state, 'restaurant:trullo', 'Logan', { reaction: 'love', note: '' });
+  state = saveOptionFeedback(state, 'restaurant:trullo', 'Emily', { reaction: 'maybe', note: '' });
+
+  const summary = notesLogic.getReactionSummary(state, 'restaurant:trullo');
+
+  assert.deepEqual(summary.love, ['Logan']);
+  assert.deepEqual(summary.maybe, ['Emily']);
+  assert.deepEqual(summary.nope, []);
+  assert.deepEqual(summary.concern, []);
+});
+
+test('getReactionSummary returns empty arrays when no reactions exist', () => {
+  const summary = notesLogic.getReactionSummary(createEmptyNotesState(), 'restaurant:trullo');
+
+  assert.deepEqual(summary.love, []);
+  assert.deepEqual(summary.maybe, []);
+  assert.deepEqual(summary.nope, []);
+  assert.deepEqual(summary.concern, []);
+});
+
+test('cardTypeFromId maps id prefixes to card type strings', () => {
+  assert.equal(notesLogic.cardTypeFromId('day:sun'), 'activity');
+  assert.equal(notesLogic.cardTypeFromId('path:B'), 'decision');
+  assert.equal(notesLogic.cardTypeFromId('restaurant:trullo'), 'restaurant');
+  assert.equal(notesLogic.cardTypeFromId('bar:the-lamb'), 'bar');
+  assert.equal(notesLogic.cardTypeFromId('upgrade:bath-spa'), 'experience');
+  assert.equal(notesLogic.cardTypeFromId('booking:clos-maggiore'), 'logistics');
+  assert.equal(notesLogic.cardTypeFromId('unknown:foo'), 'activity');
 });

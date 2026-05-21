@@ -75,3 +75,59 @@ test('builds Galway final cut and toggles passport stamps', () => {
   assert.deepEqual(finalCut.maybe.map((item) => item.label), ['Pubs to research']);
   assert.deepEqual(NOTES.toggleStamp({}, 'cliffs'), { cliffs: true });
 });
+
+test('buildSubmissionPacket returns a plain object with version, exportedAt, and state', () => {
+  let state = NOTES.createEmptyNotesState();
+  state = NOTES.saveOptionFeedback(state, 'tour:cliffs-half-day', 'Logan', { reaction: 'love', note: 'Main event.' });
+
+  const packet = NOTES.buildSubmissionPacket(state);
+
+  assert.equal(typeof packet, 'object');
+  assert.equal(packet.version, 1);
+  assert.equal(typeof packet.exportedAt, 'string');
+  assert.deepEqual(packet.state, state);
+});
+
+test('exportSharePacket text contains the same data as buildSubmissionPacket', () => {
+  let state = NOTES.createEmptyNotesState();
+  state = NOTES.saveOptionFeedback(state, 'tour:cliffs-half-day', 'Emily', { reaction: 'maybe', note: '' });
+
+  const packet = NOTES.buildSubmissionPacket(state);
+  const text = NOTES.exportSharePacket(state);
+
+  assert.ok(text.startsWith('GALWAY_TRIP_NOTES_V1'));
+  const parsed = JSON.parse(text.replace(/^GALWAY_TRIP_NOTES_V1\s*/, ''));
+  assert.deepEqual(parsed.state, packet.state);
+});
+
+test('getReactionSummary groups authors by reaction type for a card', () => {
+  let state = NOTES.createEmptyNotesState();
+  state = NOTES.saveOptionFeedback(state, 'restaurant:trullo', 'Logan', { reaction: 'love', note: '' });
+  state = NOTES.saveOptionFeedback(state, 'restaurant:trullo', 'Emily', { reaction: 'maybe', note: '' });
+
+  const summary = NOTES.getReactionSummary(state, 'restaurant:trullo');
+
+  assert.deepEqual(summary.love, ['Logan']);
+  assert.deepEqual(summary.maybe, ['Emily']);
+  assert.deepEqual(summary.nope, []);
+  assert.deepEqual(summary.concern, []);
+});
+
+test('getReactionSummary returns empty arrays when no reactions exist', () => {
+  const summary = NOTES.getReactionSummary(NOTES.createEmptyNotesState(), 'restaurant:trullo');
+
+  assert.deepEqual(summary.love, []);
+  assert.deepEqual(summary.maybe, []);
+  assert.deepEqual(summary.nope, []);
+  assert.deepEqual(summary.concern, []);
+});
+
+test('cardTypeFromId maps id prefixes to card type strings', () => {
+  assert.equal(NOTES.cardTypeFromId('day:sun'), 'activity');
+  assert.equal(NOTES.cardTypeFromId('path:B'), 'decision');
+  assert.equal(NOTES.cardTypeFromId('restaurant:trullo'), 'restaurant');
+  assert.equal(NOTES.cardTypeFromId('bar:the-lamb'), 'bar');
+  assert.equal(NOTES.cardTypeFromId('upgrade:bath-spa'), 'experience');
+  assert.equal(NOTES.cardTypeFromId('booking:clos-maggiore'), 'logistics');
+  assert.equal(NOTES.cardTypeFromId('unknown:foo'), 'activity');
+});

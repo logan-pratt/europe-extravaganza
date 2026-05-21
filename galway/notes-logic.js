@@ -110,12 +110,16 @@
     return { ...safeState, suggestions: [...suggestions, cleanSuggestion] };
   }
 
-  function exportSharePacket(state) {
-    return `GALWAY_TRIP_NOTES_V1\n${JSON.stringify({
+  function buildSubmissionPacket(state) {
+    return {
       version: 1,
       exportedAt: new Date().toISOString(),
       state: normalizeNotesState(state)
-    }, null, 2)}`;
+    };
+  }
+
+  function exportSharePacket(state) {
+    return `GALWAY_TRIP_NOTES_V1\n${JSON.stringify(buildSubmissionPacket(state), null, 2)}`;
   }
 
   function parseSharePacket(text) {
@@ -204,6 +208,27 @@
     return { ...state, [stampId]: !state?.[stampId] };
   }
 
+  function getReactionSummary(state, cardId) {
+    const safeState = normalizeNotesState(state);
+    const feedback = safeState.items[cardId] || {};
+    const summary = {};
+    NOTE_REACTIONS.forEach(([value]) => {
+      summary[value] = NOTE_AUTHORS.filter((author) => feedback[author]?.reaction === value);
+    });
+    return summary;
+  }
+
+  const CARD_TYPE_MAP = {
+    day: 'activity', path: 'decision', restaurant: 'restaurant', bar: 'bar',
+    activity: 'activity', price: 'logistics', wildcard: 'activity', seasonal: 'activity',
+    event: 'activity', upgrade: 'experience', warning: 'logistics', booking: 'logistics',
+    experience: 'experience', route: 'experience', fact: 'logistics', verdict: 'logistics'
+  };
+
+  function cardTypeFromId(id) {
+    return CARD_TYPE_MAP[String(id).split(':')[0]] || 'activity';
+  }
+
   const api = {
     NOTE_AUTHORS,
     NOTE_REACTIONS,
@@ -216,12 +241,15 @@
     formatReaction,
     exportFeedbackText,
     addSuggestion,
+    buildSubmissionPacket,
     exportSharePacket,
     parseSharePacket,
     mergeNotesStates,
     analyzeGroupDecisions,
     buildFinalCut,
-    toggleStamp
+    toggleStamp,
+    getReactionSummary,
+    cardTypeFromId
   };
 
   if (typeof module !== 'undefined' && module.exports) {

@@ -112,13 +112,16 @@
     };
   }
 
-  function exportSharePacket(state) {
-    const payload = {
+  function buildSubmissionPacket(state) {
+    return {
       version: 1,
       exportedAt: new Date().toISOString(),
       state: normalizeNotesState(state)
     };
-    return `LONDON_LOVE_LETTER_NOTES_V1\n${JSON.stringify(payload, null, 2)}`;
+  }
+
+  function exportSharePacket(state) {
+    return `LONDON_LOVE_LETTER_NOTES_V1\n${JSON.stringify(buildSubmissionPacket(state), null, 2)}`;
   }
 
   function parseSharePacket(text) {
@@ -262,6 +265,27 @@
     };
   }
 
+  function getReactionSummary(state, cardId) {
+    const safeState = normalizeNotesState(state);
+    const feedback = safeState.items[cardId] || {};
+    const summary = {};
+    NOTE_REACTIONS.forEach(([value]) => {
+      summary[value] = NOTE_AUTHORS.filter((author) => feedback[author]?.reaction === value);
+    });
+    return summary;
+  }
+
+  const CARD_TYPE_MAP = {
+    day: 'activity', path: 'decision', restaurant: 'restaurant', bar: 'bar',
+    activity: 'activity', price: 'logistics', wildcard: 'activity', seasonal: 'activity',
+    event: 'activity', upgrade: 'experience', warning: 'logistics', booking: 'logistics',
+    experience: 'experience', route: 'experience', fact: 'logistics', verdict: 'logistics'
+  };
+
+  function cardTypeFromId(id) {
+    return CARD_TYPE_MAP[String(id).split(':')[0]] || 'activity';
+  }
+
   const api = {
     NOTE_AUTHORS,
     NOTE_REACTIONS,
@@ -274,13 +298,16 @@
     formatReaction,
     exportFeedbackText,
     addSuggestion,
+    buildSubmissionPacket,
     exportSharePacket,
     parseSharePacket,
     mergeNotesStates,
     analyzeCoupleDecisions,
     buildFinalCut,
     getCountdownItems,
-    toggleStamp
+    toggleStamp,
+    getReactionSummary,
+    cardTypeFromId
   };
 
   if (typeof module !== 'undefined' && module.exports) {
