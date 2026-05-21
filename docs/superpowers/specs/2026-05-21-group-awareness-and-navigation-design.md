@@ -121,8 +121,47 @@
 
 ---
 
-## Open Questions
+## Resolved Architecture Decisions
 
-1. **Supabase read permissions:** Does the current `submissions-api.js` expose a read endpoint for aggregate reactions by city, or only writes? If reads aren't implemented, A2 and A4 need a read path added first.
-2. **Reaction initials:** Are user identifiers (L/E/A/M) stored in Supabase alongside reactions, or is it anonymous? Initials on A1 depend on this.
-3. **"Open decision" definition:** The definition above is a heuristic. Logan should confirm whether a formal "decision" tag exists in the data model or if this needs to be inferred.
+### Supabase schema additions
+
+The current `trip_submissions` table stores full export packets and is not suitable for per-card real-time reactions. A new table is required:
+
+```sql
+create table card_reactions (
+  id uuid primary key default gen_random_uuid(),
+  trip_slug text not null,
+  card_id text not null,
+  card_type text not null,
+  author_name text not null,
+  author_key text not null,
+  reaction text not null default '',
+  note text not null default '',
+  client_id text not null,
+  updated_at timestamptz not null default now()
+);
+
+-- upsert key: one row per (trip_slug, card_id, author_key)
+create unique index card_reactions_upsert_key
+  on card_reactions (trip_slug, card_id, author_key);
+```
+
+Enable Supabase Realtime on this table so subscribers get live updates without polling.
+
+### submissions-api.js additions
+
+Three new functions added to the existing module:
+
+- `upsertReaction(tripSlug, cardId, cardType, authorName, reaction, note)` — upserts a row using the unique index above
+- `fetchReactions(tripSlug)` — returns all rows for a trip slug, used on page load and by the hub page
+- `subscribeReactions(tripSlug, callback)` — opens a Supabase Realtime channel, calls `callback` with the full updated row on any INSERT or UPDATE
+
+Each city's `app.js` calls `upsertReaction` whenever a user saves a reaction or note (alongside the existing localStorage write, which stays as an offline fallback). On page load, `fetchReactions` hydrates the in-memory state, then `subscribeReactions` keeps it live.
+
+### Author identity
+
+`author_name` and `author_key` are already captured in `submitPacket`. The same pattern applies here — the author selector UI (already present in each city page) provides the name. No anonymous reactions: a user must have an author selected before reacting. Initials displayed in the reaction summary row derive from `author_name[0].toUpperCase()`.
+
+### Decision card type
+
+Each card object in every city's `data.js` gets a `cardType` string field. Valid values: `activity`, `restaurant`, `bar`, `experience`, `logistics`, `decision`. Cards tagged `decision` surface in the open decisions count and banner. Logan will audit each city's data.js as part of implementation to assign appropriate types. The `decision` type is for items that explicitly require a group choice (e.g., "Sintra vs Cascais", "Wednesday path", "friend dinner pick").
