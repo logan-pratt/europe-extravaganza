@@ -538,3 +538,34 @@ h1 {
     border-bottom: 1px solid rgba(255, 247, 233, .14);
   }
 }
+
+a.route-node {
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+a.route-node:hover {
+  transform: translate(-50%, calc(-50% - 4px));
+  box-shadow:
+    0 0 0 1px rgba(201, 149, 66, .5),
+    0 18px 36px rgba(0, 0, 0, .3),
+    0 0 20px rgba(201, 149, 66, .22);
+}
+
+.route-node.disabled {
+  opacity: .5;
+  cursor: default;
+}
+
+.btn.coming-soon {
+  color: rgba(255, 247, 233, .55);
+  background: rgba(255, 247, 233, .07);
+  border-color: rgba(255, 247, 233, .14);
+  cursor: default;
+  letter-spacing: .01em;
+}
+
+.btn.coming-soon:hover {
+  transform: none;
+  box-shadow: none;
+}
