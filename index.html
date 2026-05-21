@@ -103,6 +103,7 @@
             <li>Restaurants, bars, notes, feedback, and share packets</li>
             <li>Monday final-night flight discipline</li>
           </ul>
+          <span id="status-lisbon" class="city-card-status" hidden></span>
           <a class="btn primary" href="lisbon/">Enter Lisbon</a>
         </div>
       </article>
@@ -136,6 +137,7 @@
             <li>July 3 Cliffs of Moher half-day express tour</li>
             <li>Notes, feedback, suggestions, and share packets</li>
           </ul>
+          <span id="status-galway" class="city-card-status" hidden></span>
           <a class="btn primary" href="galway/">Enter Galway</a>
         </div>
       </article>
@@ -152,6 +154,7 @@
             <li>Add / Maybe / Skip cards</li>
             <li>Notes, feedback, suggestions, and share packets</li>
           </ul>
+          <span id="status-dublin" class="city-card-status" hidden></span>
           <a class="btn primary" href="dublin/">Enter Dublin</a>
         </div>
       </article>
@@ -168,11 +171,38 @@
             <li>Wednesday path picker</li>
             <li>Notes, feedback, suggestions, and share packets</li>
           </ul>
+          <span id="status-london" class="city-card-status" hidden></span>
           <a class="btn primary" href="london/">Enter London</a>
         </div>
       </article>
       <p class="image-credit">Landing photos: Lisbon and Dublin provided by the group; Kilkea Castle, Cliffs of Moher, and Westminster Bridge / Big Ben sourced from Wikimedia Commons.</p>
     </section>
   </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="shared/supabase-config.js"></script>
+<script src="shared/submissions-api.js"></script>
+<script>
+(async function () {
+  const cities = ['lisbon', 'galway', 'dublin', 'london'];
+  const results = await Promise.all(cities.map((slug) =>
+    typeof window.fetchReactions === 'function'
+      ? window.fetchReactions(slug)
+      : Promise.resolve({ ok: false, data: [] })
+  ));
+
+  cities.forEach((slug, i) => {
+    const el = document.getElementById(`status-${slug}`);
+    if (!el) return;
+    const data = results[i].ok ? results[i].data : [];
+    const reactionCount = data.filter((r) => r.reaction).length;
+    const decisionCount = data.filter((r) => r.card_type === 'decision' && !r.reaction).length;
+    const parts = [];
+    if (reactionCount) parts.push(`${reactionCount} reaction${reactionCount === 1 ? '' : 's'}`);
+    if (decisionCount) parts.push(`${decisionCount} open decision${decisionCount === 1 ? '' : 's'}`);
+    el.textContent = parts.length ? parts.join(' · ') : '';
+    el.hidden = !parts.length;
+  });
+})();
+</script>
 </body>
 </html>
