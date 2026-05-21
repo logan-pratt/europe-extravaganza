@@ -103,3 +103,30 @@
 .decisions-link:hover {
   text-decoration: underline;
 }
+.export-disclosure {
+  width: min(1180px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 14px 0 56px;
+}
+
+.export-disclosure > summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 700;
+  list-style: none;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.export-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.export-disclosure > summary::before {
+  content: '+ ';
+}
+
+.export-disclosure[open] > summary::before {
+  content: '− ';
+}

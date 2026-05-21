@@ -59,7 +59,6 @@
       <div class="hero-actions">
         <a class="btn primary" href="#plan">Open the plan</a>
         <a class="btn glass" href="#final-cut">Final cut</a>
-        <button class="btn glass" id="copyHero" type="button">Copy summary</button>
         <button class="btn glass presentation-toggle" id="presentationToggle" type="button" aria-pressed="false">Presentation mode</button>
       </div>
       <div class="stat-strip">
@@ -175,16 +174,19 @@
       <div class="notes-review" id="notesReview"></div>
     </section>
 
-    <section class="section reveal" id="share">
-      <div class="share-panel">
-        <div><p class="eyebrow">Share / present</p><h2>Ready for the laptop reveal.</h2><p>Print, copy the clean plan, or copy the notes packet.</p></div>
-        <div class="share-actions">
-          <button class="btn primary" onclick="window.print()" type="button">Print / save PDF</button>
-          <button class="btn" id="copyFull" type="button">Copy plan</button>
-          <button class="btn" id="copyNotes" type="button">Copy notes</button>
-          <a class="btn" href="#top">Back to top</a>
+    <section class="section" id="share">
+      <details class="export-disclosure">
+        <summary>Export &amp; legacy sharing</summary>
+        <div class="share-panel">
+          <div><p class="eyebrow">Share / present</p><h2>Ready for the laptop reveal.</h2><p>Print, copy the clean plan, or copy the notes packet.</p></div>
+          <div class="share-actions">
+            <button class="btn primary" onclick="window.print()" type="button">Print / save PDF</button>
+            <button class="btn" id="copyFull" type="button">Copy plan</button>
+            <button class="btn" id="copyNotes" type="button">Copy notes</button>
+            <a class="btn" href="#top">Back to top</a>
+          </div>
         </div>
-      </div>
+      </details>
     </section>
   <nav class="city-nav-footer" aria-label="Trip navigation">
     <a class="btn" href="../galway/">← Galway</a>

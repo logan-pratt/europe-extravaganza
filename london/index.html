@@ -31,7 +31,7 @@
       <p class="eyebrow">July 5–9, 2026 · Kimpton Fitzroy · Bath · Wimbledon · West End</p>
       <h1>A cinematic London plan that still has room to breathe.</h1>
       <p class="lede">Built for a romantic, literary, food-loving London finale: keep Bath, do Wimbledon properly, and protect Wednesday from becoming a logistics spreadsheet.</p>
-      <div class="hero-actions"><a class="btn primary" href="#plan">Explore the plan</a><a class="btn glass" href="#wednesday">Pick Wednesday</a><button class="btn glass" id="copyHero">Copy summary</button><button class="btn glass presentation-toggle" id="presentationToggle" type="button" aria-pressed="false">Presentation mode</button></div>
+      <div class="hero-actions"><a class="btn primary" href="#plan">Explore the plan</a><a class="btn glass" href="#wednesday">Pick Wednesday</a><button class="btn glass presentation-toggle" id="presentationToggle" type="button" aria-pressed="false">Presentation mode</button></div>
       <div class="stat-strip"><div><strong>4</strong><span>nights</span></div><div><strong>1</strong><span>day trip</span></div><div><strong>1</strong><span>Wimbledon day</span></div><div><strong>3</strong><span>Wednesday paths</span></div></div>
     </div>
   </header>
@@ -100,7 +100,12 @@
       <div class="checklist-card"><h3>Shared prep checklist</h3><p class="muted">Saved locally in this browser.</p><div id="checklist"></div></div>
     </section>
     <section class="section reveal" id="notes"><div class="section-head"><p class="eyebrow">Shared notes</p><h2>Your two-person reaction board</h2><p>Notes save on this browser. Export them when you want me to read the room and recommend changes.</p></div><div class="notes-review" id="notesReview"></div></section>
-    <section class="section reveal" id="share"><div class="share-panel"><div><p class="eyebrow">Mac-friendly sharing</p><h2>Make it presentation-ready</h2><p>Use this for a laptop reveal, then print/save as PDF if you want a clean shareable version.</p></div><div class="share-actions"><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn" id="copyFull">Copy final plan</button><button class="btn" id="copyNotes">Copy notes</button><a class="btn" href="#top">Back to top</a></div></div></section>
+    <section class="section" id="share">
+  <details class="export-disclosure">
+    <summary>Export &amp; legacy sharing</summary>
+    <div class="share-panel"><div><p class="eyebrow">Mac-friendly sharing</p><h2>Make it presentation-ready</h2><p>Use this for a laptop reveal, then print/save as PDF if you want a clean shareable version.</p></div><div class="share-actions"><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn" id="copyFull">Copy final plan</button><button class="btn" id="copyNotes">Copy notes</button><a class="btn" href="#top">Back to top</a></div></div>
+  </details>
+</section>
   <nav class="city-nav-footer" aria-label="Trip navigation">
     <a class="btn" href="../dublin/">← Dublin</a>
     <span class="btn disabled">Final destination</span>
