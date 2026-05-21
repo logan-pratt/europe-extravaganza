@@ -81,12 +81,12 @@ body {
 
 .arrival-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 9px;
 }
 
 .arrival-grid span {
-  min-height: 60px;
+  min-height: 66px;
   display: grid;
   align-content: center;
   border: 1px solid rgba(255, 246, 232, .16);
@@ -99,7 +99,9 @@ body {
 }
 
 .arrival-grid b {
+  display: block;
   color: #fff6e8;
+  margin-bottom: 4px;
 }
 
 .fact-grid {
