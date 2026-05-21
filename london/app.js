@@ -926,6 +926,22 @@ function copyText(text) {
   navigator.clipboard.writeText(text).then(() => toast('Copied to clipboard'));
 }
 
+function applyPresentationMode(enabled) {
+  document.body.classList.toggle('presentation-mode', enabled);
+  localStorage.setItem('london.presentationMode', enabled ? 'true' : 'false');
+  const button = $('#presentationToggle');
+  if (!button) return;
+  button.textContent = enabled ? 'Exit presentation' : 'Presentation mode';
+  button.setAttribute('aria-pressed', String(enabled));
+}
+
+function bindPresentationMode() {
+  applyPresentationMode(localStorage.getItem('london.presentationMode') === 'true');
+  $('#presentationToggle')?.addEventListener('click', () => {
+    applyPresentationMode(!document.body.classList.contains('presentation-mode'));
+  });
+}
+
 function init() {
   registerAllNoteLabels();
   setTheme();
@@ -951,6 +967,7 @@ function init() {
   renderChecklist();
   updateArrivalText();
   bindNoteEvents();
+  bindPresentationMode();
 
   $('#themeToggle').addEventListener('click', () => {
     const next = !(localStorage.getItem('london.dark') === 'true');

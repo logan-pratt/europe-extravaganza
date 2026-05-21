@@ -265,6 +265,113 @@ h1 {
   line-height: 1.45;
 }
 
+.route-board {
+  width: min(1180px, calc(100% - 56px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: .86fr 1.14fr;
+  gap: 18px;
+  align-items: stretch;
+  color: #fff7e9;
+}
+
+.route-board-copy,
+.route-map {
+  border: 1px solid rgba(255, 247, 233, .18);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 247, 233, .12), rgba(255, 247, 233, .04)),
+    rgba(18, 10, 6, .5);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, .2);
+  backdrop-filter: blur(14px);
+}
+
+.route-board-copy {
+  padding: 26px;
+}
+
+.route-board-copy h2 {
+  margin: 12px 0 14px;
+  font-size: clamp(2.3rem, 4.8vw, 4.9rem);
+  line-height: .92;
+}
+
+.route-board-copy p:not(.eyebrow) {
+  margin: 0;
+  color: rgba(255, 247, 233, .82);
+  line-height: 1.58;
+}
+
+.route-map {
+  min-height: 330px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(118deg, transparent 0 28%, rgba(40, 79, 99, .2) 29% 35%, transparent 36% 100%),
+    repeating-linear-gradient(90deg, rgba(255, 247, 233, .06) 0 1px, transparent 1px 74px),
+    linear-gradient(135deg, rgba(21, 63, 46, .5), rgba(37, 21, 13, .62));
+}
+
+.route-map::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255, 247, 233, .16);
+  border-radius: var(--radius);
+}
+
+.route-line {
+  position: absolute;
+  left: 8%;
+  right: 9%;
+  top: 49%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e4b35c, #88b5bd, #c99542, #7d2430);
+  transform: rotate(-3deg);
+  box-shadow: 0 0 28px rgba(201, 149, 66, .36);
+}
+
+.route-node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 5px;
+  min-width: 118px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 247, 233, .22);
+  border-radius: var(--radius);
+  color: #fff7e9;
+  background: rgba(18, 10, 6, .66);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, .2);
+}
+
+.route-node span {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #2b1b10;
+  background: var(--gold);
+  font-weight: 950;
+}
+
+.route-node strong {
+  font-family: Georgia, Cambria, "Times New Roman", serif;
+  font-size: 1.2rem;
+  line-height: .98;
+}
+
+.route-node em {
+  color: rgba(255, 247, 233, .76);
+  font-size: .78rem;
+  font-style: normal;
+  font-weight: 800;
+}
+
 .city-grid {
   width: min(1180px, calc(100% - 56px));
   margin: 0 auto;
@@ -279,9 +386,17 @@ h1 {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--paper2) 92%, transparent);
+  background:
+    linear-gradient(180deg, var(--city-wash, rgba(255, 248, 236, .2)), transparent 44%),
+    color-mix(in srgb, var(--paper2) 92%, transparent);
   box-shadow: var(--shadow);
 }
+
+.city-card.lisbon { --city-accent: #2f6877; --city-wash: rgba(47, 104, 119, .12); }
+.city-card.kilkea { --city-accent: #65744a; --city-wash: rgba(101, 116, 74, .13); }
+.city-card.galway { --city-accent: #2f7286; --city-wash: rgba(47, 114, 134, .13); }
+.city-card.dublin { --city-accent: #153f2e; --city-wash: rgba(21, 63, 46, .14); }
+.city-card.london { --city-accent: #7d2430; --city-wash: rgba(125, 36, 48, .12); }
 
 .city-card.lisbon,
 .city-card.kilkea,
@@ -332,6 +447,23 @@ h1 {
   line-height: .96;
 }
 
+.signature-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0 0 14px;
+}
+
+.signature-row span {
+  border: 1px solid color-mix(in srgb, var(--city-accent, var(--green)) 32%, var(--line));
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: var(--city-accent, var(--green));
+  background: color-mix(in srgb, var(--city-accent, var(--green)) 9%, var(--paper2));
+  font-size: .76rem;
+  font-weight: 900;
+}
+
 .city-content p,
 .city-content li {
   color: var(--muted);
@@ -351,6 +483,7 @@ h1 {
   }
 
   .hero,
+  .route-board,
   .city-grid {
     width: min(100% - 32px, 1180px);
   }
@@ -358,10 +491,36 @@ h1 {
   h1 { font-size: 3.45rem; }
 
   .route-strip,
+  .route-board,
   .collab-steps,
   .city-grid {
     grid-template-columns: 1fr;
   }
+
+  .route-map {
+    min-height: 560px;
+  }
+
+  .route-line {
+    left: 49%;
+    right: auto;
+    top: 7%;
+    bottom: 9%;
+    width: 4px;
+    height: auto;
+    transform: none;
+  }
+
+  .route-node {
+    left: 50% !important;
+    top: var(--mobile-y) !important;
+  }
+
+  .lisbon-node { --mobile-y: 12%; }
+  .kilkea-node { --mobile-y: 30%; }
+  .galway-node { --mobile-y: 48%; }
+  .dublin-node { --mobile-y: 66%; }
+  .london-node { --mobile-y: 84%; }
 
   .overview-panel {
     padding: 20px;

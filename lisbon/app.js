@@ -630,6 +630,22 @@ Monday: final view/souvenirs/Manteigaria, pack before dinner, early meal, one to
 Avoid: Tram 28 line, Santa Justa Lift line, Belém Tower interior planning, Cabo da Roca add-on, Pink Street as destination, Monday chaos.`;
 }
 
+function applyPresentationMode(enabled) {
+  document.body.classList.toggle('presentation-mode', enabled);
+  localStorage.setItem('lisbon.presentationMode', enabled ? 'true' : 'false');
+  const button = $('#presentationToggle');
+  if (!button) return;
+  button.textContent = enabled ? 'Exit presentation' : 'Presentation mode';
+  button.setAttribute('aria-pressed', String(enabled));
+}
+
+function bindPresentationMode() {
+  applyPresentationMode(localStorage.getItem('lisbon.presentationMode') === 'true');
+  $('#presentationToggle')?.addEventListener('click', () => {
+    applyPresentationMode(!document.body.classList.contains('presentation-mode'));
+  });
+}
+
 function renderAllDynamicSections() {
   const placeFilter = $('.chip[data-place-filter].active')?.dataset.placeFilter || 'all';
   renderVerdicts();
@@ -658,6 +674,7 @@ function init() {
   registerAllNoteLabels();
   renderAllDynamicSections();
   bindNoteEvents();
+  bindPresentationMode();
 
   $('#copyHero').addEventListener('click', () => copyText(finalSummary()));
   $('#copyFull').addEventListener('click', () => copyText(finalSummary()));

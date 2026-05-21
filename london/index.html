@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>London Love Letter · July 2026</title>
   <meta name="description" content="Interactive London trip planner for July 5–9, 2026." />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="enhancements.css" />
+  <link rel="stylesheet" href="styles.css?v=20260520-presentation-mode" />
+  <link rel="stylesheet" href="enhancements.css?v=20260520-presentation-mode" />
 </head>
-<body>
+<body class="london-page">
   <div class="grain"></div>
   <header class="hero" id="top">
     <div class="hero-bg"></div>
@@ -23,7 +23,7 @@
       <p class="eyebrow">July 5–9, 2026 · Kimpton Fitzroy · Bath · Wimbledon · West End</p>
       <h1>A cinematic London plan that still has room to breathe.</h1>
       <p class="lede">Built for a romantic, literary, food-loving London finale: keep Bath, do Wimbledon properly, and protect Wednesday from becoming a logistics spreadsheet.</p>
-      <div class="hero-actions"><a class="btn primary" href="#plan">Explore the plan</a><a class="btn glass" href="#wednesday">Pick Wednesday</a><button class="btn glass" id="copyHero">Copy summary</button></div>
+      <div class="hero-actions"><a class="btn primary" href="#plan">Explore the plan</a><a class="btn glass" href="#wednesday">Pick Wednesday</a><button class="btn glass" id="copyHero">Copy summary</button><button class="btn glass presentation-toggle" id="presentationToggle" type="button" aria-pressed="false">Presentation mode</button></div>
       <div class="stat-strip"><div><strong>4</strong><span>nights</span></div><div><strong>1</strong><span>day trip</span></div><div><strong>1</strong><span>Wimbledon day</span></div><div><strong>3</strong><span>Wednesday paths</span></div></div>
     </div>
   </header>
@@ -94,6 +94,6 @@
     <section class="section reveal" id="share"><div class="share-panel"><div><p class="eyebrow">Mac-friendly sharing</p><h2>Make it presentation-ready</h2><p>Use this for a laptop reveal, then print/save as PDF if you want a clean shareable version.</p></div><div class="share-actions"><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn" id="copyFull">Copy final plan</button><button class="btn" id="copyNotes">Copy notes</button><a class="btn" href="#top">Back to top</a></div></div></section>
   </main>
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="data.js"></script><script src="notes-logic.js"></script><script src="app.js"></script>
+  <script src="data.js?v=20260520-presentation-mode"></script><script src="notes-logic.js?v=20260520-presentation-mode"></script><script src="app.js?v=20260520-presentation-mode"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-@import url("../dublin/styles.css?v=20260520-train-share");
+@import url("../dublin/styles.css?v=20260520-presentation-mode");
 
 :root {
   --paper: #f6ead8;
@@ -19,16 +19,31 @@
 
 body {
   background:
+    linear-gradient(90deg, rgba(255, 248, 236, .08) 0 1px, transparent 1px 100%),
+    linear-gradient(0deg, rgba(255, 248, 236, .06) 0 1px, transparent 1px 100%),
     radial-gradient(circle at 16% 8%, rgba(210, 149, 53, .34), transparent 25rem),
     radial-gradient(circle at 86% 16%, rgba(47, 104, 119, .24), transparent 30rem),
     radial-gradient(circle at 74% 52%, rgba(160, 68, 47, .16), transparent 26rem),
     linear-gradient(180deg, #1f1109 0, #362016 34rem, #ead7bd 54rem, var(--paper) 100%);
+  background-size: 42px 42px, 42px 42px, auto, auto, auto, auto;
 }
 
 .hero {
   background:
     linear-gradient(90deg, rgba(34, 17, 7, .9), rgba(31, 79, 61, .6) 42%, rgba(15, 37, 47, .78)),
     url("../assets/lisbon.jpg") center/cover;
+}
+
+.hero::before {
+  background:
+    linear-gradient(135deg, rgba(255, 246, 232, .12) 0 1px, transparent 1px 58px),
+    linear-gradient(45deg, transparent 0 24px, rgba(47, 104, 119, .2) 24px 25px, transparent 25px 58px);
+  opacity: .5;
+  mix-blend-mode: screen;
+}
+
+.lisbon-page .chapter-card::after {
+  border-radius: 36% 64% 43% 57% / 58% 42% 58% 42%;
 }
 
 .hero-content {
