@@ -184,6 +184,26 @@ function reactionSummaryRow(id) {
   return `<div class="reaction-summary">${parts.join('')}</div>`;
 }
 
+function computeOpenDecisions() {
+  const decisionIds = Object.keys(noteLabels).filter((id) => NOTES.cardTypeFromId(id) === 'decision');
+  return decisionIds.filter((id) => NOTES.countOptionFeedback(noteState, id) < 2);
+}
+
+function renderDecisionsBanner() {
+  const banner = document.getElementById('decisionsBanner');
+  if (!banner) return;
+  const open = computeOpenDecisions();
+  if (!open.length) {
+    banner.hidden = true;
+    return;
+  }
+  banner.hidden = false;
+  banner.innerHTML = `
+    <span class="decisions-count">${open.length} ${open.length === 1 ? 'thing needs' : 'things need'} a decision</span>
+    <a href="#wednesday" class="decisions-link">Review →</a>
+  `;
+}
+
 function updatePanelState(panel) {
   const id = panel.dataset.noteId;
   const feedbackCount = NOTES.countOptionFeedback(noteState, id);
@@ -380,6 +400,7 @@ function renderCountdown() {
 function refreshWowSurfaces() {
   renderCoupleDashboard();
   renderFinalCut();
+  renderDecisionsBanner();
 }
 
 function renderDayTabs() {
@@ -1048,6 +1069,7 @@ function init() {
   bindNoteEvents();
   bindPresentationMode();
   initSync();
+  renderDecisionsBanner();
 
   $('#themeToggle').addEventListener('click', () => {
     const next = !(localStorage.getItem('london.dark') === 'true');

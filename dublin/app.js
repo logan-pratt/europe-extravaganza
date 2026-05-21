@@ -71,6 +71,7 @@ async function initSync() {
     renderNotesReview();
     renderFinalCut();
     renderGroupDashboard();
+    renderDecisionsBanner();
   });
 }
 
@@ -135,6 +136,26 @@ function reactionSummaryRow(id) {
     .map(([reaction, authors]) => `<span class="rsummary-item" title="${authors.join(', ')}">${emojiMap[reaction]} ${authors.length}</span>`);
   if (!parts.length) return '';
   return `<div class="reaction-summary">${parts.join('')}</div>`;
+}
+
+function computeOpenDecisions() {
+  const decisionIds = Object.keys(noteLabels).filter((id) => NOTES.cardTypeFromId(id) === 'decision');
+  return decisionIds.filter((id) => NOTES.countOptionFeedback(noteState, id) < 2);
+}
+
+function renderDecisionsBanner() {
+  const banner = document.getElementById('decisionsBanner');
+  if (!banner) return;
+  const open = computeOpenDecisions();
+  if (!open.length) {
+    banner.hidden = true;
+    return;
+  }
+  banner.hidden = false;
+  banner.innerHTML = `
+    <span class="decisions-count">${open.length} ${open.length === 1 ? 'thing needs' : 'things need'} a decision</span>
+    <a href="#paths" class="decisions-link">Review →</a>
+  `;
 }
 
 function updatePanelState(panel) {
@@ -743,6 +764,7 @@ function init() {
   bindNoteEvents();
   bindPresentationMode();
   initSync();
+  renderDecisionsBanner();
 
   $('#copyHero').addEventListener('click', () => copyText(finalSummary()));
   $('#copyFull').addEventListener('click', () => copyText(finalSummary()));
