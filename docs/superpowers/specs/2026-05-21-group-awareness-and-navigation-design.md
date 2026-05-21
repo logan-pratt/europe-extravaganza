@@ -152,7 +152,7 @@ Enable Supabase Realtime on this table so subscribers get live updates without p
 
 Three new functions added to the existing module:
 
-- `upsertReaction(tripSlug, cardId, cardType, authorName, reaction, note)` — upserts a row using the unique index above
+- `upsertReaction(tripSlug, cardId, cardType, authorName, reaction, note)` — calls the narrow `upsert_card_reaction(...)` Supabase RPC so anonymous browsers do not need direct table update rights
 - `fetchReactions(tripSlug)` — returns all rows for a trip slug, used on page load and by the hub page
 - `subscribeReactions(tripSlug, callback)` — opens a Supabase Realtime channel, calls `callback` with the full updated row on any INSERT or UPDATE
 

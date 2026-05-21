@@ -387,10 +387,12 @@ create table if not exists card_reactions (
 
 alter table card_reactions enable row level security;
 
-create policy "anon_read" on card_reactions for select using (true);
-create policy "anon_insert" on card_reactions for insert with check (true);
-create policy "anon_update" on card_reactions for update using (true) with check (true);
+create policy "anon_read_reaction_feedback" on card_reactions for select to anon using (true);
+create policy "admin_manage_card_reactions" on card_reactions for all to authenticated using (true) with check (true);
 ```
+
+Then apply `supabase/card-reactions-rls-hardening.sql` so anonymous browsers use the narrow
+`upsert_card_reaction(...)` RPC instead of broad table update rights.
 
 - [ ] **Step 2: Enable Realtime**
 

@@ -23,6 +23,7 @@ body {
     radial-gradient(circle at 88% 12%, rgba(21, 63, 46, .28), transparent 30rem),
     linear-gradient(180deg, #160d08 0, #24140d 34rem, #efe0ca 54rem, var(--paper) 100%);
   font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
 }
 
 .grain {
@@ -488,7 +489,21 @@ h1 {
     width: min(100% - 32px, 1180px);
   }
 
-  h1 { font-size: 3.45rem; }
+  h1 {
+    max-width: 100%;
+    font-size: clamp(2.9rem, 14vw, 3.35rem);
+    overflow-wrap: anywhere;
+  }
+
+  .hero {
+    padding-top: 72px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 0 calc(50% - 6px);
+    min-width: 0;
+    white-space: nowrap;
+  }
 
   .route-strip,
   .route-board,
@@ -536,6 +551,12 @@ h1 {
   .route-strip div {
     border-right: 0;
     border-bottom: 1px solid rgba(255, 247, 233, .14);
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-actions .btn {
+    flex-basis: 100%;
   }
 }
 

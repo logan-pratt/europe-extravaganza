@@ -56,8 +56,8 @@
           </div>
           <div>
             <span>3</span>
-            <strong>Send Logan a packet</strong>
-            <p>Use Copy share packet on a trip page and text it back so everyone’s feedback can be merged.</p>
+            <strong>Submit to Logan</strong>
+            <p>Send notes straight from the trip page, with Copy share packet still there as the backup.</p>
           </div>
         </div>
       </div>
@@ -178,12 +178,23 @@
       <p class="image-credit">Landing photos: Lisbon and Dublin provided by the group; Kilkea Castle, Cliffs of Moher, and Westminster Bridge / Big Ben sourced from Wikimedia Commons.</p>
     </section>
   </main>
+<script src="lisbon/data.js?v=20260520-lisbon-launch"></script>
+<script src="galway/data.js?v=20260520-galway-launch"></script>
+<script src="dublin/data.js?v=20260520-presentation-mode"></script>
+<script src="london/data.js?v=20260520-presentation-mode"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="shared/supabase-config.js"></script>
 <script src="shared/submissions-api.js"></script>
+<script src="shared/trip-metrics.js"></script>
 <script>
 (async function () {
   const cities = ['lisbon', 'galway', 'dublin', 'london'];
+  const tripData = {
+    lisbon: window.LISBON_DATA,
+    galway: window.GALWAY_DATA,
+    dublin: window.DUBLIN_DATA,
+    london: window.LONDON_DATA
+  };
   const results = await Promise.all(cities.map((slug) =>
     typeof window.fetchReactions === 'function'
       ? window.fetchReactions(slug)
@@ -194,11 +205,14 @@
     const el = document.getElementById(`status-${slug}`);
     if (!el) return;
     const data = results[i].ok ? results[i].data : [];
-    const reactionCount = data.filter((r) => r.reaction).length;
-    const decisionCount = data.filter((r) => r.card_type === 'decision' && !r.reaction).length;
+    const { reactionCount, openDecisionCount } = window.TRIP_METRICS.getTripHubStatus({
+      tripSlug: slug,
+      tripData: tripData[slug],
+      reactions: data
+    });
     const parts = [];
     if (reactionCount) parts.push(`${reactionCount} reaction${reactionCount === 1 ? '' : 's'}`);
-    if (decisionCount) parts.push(`${decisionCount} open decision${decisionCount === 1 ? '' : 's'}`);
+    if (openDecisionCount) parts.push(`${openDecisionCount} open decision${openDecisionCount === 1 ? '' : 's'}`);
     el.textContent = parts.length ? parts.join(' · ') : '';
     el.hidden = !parts.length;
   });

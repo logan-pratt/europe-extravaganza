@@ -29,27 +29,46 @@
   async function upsertReaction(tripSlug, cardId, cardType, authorName, reaction, note) {
     if (!window.supabaseClient) return { ok: false, error: 'no supabase client' };
     try {
-      const { error } = await window.supabaseClient
-        .from('card_reactions')
-        .upsert(
-          {
-            trip_slug: tripSlug,
-            card_id: cardId,
-            card_type: cardType,
-            author_name: authorName,
-            author_key: authorName.toLowerCase(),
-            reaction: reaction,
-            note: note,
-            client_id: getClientId(),
-            updated_at: new Date().toISOString()
-          },
-          { onConflict: 'trip_slug,card_id,author_key' }
-        );
+      const { error } = await window.supabaseClient.rpc('upsert_card_reaction', {
+        p_trip_slug: tripSlug,
+        p_card_id: cardId,
+        p_card_type: cardType,
+        p_author_name: authorName,
+        p_reaction: reaction,
+        p_note: note,
+        p_client_id: getClientId()
+      });
+      if (error && isMissingRpcError(error)) return legacyUpsertReaction(tripSlug, cardId, cardType, authorName, reaction, note);
       if (error) return { ok: false, error };
       return { ok: true };
     } catch (err) {
       return { ok: false, error: err };
     }
+  }
+
+  function isMissingRpcError(error) {
+    return error?.code === 'PGRST202' || /function .*upsert_card_reaction/i.test(error?.message || '');
+  }
+
+  async function legacyUpsertReaction(tripSlug, cardId, cardType, authorName, reaction, note) {
+    const { error } = await window.supabaseClient
+      .from('card_reactions')
+      .upsert(
+        {
+          trip_slug: tripSlug,
+          card_id: cardId,
+          card_type: cardType,
+          author_name: authorName,
+          author_key: authorName.toLowerCase(),
+          reaction: reaction,
+          note: note,
+          client_id: getClientId(),
+          updated_at: new Date().toISOString()
+        },
+        { onConflict: 'trip_slug,card_id,author_key' }
+      );
+    if (error) return { ok: false, error };
+    return { ok: true };
   }
 
   async function fetchReactions(tripSlug) {
