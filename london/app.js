@@ -170,7 +170,18 @@ function feedbackPanel(id, label) {
       </div>
       <a class="review-notes-link" href="#notes">Review all notes</a>
     </details>
+    ${reactionSummaryRow(id)}
   `;
+}
+
+function reactionSummaryRow(id) {
+  const summary = NOTES.getReactionSummary(noteState, id);
+  const emojiMap = { love: '❤️', maybe: '👍', nope: '✗', concern: '⚠️' };
+  const parts = Object.entries(summary)
+    .filter(([, authors]) => authors.length > 0)
+    .map(([reaction, authors]) => `<span class="rsummary-item" title="${authors.join(', ')}">${emojiMap[reaction]} ${authors.length}</span>`);
+  if (!parts.length) return '';
+  return `<div class="reaction-summary">${parts.join('')}</div>`;
 }
 
 function updatePanelState(panel) {
