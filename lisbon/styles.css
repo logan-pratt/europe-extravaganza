@@ -294,3 +294,12 @@ body {
     display: none;
   }
 }
+.city-nav-footer {
+  width: min(1180px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
