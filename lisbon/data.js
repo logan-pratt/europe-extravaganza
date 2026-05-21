@@ -13,7 +13,7 @@ window.LISBON_DATA = {
   },
   quickFacts: [
     ['Home base', 'Rua da Madalena 214', 'Excellent for Baixa, Alfama, Chiado, Rossio, and Praça do Comércio.', 'https://www.google.com/maps/search/?api=1&query=Rua%20da%20Madalena%20214%20Lisbon%201100-204%20Portugal'],
-    ['Arrival', 'Thu Jun 25', 'Ashley and Max arrive around 10:00am. Logan and Emily land at 11:50am.', 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'],
+    ['Arrivals', 'Thu Jun 25 + Fri Jun 26', 'Logan and Emily land Thursday at 11:50am. Ashley and Max arrive Friday around 10:00am.', 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'],
     ['Departure', 'Tue Jun 30', '6:00am flight to Dublin. Leave around 3:30-3:45am.', 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'],
     ['Big day', 'Sunday Sintra', 'Default: Regaleira + Monserrate + Cascais sunset/dinner if energy holds.', 'https://www.google.com/maps/search/?api=1&query=Quinta%20da%20Regaleira%20Sintra%20Portugal'],
     ['Main caution', 'Monday discipline', 'Pack before dinner, early meal, one drink max, airport plan confirmed.', 'https://www.google.com/maps/search/?api=1&query=Prado%20Wine%20Bar%20Lisbon']
@@ -37,20 +37,19 @@ window.LISBON_DATA = {
       id: 'thu',
       day: 'Thursday',
       date: 'June 25',
-      title: 'Arrival / Soft Landing',
-      mood: 'Low-pressure first Lisbon walk, easy dinner, early-ish night.',
+      title: 'Logan + Emily Arrival / Soft Landing',
+      mood: 'Low-pressure first Lisbon walk for two, easy dinner, early-ish night.',
       image: '../assets/lisbon.jpg',
       scores: { Stress: 3, Romance: 7, 'Group fun': 7, Food: 7 },
       timeline: [
-        ['10:00am', 'Ashley and Max arrive and head toward Baixa / Rua da Madalena. Ask about bag drop.'],
         ['11:50am', 'Logan and Emily land at LIS, then taxi/Bolt/Uber to Rua da Madalena.'],
         ['Early afternoon', 'Bag drop or luggage storage near Baixa/Rossio. Keep logistics gentle.'],
-        ['Lunch', 'First group lunch near Baixa/Chiado: Pica-Pau, Cantinho do Avillez, Bairro do Avillez, or By The Wine.'],
         ['Late afternoon', 'Rua da Madalena → Praça do Comércio → Ribeira das Naus → Chiado/Carmo.'],
-        ['Evening', 'By The Wine, Prado Wine Bar, Pica-Pau, or Cantinho. Pavilhão Chinês or Lumi only if everyone has energy.']
+        ['Dinner', 'Easy first-night dinner for two: By The Wine, Prado Wine Bar, Pica-Pau, or Cantinho do Avillez.'],
+        ['Evening', 'Pavilhão Chinês or Lumi only if energy is surprisingly good; otherwise wine/snacks and sleep.']
       ],
       optional: ['São Pedro de Alcântara first view if energy allows.', 'Hotel do Chiado / Bar Entretanto or Lumi rooftop for views.'],
-      watch: ['Do not start with Ramiro, a fado dinner, or major nightlife after transatlantic travel.'],
+      watch: ['Do not plan whole-group moments before Ashley and Max arrive Friday.', 'Do not start with Ramiro, a fado dinner, or major nightlife after transatlantic travel.'],
       variants: { low: 'River walk + simple dinner + early bed.', rain: 'Chiado, Carmo, wine bar, Airbnb snacks.' },
       links: [
         ['Home base', 'https://www.google.com/maps/search/?api=1&query=Rua%20da%20Madalena%20214%20Lisbon%20Portugal'],
@@ -63,12 +62,14 @@ window.LISBON_DATA = {
       id: 'fri',
       day: 'Friday',
       date: 'June 26',
-      title: 'Classic Lisbon / Alfama + Chiado + Bairro Alto',
-      mood: 'The fall-in-love-with-Lisbon day.',
+      title: 'Ashley + Max Arrival / Alfama + Chiado',
+      mood: 'Reunite the group, then make Friday the fall-in-love-with-Lisbon day.',
       image: '../assets/lisbon-friday-santa-luzia.jpg',
       scores: { Stress: 4, Romance: 9, 'Group fun': 8, Food: 9 },
       timeline: [
-        ['Morning', 'Rua da Madalena → Sé Cathedral → Santa Luzia → Portas do Sol → Alfama lanes.'],
+        ['Around 10:00am', 'Ashley and Max arrive and head toward Baixa / Rua da Madalena. Ask about bag drop or use luggage storage if needed.'],
+        ['Late morning', 'Reunite near the home base, coffee/nata, and keep the first group move easy.'],
+        ['Midday', 'Rua da Madalena → Sé Cathedral → Santa Luzia → Portas do Sol → Alfama lanes.'],
         ['Optional', 'Castelo de São Jorge if the group wants views/history and the heat is reasonable.'],
         ['Lunch', 'O Velho Eurico if booked or early; Zé da Mouraria if hungry; casual Mouraria/Alfama fallback.'],
         ['Afternoon', 'Carmo, Chiado, Bertrand, A Vida Portuguesa. See Santa Justa Lift from below; do not wait.'],

@@ -725,8 +725,8 @@ function bindNoteEvents() {
 function finalSummary() {
   return `Lisbon June 25-30, 2026:
 Home base: Rua da Madalena 214.
-Thursday: staggered arrivals, bag drop/storage, riverfront, Chiado, easy wine dinner, early bed.
-Friday: Alfama golden-hour spine, Chiado/Carmo, one great dinner, optional fado/cocktails.
+Thursday: Logan and Emily land at 11:50am, bag drop/storage, riverfront, Chiado, easy wine dinner, early bed.
+Friday: Ashley and Max arrive around 10:00am, regroup near Rua da Madalena, Alfama spine, Chiado/Carmo, one great dinner, optional fado/cocktails.
 Saturday: Belém waterfront, LX Factory or downtime, seafood/group dinner, optional bigger night.
 Sunday: edited Sintra day: Regaleira + Monserrate default, Cascais sunset/dinner only if energy holds.
 Monday: final view/souvenirs/Manteigaria, pack before dinner, early meal, one toast, home by 10:00-10:30pm.
