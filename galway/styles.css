@@ -46,7 +46,7 @@ button, input, textarea, select { font: inherit; }
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(17, 11, 7, .92), rgba(18, 63, 49, .72) 42%, rgba(18, 10, 6, .84)),
-    url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cliffs_of_Moher_2018.jpg/1280px-Cliffs_of_Moher_2018.jpg") center/cover;
+    url("../assets/galway-cliffs-of-moher.jpg") center/cover;
 }
 
 .hero::after {
@@ -416,7 +416,7 @@ h1 {
   gap: 16px;
 }
 .option-grid { grid-template-columns: repeat(3, 1fr); }
-.fact-grid { grid-template-columns: repeat(7, minmax(190px, 1fr)); overflow-x: auto; padding-bottom: 6px; }
+.fact-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
 .route-grid, .weather-grid, .source-grid { grid-template-columns: repeat(3, 1fr); }
 .pin-grid { grid-template-columns: repeat(4, 1fr); }
 .decision-dashboard { grid-template-columns: repeat(7, minmax(150px, 1fr)); overflow-x: auto; padding-bottom: 6px; }
@@ -501,9 +501,6 @@ h1 {
   font-weight: 900;
 }
 
-.fact-card {
-  min-width: 190px;
-}
 .fact-card h3 {
   font-size: 1.35rem;
 }
@@ -911,6 +908,10 @@ h1 {
   justify-content: space-between;
   gap: 12px;
 }
+.note-author-head {
+  align-items: flex-start;
+  flex-direction: column;
+}
 .note-panel-head { cursor: pointer; list-style: none; }
 .note-panel-head::-webkit-details-marker { display: none; }
 .note-panel-head::before {
@@ -929,7 +930,7 @@ h1 {
 .note-panel-head em { margin-left: auto; color: var(--muted); font-size: .82rem; font-weight: 800; font-style: normal; }
 .note-authors { display: grid; gap: 12px; margin-top: 12px; }
 .note-author { display: grid; gap: 8px; }
-.reaction-row { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.reaction-row { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px; }
 .reaction-button {
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1048,7 +1049,7 @@ h1 {
   .navlinks { max-width: calc(100vw - 36px); overflow-x: auto; border-radius: var(--radius); }
   .hero-content, .section { width: min(100% - 32px, 1180px); }
   h1 { font-size: 3.45rem; }
-  .rail-stack, .stat-strip, .verdict-grid, .chapter-grid, .option-grid, .final-cut-grid, .day-tabs, .variant-grid, .passport-grid, .stamp-grid, .notes-grid, .suggestion-list, .tour-facts, .path-picker, .path-lists, .route-grid, .weather-grid, .pin-grid, .source-grid {
+  .rail-stack, .stat-strip, .verdict-grid, .chapter-grid, .option-grid, .final-cut-grid, .fact-grid, .day-tabs, .variant-grid, .passport-grid, .stamp-grid, .notes-grid, .suggestion-list, .tour-facts, .path-picker, .path-lists, .route-grid, .weather-grid, .pin-grid, .source-grid {
     grid-template-columns: 1fr;
   }
   .weather-card.wide { grid-column: auto; }

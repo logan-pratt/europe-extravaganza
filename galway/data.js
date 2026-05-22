@@ -78,7 +78,7 @@ window.GALWAY_DATA = {
       date: 'July 2',
       title: 'Dublin to Galway, then a pub-warm night',
       mood: 'West-coast arrival without overplanning the first night.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Galway_City%2C_The_Long_Walk%2C_2018.jpg/1280px-Galway_City%2C_The_Long_Walk%2C_2018.jpg',
+      image: '../assets/galway-long-walk.jpg',
       scores: { Stress: 2, Atmosphere: 9, Logistics: 8, Flexibility: 8 },
       timeline: [
         ['1:02pm', 'Train departs Dublin for Galway.'],
@@ -115,7 +115,7 @@ window.GALWAY_DATA = {
       date: 'July 3',
       title: 'Cliffs of Moher, quick lunch, train to Dublin',
       mood: 'A clean half-day scenic mission with no logistics fog.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cliffs_of_Moher_2018.jpg/1280px-Cliffs_of_Moher_2018.jpg',
+      image: '../assets/galway-cliffs-of-moher.jpg',
       scores: { Stress: 4, Atmosphere: 10, Logistics: 7, Flexibility: 4 },
       timeline: [
         ['7:30am', 'Leave lodging / hotel area for HYDE Hotel unless already very close.'],
