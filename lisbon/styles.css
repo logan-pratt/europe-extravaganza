@@ -144,6 +144,81 @@ body {
   line-height: 1.5;
 }
 
+.confirmed-booking-card {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 22px;
+  padding: clamp(22px, 4vw, 36px);
+  overflow: hidden;
+  border: 1px solid rgba(240, 222, 196, .24);
+  border-radius: var(--radius);
+  color: #fff6e8;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(210, 149, 53, .3), transparent 22rem),
+    linear-gradient(135deg, rgba(54, 32, 22, .98), rgba(23, 73, 63, .94));
+  box-shadow: var(--shadow);
+}
+
+.confirmed-booking-card h3 {
+  max-width: 680px;
+  margin: 8px 0 0;
+  font-size: clamp(2rem, 4vw, 3.45rem);
+  line-height: .95;
+}
+
+.confirmed-booking-time {
+  margin: 14px 0 0;
+  color: var(--gold);
+  font-weight: 950;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.confirmed-booking-meet {
+  display: grid;
+  align-content: center;
+  gap: 7px;
+  padding: 18px;
+  border: 1px solid rgba(255, 246, 232, .22);
+  background: rgba(255, 246, 232, .08);
+}
+
+.confirmed-booking-meet strong {
+  color: #fff6e8;
+  font-size: 1.12rem;
+}
+
+.confirmed-booking-meet span {
+  color: var(--gold);
+  font-weight: 850;
+}
+
+.confirmed-booking-meet p {
+  margin: 5px 0 0;
+  color: rgba(255, 246, 232, .78);
+  line-height: 1.45;
+}
+
+.confirmed-booking-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 246, 232, .16);
+}
+
+.confirmed-booking-footer .tag {
+  border-color: rgba(255, 246, 232, .18);
+  color: rgba(255, 246, 232, .84);
+  background: rgba(255, 246, 232, .08);
+}
+
+.confirmed-booking-footer .link-grid {
+  flex: 0 0 auto;
+}
+
 .path-picker {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -229,6 +304,15 @@ body {
   .chapter-grid,
   .path-picker {
     grid-template-columns: 1fr;
+  }
+
+  .confirmed-booking-card {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmed-booking-footer {
+    grid-column: auto;
+    display: grid;
   }
 
   .arrival-card {

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lisbon: River Light, Old Streets & One Great Sintra Day · June 2026</title>
   <meta name="description" content="Interactive Lisbon trip planner for Logan, Emily, Ashley, and Max, June 25-30, 2026." />
-  <link rel="stylesheet" href="styles.css?v=20260520-presentation-mode" />
+  <link rel="stylesheet" href="styles.css?v=20260530-food-tour" />
 </head>
 <body class="lisbon-page">
   <div class="grain"></div>
@@ -37,10 +37,10 @@
         </div>
         <div class="arrival-grid">
           <span><b>Thu 25</b> Logan + Emily arrive</span>
-          <span><b>Fri 26</b> Ashley + Max arrive</span>
-          <span><b>Sat 27</b> Belém + big dinner</span>
+          <span><b>Fri 26</b> reunion + food tour</span>
+          <span><b>Sat 27</b> Belém + fancy dinner</span>
           <span><b>Sun 28</b> Sintra + Cascais</span>
-          <span><b>Mon 29</b> final day + early night</span>
+          <span><b>Mon 29</b> Alfama + early night</span>
           <span><b>Tue 30</b> 6:00am Dublin flight</span>
         </div>
       </div>
@@ -71,6 +71,11 @@
     <section class="section reveal" id="quick-facts">
       <div class="section-head"><p class="eyebrow">Quick facts</p><h2>The trip at a glance.</h2></div>
       <div class="fact-grid" id="factGrid"></div>
+    </section>
+
+    <section class="section reveal" id="confirmed-booking">
+      <div class="section-head"><p class="eyebrow">Confirmed booking</p><h2>Friday evening belongs to the food tour.</h2></div>
+      <div id="confirmedBooking"></div>
     </section>
 
     <section class="section reveal" id="chapters">
@@ -184,11 +189,11 @@
   </main>
 
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="data.js?v=20260520-presentation-mode"></script>
-  <script src="notes-logic.js?v=20260520-presentation-mode"></script>
+  <script src="data.js?v=20260530-food-tour"></script>
+  <script src="notes-logic.js?v=20260530-food-tour"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="../shared/supabase-config.js"></script>
   <script src="../shared/submissions-api.js"></script>
-  <script src="app.js?v=20260520-presentation-mode"></script>
+  <script src="app.js?v=20260530-food-tour"></script>
 </body>
 </html>

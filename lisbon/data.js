@@ -18,8 +18,19 @@ window.LISBON_DATA = {
     ['Big day', 'Sunday Sintra', 'Default: Regaleira + Monserrate + Cascais sunset/dinner if energy holds.', 'https://www.google.com/maps/search/?api=1&query=Quinta%20da%20Regaleira%20Sintra%20Portugal'],
     ['Main caution', 'Monday discipline', 'Pack before dinner, early meal, one drink max, airport plan confirmed.', 'https://www.google.com/maps/search/?api=1&query=Prado%20Wine%20Bar%20Lisbon']
   ],
+  confirmedBooking: {
+    kicker: 'Confirmed · Friday Jun 26',
+    title: 'Oh! My Cod: 17 Tastings Lisbon Food Tour',
+    time: '5:00-9:00pm · all four travelers',
+    meet: 'Meet by 4:50pm under Rua Augusta Arch',
+    address: 'R. Augusta 2 · Praça do Comércio / Terreiro do Paço',
+    transit: 'Terreiro do Paço metro station is about a five-minute walk away. Tram 28 is also about five minutes away, but it is a nearby reference rather than the plan.',
+    details: ['17 food and drink tastings', '4 gastronomic stops', 'Baixa · Mouraria · Alfama'],
+    siteUrl: 'https://www.ohmycodtours.com/food-tours/lisbon-food-tour/',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20Augusta%20Arch%20R.%20Augusta%202%20Lisboa%201100-053'
+  },
   verdicts: [
-    { status: 'Add', title: 'Alfama golden hour', text: 'Sé Cathedral, Santa Luzia, Portas do Sol, and Alfama lanes are the first real Lisbon spell.' },
+    { status: 'Add', title: 'Alfama viewpoints', text: 'Sé Cathedral, Santa Luzia, Portas do Sol, and Alfama lanes move to Monday so the booked Friday food tour can breathe.' },
     { status: 'Add', title: 'One seafood feast', text: 'Ramiro if logistics work; otherwise Rosamar, Sea Me, Solar dos Presuntos, or Cascais seafood.' },
     { status: 'Add', title: 'Sintra, edited hard', text: 'Regaleira + Monserrate is the default. Pena is the iconic alternate, not an automatic add-on.' },
     { status: 'Protect', title: 'Monday night discipline', text: 'Pack before dinner, eat early, one drink max, and pre-book the 3:30am airport move.' },
@@ -27,10 +38,10 @@ window.LISBON_DATA = {
   ],
   chapters: [
     { dayId: 'thu', title: 'Soft Landing', subtitle: 'Bags, riverfront, Chiado, easy wine, early bed', stamp: 'Arrival glow' },
-    { dayId: 'fri', title: 'Classic Lisbon', subtitle: 'Alfama, viewpoints, Chiado, one great dinner', stamp: 'Old streets' },
+    { dayId: 'fri', title: 'Reunion + Food Tour', subtitle: 'Easy Baixa day, reset, booked tasting walk', stamp: '17 tastings' },
     { dayId: 'sat', title: 'Waterfront + Big Night', subtitle: 'Belém, LX Factory, seafood, rooftops, optional Rock in Rio', stamp: 'Atlantic light' },
     { dayId: 'sun', title: 'Sintra + Cascais', subtitle: 'Regaleira, Monserrate, coast if energy survives', stamp: 'Big adventure' },
-    { dayId: 'mon', title: 'Final Beautiful Day', subtitle: 'Souvenirs, nata, early dinner, airport discipline', stamp: 'Final toast' }
+    { dayId: 'mon', title: 'Alfama + Final Toast', subtitle: 'Viewpoints, souvenirs, nata, early dinner, airport discipline', stamp: 'Final Lisbon glow' }
   ],
   days: [
     {
@@ -62,28 +73,28 @@ window.LISBON_DATA = {
       id: 'fri',
       day: 'Friday',
       date: 'June 26',
-      title: 'Ashley + Max Arrival / Alfama + Chiado',
-      mood: 'Reunite the group, then make Friday the fall-in-love-with-Lisbon day.',
+      title: 'Ashley + Max Arrival / Baixa + Food Tour',
+      mood: 'Reunite the group gently, then let the booked tasting walk introduce Lisbon.',
       image: '../assets/lisbon-friday-santa-luzia.jpg',
       scores: { Stress: 4, Romance: 9, 'Group fun': 8, Food: 9 },
       timeline: [
         ['Around 10:00am', 'Ashley and Max arrive and head toward Baixa / Rua da Madalena. Ask about bag drop or use luggage storage if needed.'],
-        ['Late morning', 'Reunite near the home base, coffee/nata, and keep the first group move easy.'],
-        ['Midday', 'Rua da Madalena → Sé Cathedral → Santa Luzia → Portas do Sol → Alfama lanes.'],
-        ['Optional', 'Castelo de São Jorge if the group wants views/history and the heat is reasonable.'],
-        ['Lunch', 'O Velho Eurico if booked or early; Zé da Mouraria if hungry; casual Mouraria/Alfama fallback.'],
-        ['Afternoon', 'Carmo, Chiado, Bertrand, A Vida Portuguesa. See Santa Justa Lift from below; do not wait.'],
-        ['Reset', 'Airbnb pause before dinner.'],
-        ['Dinner/night', 'Prado, Ofício, Bar Alimentar, Taberna da Rua das Flores, or A Nossa Casa. Pavilhão Chinês, fado, Bairro Alto, or cocktails depending energy.']
+        ['Late morning', 'Reunite near the home base, coffee or nata, and keep the first group move easy.'],
+        ['Midday', 'Relaxed Baixa wander near Rua da Madalena and Praça do Comércio. Save the separate Alfama viewpoints walk for Monday.'],
+        ['Lunch', 'Small lunch only. The booked food tour brings 17 tastings, so do not build a restaurant event into the afternoon.'],
+        ['Afternoon', 'Keep flexible: a little Baixa browsing, then an Airbnb reset before the four-hour walking tour.'],
+        ['4:35pm', 'Leave Rua da Madalena for the short walk to Rua Augusta Arch.'],
+        ['4:50pm', 'Meet under Rua Augusta Arch at R. Augusta 2, in front of Praça do Comércio / Terreiro do Paço.'],
+        ['5:00-9:00pm', 'Oh! My Cod: 17 Tastings Lisbon Food Tour through Baixa, Mouraria, and Alfama.'],
+        ['After', 'Optional single drink only if energy holds. No formal dinner.']
       ],
-      optional: ['Clube de Fado or Mesa de Frades if everyone wants a proper fado experience.', 'Red Frog / Monkey Mash for cocktail-quality night.'],
-      watch: ['Do not let Tram 28 become the plan.', 'Taberna da Rua das Flores means door-list patience.'],
-      variants: { low: 'Alfama morning + Chiado afternoon + one great dinner, skip nightlife.', rain: 'Carmo, Bertrand, A Vida Portuguesa, long lunch, wine bar.' },
+      optional: ['One post-tour drink if the group still has energy.', 'Carmo or Chiado browsing only if arrival energy is genuinely good.'],
+      watch: ['Keep lunch small before 17 tastings.', 'Tram 28 is a nearby reference for the meeting point, not the plan.'],
+      variants: { low: 'Coffee, small lunch, Airbnb reset, food tour, bed.', rain: 'Short Baixa browse, Airbnb reset, comfortable shoes, food tour.' },
       links: [
-        ['Sé Cathedral', 'https://www.google.com/maps/search/?api=1&query=S%C3%A9%20Cathedral%20Lisbon'],
-        ['Santa Luzia', 'https://www.google.com/maps/search/?api=1&query=Miradouro%20de%20Santa%20Luzia%20Lisbon'],
-        ['Portas do Sol', 'https://www.google.com/maps/search/?api=1&query=Miradouro%20das%20Portas%20do%20Sol%20Lisbon'],
-        ['Prado', 'https://www.pradorestaurante.com/']
+        ['Oh! My Cod tour', 'https://www.ohmycodtours.com/food-tours/lisbon-food-tour/'],
+        ['Rua Augusta Arch', 'https://www.google.com/maps/search/?api=1&query=Rua%20Augusta%20Arch%20R.%20Augusta%202%20Lisboa%201100-053'],
+        ['Praça do Comércio', 'https://www.google.com/maps/search/?api=1&query=Pra%C3%A7a%20do%20Com%C3%A9rcio%20Lisbon']
       ]
     },
     {
@@ -99,7 +110,7 @@ window.LISBON_DATA = {
         ['Photo stop', 'Belém Tower exterior only unless official access reopens closer to the trip.'],
         ['Afternoon', 'MAAT exterior/river walk, LX Factory if the group wants shops/bookstore/drinks, then downtime.'],
         ['Sunset', 'Park Bar, Santa Catarina, São Pedro de Alcântara, Lumi, or Hotel Mundial rooftop.'],
-        ['Dinner', 'Canalha, Ramiro, Rosamar, Sea Me, Solar dos Presuntos, or Ponto Final if logistics and reservation work.'],
+        ['Fancy dinner · decide', 'Choose the special Saturday dinner: Canalha, Ramiro, Rosamar, Sea Me, Solar dos Presuntos, or Ponto Final if logistics and reservation work.'],
         ['Night', 'Príncipe Real cocktails → Bairro Alto roam → Pink Street pass-through only if nearby and energy remains.']
       ],
       optional: ['Rock in Rio only if the lineup is irresistible and it replaces the night.', 'Ponto Final for sunset meal if reservation/logistics work.'],
@@ -149,8 +160,8 @@ window.LISBON_DATA = {
       image: '../assets/lisbon-monday-senhora-monte.jpg',
       scores: { Stress: 4, Romance: 8, 'Group fun': 6, Food: 8 },
       timeline: [
-        ['Morning', 'Graça / Senhora do Monte if the group wants one last big view.'],
-        ['Midday', 'Alfama or Baixa wander near the Airbnb.'],
+        ['Morning', 'Rua da Madalena → Sé Cathedral → Santa Luzia → Portas do Sol → Alfama lanes. Take the viewpoint walk slowly.'],
+        ['Midday', 'Graça / Senhora do Monte only if the group wants one more big view before drifting back toward Baixa.'],
         ['Souvenirs', 'Conserveira de Lisboa, Loja das Conservas, A Vida Portuguesa, Bertrand/Chiado.'],
         ['Nata', 'Manteigaria in Chiado is the definitely-do nata stop.'],
         ['Afternoon', 'Keep flexible. Do not plan anything far away or hard to unwind from.'],
@@ -162,6 +173,9 @@ window.LISBON_DATA = {
       watch: ['No Bairro Alto, midnight fado, second bottle of wine, or hard-to-control dinner far from the Airbnb.'],
       variants: { low: 'Nata, souvenirs, pack, Prado Wine Bar, home early.', rain: 'Shopping, Bertrand, wine bar, early dinner, pack.' },
       links: [
+        ['Sé Cathedral', 'https://www.google.com/maps/search/?api=1&query=S%C3%A9%20Cathedral%20Lisbon'],
+        ['Santa Luzia', 'https://www.google.com/maps/search/?api=1&query=Miradouro%20de%20Santa%20Luzia%20Lisbon'],
+        ['Portas do Sol', 'https://www.google.com/maps/search/?api=1&query=Miradouro%20das%20Portas%20do%20Sol%20Lisbon'],
         ['Conserveira de Lisboa', 'https://www.google.com/maps/search/?api=1&query=Conserveira%20de%20Lisboa'],
         ['Manteigaria Chiado', 'https://manteigaria.com/en/'],
         ['Prado Wine Bar', 'https://pradowinebar.com/'],
@@ -174,9 +188,9 @@ window.LISBON_DATA = {
       id: 'romantic-scenic',
       name: 'Romantic / Scenic',
       badge: 'Golden light default',
-      best: 'Alfama golden hour, Santa Luzia, Portas do Sol, atmospheric dinner, and one beautiful drink.',
+      best: 'Alfama viewpoints, Santa Luzia, Portas do Sol, atmospheric dinner, and one beautiful drink.',
       scores: { Stress: 3, Romance: 10, 'Group fun': 7, Atmosphere: 10, 'Food/drink': 8, Logistics: 8 },
-      includes: ['Alfama golden hour', 'Santa Luzia / Portas do Sol', 'Prado / Ofício / Bar Alimentar / A Nossa Casa', 'Pavilhão Chinês / Lumi / fado'],
+      includes: ['Alfama viewpoints', 'Santa Luzia / Portas do Sol', 'Prado / Ofício / Bar Alimentar / A Nossa Casa', 'Pavilhão Chinês / Lumi / fado'],
       cuts: ['Tram 28 line', 'Santa Justa line', 'Pink Street as plan'],
       why: 'It makes Lisbon feel cinematic without turning the day into logistics.',
       tradeoff: 'Less big sightseeing volume.'
@@ -284,7 +298,8 @@ window.LISBON_DATA = {
     ['fabrica-coffee', 12, 'Fábrica Coffee Roasters', 'Morning coffee utility pin', 'Maybe', 'Reliable specialty coffee near the base depending branch.', 'https://fabricacoffeeroasters.com/', 'https://www.google.com/maps/search/?api=1&query=F%C3%A1brica%20Coffee%20Roasters%20Lisbon%20Portugal']
   ],
   activities: [
-    { id: 'alfama', name: 'Alfama golden-hour walk', verdict: 'Add', why: 'Sé Cathedral → Santa Luzia → Portas do Sol → Alfama lanes.', price: 'Free', time: '90-150 minutes', siteUrl: '', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Alfama%20Lisbon%20Portugal' },
+    { id: 'oh-my-cod-food-tour', name: 'Oh! My Cod: 17 Tastings Lisbon Food Tour', verdict: 'Add / Confirmed', why: 'Booked for all four travelers on Friday, June 26. Meet under Rua Augusta Arch by 4:50pm for the 5:00-9:00pm Baixa, Mouraria, and Alfama tasting walk.', price: 'Booked', time: '4 hours', siteUrl: 'https://www.ohmycodtours.com/food-tours/lisbon-food-tour/', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20Augusta%20Arch%20R.%20Augusta%202%20Lisboa%201100-053' },
+    { id: 'alfama', name: 'Monday Alfama viewpoints walk', verdict: 'Add', why: 'Sé Cathedral → Santa Luzia → Portas do Sol → Alfama lanes. Moved to Monday so Friday stays easy before the booked food tour.', price: 'Free', time: '90-150 minutes', siteUrl: '', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Alfama%20Lisbon%20Portugal' },
     { id: 'regaleira', name: 'Quinta da Regaleira', verdict: 'Add', why: 'Sintra anchor: weird, romantic, memorable, and worth booking directly.', price: 'Book direct', time: '2-2.5 hours', siteUrl: 'https://www.regaleira.pt/en/visits', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Quinta%20da%20Regaleira%20Sintra%20Portugal' },
     { id: 'monserrate', name: 'Monserrate Palace', verdict: 'Add', why: 'Calmer, greener, more romantic second Sintra stop than Pena for this group.', price: 'Timed ticket useful', time: '90-120 minutes', siteUrl: 'https://www.parquesdesintra.pt/en/parks-monuments/park-and-palace-of-monserrate/', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Monserrate%20Palace%20Sintra%20Portugal' },
     { id: 'pena', name: 'Pena Palace', verdict: 'Maybe', why: 'Iconic/photo-famous alternate if the group wants the colorful palace moment.', price: 'Timed entry essential', time: '2-3 hours', siteUrl: 'https://www.parquesdesintra.pt/en/parks-monuments/park-and-national-palace-of-pena/', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pena%20Palace%20Sintra%20Portugal' },
@@ -314,7 +329,8 @@ window.LISBON_DATA = {
   ],
   routes: [
     { id: 'arrival-river', title: 'Arrival River Walk', stops: ['Rua da Madalena', 'Praça do Comércio', 'Ribeira das Naus', 'Chiado', 'Carmo'], note: 'Best first afternoon spine if bags are handled.' },
-    { id: 'alfama-gold', title: 'Alfama Golden Hour', stops: ['Rua da Madalena', 'Sé Cathedral', 'Santa Luzia', 'Portas do Sol', 'Alfama lanes'], note: 'Do this slowly. No Tram 28 line required.' },
+    { id: 'friday-food-tour', title: 'Friday Food Tour Meet-Up', stops: ['Rua da Madalena', 'Rua Augusta Arch by 4:50pm', 'Baixa', 'Mouraria', 'Alfama'], note: 'Keep lunch light, reset before leaving, and let the booked tour provide the evening flow.' },
+    { id: 'alfama-gold', title: 'Monday Alfama Viewpoints', stops: ['Rua da Madalena', 'Sé Cathedral', 'Santa Luzia', 'Portas do Sol', 'Alfama lanes'], note: 'Do this slowly on Monday. No Tram 28 line required.' },
     { id: 'belem-water', title: 'Belém Waterfront', stops: ['Pastéis de Belém', 'Jerónimos exterior/church', 'Belém Tower exterior', 'MAAT', 'LX Factory'], note: 'Saturday default if heat/lines are manageable.' },
     { id: 'sintra-cascais', title: 'Sintra + Cascais Controlled Big Day', stops: ['Rossio/private transfer', 'Quinta da Regaleira', 'Sintra town', 'Monserrate', 'Cascais dinner', 'Return Lisbon'], note: 'Cascais is sunset/dinner, not a second full sightseeing day.' },
     { id: 'final-night', title: 'Final Night Discipline', stops: ['Souvenir run', 'Manteigaria', 'Pack', 'Prado Wine Bar / early dinner', 'one toast', 'home by 10:30'], note: 'The 6:00am Dublin flight is the boss.' }
@@ -328,11 +344,13 @@ window.LISBON_DATA = {
     ['sintra', 'Sintra', 16, 18, '#plan'],
     ['cascais', 'Cascais', 8, 88, '#plan'],
     ['airport', 'Airport', 82, 18, '#booking'],
-    ['river', 'Praça do Comércio', 49, 69, '#routes']
+    ['river', 'Praça do Comércio', 49, 69, '#routes'],
+    ['rua-augusta-arch', 'Rua Augusta Arch', 50, 62, '#confirmed-booking']
   ],
   stamps: [
     ['riverfront', 'First river walk', 'Praça do Comércio glow'],
-    ['alfama', 'Alfama golden hour', 'Santa Luzia / Portas do Sol'],
+    ['alfama', 'Alfama viewpoints', 'Santa Luzia / Portas do Sol'],
+    ['food-tour', '17 Lisbon tastings', 'Baixa · Mouraria · Alfama'],
     ['nata', 'Manteigaria nata', 'Chiado sugar high'],
     ['seafood', 'Seafood feast', 'Ramiro / Rosamar / Cascais'],
     ['regaleira', 'Regaleira well', 'Sintra anchor'],
@@ -341,10 +359,11 @@ window.LISBON_DATA = {
     ['final-toast', 'Final toast', 'home before 10:30']
   ],
   bookingTimeline: [
-    ['Now / ASAP', 'Top Lisbon dinners', 'high', ['Try O Velho Eurico, Canalha, Bar Alimentar, Prado, Ofício, or Taberna strategy.', 'Do not rely on Sunday/Monday for independent favorites until verified.']],
+    ['Now / ASAP', 'Saturday fancy dinner', 'high', ['Choose the special Saturday dinner: Canalha, Ramiro, Rosamar, Sea Me, Solar dos Presuntos, or Ponto Final.', 'Reserve once the group picks the lane.']],
     ['Now / ASAP', 'Sintra tickets', 'high', ['Book Quinta da Regaleira directly.', 'Choose Monserrate default or Pena alternate before timed-entry planning.']],
     ['Now / ASAP', 'Cascais dinner hold', 'medium', ['Reserve Hífen default or O Pescador classic seafood if doing Cascais.', 'Keep an easy Lisbon fallback if the group tires out.']],
     ['2-4 weeks ahead', 'Rooftop / fado choice', 'medium', ['Reserve Lumi sunset or O Faia/Clube/Mesa only if the group actually wants it.', 'Do not stack fado onto the Sintra night.']],
+    ['Friday Jun 26', 'Tour-day logistics', 'high', ['Keep lunch light before 17 tastings.', 'Wear comfortable shoes, bring water, and arrive under Rua Augusta Arch by 4:50pm.']],
     ['Week of', 'Hours sanity check', 'high', ['Verify Sunday/Monday closures.', 'Check Belém Tower access and weather.']],
     ['Sunday/Monday', 'Airport discipline', 'high', ['Pre-book or confirm 3:30-3:45am airport transfer.', 'Pack before Monday dinner.']]
   ]

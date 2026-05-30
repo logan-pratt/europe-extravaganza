@@ -233,6 +233,28 @@ function renderFacts() {
   `).join('');
 }
 
+function renderConfirmedBooking() {
+  const item = DATA.confirmedBooking;
+  $('#confirmedBooking').innerHTML = `
+    <article class="confirmed-booking-card">
+      <div>
+        <p class="eyebrow">${item.kicker}</p>
+        <h3>${item.title}</h3>
+        <p class="confirmed-booking-time">${item.time}</p>
+      </div>
+      <div class="confirmed-booking-meet">
+        <strong>${item.meet}</strong>
+        <span>${item.address}</span>
+        <p>${item.transit}</p>
+      </div>
+      <div class="confirmed-booking-footer">
+        <div class="tag-row">${item.details.map((detail) => `<span class="tag">${detail}</span>`).join('')}</div>
+        ${linkButtons(item.siteUrl, item.mapUrl)}
+      </div>
+    </article>
+  `;
+}
+
 function renderChapters() {
   $('#chapterGrid').innerHTML = DATA.chapters.map((chapter, index) => {
     const day = DATA.days.find((item) => item.id === chapter.dayId);
@@ -722,10 +744,10 @@ function finalSummary() {
   return `Lisbon June 25-30, 2026:
 Home base: Rua da Madalena 214.
 Thursday: Logan and Emily land at 11:50am, bag drop/storage, riverfront, Chiado, easy wine dinner, early bed.
-Friday: Ashley and Max arrive around 10:00am, regroup near Rua da Madalena, Alfama spine, Chiado/Carmo, one great dinner, optional fado/cocktails.
-Saturday: Belém waterfront, LX Factory or downtime, seafood/group dinner, optional bigger night.
+Friday: Ashley and Max arrive around 10:00am, regroup near Rua da Madalena, keep lunch light, reset, meet at Rua Augusta Arch by 4:50pm, then Oh! My Cod food tour from 5:00-9:00pm. Optional single drink afterward; no formal dinner.
+Saturday: Belém waterfront, LX Factory or downtime, choose the fancy dinner, optional bigger night.
 Sunday: edited Sintra day: Regaleira + Monserrate default, Cascais sunset/dinner only if energy holds.
-Monday: final view/souvenirs/Manteigaria, pack before dinner, early meal, one toast, home by 10:00-10:30pm.
+Monday: Sé Cathedral, Santa Luzia, Portas do Sol, Alfama lanes, souvenirs/Manteigaria, pack before dinner, early meal, one toast, home by 10:00-10:30pm.
 Avoid: Tram 28 line, Santa Justa Lift line, Belém Tower interior planning, Cabo da Roca add-on, Pink Street as destination, Monday chaos.`;
 }
 
@@ -749,6 +771,7 @@ function renderAllDynamicSections() {
   const placeFilter = $('.chip[data-place-filter].active')?.dataset.placeFilter || 'all';
   renderVerdicts();
   renderFacts();
+  renderConfirmedBooking();
   renderChapters();
   renderDayTabs();
   renderDayDetail();
