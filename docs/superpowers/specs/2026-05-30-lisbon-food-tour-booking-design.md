@@ -1,6 +1,6 @@
 # Lisbon Food Tour Booking Design
 
-**Date:** 2026-05-30  
+**Date:** 2026-05-30
 **Scope:** Update the Lisbon planner around the confirmed Friday food tour booking.
 
 ## Confirmed Booking
