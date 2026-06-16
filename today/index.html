@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Today · Europe Extravaganza</title>
+  <meta name="description" content="Day-by-day command center for the Europe Extravaganza trip." />
+  <link rel="stylesheet" href="styles.css?v=20260616-today-ux" />
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="topbar">
+    <a class="brand" href="../"><span class="crest">↗</span><span>Europe Extravaganza</span></a>
+    <nav class="navlinks" aria-label="Trip sections">
+      <a href="../">Hub</a>
+      <a href="../lisbon/">Lisbon</a>
+      <a href="../galway/">Galway</a>
+      <a href="../dublin/">Dublin</a>
+      <a href="../london/">London</a>
+    </nav>
+  </header>
+
+  <main class="today-shell">
+    <section class="hero" id="top">
+      <p class="eyebrow">Sidewalk mode</p>
+      <h1>Today</h1>
+      <p class="lede">Bookings, next moves, maps, and tomorrow prep across the whole trip.</p>
+      <div class="hero-actions">
+        <button class="btn primary" id="jumpToday" type="button">Jump to today</button>
+        <a class="btn glass" href="../">Back to hub</a>
+      </div>
+    </section>
+
+    <section class="day-rail" aria-label="Trip days">
+      <div class="day-chips" id="dayChips"></div>
+    </section>
+
+    <section class="status-strip" id="statusStrip" aria-live="polite"></section>
+
+    <section class="today-grid">
+      <article class="now-panel" id="nowPanel"></article>
+      <article class="utility-panel" id="utilityPanel"></article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow">Today</p>
+        <h2 id="todayTitle">Trip day</h2>
+      </div>
+      <div class="anchor-list" id="anchorList"></div>
+    </section>
+
+    <section class="section planner-context" id="plannerContext"></section>
+
+    <section class="section options-section" id="optionsSection"></section>
+
+    <section class="section deck-section">
+      <div class="section-head">
+        <p class="eyebrow">On deck</p>
+        <h2>Tonight and tomorrow.</h2>
+      </div>
+      <div class="deck-grid" id="deckGrid"></div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../lisbon/data.js?v=20260616-today"></script>
+  <script src="../galway/data.js?v=20260616-today"></script>
+  <script src="../dublin/data.js?v=20260616-today"></script>
+  <script src="../london/data.js?v=20260616-today"></script>
+  <script src="../shared/schedule.js?v=20260616-saturday-tentative"></script>
+  <script src="schedule-logic.js?v=20260616-open-slots"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="../shared/supabase-config.js"></script>
+  <script src="../shared/submissions-api.js"></script>
+  <script src="app.js?v=20260616-open-slots-hash"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Europe Extravaganza · July 2026</title>
   <meta name="description" content="A cinematic Europe trip hub for Lisbon, Dublin, and London, June and July 2026." />
-  <link rel="stylesheet" href="styles.css?v=20260520-galway-presentation-route" />
+  <link rel="stylesheet" href="styles.css?v=20260616-today" />
 </head>
 <body>
   <div class="grain"></div>
@@ -13,6 +13,7 @@
     <nav class="topbar">
       <a class="brand" href="#top"><span class="crest">✦</span><span>Europe Extravaganza</span></a>
       <div class="navlinks">
+        <a href="today/">Today</a>
         <a href="lisbon/">Lisbon</a>
         <a href="galway/">Galway</a>
         <a href="dublin/">Dublin</a>
@@ -26,6 +27,7 @@
       <div class="overview-panel">
         <p class="lede">Lisbon opens with sunshine, dinners, and a Sintra day trip. Kilkea Castle brings Taylor and Austin’s wedding in Kildare. Galway brings west-coast pubs, a bus tour, and the Cliffs of Moher. Dublin brings the pub warmth, Georgian green, literary stops, and friend-group energy. London carries the final act: Bath, Wimbledon, theater, food, and a proper love-letter finish.</p>
         <div class="hero-actions">
+          <a class="btn primary" href="today/">Open Today</a>
           <a class="btn primary" href="lisbon/">Open Lisbon</a>
           <span class="btn disabled">Kilkea TBD</span>
           <a class="btn glass" href="galway/">Open Galway</a>
@@ -178,10 +180,10 @@
       <p class="image-credit">Landing photos: Lisbon and Dublin provided by the group; Kilkea Castle, Cliffs of Moher, and Westminster Bridge / Big Ben sourced from Wikimedia Commons.</p>
     </section>
   </main>
-<script src="lisbon/data.js?v=20260530-food-tour"></script>
+<script src="lisbon/data.js?v=20260616-today"></script>
 <script src="galway/data.js?v=20260520-galway-launch"></script>
-<script src="dublin/data.js?v=20260520-presentation-mode"></script>
-<script src="london/data.js?v=20260520-presentation-mode"></script>
+<script src="dublin/data.js?v=20260616-today"></script>
+<script src="london/data.js?v=20260616-today"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="shared/supabase-config.js"></script>
 <script src="shared/submissions-api.js"></script>
@@ -193,7 +195,7 @@
     lisbon: window.LISBON_DATA,
     galway: window.GALWAY_DATA,
     dublin: window.DUBLIN_DATA,
-    london: window.LONDON_DATA
+    london: window.TRIP_DATA
   };
   const results = await Promise.all(cities.map((slug) =>
     typeof window.fetchReactions === 'function'

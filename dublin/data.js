@@ -21,8 +21,8 @@ window.DUBLIN_DATA = {
   },
   verdicts: [
     { status: 'Add', title: 'Friday Mister S', text: 'The best first-night fit: lively, close to Marlin, fire-cooked, and good for four.' },
-    { status: 'Add', title: 'Saturday Delahunt', text: 'The romantic Dublin dinner default. Library Street is the strongest social alternative.' },
-    { status: 'Protect', title: 'One Cultural Anchor', text: 'Marsh’s Library, Book of Kells, or Little Museum. One, not four.' },
+    { status: 'Add', title: 'Saturday Guinness', text: 'The 12:00pm Guinness Storehouse tour is now the fixed midday anchor. Build the day around it.' },
+    { status: 'Protect', title: 'One Cultural Anchor', text: 'Guinness is the paid anchor now. Keep any additional culture light: streets, pubs, or one short stop.' },
     { status: 'Skip', title: 'Castle / Chester Beatty', text: 'Both are unavailable during the trip window. Do not route through Dublin Castle campus.' }
   ],
   chapters: [
@@ -58,26 +58,27 @@ window.DUBLIN_DATA = {
       id: 'sat',
       day: 'Saturday',
       date: 'July 4',
-      title: 'Georgian Streets, Literary Dublin, Delahunt, Trad',
-      mood: 'Complete Dublin in one day without making it homework.',
+      title: 'Guinness, Georgian Streets, Dinner, Trad',
+      mood: 'Use Guinness as the midday anchor, then keep the rest of Dublin atmospheric instead of overstuffed.',
       image: 'https://images.unsplash.com/photo-1564959130747-897fb406b9af?auto=format&fit=crop&w=1800&q=80',
       scores: { Stress: 5, Romance: 9, 'Group fun': 10, Food: 10 },
       timeline: [
         ['9:30am', 'Coffee / breakfast: Kaph, Tang, Beanhive, or hotel fallback.'],
-        ['10:15am-12:00pm', 'Georgian + literary walk: St Stephen’s Green → Merrion Square → Oscar Wilde → Trinity exterior → Grafton Street.'],
-        ['12:00-1:15pm', 'Lunch: Woollen Mills, The Bank, George’s Street, or Winding Stair.'],
-        ['1:30-3:00pm', 'One cultural anchor: Marsh’s Library + St Patrick’s exterior, Book of Kells, or Little Museum.'],
-        ['3:15-5:00pm', 'Neighborhood pivot: Liberties + Teeling, Smithfield/Stoneybatter, or easy central pubs.'],
+        ['10:15-11:15am', 'Light Georgian / Grafton / St Stephen’s Green wander only if the morning is smooth.'],
+        ['11:15am', 'Start moving toward Guinness Storehouse. Do not make this a tight transfer.'],
+        ['12:00pm', 'Guinness Storehouse tour. This is the fixed Saturday anchor.'],
+        ['2:00-3:00pm', 'Late lunch / reset near the Liberties, central Dublin, or wherever the group lands after Guinness.'],
+        ['3:15-5:00pm', 'Flexible afternoon: Liberties streets, central pubs, or short literary stop if energy is good.'],
         ['5:30-6:45pm', 'Pre-dinner drinks: Delahunt Sitting Room, 1661, Peruke & Periwig, Sidecar, or Fidelity if in Smithfield.'],
         ['7:30-9:45pm', 'Dinner: Delahunt default; Library Street if the group wants polished sharing-plates energy.'],
         ['10:00pm-late', 'Central pubs, O’Donoghue’s, Cobblestone/Fidelity, Whelan’s, Workman’s, Pygmalion, or Bernard Shaw depending on listings and energy.']
       ],
-      watch: ['Pick one cultural anchor.', 'Use Marsh’s, Little Museum, National Gallery, MoLI, Teeling, or Winding Stair as rainy-day pivots.', 'Switch neighborhoods if pubs are packed.'],
+      watch: ['Guinness is the cultural anchor now.', 'Do not stack Book of Kells, Marsh’s, and Teeling on top of it.', 'Switch neighborhoods if pubs are packed.'],
       variants: {
-        low: 'Little Museum → Kehoe’s / Grogan’s → Delahunt → O’Donoghue’s → bed.',
-        rain: 'Marsh’s or Little Museum → Winding Stair → Long Hall / Palace Bar → Delahunt → Whelan’s if something good is on.'
+        low: 'Coffee → Guinness → late lunch → Delahunt or central dinner → O’Donoghue’s → bed.',
+        rain: 'Coffee → Guinness → Winding Stair / Long Hall / Palace Bar → dinner → Whelan’s if something good is on.'
       },
-      links: [['Marsh’s Library', 'https://marshlibrary.ie/'], ['Book of Kells', 'https://www.visittrinity.ie/book-now/'], ['Little Museum', 'https://www.littlemuseum.ie/'], ['Delahunt', 'https://delahunt.ie/bookings/'], ['Library Street', 'https://www.librarystreet.ie/booking']]
+      links: [['Guinness Storehouse', 'https://www.guinness-storehouse.com/en/booking'], ['Marsh’s Library', 'https://marshlibrary.ie/'], ['Little Museum', 'https://www.littlemuseum.ie/'], ['Delahunt', 'https://delahunt.ie/bookings/'], ['Library Street', 'https://www.librarystreet.ie/booking']]
     },
     {
       id: 'sun',
@@ -93,7 +94,7 @@ window.DUBLIN_DATA = {
         ['2.75-3.25 hrs pre-flight', 'Leave Marlin by taxi if flying DUB → London with luggage.'],
         ['2 hrs pre-flight', 'Be at Dublin Airport for short-haul flight. Add buffer if checking bags.']
       ],
-      watch: ['Do not book Guinness, Kilmainham, Howth, or a long brunch before a flight.', 'Taxi is simplest for four with luggage.'],
+      watch: ['Do not book Kilmainham, Howth, Guinness, or a long brunch before a flight.', 'Taxi is simplest for four with luggage.'],
       variants: { low: 'Hotel breakfast → taxi → airport.', rain: 'Hotel coffee → taxi → airport.' },
       links: [['Airport timing', 'https://www.dublinairport.com/at-the-airport/check-in'], ['Taxi', 'https://www.dublinairport.com/to-from-the-airport/by-taxi'], ['Dublin Express', 'https://www.dublinexpress.ie/dublin-airport']]
     }
@@ -106,7 +107,7 @@ window.DUBLIN_DATA = {
       best: 'This exact group: literary streets, real pubs, one cultural anchor, one excellent dinner, one trad session.',
       scores: { Stress: 3, Romance: 8, 'Group fun': 9, Atmosphere: 10, 'Food/drink': 9, Logistics: 8 },
       includes: ['Georgian walk', 'Marsh’s or Book of Kells', 'Delahunt / Library Street', 'Cobblestone or O’Donoghue’s'],
-      cuts: ['Howth', 'Guinness unless must-do', 'Dublin Castle', 'Chester Beatty', 'long museums'],
+      cuts: ['Howth', 'extra museums after Guinness', 'Dublin Castle', 'Chester Beatty', 'long museums'],
       why: 'It captures Dublin as a living city: pubs, stories, streets, music, and food.',
       tradeoff: 'You will not see every famous attraction.'
     },
@@ -191,12 +192,12 @@ window.DUBLIN_DATA = {
     ['moli', 'MoLI', 'Maybe', 'Literary, near Iveagh Gardens; good if leaning bookish.', 'Check live ticketing', '60-90 minutes', 'https://moli.ie/'],
     ['national-gallery', 'National Gallery of Ireland', 'Rainy Add', 'Free, central, easy rainy-day backup near Merrion Square.', 'Free permanent collection', '30-75 minutes', 'https://www.nationalgallery.ie/visit-us/visitor-guide'],
     ['teeling', 'Teeling Whiskey Distillery', 'Add/Maybe', 'Best paid drinks experience if the group wants one.', '€20 / €25 / €35 tiers', '60-90 minutes', 'https://teelingdistillery.com/tasting-tours/'],
-    ['guinness', 'Guinness Storehouse', 'Skip/Maybe', 'Fine attraction, wrong priority unless someone personally considers it must-do.', 'From €22', '90-150 minutes', 'https://www.guinness-storehouse.com/en/booking']
+    ['guinness', 'Guinness Storehouse', 'Add / Confirmed', 'Booked for Saturday, July 4 at 12:00pm. Treat it as the paid cultural anchor for the day.', 'Booked', '12:00pm', 'https://www.guinness-storehouse.com/en/booking']
   ],
   warnings: [
     ['chester-beatty', 'Chester Beatty', 'skip', 'Closed from June 15 through end of December 2026. Remove from all rainy-day/activity recommendations.', 'https://chesterbeatty.ie/'],
     ['dublin-castle', 'Dublin Castle campus', 'skip', 'Closed to the public during the trip window; no public route through campus.', 'https://dublincastle.ie/'],
-    ['guinness-warning', 'Guinness Storehouse', 'maybe', 'Skip unless someone says it is a must-do. Real pubs fit this trip better.', 'https://www.guinness-storehouse.com/en/booking'],
+    ['guinness-warning', 'Extra Guinness-adjacent planning', 'maybe', 'The Storehouse is already booked for noon. Do not also overbuild the Liberties/Teeling stack unless the group has energy.', 'https://www.guinness-storehouse.com/en/booking'],
     ['howth-poolbeg', 'Howth / Poolbeg', 'skip', 'Wrong use of time after Cliffs/Galway/rural Ireland.', ''],
     ['hop-on-hop-off', 'Hop-on-hop-off bus', 'skip', 'Unnecessary and misaligned with the walkable city plan.', ''],
     ['long-museums', 'Long museum blocks', 'skip', 'One cultural anchor per day maximum.', '']
@@ -239,7 +240,7 @@ window.DUBLIN_DATA = {
   bookingTimeline: [
     ['Now / ASAP', 'Friday dinner: Mister S', 'high', ['Book Friday prime-time table for four.', 'Protect dinner even if the arrival walk shrinks.']],
     ['Now / ASAP', 'Saturday dinner', 'high', ['Book Delahunt default.', 'Hold Library Street if the group wants sharing-plates polish.']],
-    ['2-4 weeks ahead', 'Cultural anchor tickets', 'medium', ['Book Book of Kells only if choosing it despite Long Room caveat.', 'Marsh’s and Little Museum are easier, but still check availability.']],
+    ['Booked', 'Guinness Storehouse', 'high', ['Saturday July 4 at 12:00pm.', 'Plan the morning transfer around this.', 'Do not stack another long paid attraction immediately afterward.']],
     ['2-4 weeks ahead', 'Nightlife/listings scan', 'medium', ['Check Whelan’s, Workman’s, Fidelity, RA, Dice, Eventbrite.', 'Only add a ticketed night if it does not wreck Saturday dinner/trad.']],
     ['Week of', 'Weather + closures sanity check', 'medium', ['Use rainy-day stack: Marsh’s, Little Museum, National Gallery, MoLI, Teeling, Winding Stair.', 'Confirm Dublin Castle / Chester Beatty remain unavailable.']],
     ['Sunday', 'Airport buffer', 'high', ['Taxi 2.75-3.25 hours pre-flight if luggage.', 'Be at DUB two hours pre-flight for short-haul.']]

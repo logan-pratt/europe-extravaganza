@@ -62,110 +62,37 @@ window.TRIP_DATA = {
       "id": "mon",
       "day": "Monday",
       "date": "July 6",
-      "title": "Bath Day Trip + Soho Dinner",
-      "mood": "Georgian romance, Roman history, rooftop thermal water.",
-      "hero": "https://images.unsplash.com/photo-1564594985645-4427056e22e2?auto=format&fit=crop&w=1800&q=80",
-      "score": {
-        "Romance": 10,
-        "London": 4,
-        "Stress": 6,
-        "Food": 8
-      },
-      "timeline": [
-        [
-          "7:30am",
-          "Leave the hotel for Paddington. Bring water, sunglasses, and a light layer."
-        ],
-        [
-          "~8:30am",
-          "Train London Paddington → Bath Spa."
-        ],
-        [
-          "10am–1pm",
-          "Roman Baths + Bath Abbey exterior + slow Georgian wandering."
-        ],
-        [
-          "1–2pm",
-          "Lunch in Bath. Keep it simple; the spa is the real luxury."
-        ],
-        [
-          "2:30–4:30pm",
-          "Thermae Bath Spa rooftop pool. This is the reason Bath stays in the plan."
-        ],
-        [
-          "5:30–6pm",
-          "Train back to London."
-        ],
-        [
-          "8:15pm+",
-          "Andrew Edmunds in Soho. Do not book earlier than 8:15 unless you enjoy stress."
-        ]
-      ],
-      "watch": [
-        "Bath works only if you resist the urge to see everything.",
-        "Book Andrew Edmunds late enough. 8:15–8:30pm is the sweet spot."
-      ],
-      "links": [
-        [
-          "Roman Baths",
-          "https://www.romanbaths.co.uk/visit"
-        ],
-        [
-          "Thermae Bath Spa",
-          "https://www.thermaebathspa.com/"
-        ],
-        [
-          "Andrew Edmunds reservations",
-          "https://www.andrewedmunds.com/reservations"
-        ],
-        [
-          "Train search",
-          "https://www.nationalrail.co.uk/"
-        ],
-        [
-          "Bath Spa → Roman Baths",
-          "https://www.google.com/maps/dir/?api=1&origin=Bath%20Spa%20Station&destination=Roman%20Baths%20Bath&travelmode=walking"
-        ]
-      ]
-    },
-    {
-      "id": "tue",
-      "day": "Tuesday",
-      "date": "July 7",
-      "title": "Wimbledon Quarterfinal Energy + Friend Dinner",
-      "mood": "Early queue, strawberries, grass courts, London summer ritual.",
+      "title": "Wimbledon Day",
+      "mood": "Grass courts, strawberries, sunscreen, and London summer ritual.",
       "hero": "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1800&q=80",
       "score": {
         "Romance": 7,
         "London": 10,
         "Stress": 7,
-        "Food": 9
+        "Food": 8
       },
       "timeline": [
         [
-          "6:30–7am",
-          "Target arrival near Southfields / Wimbledon Queue. Earlier is the insurance policy."
-        ],
-        [
           "Morning",
-          "Queue, hydrate, sunscreen, settle into the day."
+          "Wimbledon day. Confirm ticket / queue details before leaving the hotel."
         ],
         [
           "Daytime",
-          "Grounds, outer courts if worthwhile, Hill/Mound, strawberries & cream, Pimm’s."
+          "Grounds, courts if worthwhile, Hill/Mound, strawberries & cream, Pimm’s, and a lot of patience."
         ],
         [
           "Late afternoon",
-          "Do not rely on Centre/Court 1 resale. Treat it as a lottery bonus."
+          "Treat Centre/Court 1 resale as a bonus, not the plan."
         ],
         [
-          "8:30pm+",
-          "Dinner with your friend: Trullo for foodie, Tamil Prince for livelier friend-night energy."
+          "Evening",
+          "Keep dinner flexible unless a reservation is already safely late. Expect transport crowds leaving Wimbledon."
         ]
       ],
       "watch": [
-        "Quarterfinal day is not the time to be casual about the queue.",
-        "Expect transport crowds leaving Wimbledon. Build in 75–90 minutes to reach dinner."
+        "Do not be casual about Wimbledon departure timing.",
+        "Bring sunscreen, water, a portable battery, and a light layer.",
+        "Bath is no longer this day."
       ],
       "links": [
         [
@@ -177,20 +104,75 @@ window.TRIP_DATA = {
           "https://www.wimbledon.com/en_GB/the_championships/schedule"
         ],
         [
-          "Trullo",
-          "https://www.trullorestaurant.com/"
+          "TfL journey planner",
+          "https://tfl.gov.uk/plan-a-journey/"
         ],
         [
-          "The Tamil Prince",
-          "https://www.thetamilprince.com/"
+          "Kimpton → Wimbledon",
+          "https://www.google.com/maps/dir/?api=1&origin=Kimpton%20Fitzroy%20London&destination=All%20England%20Lawn%20Tennis%20Club&travelmode=transit"
+        ]
+      ]
+    },
+    {
+      "id": "tue",
+      "day": "Tuesday",
+      "date": "July 7",
+      "title": "Open London Day",
+      "mood": "Recover from Wimbledon, then choose the day by energy.",
+      "hero": "https://images.unsplash.com/photo-1564594985645-4427056e22e2?auto=format&fit=crop&w=1800&q=80",
+      "score": {
+        "Romance": 9,
+        "London": 8,
+        "Stress": 4,
+        "Food": 8
+      },
+      "timeline": [
+        [
+          "Morning",
+          "TBD. Keep this flexible after Wimbledon."
         ],
         [
-          "Southfields → Trullo",
-          "https://www.google.com/maps/dir/?api=1&origin=Southfields%20Station&destination=Trullo%20Restaurant%20London&travelmode=transit"
+          "Option A",
+          "Bath day trip candidate: train to Bath, Roman Baths, simple lunch, Thermae Bath Spa if booking/timing works."
         ],
         [
-          "Southfields → Tamil Prince",
-          "https://www.google.com/maps/dir/?api=1&origin=Southfields%20Station&destination=The%20Tamil%20Prince%20115%20Hemingford%20Road&travelmode=transit"
+          "Option B",
+          "Central London recovery day: Bloomsbury, Covent Garden, Soho, good dinner."
+        ],
+        [
+          "Option C",
+          "Food-forward day: Borough / South Bank / St Paul’s walk, then dinner."
+        ],
+        [
+          "Evening",
+          "Pick dinner once the daytime shape is decided."
+        ]
+      ],
+      "watch": [
+        "Bath is a candidate, not a commitment.",
+        "Do not book Bath unless you are ready to give it the whole day.",
+        "If Wimbledon runs late or wipes you out, make this a softer London day."
+      ],
+      "links": [
+        [
+          "Roman Baths",
+          "https://www.romanbaths.co.uk/visit"
+        ],
+        [
+          "Thermae Bath Spa",
+          "https://www.thermaebathspa.com/"
+        ],
+        [
+          "Train search",
+          "https://www.nationalrail.co.uk/"
+        ],
+        [
+          "Borough Market",
+          "https://boroughmarket.org.uk/visit-us/"
+        ],
+        [
+          "Bath Spa → Roman Baths",
+          "https://www.google.com/maps/dir/?api=1&origin=Bath%20Spa%20Station&destination=Roman%20Baths%20Bath&travelmode=walking"
         ]
       ]
     },
@@ -413,7 +395,7 @@ window.TRIP_DATA = {
       "Andrew Edmunds",
       "Soho classic",
       "46 Lexington St, Soho",
-      "Keep. Book 8:15–8:30pm after Bath.",
+      "Keep as a romantic dinner option if Bath lands on an open London day.",
       "Cozy, romantic, old Soho, wine",
       "https://www.andrewedmunds.com/reservations",
       "https://www.google.com/maps/search/?api=1&query=Andrew%20Edmunds%2046%20Lexington%20Street%20London",
@@ -475,12 +457,12 @@ window.TRIP_DATA = {
     },
     {
       "name": "Andrew Edmunds",
-      "role": "Post-Bath Soho dinner",
-      "best": "Monday July 6",
-      "verdict": "Keep, but book no earlier than 8:15–8:30pm.",
+      "role": "Post-Bath Soho dinner candidate",
+      "best": "TBD open London day",
+      "verdict": "Keep as a Bath-day dinner option, but only once Bath has a real date.",
       "order": ["Whipped cod’s roe if on the menu", "Seasonal fish or game/meat main", "Ask for wine help", "Dessert only if Bath did not wipe you out"],
       "price": "OpenTable category: £26–£40. Budget more with wine.",
-      "booking": "Bookings open 30 calendar days ahead at 5:30pm London time. For July 6, set June 6, 2026 at 9:30am Pacific.",
+      "booking": "Bookings open 30 calendar days ahead at 5:30pm London time. Book only after choosing the Bath date.",
       "tags": ["romance", "foodie"],
       "image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80",
       "links": [["Reservations", "https://www.andrewedmunds.com/reservations"], ["Official", "https://www.andrewedmunds.com/"], ["Map", "https://www.google.com/maps/search/?api=1&query=Andrew%20Edmunds%2046%20Lexington%20Street%20London"]]
@@ -488,11 +470,11 @@ window.TRIP_DATA = {
     {
       "name": "Trullo",
       "role": "Foodie friend dinner",
-      "best": "Tuesday July 7 after Wimbledon",
+      "best": "Monday July 6 after Wimbledon, if energy survives",
       "verdict": "Best if your friend values food first.",
       "order": ["Pappardelle with beef shin ragù if available", "One additional seasonal pasta", "One charcoal-grill main to share", "Tiramisu or ricotta doughnuts if on the menu"],
       "price": "Pastas roughly £14–£22; mains roughly £26–£44; larger sharing cuts can be much more.",
-      "booking": "Book 8:30pm or later after Wimbledon. Calmer and more serious than The Tamil Prince.",
+      "booking": "Book late only if the Wimbledon day has enough margin. Calmer and more serious than The Tamil Prince.",
       "tags": ["friend", "foodie"],
       "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80",
       "links": [["Official/reservations", "https://www.trullorestaurant.com/"], ["Map", "https://www.google.com/maps/search/?api=1&query=Trullo%20Restaurant%20London"]]
@@ -500,11 +482,11 @@ window.TRIP_DATA = {
     {
       "name": "The Tamil Prince",
       "role": "Fun friend dinner",
-      "best": "Tuesday July 7 after Wimbledon",
+      "best": "Monday July 6 after Wimbledon, if energy survives",
       "verdict": "Best if the goal is a lively night out with your friend.",
       "order": ["Okra fries", "Chicken lollipop", "Special masala dosa", "Chettinad lamb curry", "Flaky roti", "Coconut pilau rice", "Gunpowder Margarita or Tamil Negroni"],
       "price": "Snacks around £9–£14.50; curries around £16; cocktails around £13.50–£14.50.",
-      "booking": "Book 8:30pm or later after Wimbledon. Avoid if anyone has serious allergies due to cross-contamination risk.",
+      "booking": "Book late only if the Wimbledon day has enough margin. Avoid if anyone has serious allergies due to cross-contamination risk.",
       "tags": ["friend"],
       "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80",
       "links": [["Official/reservations", "https://www.thetamilprince.com/"], ["Menu PDF", "https://www.thetamilprince.com/s/The-Tamil-Prince-Menus-May.pdf"], ["Map", "https://www.google.com/maps/search/?api=1&query=The%20Tamil%20Prince%20115%20Hemingford%20Road%20London"]]
@@ -582,7 +564,7 @@ window.TRIP_DATA = {
   "wildcards": [
     {"name": "WAH In The City", "status": "skip", "date": "Sunday July 5, 2026 · 12:00pm–10:00pm", "location": "Silverworks Island, Docklands", "price": "RA lists £45+", "genre": "Drum & Bass / Jungle", "why": "Conflicts with arrival day and is too much after Dublin → Heathrow.", "links": [["Official", "https://www.wahinthecity.com/"], ["RA", "https://ra.co/events/2151208"]]},
     {"name": "PARADOX at XOYO", "status": "maybe", "date": "Wednesday July 8, 2026 · 11:00pm–3:00am", "location": "XOYO, Shoreditch", "price": "Check listing", "genre": "Tech House / Deep House", "why": "Plausible after Path B, but very late before departure day.", "links": [["RA", "https://de.ra.co/events/2440337"], ["Venue", "https://www.xoyolondon.com/"]]},
-    {"name": "Sarah Nimmo at The Lower Third", "status": "skip", "date": "Tuesday July 7, 2026 · 7:00pm–11:00pm", "location": "The Lower Third, Soho", "price": "RA listed £13.50", "genre": "Electro / Pop", "why": "Conflicts with Wimbledon + friend dinner.", "links": [["RA", "https://ra.co/events/2413555"]]}
+    {"name": "Sarah Nimmo at The Lower Third", "status": "maybe", "date": "Tuesday July 7, 2026 · 7:00pm–11:00pm", "location": "The Lower Third, Soho", "price": "RA listed £13.50", "genre": "Electro / Pop", "why": "No longer conflicts with Wimbledon, but still only add if Tuesday stays soft.", "links": [["RA", "https://ra.co/events/2413555"]]}
   ],
   "seasonalEvents": [
     {"name": "Anish Kapoor at Hayward Gallery", "status": "add", "date": "June 16–October 18, 2026", "location": "Southbank Centre / Hayward Gallery", "price": "£22", "why": "Fits the Borough/South Bank/St Paul’s walking day better than a long museum slog.", "link": "https://www.southbankcentre.co.uk/whats-on/anish-kapoor/"},
@@ -592,7 +574,7 @@ window.TRIP_DATA = {
     {"name": "Kew the Music", "status": "maybe", "date": "Monitor for July 2026 lineup", "location": "Kew Gardens", "price": "TBD", "why": "Monitor only; do not let it crowd the core plan.", "link": "https://www.kew.org/kew-the-music"}
   ],
   "romanticUpgrades": [
-    {"name": "Make Bath a spa date, not a sightseeing race", "cost": "Thermae Welcome £44pp plus train/Roman Baths/lunch", "when": "Monday July 6", "instructions": ["Do Roman Baths first", "Keep lunch simple", "Book Thermae mid-afternoon", "Do not add extra museums", "Return with enough time for Andrew Edmunds"], "why": "This is the difference between Bath being romantic and Bath being exhausting.", "link": "https://www.thermaebathspa.com/spa-sessions-new-royal-bath"},
+    {"name": "Make Bath a spa date, not a sightseeing race", "cost": "Thermae Welcome £44pp plus train/Roman Baths/lunch", "when": "TBD open London day", "instructions": ["Do Roman Baths first", "Keep lunch simple", "Book Thermae mid-afternoon", "Do not add extra museums", "Return with enough time for a late dinner only if it feels easy"], "why": "This is the difference between Bath being romantic and Bath being exhausting.", "link": "https://www.thermaebathspa.com/spa-sessions-new-royal-bath"},
     {"name": "Clos Maggiore conservatory request", "cost": "Free request; dinner itself is the splurge", "when": "Wednesday July 8", "instructions": ["Put “conservatory seating requested for a romantic final night in London” in booking notes", "Call/email closer to confirm", "If they cannot offer conservatory seating, decide whether the booking is still worth it"], "why": "The conservatory is the emotional target, not just the restaurant name.", "link": "https://www.closmaggiore.com/"},
     {"name": "Regent’s Canal to Primrose Hill sunset", "cost": "Free", "when": "Sunday if energized, Wednesday if not doing Studio Tour, or any flexible gap", "instructions": ["Start at King’s Cross / Coal Drops Yard", "Walk toward Camden", "Continue to Primrose Hill if weather is good", "Grab a casual drink nearby after"], "why": "Soft-focus London without another ticketed obligation.", "link": "https://www.google.com/maps/dir/?api=1&origin=Coal%20Drops%20Yard&destination=Primrose%20Hill&waypoints=Camden%20Market&travelmode=walking"},
     {"name": "Ye Olde Mitre hidden pub stop", "cost": "Pint/snack budget", "when": "Wednesday afternoon if doing Path B", "instructions": ["Use it as a 45-minute atmospheric stop, not a full meal", "Pair with Soane’s / Holborn / Fleet Street walking"], "why": "A little secret-door London energy.", "link": "https://www.yeoldemitreholborn.co.uk/"},
@@ -601,8 +583,8 @@ window.TRIP_DATA = {
   "bookingTimeline": [
     {"date": "Now / ASAP", "name": "Decide Wednesday path", "priority": "high", "actions": ["Path A: Studio Tour + Clos Maggiore", "Path B: London walk + Mousetrap + Clos Maggiore", "Path C: Studio Tour + early Clos Maggiore + Mousetrap; possible, not recommended"]},
     {"date": "Now / ASAP", "name": "Clos Maggiore", "priority": "high", "actions": ["Book once July 8 availability is open", "Request conservatory seating", "If Path B, target ~9:45pm after The Mousetrap", "If Path C, target 5:00–5:15pm pre-theatre seating"]},
-    {"date": "June 6, 2026 at 9:30am Pacific", "name": "Andrew Edmunds", "priority": "high", "actions": ["Book 8:15pm or 8:30pm for Monday July 6", "Use Visa/Mastercard, not Amex"]},
-    {"date": "When tickets/trains are open", "name": "Bath logistics", "priority": "high", "actions": ["Book Paddington ↔ Bath Spa trains", "Book Roman Baths timed entry", "Book Thermae Bath Spa mid-afternoon slot"]},
+    {"date": "When Bath date is chosen", "name": "Andrew Edmunds", "priority": "medium", "actions": ["Book 8:15pm or 8:30pm only if it pairs naturally with Bath", "Use Visa/Mastercard, not Amex"]},
+    {"date": "When tickets/trains are open", "name": "Bath logistics", "priority": "medium", "actions": ["Choose whether Bath lands on Tuesday or Wednesday", "Book Paddington ↔ Bath Spa trains", "Book Roman Baths timed entry", "Book Thermae Bath Spa mid-afternoon slot"]},
     {"date": "Now / when decided", "name": "Wednesday tickets", "priority": "medium", "actions": ["Path A/C: book Warner Bros. Studio Tour", "Path B/C: book The Mousetrap"]},
     {"date": "1–2 weeks before trip", "name": "Wimbledon prep", "priority": "medium", "actions": ["Re-check official Queue guidance", "Decide exact hotel departure time", "Pack sunscreen, water bottle, portable charger, light layer"]},
     {"date": "Week of trip", "name": "Nightlife/event scan", "priority": "low", "actions": ["Check Resident Advisor, Dice, Skiddle, and venue calendars", "Only add a late-night event if it does not wreck Bath, Wimbledon, or departure"]}
@@ -611,7 +593,7 @@ window.TRIP_DATA = {
     {"name": "Path C", "level": "skip", "text": "This works on paper, but your day becomes transport + clocks + rushing dinner."},
     {"name": "Sunday concert", "level": "skip", "text": "Arrival-day concerts are risky."},
     {"name": "Post-Clos club", "level": "maybe", "text": "XOYO after Clos Maggiore is fun in theory, but you depart the next morning."},
-    {"name": "Bath early dinner", "level": "skip", "text": "Do not book Andrew Edmunds before 8:15pm after Bath."},
+    {"name": "Bath early dinner", "level": "skip", "text": "Do not book a tight post-Bath dinner until the Bath date and return train are real."},
     {"name": "Wimbledon late arrival", "level": "skip", "text": "Arriving after 7:30am on quarterfinal day turns the Wimbledon plan into a gamble."}
   ],
   "experiences": [
