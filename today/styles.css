@@ -21,10 +21,7 @@ body {
   min-height: 100vh;
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:
-    linear-gradient(110deg, rgba(61, 96, 73, .13), transparent 38%),
-    linear-gradient(230deg, rgba(35, 91, 115, .13), transparent 36%),
-    var(--paper);
+  background: var(--paper);
 }
 
 a {
@@ -1212,4 +1209,17 @@ h3 {
 /* Chip surface matches paper better so it doesn't read as a tile on a darker band. */
 .day-chip {
   background: rgba(255, 251, 244, .9);
+}
+
+/* Clean the page background: drop the fixed-attachment city wash and the
+   diagonal body washes. Solid paper avoids the tinted "band" behind the chips. */
+.today-shell {
+  background: none;
+  background-attachment: scroll;
+}
+
+/* Lighter active chip — drop heavy translate + big shadow that read as a halo. */
+.day-chip.active {
+  transform: none;
+  box-shadow: none;
 }
