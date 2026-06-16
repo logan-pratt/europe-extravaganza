@@ -634,3 +634,74 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .live-badge { animation: none; }
 }
+
+/* Boarding-pass travel cards */
+.ticket {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ticket-main {
+  padding: 14px;
+}
+
+.ticket-stub {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 4px;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, .04);
+  border-left: 2px dashed var(--line);
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.ticket-stub::before { top: -7px; }
+.ticket-stub::after { bottom: -7px; }
+
+.ticket-mode {
+  font-size: .62rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent, var(--blue));
+}
+
+.ticket-time {
+  font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.ticket-leave {
+  font-size: .64rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .ticket { grid-template-columns: 1fr; }
+  .ticket-stub {
+    flex-direction: row;
+    border-left: 0;
+    border-top: 2px dashed var(--line);
+  }
+  .ticket-stub::before { top: -7px; left: 50%; }
+  .ticket-stub::after { bottom: auto; top: -7px; left: auto; right: 50%; }
+}

@@ -213,8 +213,25 @@ function standardHtml(anchor, timing) {
     </article>`;
 }
 
+function ticketHtml(anchor, timing) {
+  return `
+    <article class="tl-card ticket ${timing ? `timing-${timing}` : ''}">
+      <div class="ticket-main">
+        ${anchorBadges(anchor, timing)}
+        <h3>${escapeHtml(anchor.title)}</h3>
+        ${anchor.note ? `<p>${escapeHtml(anchor.note)}</p>` : ''}
+        ${anchorLinks(anchor)}
+      </div>
+      <div class="ticket-stub">
+        <span class="ticket-mode">${escapeHtml(anchor.type || 'go')}</span>
+        <span class="ticket-time">${escapeHtml(anchor.time)}</span>
+        ${anchor.leaveBy ? `<span class="ticket-leave">Leave ${escapeHtml(anchor.leaveBy)}</span>` : ''}
+      </div>
+    </article>`;
+}
+
 function anchorCardHtml(anchor, timing) {
-  return standardHtml(anchor, timing);
+  return TRAVEL_TYPES.has(anchor.type) ? ticketHtml(anchor, timing) : standardHtml(anchor, timing);
 }
 
 function renderAnchors(entry) {
