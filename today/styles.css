@@ -508,3 +508,129 @@ h3 {
     flex-direction: column;
   }
 }
+
+/* Living timeline */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding-left: 18px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--line);
+}
+
+.tl-row {
+  position: relative;
+}
+
+.tl-row::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 18px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 2px solid var(--accent, var(--blue));
+}
+
+.tl-card.timing-past {
+  opacity: .55;
+}
+
+.tl-card.timing-current {
+  border-color: var(--accent, var(--olive));
+  box-shadow: 0 0 0 2px var(--accent, var(--olive)), var(--shadow);
+}
+
+.tl-card.timing-next {
+  border-color: rgba(0, 0, 0, .25);
+}
+
+.now-line {
+  position: relative;
+  height: 0;
+  margin: -6px 0;
+  transform: translateY(calc(var(--frac, 0) * 18px));
+}
+
+.now-line::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--accent, var(--red));
+  box-shadow: 0 0 10px var(--accent, var(--red));
+}
+
+.now-line span {
+  position: absolute;
+  left: -18px;
+  top: -9px;
+  font-size: .6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent, var(--red));
+  background: var(--paper);
+  padding: 0 4px;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #fffaf0;
+  background: var(--accent, var(--olive));
+  animation: now-pulse 2s ease-in-out infinite;
+}
+
+.live-badge.next {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  animation: none;
+}
+
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 900;
+  background: rgba(0, 0, 0, .06);
+}
+
+.now-times {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+@keyframes now-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-badge { animation: none; }
+}

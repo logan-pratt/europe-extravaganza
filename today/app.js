@@ -189,29 +189,58 @@ function renderUtilityPanel(entry) {
   `;
 }
 
+const TRAVEL_TYPES = new Set(['flight', 'train', 'transfer']);
+
+function anchorBadges(anchor, timing) {
+  return `
+    <div class="anchor-meta">
+      <span class="time-badge">${escapeHtml(anchor.time)}</span>
+      ${timing === 'current' ? '<span class="live-badge">Now</span>' : ''}
+      ${timing === 'next' ? '<span class="live-badge next">Next</span>' : ''}
+      <span class="status-badge ${escapeHtml(anchor.status || 'planned')}">${escapeHtml(anchor.status || 'planned')}</span>
+      <span class="type-badge">${escapeHtml(anchor.type || 'plan')}</span>
+      ${anchor.leaveBy ? `<span class="type-badge">Leave by ${escapeHtml(anchor.leaveBy)}</span>` : ''}
+    </div>`;
+}
+
+function standardHtml(anchor, timing) {
+  return `
+    <article class="tl-card anchor-card ${anchor.critical ? 'critical' : ''} ${timing ? `timing-${timing}` : ''}">
+      ${anchorBadges(anchor, timing)}
+      <h3>${escapeHtml(anchor.title)}</h3>
+      ${anchor.note ? `<p>${escapeHtml(anchor.note)}</p>` : ''}
+      ${anchorLinks(anchor)}
+    </article>`;
+}
+
+function anchorCardHtml(anchor, timing) {
+  return standardHtml(anchor, timing);
+}
+
 function renderAnchors(entry) {
   $('#todayTitle').textContent = `${formatLongDate(entry.date)} · ${entry.label}`;
   const actualTodayKey = LOGIC.dateKey(new Date());
   const selectedIsToday = entry.date === actualTodayKey;
-  const anchors = selectedIsToday
+  const annotated = selectedIsToday
     ? LOGIC.annotateAnchors(entry, new Date())
     : LOGIC.sortAnchors(entry.anchors || []).map((anchor) => ({ anchor, timing: '' }));
 
-  $('#anchorList').innerHTML = anchors.length ? anchors.map(({ anchor, timing }) => `
-    <article class="anchor-card ${anchor.critical ? 'critical' : ''} ${timing ? `timing-${timing}` : ''}">
-      <div class="anchor-meta">
-        <span class="time-badge">${escapeHtml(anchor.time)}</span>
-        ${timing === 'current' ? '<span class="live-badge">Now</span>' : ''}
-        ${timing === 'next' ? '<span class="live-badge next">Next</span>' : ''}
-        <span class="status-badge ${escapeHtml(anchor.status || 'planned')}">${escapeHtml(anchor.status || 'planned')}</span>
-        <span class="type-badge">${escapeHtml(anchor.type || 'plan')}</span>
-        ${anchor.leaveBy ? `<span class="type-badge">Leave by ${escapeHtml(anchor.leaveBy)}</span>` : ''}
-      </div>
-      <h3>${escapeHtml(anchor.title)}</h3>
-      ${anchor.note ? `<p>${escapeHtml(anchor.note)}</p>` : ''}
-      ${anchorLinks(anchor)}
-    </article>
-  `).join('') : '<p class="empty">No anchors for this day yet.</p>';
+  if (!annotated.length) {
+    $('#anchorList').innerHTML = '<p class="empty">No anchors for this day yet.</p>';
+    return;
+  }
+
+  const nowLine = selectedIsToday ? LOGIC.getNowLine(entry, new Date()) : null;
+  const lineHtml = (frac) => `<div class="now-line" style="--frac:${frac}"><span>now</span></div>`;
+
+  const body = annotated.map(({ anchor, timing }, i) => {
+    const card = `<div class="tl-row">${anchorCardHtml(anchor, timing)}</div>`;
+    const line = nowLine && nowLine.index === i ? lineHtml(nowLine.fraction) : '';
+    return card + line;
+  }).join('');
+
+  const topLine = nowLine && nowLine.index === -1 ? lineHtml(0) : '';
+  $('#anchorList').innerHTML = `<div class="timeline">${topLine}${body}</div>`;
 }
 
 function renderDayContext(entry) {
