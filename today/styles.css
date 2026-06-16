@@ -1244,3 +1244,25 @@ h3 {
     gap: 12px;
   }
 }
+
+/* Planner timeline rows on mobile: stack the time as a small mono eyebrow above
+   the description so every row has identical shape regardless of label length. */
+@media (max-width: 760px) {
+  .context-card .timeline-list li {
+    display: block;
+    padding: 10px 0;
+  }
+  .context-card .timeline-list time {
+    display: block;
+    margin-bottom: 4px;
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .context-card .timeline-list li > span {
+    display: block;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+}
