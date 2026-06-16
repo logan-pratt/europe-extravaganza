@@ -75,5 +75,12 @@
   <script src="../shared/supabase-config.js"></script>
   <script src="../shared/submissions-api.js"></script>
   <script src="app.js?v=20260616-living"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>
