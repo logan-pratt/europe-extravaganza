@@ -1024,3 +1024,62 @@ h3 {
   color: #fffaf0;
   background: var(--accent, var(--red));
 }
+
+/* ===== Refine: boarding-pass tickets ===== */
+.ticket {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 0;
+  overflow: hidden;
+}
+.ticket-main { padding: 14px 15px; display: grid; gap: 6px; justify-items: start; }
+.ticket-stub {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 3px;
+  padding: 14px 18px;
+  background: rgba(45, 34, 24, .045);
+  border-left: 2px dashed var(--line);
+}
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+.ticket-stub::before { top: -7px; }
+.ticket-stub::after { bottom: -7px; }
+.ticket-mode {
+  font-size: .6rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent, var(--blue));
+}
+.ticket-time {
+  font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+/* Critical travel anchors: accent left-edge so the signal survives the calm meta row. */
+.tl-card.critical { border-left: 3px solid var(--accent, var(--red)); }
+
+@media (max-width: 760px) {
+  .ticket { grid-template-columns: 1fr; }
+  .ticket-stub {
+    grid-auto-flow: column;
+    justify-content: center;
+    border-left: 0;
+    border-top: 2px dashed var(--line);
+  }
+  .ticket-stub::before { top: -7px; left: 50%; }
+  .ticket-stub::after { bottom: auto; top: -7px; left: auto; right: 50%; }
+}
