@@ -194,7 +194,7 @@ h3 {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding: 2px 2px 8px;
+  padding: 2px 0 8px;
   scroll-snap-type: x proximity;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -488,7 +488,7 @@ h3 {
   }
 
   .today-shell {
-    width: min(100% - 22px, 1180px);
+    width: min(100% - 32px, 1180px);
     padding-bottom: 44px;
   }
 
