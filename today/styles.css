@@ -732,3 +732,103 @@ h3 {
 [data-tod="day"]  .hero::after { background: linear-gradient(120deg, rgba(35,91,115,.14), transparent 55%); }
 [data-tod="dusk"] .hero::after { background: linear-gradient(120deg, rgba(156,63,49,.18), transparent 55%); }
 [data-tod="night"] .hero::after { background: linear-gradient(120deg, rgba(33,26,40,.30), transparent 60%); }
+
+/* ===== Refine & Elevate: shared layer ===== */
+
+/* Per-city ambient wash — derived from --accent, held BELOW highlight intensity.
+   Reads as paper tint, never as a highlight, so it never competes with
+   accent-as-live-signal. */
+.today-shell {
+  background:
+    radial-gradient(1100px 380px at 50% -160px,
+      color-mix(in srgb, var(--accent, var(--blue)) 12%, transparent), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Quiet meta row that replaces pill-soup everywhere. */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: .78rem;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+.meta .meta-time {
+  font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 700;
+  color: var(--ink);
+}
+.meta .meta-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.meta .meta-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--olive);
+}
+.meta .meta-status.tentative::before { background: var(--gold); }
+.meta .meta-status.tbd::before { background: var(--muted); }
+
+/* Contextual Now/Next badge (replaces .live-badge). */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: .6rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.badge.now {
+  color: #fffaf0;
+  background: var(--accent, var(--olive));
+  animation: now-pulse 2.2s ease-in-out infinite;
+}
+.badge.next {
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+/* Emphasized chips for operationally-critical signals (travel anchors). */
+.chip-flag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+.chip-flag.leaveby {
+  color: var(--accent, var(--red));
+  background: color-mix(in srgb, var(--accent, var(--red)) 14%, transparent);
+}
+.chip-flag.critical {
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 14%, transparent);
+}
+
+/* Ghost button used in the Now foot row. */
+.btn.ghost {
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-weight: 700;
+  font-size: .8rem;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge.now { animation: none; }
+}
