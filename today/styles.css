@@ -929,3 +929,98 @@ h3 {
   .now-pulse { animation: none; }
   .now-bar > i { transition: none; }
 }
+
+/* ===== Refine: timeline rhythm ===== */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-left: 26px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--line);
+}
+.tl-row { position: relative; }
+.tl-row::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 18px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--line);
+}
+.tl-row.timing-past::before { background: var(--line); border-color: var(--line); }
+.tl-row.timing-current::before {
+  background: var(--accent, var(--olive));
+  border-color: var(--accent, var(--olive));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, var(--olive)) 18%, transparent);
+}
+
+.tl-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 15px;
+}
+.tl-card h3 { margin: 0; font-size: 1.04rem; font-weight: 700; letter-spacing: -.01em; }
+.tl-card p { margin: 6px 0 0; color: var(--muted); font-size: .86rem; line-height: 1.4; }
+.tl-card.timing-past { opacity: .6; }
+.tl-card.timing-current {
+  border-color: transparent;
+  box-shadow: 0 0 0 1.5px var(--accent, var(--olive)), 0 16px 40px rgba(44, 31, 20, .12);
+  transform: translateY(-1px);
+}
+.tl-card.timing-next { border-color: var(--line); }
+
+/* Slim echo marker for the de-emphasized first/duplicate anchor. */
+.tl-card.is-echo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: .8rem;
+}
+.tl-card.is-echo .meta-time {
+  font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Now-line as an accent pill. */
+.now-line { position: relative; height: 0; margin: 2px 0; transform: none; }
+.now-line::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  right: 6px;
+  top: 0;
+  height: 2px;
+  background: var(--accent, var(--red));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent, var(--red)) 55%, transparent);
+}
+.now-line span {
+  position: absolute;
+  left: -22px;
+  top: -9px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: .58rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #fffaf0;
+  background: var(--accent, var(--red));
+}

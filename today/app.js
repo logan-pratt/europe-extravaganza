@@ -191,22 +191,21 @@ function renderUtilityPanel(entry) {
 
 const TRAVEL_TYPES = new Set(['flight', 'train', 'transfer']);
 
-function anchorBadges(anchor, timing) {
+function anchorMeta(anchor, timing) {
+  const status = anchor.status || 'planned';
   return `
-    <div class="anchor-meta">
-      <span class="time-badge">${escapeHtml(anchor.time)}</span>
-      ${timing === 'current' ? '<span class="live-badge">Now</span>' : ''}
-      ${timing === 'next' ? '<span class="live-badge next">Next</span>' : ''}
-      <span class="status-badge ${escapeHtml(anchor.status || 'planned')}">${escapeHtml(anchor.status || 'planned')}</span>
-      <span class="type-badge">${escapeHtml(anchor.type || 'plan')}</span>
-      ${anchor.leaveBy ? `<span class="type-badge">Leave by ${escapeHtml(anchor.leaveBy)}</span>` : ''}
+    <div class="meta">
+      <span class="meta-time">${escapeHtml(anchor.time)}</span>
+      <span class="meta-status ${escapeHtml(status)}">${escapeHtml(status)}</span>
+      ${timing === 'current' ? '<span class="badge now">Now</span>' : ''}
+      ${timing === 'next' ? '<span class="badge next">Next</span>' : ''}
     </div>`;
 }
 
 function standardHtml(anchor, timing) {
   return `
     <article class="tl-card anchor-card ${anchor.critical ? 'critical' : ''} ${timing ? `timing-${timing}` : ''}">
-      ${anchorBadges(anchor, timing)}
+      ${anchorMeta(anchor, timing)}
       <h3>${escapeHtml(anchor.title)}</h3>
       ${anchor.note ? `<p>${escapeHtml(anchor.note)}</p>` : ''}
       ${anchorLinks(anchor)}
@@ -215,17 +214,17 @@ function standardHtml(anchor, timing) {
 
 function ticketHtml(anchor, timing) {
   return `
-    <article class="tl-card ticket ${timing ? `timing-${timing}` : ''}">
+    <article class="tl-card ticket ${anchor.critical ? 'critical' : ''} ${timing ? `timing-${timing}` : ''}">
       <div class="ticket-main">
-        ${anchorBadges(anchor, timing)}
+        ${anchorMeta(anchor, timing)}
         <h3>${escapeHtml(anchor.title)}</h3>
+        ${anchor.leaveBy ? `<span class="chip-flag leaveby">Leave by ${escapeHtml(anchor.leaveBy)}</span>` : ''}
         ${anchor.note ? `<p>${escapeHtml(anchor.note)}</p>` : ''}
         ${anchorLinks(anchor)}
       </div>
       <div class="ticket-stub">
         <span class="ticket-mode">${escapeHtml(anchor.type || 'go')}</span>
         <span class="ticket-time">${escapeHtml(anchor.time)}</span>
-        ${anchor.leaveBy ? `<span class="ticket-leave">Leave ${escapeHtml(anchor.leaveBy)}</span>` : ''}
       </div>
     </article>`;
 }
@@ -247,11 +246,22 @@ function renderAnchors(entry) {
     return;
   }
 
+  const focusTitle = annotated.find(({ timing }) => timing === 'next')?.anchor.title
+    || annotated.find(({ timing }) => timing === 'current')?.anchor.title
+    || annotated[0].anchor.title;
+  const topIsFocus = annotated[0].anchor.title === focusTitle;
+
   const nowLine = selectedIsToday ? LOGIC.getNowLine(entry, new Date()) : null;
   const lineHtml = (frac) => `<div class="now-line" style="--frac:${frac}"><span>now</span></div>`;
 
   const body = annotated.map(({ anchor, timing }, i) => {
-    const card = `<div class="tl-row">${anchorCardHtml(anchor, timing)}</div>`;
+    let cardInner;
+    if (i === 0 && topIsFocus && !TRAVEL_TYPES.has(anchor.type)) {
+      cardInner = `<div class="tl-card is-echo"><span class="meta-time">${escapeHtml(anchor.time)}</span><span>${escapeHtml(anchor.title)} — shown above</span></div>`;
+    } else {
+      cardInner = anchorCardHtml(anchor, timing);
+    }
+    const card = `<div class="tl-row ${timing ? `timing-${timing}` : ''}">${cardInner}</div>`;
     const line = nowLine && nowLine.index === i ? lineHtml(nowLine.fraction) : '';
     return card + line;
   }).join('');
