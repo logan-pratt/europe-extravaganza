@@ -1223,3 +1223,24 @@ h3 {
   transform: none;
   box-shadow: none;
 }
+
+/* Sticky day-rail needs an opaque backdrop so content scrolling beneath it
+   doesn't bleed through. Keep it solid paper — no gradient, no blur — to
+   avoid the tinted band that was the original complaint. */
+.day-rail {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Planner timeline: the fixed 64px time column was clipping longer labels
+   like "Afternoon" and "5:00–9:00pm". Let the time column flex to content. */
+.context-card .timeline-list li {
+  grid-template-columns: minmax(72px, max-content) 1fr;
+}
+
+@media (max-width: 760px) {
+  .context-card .timeline-list li {
+    grid-template-columns: minmax(78px, max-content) 1fr;
+    gap: 12px;
+  }
+}
