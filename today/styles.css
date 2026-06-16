@@ -698,7 +698,8 @@ h3 {
 @media (max-width: 760px) {
   .ticket { grid-template-columns: 1fr; }
   .ticket-stub {
-    flex-direction: row;
+    grid-auto-flow: column;
+    justify-content: center;
     border-left: 0;
     border-top: 2px dashed var(--line);
   }
