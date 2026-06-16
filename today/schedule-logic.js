@@ -164,6 +164,46 @@
       .filter(Boolean);
   }
 
+  function formatCountdown(minutesUntil) {
+    if (!Number.isFinite(minutesUntil) || minutesUntil <= 0) return 'now';
+    const hours = Math.floor(minutesUntil / 60);
+    const minutes = minutesUntil % 60;
+    if (hours <= 0) return `in ${minutes}m`;
+    if (minutes === 0) return `in ${hours}h`;
+    return `in ${hours}h ${minutes}m`;
+  }
+
+  function getNextCountdown(entry, now = new Date()) {
+    const { next } = getCurrentAndNextAnchors(entry, now);
+    if (!next) return null;
+    const target = parseSortTime(next);
+    if (!Number.isFinite(target)) return null;
+    const minutesUntil = target - minutesFromDate(now);
+    return { anchor: next, minutesUntil, label: formatCountdown(minutesUntil) };
+  }
+
+  function getNowLine(entry, now = new Date()) {
+    const sorted = sortAnchors(entry?.anchors || []);
+    const times = sorted.map((anchor) => parseSortTime(anchor));
+    const current = minutesFromDate(now);
+
+    let index = -1;
+    for (let i = 0; i < sorted.length; i += 1) {
+      if (Number.isFinite(times[i]) && times[i] <= current) index = i;
+    }
+    let nextIndex = -1;
+    for (let i = index + 1; i < sorted.length; i += 1) {
+      if (Number.isFinite(times[i]) && times[i] > current) { nextIndex = i; break; }
+    }
+
+    let fraction = index < 0 ? 0 : 1;
+    if (index >= 0 && nextIndex >= 0) {
+      const span = times[nextIndex] - times[index];
+      fraction = span > 0 ? (current - times[index]) / span : 0;
+    }
+    return { index, fraction: Math.max(0, Math.min(1, fraction)) };
+  }
+
   root.TODAY_LOGIC = {
     dateKey,
     getScheduleState,
@@ -172,6 +212,9 @@
     getCurrentAndNextAnchors,
     annotateAnchors,
     getOpenSlotOptions,
-    rankReactionOptions
+    rankReactionOptions,
+    formatCountdown,
+    getNextCountdown,
+    getNowLine
   };
 })(typeof window !== 'undefined' ? window : globalThis.window);

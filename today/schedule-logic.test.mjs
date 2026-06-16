@@ -11,7 +11,10 @@ const {
   getCurrentAndNextAnchors,
   annotateAnchors,
   getOpenSlotOptions,
-  rankReactionOptions
+  rankReactionOptions,
+  formatCountdown,
+  getNextCountdown,
+  getNowLine
 } = globalThis.window.TODAY_LOGIC;
 
 const sampleSchedule = [
@@ -151,4 +154,34 @@ test('ranks reacted options by positive minus negative feedback', () => {
     ['restaurant:canalha', 3]
   ]);
   assert.equal(ranked[0].positiveReactions, 2);
+});
+
+test('formats human countdown labels', () => {
+  assert.equal(formatCountdown(0), 'now');
+  assert.equal(formatCountdown(-5), 'now');
+  assert.equal(formatCountdown(25), 'in 25m');
+  assert.equal(formatCountdown(70), 'in 1h 10m');
+  assert.equal(formatCountdown(120), 'in 2h');
+});
+
+test('computes the next-anchor countdown for the device clock', () => {
+  const result = getNextCountdown(sampleSchedule[1], new Date('2026-06-28T11:20:00'));
+  assert.equal(result.anchor.title, 'Quinta da Regaleira booking');
+  assert.equal(result.minutesUntil, 70);
+  assert.equal(result.label, 'in 1h 10m');
+  assert.equal(getNextCountdown(sampleSchedule[1], new Date('2026-06-28T23:00:00')), null);
+});
+
+test('positions the now-line relative to the day anchors', () => {
+  const before = getNowLine(sampleSchedule[1], new Date('2026-06-28T08:00:00'));
+  assert.equal(before.index, -1);
+  assert.equal(before.fraction, 0);
+
+  const between = getNowLine(sampleSchedule[1], new Date('2026-06-28T11:15:00'));
+  assert.equal(between.index, 0);
+  assert.equal(Math.round(between.fraction * 100), 50);
+
+  const after = getNowLine(sampleSchedule[1], new Date('2026-06-28T21:00:00'));
+  assert.equal(after.index, 2);
+  assert.equal(after.fraction, 1);
 });
