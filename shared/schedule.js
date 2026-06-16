@@ -193,6 +193,35 @@
       lodging: lisbonBase,
       anchors: [
         {
+          time: '6:45am',
+          sortTime: '06:45',
+          type: 'prep',
+          title: 'Wake up',
+          status: 'planned',
+          critical: true,
+          note: 'Grab-and-go breakfast only — no sit-down.'
+        },
+        {
+          time: '7:25am',
+          sortTime: '07:25',
+          type: 'transfer',
+          title: 'Leave Airbnb for Rossio Station',
+          status: 'planned',
+          critical: true,
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20da%20Madalena%20214%20Lisbon',
+          note: '~10 min walk; budget 10–15 min.'
+        },
+        {
+          time: '7:35am',
+          sortTime: '07:35',
+          type: 'arrival',
+          title: 'Arrive Rossio Station — buy/load CP tickets',
+          status: 'planned',
+          critical: true,
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rossio%20Station%20Lisbon',
+          note: '~8 min to ticket, validate, and reach platform.'
+        },
+        {
           time: '7:45am',
           sortTime: '07:45',
           type: 'train',
@@ -230,7 +259,7 @@
           title: 'Pena → Quinta da Regaleira (walk, 434, or Bolt)',
           status: 'planned',
           critical: true,
-          note: 'Leave by 11:45am to walk (45–60 min); 12:00pm prefer 434/Bolt; after 12:10pm taxi. Must be in by 1:30pm.'
+          note: 'Walk 40–60 min (most reliable); 434 + walk 25–50 min w/ queue risk; Bolt 20–40 min if pickup works. Leave by 11:45am to walk; after 12:10pm taxi. Must be in by 1:30pm.'
         },
         {
           time: '12:30pm',
