@@ -125,6 +125,8 @@ function renderNowPanel(entry) {
   const live = selectedIsToday ? LOGIC.getCurrentAndNextAnchors(entry, new Date()) : { current: null, next: anchors[0] };
   const focus = live.next || live.current || anchors[0];
   const label = selectedIsToday ? (live.next ? 'Next move' : 'Current anchor') : 'First anchor';
+  const countdown = selectedIsToday ? LOGIC.getNextCountdown(entry, new Date()) : null;
+  const showCountdown = countdown && focus && countdown.anchor === focus;
 
   if (!focus) {
     $('#nowPanel').innerHTML = `
@@ -140,7 +142,10 @@ function renderNowPanel(entry) {
         <p class="eyebrow">${label}</p>
         <h2>${escapeHtml(focus.title)}</h2>
       </div>
-      <span class="time-badge">${escapeHtml(focus.time)}</span>
+      <div class="now-times">
+        <span class="time-badge">${escapeHtml(focus.time)}</span>
+        ${showCountdown ? `<span class="count-badge">${escapeHtml(countdown.label)}</span>` : ''}
+      </div>
     </div>
     <div class="anchor-meta">
       <span class="status-badge ${escapeHtml(focus.status || 'planned')}">${escapeHtml(focus.status || 'planned')}</span>
@@ -350,4 +355,19 @@ window.addEventListener('hashchange', () => {
   if (hashDate && hashDate !== selectedDate) selectDate(hashDate, false);
 });
 
+let clockTimer = null;
+function startClock() {
+  if (clockTimer) clearInterval(clockTimer);
+  clockTimer = setInterval(() => {
+    const todayKey = LOGIC.dateKey(new Date());
+    if (selectedDate !== todayKey) return;
+    const entry = getEntry(selectedDate);
+    if (!entry) return;
+    renderStatus(entry);
+    renderNowPanel(entry);
+    renderAnchors(entry);
+  }, 45000);
+}
+
 render();
+startClock();
