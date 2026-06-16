@@ -193,43 +193,91 @@
       lodging: lisbonBase,
       anchors: [
         {
-          time: 'Morning',
-          sortTime: '08:00',
+          time: '7:45am',
+          sortTime: '07:45',
           type: 'train',
-          title: 'Train to Sintra',
+          title: 'Train to Sintra (Rossio → Sintra)',
           status: 'planned',
           critical: true,
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rossio%20Station%20Lisbon'
+          leaveBy: '7:25am',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rossio%20Station%20Lisbon',
+          note: 'CP Urbanos Linha de Sintra; backup 8:01am. Confirm destination Sintra (not Meleças).'
+        },
+        {
+          time: 'Around 8:30am',
+          sortTime: '08:30',
+          type: 'transfer',
+          title: 'Sintra Station → Pena (434 bus or Bolt)',
+          status: 'planned',
+          critical: true,
+          note: 'If 434 line is long, switch to Bolt immediately — Pena entry is strict.'
         },
         {
           time: '10:00am',
           sortTime: '10:00',
           type: 'booking',
-          title: 'Pena Palace booking',
+          title: 'Pena Palace timed entry',
           status: 'confirmed',
           critical: true,
           siteUrl: 'https://www.parquesdesintra.pt/en/parks-monuments/park-and-national-palace-of-pena/',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pena%20Palace%20Sintra'
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pena%20Palace%20Sintra',
+          note: 'Park entrance by 9:15am; Palace queue by 9:50am. Interior + terraces, then leave by 11:45am.'
         },
         {
-          time: '12:30-1:30pm',
+          time: '11:35am',
+          sortTime: '11:35',
+          type: 'transfer',
+          title: 'Pena → Quinta da Regaleira (walk, 434, or Bolt)',
+          status: 'planned',
+          critical: true,
+          note: 'Leave by 11:45am to walk (45–60 min); 12:00pm prefer 434/Bolt; after 12:10pm taxi. Must be in by 1:30pm.'
+        },
+        {
+          time: '12:30pm',
           sortTime: '12:30',
           type: 'booking',
-          title: 'Quinta da Regaleira booking',
+          title: 'Quinta da Regaleira timed entry',
           status: 'confirmed',
           critical: true,
           siteUrl: 'https://www.regaleira.pt/en/visits',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Quinta%20da%20Regaleira%20Sintra'
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Quinta%20da%20Regaleira%20Sintra',
+          note: '1-hour grace period (in by 1:30pm). Hit Initiation Well + tunnels first.'
+        },
+        {
+          time: '2:30pm',
+          sortTime: '14:30',
+          type: 'meal',
+          title: 'Late lunch / snack in Sintra historic center',
+          status: 'planned',
+          note: 'No real lunch between Pena and Regaleira — eat after.'
+        },
+        {
+          time: '~3:45pm',
+          sortTime: '15:45',
+          type: 'transfer',
+          title: 'Sintra → Cascais/Guincho (Bolt/taxi)',
+          status: 'planned',
+          note: 'No good direct train — rideshare; do not loop through Lisbon.'
         },
         {
           time: '8:00pm',
           sortTime: '20:00',
           type: 'reservation',
-          title: 'Furnas do Guincho reservation',
+          title: 'Furnas do Guincho dinner',
           status: 'confirmed',
           critical: true,
+          leaveBy: 'Arrive 7:45pm',
           siteUrl: 'https://www.furnasdoguincho.pt/',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Furnas%20do%20Guincho%20Cascais'
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Furnas%20do%20Guincho%20Cascais',
+          note: 'On the Guincho coast — not central Cascais; budget extra transfer time.'
+        },
+        {
+          time: '~10:30pm',
+          sortTime: '22:30',
+          type: 'train',
+          title: 'Cascais → Cais do Sodré (CP Cascais line)',
+          status: 'planned',
+          note: 'Bolt from Furnas to Cascais Station; Bolt from Cais do Sodré back to Airbnb.'
         }
       ],
       prep: ['Buy or plan Sintra train timing the night before.', 'Assume rideshare/private transfer for the awkward Sintra to Guincho/Cascais leg.', 'Bring walking shoes, sunscreen, water, and a light layer.'],
