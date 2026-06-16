@@ -185,3 +185,21 @@ test('positions the now-line relative to the day anchors', () => {
   assert.equal(after.index, 2);
   assert.equal(after.fraction, 1);
 });
+
+test('getNowLine reports whether a real current-to-next segment exists', () => {
+  // 10:00 / 12:30 / 20:00 anchors
+  const before = getNowLine(sampleSchedule[1], new Date('2026-06-28T08:00:00'));
+  assert.equal(before.index, -1);
+  assert.equal(before.nextIndex, 0);
+  assert.equal(before.hasSegment, false); // no current yet
+
+  const between = getNowLine(sampleSchedule[1], new Date('2026-06-28T11:15:00'));
+  assert.equal(between.index, 0);
+  assert.equal(between.nextIndex, 1);
+  assert.equal(between.hasSegment, true);
+
+  const after = getNowLine(sampleSchedule[1], new Date('2026-06-28T21:00:00'));
+  assert.equal(after.index, 2);
+  assert.equal(after.nextIndex, -1);
+  assert.equal(after.hasSegment, false); // no next
+});

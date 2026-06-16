@@ -201,7 +201,12 @@
       const span = times[nextIndex] - times[index];
       fraction = span > 0 ? (current - times[index]) / span : 0;
     }
-    return { index, fraction: Math.max(0, Math.min(1, fraction)) };
+    return {
+      index,
+      nextIndex,
+      hasSegment: index >= 0 && nextIndex >= 0,
+      fraction: Math.max(0, Math.min(1, fraction))
+    };
   }
 
   root.TODAY_LOGIC = {
