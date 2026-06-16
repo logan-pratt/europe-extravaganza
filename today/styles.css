@@ -860,3 +860,72 @@ h3 {
   .hero h1 { font-size: 2rem; }
   .hero .lede { display: block; }
 }
+
+/* ===== Refine: signature Now focal card ===== */
+.now-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(165deg, color-mix(in srgb, var(--accent, var(--blue)) 16%, transparent), transparent 55%),
+    var(--panel);
+  box-shadow: var(--shadow);
+  padding: 20px 20px 18px;
+}
+.now-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent, var(--blue));
+}
+.now-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent, var(--blue));
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent, var(--blue)) 55%, transparent);
+  animation: now-ping 2.4s ease-out infinite;
+}
+@keyframes now-ping {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent, var(--blue)) 55%, transparent); }
+  70% { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.now-headline {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  line-height: 1.12;
+  letter-spacing: -.01em;
+  margin: 10px 0 4px;
+}
+.now-where { color: var(--muted); font-size: .9rem; margin: 0 0 16px; }
+.now-count { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+.now-count-big { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); }
+.now-count-at {
+  font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 600;
+  font-size: .95rem;
+  color: var(--muted);
+}
+.now-bar { height: 6px; border-radius: 999px; background: rgba(45, 34, 24, .10); overflow: hidden; }
+.now-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent, var(--blue)), color-mix(in srgb, var(--accent, var(--blue)) 55%, #ffffff));
+  transition: width .6s ease;
+}
+.now-foot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 14px; font-size: .82rem; color: var(--muted); }
+.now-foot .btn.ghost { margin-left: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .now-pulse { animation: none; }
+  .now-bar > i { transition: none; }
+}

@@ -127,6 +127,9 @@ function renderNowPanel(entry) {
   const label = selectedIsToday ? (live.next ? 'Next move' : 'Current anchor') : 'First anchor';
   const countdown = selectedIsToday ? LOGIC.getNextCountdown(entry, new Date()) : null;
   const showCountdown = countdown && focus && countdown.anchor === focus;
+  const nowLine = selectedIsToday ? LOGIC.getNowLine(entry, new Date()) : null;
+  const showBar = !!(nowLine && nowLine.hasSegment);
+  const barPct = showBar ? Math.round(nowLine.fraction * 100) : 0;
 
   if (!focus) {
     $('#nowPanel').innerHTML = `
@@ -137,24 +140,21 @@ function renderNowPanel(entry) {
   }
 
   $('#nowPanel').innerHTML = `
-    <div class="now-title">
-      <div>
-        <p class="eyebrow">${label}</p>
-        <h2>${escapeHtml(focus.title)}</h2>
-      </div>
-      <div class="now-times">
-        <span class="time-badge">${escapeHtml(focus.time)}</span>
-        ${showCountdown ? `<span class="count-badge">${escapeHtml(countdown.label)}</span>` : ''}
-      </div>
+    <p class="now-eyebrow"><span class="now-pulse"></span>${label}</p>
+    <h2 class="now-headline">${escapeHtml(focus.title)}</h2>
+    <p class="now-where">${escapeHtml(entry.label)}${focus.type ? ` · ${escapeHtml(focus.type)}` : ''}</p>
+    ${showCountdown ? `
+      <div class="now-count">
+        <span class="now-count-big">${escapeHtml(countdown.label)}</span>
+        <span class="now-count-at">· ${escapeHtml(focus.time)}</span>
+      </div>` : `<div class="now-count"><span class="now-count-at">${escapeHtml(focus.time)}</span></div>`}
+    ${showBar ? `<div class="now-bar"><i style="width:${barPct}%"></i></div>` : ''}
+    <div class="now-foot">
+      <span class="meta-status ${escapeHtml(focus.status || 'planned')}">${escapeHtml(focus.status || 'planned')}</span>
+      ${focus.critical ? '<span class="chip-flag critical">Critical</span>' : ''}
+      ${focus.leaveBy ? `<span class="chip-flag leaveby">Leave by ${escapeHtml(focus.leaveBy)}</span>` : ''}
+      ${focus.mapUrl ? `<a class="btn ghost" href="${escapeHtml(focus.mapUrl)}" target="_blank" rel="noopener">Open map →</a>` : ''}
     </div>
-    <div class="anchor-meta">
-      <span class="status-badge ${escapeHtml(focus.status || 'planned')}">${escapeHtml(focus.status || 'planned')}</span>
-      <span class="type-badge">${escapeHtml(focus.type || 'plan')}</span>
-      ${focus.critical ? '<span class="type-badge">Critical</span>' : ''}
-      ${focus.leaveBy ? `<span class="type-badge">Leave by ${escapeHtml(focus.leaveBy)}</span>` : ''}
-    </div>
-    ${focus.note ? `<p>${escapeHtml(focus.note)}</p>` : ''}
-    ${anchorLinks(focus)}
   `;
 }
 
