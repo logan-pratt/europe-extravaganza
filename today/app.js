@@ -97,6 +97,7 @@ function renderDayChips() {
   document.querySelectorAll('.day-chip').forEach((button) => {
     button.addEventListener('click', () => {
       selectDate(button.dataset.date);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 }
