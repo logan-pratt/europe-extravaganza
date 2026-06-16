@@ -374,6 +374,19 @@ function renderEmpty() {
   $('.today-shell').innerHTML = '<section class="section"><h1>Today</h1><p class="empty">No schedule data loaded.</p></section>';
 }
 
+function todBucket(now = new Date()) {
+  const hour = now.getHours();
+  if (hour >= 5 && hour < 10) return 'dawn';
+  if (hour >= 10 && hour < 17) return 'day';
+  if (hour >= 17 && hour < 21) return 'dusk';
+  return 'night';
+}
+
+function applyTheme(entry) {
+  document.documentElement.dataset.city = entry.city || 'trip';
+  document.documentElement.dataset.tod = todBucket(new Date());
+}
+
 function render() {
   if (!SCHEDULE.length) {
     renderEmpty();
@@ -382,6 +395,7 @@ function render() {
 
   const entry = getEntry(selectedDate) || SCHEDULE[0];
   selectedDate = entry.date;
+  applyTheme(entry);
   renderDayChips();
   renderStatus(entry);
   renderNowPanel(entry);
@@ -412,6 +426,7 @@ function startClock() {
     renderStatus(entry);
     renderNowPanel(entry);
     renderAnchors(entry);
+    applyTheme(entry);
   }, 45000);
 }
 
