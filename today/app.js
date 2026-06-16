@@ -169,14 +169,21 @@ function renderUtilityPanel(entry) {
       ${lodging ? `
         <h3>${escapeHtml(lodging.name)}</h3>
         <p>${escapeHtml(lodging.area || '')}</p>
-        <div class="link-row"><a href="${escapeHtml(lodging.mapUrl)}" target="_blank" rel="noopener">Map base</a></div>
+        <div class="link-row"><a class="btn ghost" href="${escapeHtml(lodging.mapUrl)}" target="_blank" rel="noopener">Map base →</a></div>
       ` : '<p class="empty">No lodging pinned for this day yet.</p>'}
     </div>
     <div class="utility-block">
-      <p class="eyebrow">Booking wallet</p>
+      <p class="eyebrow">Confirmations</p>
       ${bookingItems.length ? `
-        <ul class="mini-list">
-          ${bookingItems.map((item) => `<li><strong>${escapeHtml(item.time)}</strong> · ${escapeHtml(item.title)}</li>`).join('')}
+        <ul class="wallet-strip">
+          ${bookingItems.map((item) => `
+            <li class="wallet-item ${item.critical ? 'critical' : ''}">
+              <span class="wallet-time">${escapeHtml(item.time)}</span>
+              <span class="wallet-title">${escapeHtml(item.title)}</span>
+              ${item.leaveBy ? `<span class="chip-flag leaveby">Leave ${escapeHtml(item.leaveBy)}</span>` : ''}
+              ${item.mapUrl ? `<a class="wallet-map" href="${escapeHtml(item.mapUrl)}" target="_blank" rel="noopener" aria-label="Map ${escapeHtml(item.title)}">↗</a>` : ''}
+            </li>
+          `).join('')}
         </ul>
       ` : '<p class="empty">No confirmed bookings pinned yet.</p>'}
     </div>
