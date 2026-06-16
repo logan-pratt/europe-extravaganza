@@ -194,68 +194,65 @@ h3 {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: thin;
+  padding: 2px 2px 8px;
+  scroll-snap-type: x proximity;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+.day-chips::-webkit-scrollbar { display: none; }
 
 .day-chip {
   position: relative;
   flex: 0 0 auto;
-  min-width: 82px;
+  min-width: 64px;
+  scroll-snap-align: start;
+  display: grid;
+  gap: 1px;
+  padding: 9px 12px;
+  border-radius: 14px;
+  background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 10px;
-  background: rgba(255, 255, 255, .52);
   text-align: left;
+  line-height: 1.05;
   cursor: pointer;
+  color: var(--ink);
 }
-
-.day-chip strong,
-.day-chip span {
-  display: block;
-}
-
-.day-chip strong {
-  font-size: .92rem;
-}
-
-.day-chip span {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: .68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.day-chip em {
-  display: inline-block;
-  margin-top: 7px;
-  color: var(--blue);
+.day-chip .dc-dow {
   font-size: .62rem;
-  font-style: normal;
-  font-weight: 950;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.day-chip .dc-num {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.day-chip .dc-city {
+  font-size: .58rem;
+  font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
+  color: var(--muted);
 }
-
+.day-chip.is-today::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, var(--blue));
+}
 .day-chip.active {
   background: var(--ink);
-  color: #fffaf0;
   border-color: var(--ink);
+  color: #f7f2e9;
 }
-
-.day-chip.is-today:not(.active) {
-  border-color: rgba(35, 91, 115, .55);
-  box-shadow: inset 0 0 0 2px rgba(35, 91, 115, .14);
-}
-
-.day-chip.active span {
-  color: rgba(255, 250, 240, .7);
-}
-
-.day-chip.active em {
-  color: rgba(255, 250, 240, .82);
-}
+.day-chip.active .dc-dow,
+.day-chip.active .dc-city { color: rgba(247, 242, 233, .72); }
 
 .status-strip,
 .now-panel,

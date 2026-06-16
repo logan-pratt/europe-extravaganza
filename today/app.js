@@ -87,10 +87,10 @@ function anchorLinks(anchor) {
 function renderDayChips() {
   const actualToday = LOGIC.getScheduleState(SCHEDULE, new Date()).today?.date;
   $('#dayChips').innerHTML = SCHEDULE.map((entry) => `
-    <button class="day-chip ${entry.date === selectedDate ? 'active' : ''} ${entry.date === actualToday ? 'is-today' : ''}" type="button" data-date="${entry.date}">
-      <strong>${formatDate(entry.date)}</strong>
-      <span>${cityLabel(entry.city)}</span>
-      ${entry.date === actualToday ? '<em>Today</em>' : ''}
+    <button class="day-chip ${entry.date === selectedDate ? 'active' : ''} ${entry.date === actualToday ? 'is-today' : ''}" type="button" data-date="${entry.date}" aria-label="${escapeHtml(formatLongDate(entry.date))} ${escapeHtml(cityLabel(entry.city))}">
+      <span class="dc-dow">${new Date(entry.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short' })}</span>
+      <span class="dc-num">${new Date(entry.date + 'T00:00:00').getDate()}</span>
+      <span class="dc-city">${escapeHtml(cityLabel(entry.city))}</span>
     </button>
   `).join('');
 
