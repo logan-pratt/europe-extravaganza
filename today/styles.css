@@ -493,7 +493,7 @@ h3 {
   }
 
   .today-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .timeline-list li {
@@ -1138,3 +1138,6 @@ h3 {
 
 /* Suppress empty sections (e.g. options-section on days with no open slots). */
 .section:empty { display: none; margin: 0; padding: 0; border: 0; background: none; box-shadow: none; }
+
+/* Prevent grid items with nowrap content from forcing the column wider than viewport. */
+.now-panel, .utility-panel { min-width: 0; }
