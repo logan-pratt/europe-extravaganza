@@ -86,104 +86,99 @@
       date: '2026-06-27',
       city: 'lisbon',
       dayId: 'sat',
-      label: 'Lisbon · Belem + Taberna',
+      label: 'Lisbon · Alfama + Taberna',
       lodging: lisbonBase,
       anchors: [
         {
-          time: '9:45am',
-          sortTime: '09:45',
-          type: 'transfer',
-          title: 'Leave Baixa for Belem by Uber/Bolt',
-          status: 'tentative',
-          mapUrl: 'https://www.google.com/maps/dir/?api=1&origin=Rua%20da%20Madalena%20214%20Lisbon&destination=Jer%C3%B3nimos%20Monastery%20Lisbon&travelmode=driving'
+          time: '9:30am',
+          sortTime: '09:30',
+          type: 'meal',
+          title: 'Slow breakfast near Baixa',
+          status: 'planned'
         },
         {
-          time: '10:15-11:45am',
+          time: '10:15am',
           sortTime: '10:15',
-          type: 'sightseeing',
-          title: 'Jeronimos Monastery as the one real sight',
-          status: 'tentative',
-          siteUrl: 'https://www.mosteirojeronimos.gov.pt/',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Jer%C3%B3nimos%20Monastery%20Lisbon'
-        },
-        {
-          time: '11:45am-12:15pm',
-          sortTime: '11:45',
-          type: 'snack',
-          title: 'Pastéis de Belem: one pastel each, coffee, maybe one extra to split',
-          status: 'tentative',
-          siteUrl: 'https://pasteisdebelem.pt/en/',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Past%C3%A9is%20de%20Bel%C3%A9m%20Lisbon'
-        },
-        {
-          time: '12:30/12:45pm',
-          sortTime: '12:30',
-          type: 'food',
-          title: 'Preferred lunch: Canalha, if booked',
-          status: 'tentative',
-          siteUrl: 'https://www.canalha.pt/homepage/',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Canalha%20Lisbon%20Portugal'
-        },
-        {
-          time: '2:15-3:15pm',
-          sortTime: '14:15',
-          type: 'sightseeing',
-          title: 'River walk + Monument to the Discoveries exterior',
-          status: 'tentative',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Padr%C3%A3o%20dos%20Descobrimentos%20Lisbon'
-        },
-        {
-          time: '3:15-4:00pm',
-          sortTime: '15:15',
-          type: 'sightseeing',
-          title: 'Belem Tower exterior/photo stop',
-          status: 'tentative',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Bel%C3%A9m%20Tower%20Lisbon'
-        },
-        {
-          time: 'Optional 4:00-4:45pm',
-          sortTime: '16:00',
-          type: 'optional',
-          title: 'MAAT rooftop / quick AC stop only if energy is good',
-          status: 'tentative',
-          siteUrl: 'https://www.maat.pt/en',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=MAAT%20Lisbon'
-        },
-        {
-          time: '4:45-5:15pm',
-          sortTime: '16:45',
           type: 'transfer',
-          title: 'Head back to Baixa for shower/rest/reset',
-          status: 'tentative',
-          mapUrl: lisbonBase.mapUrl
+          title: 'Walk from Rua da Madalena to Sé Cathedral',
+          status: 'planned',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=S%C3%A9%20Cathedral%20Lisbon'
         },
         {
-          time: '7:15-7:30pm',
-          sortTime: '19:15',
+          time: '10:45am',
+          sortTime: '10:45',
+          type: 'sightseeing',
+          title: 'Sé Cathedral quick stop, then continue uphill',
+          status: 'planned',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=S%C3%A9%20Cathedral%20Lisbon'
+        },
+        {
+          time: '11:15am',
+          sortTime: '11:15',
+          type: 'sightseeing',
+          title: 'Santa Luzia + Portas do Sol viewpoints',
+          status: 'planned',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Miradouro%20das%20Portas%20do%20Sol%20Lisbon'
+        },
+        {
+          time: '12:15pm',
+          sortTime: '12:15',
+          type: 'food',
+          title: 'Drift through Alfama; casual lunch nearby',
+          status: 'planned'
+        },
+        {
+          time: '2:00pm',
+          sortTime: '14:00',
+          type: 'optional',
+          title: 'Senhora do Monte only if energy is good',
+          status: 'tentative',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Miradouro%20da%20Senhora%20do%20Monte%20Lisbon'
+        },
+        {
+          time: '3:15pm',
+          sortTime: '15:15',
+          type: 'shopping',
+          title: 'Souvenir loop: Conserveira, Loja das Conservas, A Vida Portuguesa, Bertrand',
+          status: 'planned',
+          mapUrl: 'https://www.google.com/maps/dir/?api=1&origin=Conserveira+de+Lisboa&destination=Bertrand+Chiado&waypoints=Loja+das+Conservas%7CA+Vida+Portuguesa+Chiado'
+        },
+        {
+          time: '4:30pm',
+          sortTime: '16:30',
+          type: 'snack',
+          title: 'Manteigaria Chiado nata stop, then apartment reset',
+          status: 'planned',
+          siteUrl: 'https://manteigaria.com/en/',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Manteigaria%20Chiado%20Lisbon'
+        },
+        {
+          time: '5:45pm',
+          sortTime: '17:45',
           type: 'reservation',
-          title: 'Put name down at Taberna da Rua das Flores',
-          status: 'confirmed',
+          title: 'Walk to Taberna da Rua das Flores and put the name down',
+          status: 'planned',
           critical: true,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Taberna%20da%20Rua%20das%20Flores%20Lisbon'
         },
         {
-          time: 'While waiting',
-          sortTime: '19:30',
+          time: '6:00-7:00pm',
+          sortTime: '18:00',
           type: 'bar',
-          title: 'Drink nearby while waiting; do not arrive starving',
+          title: 'Drink nearby in Chiado while waiting; pivot if 7:30pm looks ugly',
           status: 'planned'
         },
         {
-          time: 'Dinner',
-          sortTime: '20:00',
+          time: '7:00-9:00pm',
+          sortTime: '19:00',
           type: 'reservation',
           title: 'Taberna da Rua das Flores dinner',
-          status: 'confirmed',
+          status: 'planned',
           critical: true,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Taberna%20da%20Rua%20das%20Flores%20Lisbon'
         }
       ],
-      prep: ['Book Canalha for 12:30 or 12:45 if choosing it over O Vinhaca.', 'Consider buying Jeronimos cloister tickets ahead.', 'Order lunch like Taberna still matters later: shared starters, 2-3 mains for four, wine but not a long boozy lunch.', 'Treat Taberna as a walk-up logistics plan: arrive early, put the name down, then wait nearby.']
+      prep: ['Skip Tram 28 and Santa Justa Lift lines — walk the hills.', 'Senhora do Monte is optional, not mandatory; protect legs for Sunday Sintra.', 'Taberna is walk-up: arrive ~5:45pm, put the name down, drink nearby, and set a hard pivot time.', 'Hold Ofício or Prado as a Saturday dinner backup if Taberna wait gets ugly.']
     },
     {
       date: '2026-06-28',
@@ -316,47 +311,101 @@
       date: '2026-06-29',
       city: 'lisbon',
       dayId: 'mon',
-      label: 'Lisbon · Sunset cruise + pack',
+      label: 'Lisbon · Belém + sunset cruise',
       lodging: lisbonBase,
       anchors: [
         {
-          time: 'Daytime',
-          sortTime: '11:00',
-          type: 'open',
-          title: 'TBD final Lisbon day',
-          status: 'tbd'
+          time: '8:45am',
+          sortTime: '08:45',
+          type: 'meal',
+          title: 'Breakfast near Baixa — start controlled',
+          status: 'planned'
         },
         {
-          time: 'Before dinner',
-          sortTime: '17:30',
+          time: '9:45am',
+          sortTime: '09:45',
           type: 'prep',
-          title: 'Pack before heading to the cruise',
-          status: 'confirmed',
-          critical: true,
-          note: 'Cruise ends 9:00-9:30pm — packing has to be done before you leave.'
-        },
-        {
-          time: '6:10pm',
-          sortTime: '18:10',
-          type: 'transfer',
-          title: 'Request Bolt/Uber',
+          title: 'Pack Dublin flight bags before heading out',
           status: 'planned',
           critical: true,
-          note: 'Doca de Alcântara is ~15-20 min by car from Rua da Madalena.'
+          note: 'Stage passports, wedding clothes, chargers, meds, toiletries, airport outfits.'
         },
         {
-          time: '6:15pm',
-          sortTime: '18:15',
+          time: '10:45am',
+          sortTime: '10:45',
           type: 'transfer',
-          title: 'Leave Rua da Madalena (latest preferred)',
+          title: 'Bolt/taxi from Rua da Madalena to Belém',
+          status: 'planned',
+          mapUrl: 'https://www.google.com/maps/dir/?api=1&origin=Rua+da+Madalena+214,+Lisboa&destination=Past%C3%A9is+de+Bel%C3%A9m',
+          note: '20–30 min drive; do not depend on tram timing.'
+        },
+        {
+          time: '11:15am',
+          sortTime: '11:15',
+          type: 'sightseeing',
+          title: 'Pastéis de Belém, then Jerónimos exterior photos',
+          status: 'planned',
+          siteUrl: 'https://pasteisdebelem.pt/en/',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Past%C3%A9is%20de%20Bel%C3%A9m%20Lisbon',
+          note: 'Jerónimos and Belém Tower interiors are Monday-closed.'
+        },
+        {
+          time: '12:15pm',
+          sortTime: '12:15',
+          type: 'sightseeing',
+          title: 'Waterfront walk: Monument to the Discoveries + Belém Tower exterior',
+          status: 'planned',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Padr%C3%A3o%20dos%20Descobrimentos%20Lisbon'
+        },
+        {
+          time: '1:30pm',
+          sortTime: '13:30',
+          type: 'reservation',
+          title: 'Lunch at Canalha (main Monday meal)',
           status: 'planned',
           critical: true,
-          leaveBy: '6:15pm',
-          mapUrl: lisbonBase.mapUrl
+          siteUrl: 'https://www.canalha.pt/homepage/',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Canalha%20Lisbon%20Portugal'
         },
         {
-          time: '6:40-6:45pm',
-          sortTime: '18:40',
+          time: '3:15pm',
+          sortTime: '15:15',
+          type: 'optional',
+          title: 'Optional MAAT or riverside coffee',
+          status: 'tentative',
+          siteUrl: 'https://www.maat.pt/en/plan-a-visit',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=MAAT%20Lisbon'
+        },
+        {
+          time: '4:30pm',
+          sortTime: '16:30',
+          type: 'transfer',
+          title: 'Bolt/taxi back to Rua da Madalena',
+          status: 'planned',
+          mapUrl: lisbonBase.mapUrl,
+          note: 'Build in late-afternoon traffic buffer.'
+        },
+        {
+          time: '5:05pm',
+          sortTime: '17:05',
+          type: 'prep',
+          title: 'Apartment reset: finish packing, change for cruise, stage airport bags',
+          status: 'planned',
+          critical: true
+        },
+        {
+          time: '6:00pm',
+          sortTime: '18:00',
+          type: 'transfer',
+          title: 'Bolt/taxi to Doca de Alcântara, Gate 2',
+          status: 'planned',
+          critical: true,
+          leaveBy: '6:00pm',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Doca%20de%20Alc%C3%A2ntara%20Gate%202%20R.%20da%20Cintura%20do%20Porto%20de%20Lisboa%201350-355%20Lisboa'
+        },
+        {
+          time: '6:30pm',
+          sortTime: '18:30',
           type: 'arrival',
           title: 'Arrive Doca de Alcântara meeting point (Gate 2)',
           status: 'planned',
@@ -392,8 +441,8 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'
         }
       ],
-      prep: ['Pack before the cruise — you land back at 9:00-9:30pm with a 3:30am airport move.', 'Eat a small late lunch or snack pre-cruise; plan a light bite after if hungry.', 'One drink max if the 6:00am flight is still the plan.'],
-      prepPreviousNight: ['Protect the final Lisbon day from late-night plans.', 'Re-check cruise meeting point: Doca de Alcântara, Gate 2.']
+      prep: ['Pack before leaving for Belém — you land back from the cruise at 9:00-9:30pm with a 3:30am airport move.', 'Canalha is the Monday Belém lunch anchor; do not pivot to O Vinhaca.', 'Jerónimos and Belém Tower interiors are Monday-closed — exterior-first day.', 'Leave the apartment for the cruise by 6:00pm and skip any post-cruise dinner chase.', 'One drink max because of the 6:00am flight.'],
+      prepPreviousNight: ['Protect Sunday recovery so Monday starts clean.', 'Re-check cruise meeting point: Doca de Alcântara, Gate 2.', 'Reserve Canalha for around 1:30pm if not already booked.']
     },
     {
       date: '2026-06-30',

@@ -745,9 +745,9 @@ function finalSummary() {
 Home base: Rua da Madalena 214.
 Thursday: Logan and Emily land at 11:50am, bag drop/storage, riverfront, Chiado, easy wine dinner, early bed.
 Friday: Ashley and Max arrive around 10:00am, regroup near Rua da Madalena, keep lunch light, reset, meet at Rua Augusta Arch by 4:50pm, then Oh! My Cod food tour from 5:00-9:00pm. Optional single drink afterward; no formal dinner.
-Saturday: Belém waterfront, LX Factory or downtime, choose the fancy dinner, optional bigger night.
-Sunday: edited Sintra day: Regaleira + Monserrate default, Cascais sunset/dinner only if energy holds.
-Monday: Sé Cathedral, Santa Luzia, Portas do Sol, Alfama lanes, souvenirs/Manteigaria, pack before dinner, early meal, one toast, home by 10:00-10:30pm.
+Saturday: Sé Cathedral, Santa Luzia, Portas do Sol, Alfama lanes, Chiado souvenirs and Manteigaria, then early Taberna da Rua das Flores dinner.
+Sunday: Sintra day — 10:00am Pena, 12:30-1:30pm Regaleira, 8:00pm Furnas do Guincho.
+Monday: pack before leaving, Belém waterfront (exteriors only — interiors closed Monday), Canalha lunch, 7:00pm Tagus sunset cruise at Doca de Alcântara, home by 10:00pm before the 3:30am airport move.
 Avoid: Tram 28 line, Santa Justa Lift line, Belém Tower interior planning, Cabo da Roca add-on, Pink Street as destination, Monday chaos.`;
 }
 
