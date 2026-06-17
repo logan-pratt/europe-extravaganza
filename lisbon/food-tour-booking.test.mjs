@@ -22,8 +22,8 @@ test('rebalances the Lisbon itinerary around the booked food tour', () => {
   assert.match(friday.title, /Food Tour/);
   assert.match(friday.timeline.map((item) => item.join(' ')).join(' '), /5:00-9:00pm/);
   assert.doesNotMatch(friday.timeline.map((item) => item.join(' ')).join(' '), /Prado|Ofício|Taberna da Rua das Flores/);
-  assert.match(saturday.timeline.map((item) => item.join(' ')).join(' '), /fancy dinner/i);
-  assert.match(monday.timeline.map((item) => item.join(' ')).join(' '), /Santa Luzia/);
+  assert.match(saturday.timeline.map((item) => item.join(' ')).join(' '), /Taberna/);
+  assert.match(monday.timeline.map((item) => item.join(' ')).join(' '), /Bel[eé]m|Canalha|cruise/i);
 });
 
 test('adds food-tour supporting surfaces', () => {
@@ -32,5 +32,5 @@ test('adds food-tour supporting surfaces', () => {
   assert.ok(data.mapPins.some((item) => item[0] === 'rua-augusta-arch'));
   assert.ok(data.stamps.some((item) => item[0] === 'food-tour'));
   assert.ok(data.bookingTimeline.some((item) => item[1] === 'Tour-day logistics'));
-  assert.ok(data.bookingTimeline.some((item) => item[1] === 'Saturday fancy dinner'));
+  assert.ok(data.bookingTimeline.some((item) => item[1] === 'Saturday Taberna logistics'));
 });
