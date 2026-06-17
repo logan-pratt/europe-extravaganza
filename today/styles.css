@@ -1266,3 +1266,30 @@ h3 {
     line-height: 1.45;
   }
 }
+
+/* ===== Task 2: Address action clusters (Map / Copy / Bolt) ===== */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.actions .btn {
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  min-height: 36px;
+}
+
+.actions-lg .btn {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  min-height: 48px;
+}
+
+/* #toast already exists above with .show class; add .visible alias for wireActionCluster */
+#toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

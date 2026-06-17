@@ -2,6 +2,7 @@
   const lisbonBase = {
     name: 'Rua da Madalena 214',
     area: 'Baixa / Alfama edge',
+    address: 'Rua da Madalena 214, Lisbon 1100-204, Portugal',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20da%20Madalena%20214%20Lisbon%201100-204%20Portugal'
   };
 
@@ -67,6 +68,7 @@
           title: 'Meet under Rua Augusta Arch',
           status: 'confirmed',
           critical: true,
+          address: 'R. Augusta 2, 1100-053 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20Augusta%20Arch%20R.%20Augusta%202%20Lisboa%201100-053'
         },
         {
@@ -135,6 +137,7 @@
           title: 'Castelo de São Jorge visit',
           status: 'planned',
           critical: true,
+          address: 'R. de Santa Cruz do Castelo, 1100-129 Lisboa, Portugal',
           siteUrl: 'https://castelodesaojorge.pt/en/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Castelo+de+S%C3%A3o+Jorge+Lisbon'
         },

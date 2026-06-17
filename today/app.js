@@ -77,11 +77,45 @@ function getDayData(city, dayId) {
   return CITY_DATA[city]?.days?.find((day) => day.id === dayId) || null;
 }
 
-function anchorLinks(anchor) {
-  const links = [];
-  if (anchor.mapUrl) links.push(`<a href="${escapeHtml(anchor.mapUrl)}" target="_blank" rel="noopener">Map</a>`);
-  if (anchor.siteUrl) links.push(`<a href="${escapeHtml(anchor.siteUrl)}" target="_blank" rel="noopener">Site</a>`);
-  return links.length ? `<div class="anchor-actions">${links.join('')}</div>` : '';
+function boltUrl(address) {
+  const q = encodeURIComponent(address);
+  return `https://bolt.eu/en/?pickup_address=&destination_address=${q}`;
+}
+
+function actionClusterHtml(target, { large = false } = {}) {
+  if (!target) return '';
+  const cls = large ? 'actions actions-lg' : 'actions';
+  const parts = [];
+  if (target.mapUrl) parts.push(`<a class="btn ghost" href="${escapeHtml(target.mapUrl)}" target="_blank" rel="noopener">Map</a>`);
+  if (target.address) {
+    parts.push(`<button class="btn ghost" type="button" data-copy="${escapeHtml(target.address)}">Copy</button>`);
+    parts.push(`<a class="btn ghost" href="${escapeHtml(boltUrl(target.address))}" target="_blank" rel="noopener">Bolt</a>`);
+  }
+  return parts.length ? `<div class="${cls}">${parts.join('')}</div>` : '';
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('visible');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => toast.classList.remove('visible'), 1600);
+}
+
+function wireActionCluster(root = document) {
+  root.querySelectorAll('[data-copy]').forEach((button) => {
+    if (button.dataset.wired === '1') return;
+    button.dataset.wired = '1';
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy);
+        showToast('Copied');
+      } catch {
+        showToast('Copy failed');
+      }
+    });
+  });
 }
 
 function renderDayChips() {
@@ -154,7 +188,7 @@ function renderNowPanel(entry) {
       <span class="meta-status ${escapeHtml(focus.status || 'planned')}">${escapeHtml(focus.status || 'planned')}</span>
       ${focus.critical ? '<span class="chip-flag critical">Critical</span>' : ''}
       ${focus.leaveBy ? `<span class="chip-flag leaveby">Leave by ${escapeHtml(focus.leaveBy)}</span>` : ''}
-      ${focus.mapUrl ? `<a class="btn ghost" href="${escapeHtml(focus.mapUrl)}" target="_blank" rel="noopener">Open map →</a>` : ''}
+      ${actionClusterHtml(focus, { large: true })}
     </div>
   `;
 }
@@ -170,7 +204,7 @@ function renderUtilityPanel(entry) {
       ${lodging ? `
         <h3>${escapeHtml(lodging.name)}</h3>
         <p>${escapeHtml(lodging.area || '')}</p>
-        <div class="link-row"><a class="btn ghost" href="${escapeHtml(lodging.mapUrl)}" target="_blank" rel="noopener">Map base →</a></div>
+        ${actionClusterHtml(lodging, { large: true })}
       ` : '<p class="empty">No lodging pinned for this day yet.</p>'}
     </div>
     <div class="utility-block">
@@ -183,6 +217,7 @@ function renderUtilityPanel(entry) {
               <span class="wallet-title">${escapeHtml(item.title)}</span>
               ${item.leaveBy ? `<span class="chip-flag leaveby">Leave ${escapeHtml(item.leaveBy)}</span>` : ''}
               ${item.mapUrl ? `<a class="wallet-map" href="${escapeHtml(item.mapUrl)}" target="_blank" rel="noopener" aria-label="Map ${escapeHtml(item.title)}">↗</a>` : ''}
+              ${actionClusterHtml(item)}
             </li>
           `).join('')}
         </ul>
@@ -216,7 +251,7 @@ function standardHtml(anchor, timing) {
       ${anchorMeta(anchor, timing)}
       <h3>${escapeHtml(anchor.title)}</h3>
       ${anchor.note ? `<p>${escapeHtml(anchor.note)}</p>` : ''}
-      ${anchorLinks(anchor)}
+      ${actionClusterHtml(anchor)}
     </article>`;
 }
 
@@ -228,7 +263,7 @@ function ticketHtml(anchor, timing) {
         <h3>${escapeHtml(anchor.title)}</h3>
         ${anchor.leaveBy ? `<span class="chip-flag leaveby">Leave by ${escapeHtml(anchor.leaveBy)}</span>` : ''}
         ${anchor.note ? `<p>${escapeHtml(anchor.note)}</p>` : ''}
-        ${anchorLinks(anchor)}
+        ${actionClusterHtml(anchor)}
       </div>
       <div class="ticket-stub">
         <span class="ticket-mode">${escapeHtml(anchor.type || 'go')}</span>
@@ -422,6 +457,7 @@ function render() {
   renderDayContext(entry);
   renderDeck(entry);
   renderOptions(entry);
+  wireActionCluster();
 }
 
 $('#jumpToday').addEventListener('click', () => {
