@@ -209,6 +209,142 @@
     };
   }
 
+  const SLOT_WINDOWS = {
+    breakfast: [6 * 60, 10 * 60 + 30],
+    lunch:     [11 * 60 + 30, 14 * 60 + 30],
+    afternoon: [14 * 60 + 30, 17 * 60 + 30],
+    drink:     [17 * 60, 19 * 60 + 30],
+    dinner:    [19 * 60, 22 * 60],
+    late:      [22 * 60, 25 * 60]
+  };
+
+  const TYPE_TO_SLOT = {
+    meal: ['breakfast', 'lunch', 'dinner'],
+    booking: ['lunch', 'dinner', 'drink'],
+    drink: ['drink'],
+    sightseeing: ['afternoon'],
+    arrival: ['afternoon']
+  };
+
+  function getOpenSlots(entry = {}) {
+    const anchors = entry.anchors || [];
+    const filled = new Set();
+
+    anchors.forEach((anchor) => {
+      if (anchor.slot) { filled.add(anchor.slot); return; }
+      const minutes = parseSortTime(anchor);
+      Object.entries(SLOT_WINDOWS).forEach(([slot, [from, to]]) => {
+        if (Number.isFinite(minutes) && minutes >= from && minutes < to) filled.add(slot);
+      });
+      (TYPE_TO_SLOT[anchor.type] || []).forEach((slot) => {
+        const [from, to] = SLOT_WINDOWS[slot];
+        if (Number.isFinite(minutes) && minutes >= from && minutes < to) filled.add(slot);
+      });
+    });
+
+    return Object.keys(SLOT_WINDOWS).filter((slot) => !filled.has(slot));
+  }
+
+  const SLOT_TAGS = {
+    breakfast: ['breakfast', 'coffee'],
+    lunch:     ['lunch'],
+    afternoon: ['afternoon', 'sightseeing'],
+    drink:     ['drink', 'wine', 'cocktail', 'bar', 'rooftop'],
+    dinner:    ['dinner'],
+    late:      ['late', 'fado', 'nightlife']
+  };
+
+  function normalizeOption(item) {
+    if (Array.isArray(item)) {
+      return { id: item[0], name: item[2] || item[1], tags: String(item[3] || '').toLowerCase(), why: item[5] || '', mapUrl: item[7] || item[6] || '' };
+    }
+    return { id: item.id, name: item.name, tags: String(item.tags || '').toLowerCase(), why: item.why || item.role || '', mapUrl: item.mapUrl || '' };
+  }
+
+  function collectCityOptions(cityData) {
+    if (!cityData) return [];
+    return [
+      ...(cityData.restaurants || []),
+      ...(cityData.bars || cityData.pubs || []),
+      ...(cityData.activities || [])
+    ].map(normalizeOption).filter((o) => o.id && o.name);
+  }
+
+  function scoreFor(id, reactionScores) {
+    const entry = reactionScores.get(id);
+    return entry ? entry.score : 0;
+  }
+
+  function buildReactionScores(reactions = []) {
+    const ranked = rankReactionOptions(reactions);
+    const map = new Map();
+    ranked.forEach((row) => map.set(row.id, row));
+    return map;
+  }
+
+  function getSuggestionPool(entry = {}, cityData = null, reactions = []) {
+    const openSlots = getOpenSlots(entry);
+    const all = collectCityOptions(cityData);
+    const byId = new Map(all.map((o) => [o.id, o]));
+    const reactionScores = buildReactionScores(reactions);
+    const out = {};
+
+    openSlots.forEach((slot) => {
+      const manual = entry.suggest && Array.isArray(entry.suggest[slot]) ? entry.suggest[slot] : null;
+      let pool;
+      if (manual) {
+        pool = manual.map((id) => byId.get(id)).filter(Boolean);
+      } else {
+        const tagSet = SLOT_TAGS[slot] || [slot];
+        pool = all.filter((o) => tagSet.some((tag) => o.tags.includes(tag)));
+      }
+
+      const ranked = [...pool]
+        .map((o) => ({ ...o, score: scoreFor(o.id, reactionScores) }))
+        .sort((a, b) => (b.score - a.score) || a.id.localeCompare(b.id))
+        .slice(0, 3);
+
+      if (ranked.length) out[slot] = ranked;
+    });
+
+    return out;
+  }
+
+  function getWalletItems(today, tomorrow) {
+    const rows = [];
+    const pushFrom = (entry) => {
+      if (!entry) return;
+      sortAnchors(entry.anchors || []).forEach((anchor) => {
+        if (!anchor.booking) return;
+        rows.push({
+          date: entry.date,
+          time: anchor.time,
+          title: anchor.title,
+          confirmation: anchor.booking.confirmation || '',
+          reservedAs: anchor.booking.reservedAs || '',
+          phone: anchor.booking.phone || '',
+          mapUrl: anchor.mapUrl || '',
+          address: anchor.address || ''
+        });
+      });
+    };
+    pushFrom(today);
+    pushFrom(tomorrow);
+    return rows;
+  }
+
+  const HIDE_WALK_FROM = new Set(['meal', 'lodging']);
+
+  function getWalkLeg(prevAnchor, anchor) {
+    if (!anchor || typeof anchor.walkMinutes !== 'number') return null;
+    const hidden = !!(prevAnchor && HIDE_WALK_FROM.has(prevAnchor.type));
+    return {
+      minutes: anchor.walkMinutes,
+      meters: typeof anchor.walkMeters === 'number' ? anchor.walkMeters : null,
+      hidden
+    };
+  }
+
   root.TODAY_LOGIC = {
     dateKey,
     getScheduleState,
@@ -220,6 +356,10 @@
     rankReactionOptions,
     formatCountdown,
     getNextCountdown,
-    getNowLine
+    getNowLine,
+    getOpenSlots,
+    getSuggestionPool,
+    getWalletItems,
+    getWalkLeg
   };
 })(typeof window !== 'undefined' ? window : globalThis.window);
