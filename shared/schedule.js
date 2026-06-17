@@ -121,19 +121,29 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Miradouro%20das%20Portas%20do%20Sol%20Lisbon'
         },
         {
-          time: '12:15pm',
-          sortTime: '12:15',
-          type: 'food',
-          title: 'Drift through Alfama; casual lunch nearby',
-          status: 'planned'
+          time: '11:45am',
+          sortTime: '11:45',
+          type: 'transfer',
+          title: 'Walk from Portas do Sol to Castelo de São Jorge',
+          status: 'planned',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Castelo+de+S%C3%A3o+Jorge+Lisbon'
+        },
+        {
+          time: '12:00-2:00pm',
+          sortTime: '12:00',
+          type: 'sightseeing',
+          title: 'Castelo de São Jorge visit',
+          status: 'planned',
+          critical: true,
+          siteUrl: 'https://castelodesaojorge.pt/en/',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Castelo+de+S%C3%A3o+Jorge+Lisbon'
         },
         {
           time: '2:00pm',
           sortTime: '14:00',
-          type: 'optional',
-          title: 'Senhora do Monte only if energy is good',
-          status: 'tentative',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Miradouro%20da%20Senhora%20do%20Monte%20Lisbon'
+          type: 'food',
+          title: 'Drift down through Alfama; casual lunch nearby',
+          status: 'planned'
         },
         {
           time: '3:15pm',

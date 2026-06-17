@@ -39,7 +39,7 @@ window.LISBON_DATA = {
   chapters: [
     { dayId: 'thu', title: 'Soft Landing', subtitle: 'Bags, riverfront, Chiado, easy wine, early bed', stamp: 'Arrival glow' },
     { dayId: 'fri', title: 'Reunion + Food Tour', subtitle: 'Easy Baixa day, reset, booked tasting walk', stamp: '17 tastings' },
-    { dayId: 'sat', title: 'Alfama + Taberna', subtitle: 'Viewpoints, Chiado shops, nata, early Taberna name-down', stamp: 'Old-town glow' },
+    { dayId: 'sat', title: 'Alfama + Castle + Taberna', subtitle: 'Alfama climb, Castelo de São Jorge, Chiado shops, early Taberna name-down', stamp: 'Old-town glow' },
     { dayId: 'sun', title: 'Sintra + Cascais', subtitle: 'Pena, Regaleira, coast, Furnas do Guincho', stamp: 'Big adventure' },
     { dayId: 'mon', title: 'Belém + Tagus Sunset', subtitle: 'Riverfront sights, Canalha lunch, packed bags, booked sunset cruise', stamp: 'Atlantic light' }
   ],
@@ -101,8 +101,8 @@ window.LISBON_DATA = {
       id: 'sat',
       day: 'Saturday',
       date: 'June 27',
-      title: 'Alfama Views, Chiado Shops & Taberna',
-      mood: 'A relaxed in-city Lisbon day built around old-town viewpoints, small shops, natas, and an early Chiado dinner before the Sintra push.',
+      title: 'Alfama Climb, Castle & Taberna',
+      mood: 'Alfama climb, castle views, souvenir loop, and Taberna night before the Sintra push.',
       image: '../assets/lisbon-monday-senhora-monte.jpg',
       scores: { Stress: 4, Romance: 7, 'Group fun': 8, Food: 9 },
       timeline: [
@@ -110,8 +110,9 @@ window.LISBON_DATA = {
         ['10:15am', 'Walk from Rua da Madalena to Sé Cathedral; skip Tram 28 and treat the climb as the warm-up.'],
         ['10:45am', 'Quick Sé Cathedral stop, then continue uphill toward Miradouro de Santa Luzia.'],
         ['11:15am', 'Do Santa Luzia and Portas do Sol slowly: photos, tiled terraces, river views, and a coffee if the group wants one.'],
-        ['12:15pm', 'Drift through Alfama lanes toward Baixa or Chiado; keep lunch casual and nearby rather than locking into a heavy reservation.'],
-        ['2:00pm', 'If energy is good, Bolt or walk up to Senhora do Monte; if not, skip it and save legs for Sunday.'],
+        ['11:45am', 'Continue uphill to Castelo de São Jorge and arrive a little before the target entry window.'],
+        ['12:00-2:00pm', 'Visit Castelo de São Jorge: ramparts, peacocks, city views, archaeology corners, and a quick café break if the group wants one.'],
+        ['2:00pm', 'Drift back down through Alfama lanes toward Baixa or Chiado; keep lunch casual and nearby rather than locking into a heavy reservation.'],
         ['3:15pm', 'Start the souvenir loop: Conserveira de Lisboa, Loja das Conservas, A Vida Portuguesa, and Bertrand.'],
         ['4:30pm', 'Manteigaria Chiado nata stop, then return to the apartment for a real reset and shower.'],
         ['5:45pm', 'Walk to Taberna da Rua das Flores and put the name down right as early dinner demand starts.'],
@@ -312,6 +313,7 @@ window.LISBON_DATA = {
   activities: [
     { id: 'oh-my-cod-food-tour', name: 'Oh! My Cod: 17 Tastings Lisbon Food Tour', verdict: 'Add / Confirmed', why: 'Booked for all four travelers on Friday, June 26. Meet under Rua Augusta Arch by 4:50pm for the 5:00-9:00pm Baixa, Mouraria, and Alfama tasting walk.', price: 'Booked', time: '4 hours', siteUrl: 'https://www.ohmycodtours.com/food-tours/lisbon-food-tour/', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20Augusta%20Arch%20R.%20Augusta%202%20Lisboa%201100-053' },
     { id: 'alfama', name: 'Saturday Alfama viewpoints walk', verdict: 'Add', why: 'Sé Cathedral → Santa Luzia → Portas do Sol → Alfama lanes. Anchored on Saturday so Friday stays easy before the food tour and Monday stays riverfront for the cruise.', price: 'Free', time: '90-150 minutes', siteUrl: '', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Alfama%20Lisbon%20Portugal' },
+    { id: 'castelo-sao-jorge', name: 'Castelo de São Jorge', verdict: 'Add', why: 'Plugs into the Saturday Alfama climb right after Portas do Sol; ramparts, peacocks, and the best panoramic view of central Lisbon.', price: 'Timed entry — book official', time: '~2 hours', siteUrl: 'https://castelodesaojorge.pt/en/', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Castelo+de+S%C3%A3o+Jorge+Lisbon' },
     { id: 'regaleira', name: 'Quinta da Regaleira', verdict: 'Add / Confirmed', why: 'Booked Sunday from 12:30-1:30pm. Weird, romantic, memorable, and now the second timed Sintra anchor.', price: 'Booked', time: '12:30-1:30pm', siteUrl: 'https://www.regaleira.pt/en/visits', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Quinta%20da%20Regaleira%20Sintra%20Portugal' },
     { id: 'monserrate', name: 'Monserrate Palace', verdict: 'Maybe', why: 'Still beautiful, but now only an if-everything-is-perfect add-on because Pena, Regaleira, and Furnas are fixed.', price: 'Timed ticket useful', time: '90-120 minutes', siteUrl: 'https://www.parquesdesintra.pt/en/parks-monuments/park-and-palace-of-monserrate/', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Monserrate%20Palace%20Sintra%20Portugal' },
     { id: 'pena', name: 'Pena Palace', verdict: 'Add / Confirmed', why: 'Booked Sunday at 10:00am. This is now the first fixed Sintra anchor.', price: 'Booked', time: '10:00am', siteUrl: 'https://www.parquesdesintra.pt/en/parks-monuments/park-and-national-palace-of-pena/', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pena%20Palace%20Sintra%20Portugal' },
@@ -342,7 +344,7 @@ window.LISBON_DATA = {
   routes: [
     { id: 'arrival-river', title: 'Arrival River Walk', stops: ['Rua da Madalena', 'Praça do Comércio', 'Ribeira das Naus', 'Chiado', 'Carmo'], note: 'Best first afternoon spine if bags are handled.' },
     { id: 'friday-food-tour', title: 'Friday Food Tour Meet-Up', stops: ['Rua da Madalena', 'Rua Augusta Arch by 4:50pm', 'Baixa', 'Mouraria', 'Alfama'], note: 'Keep lunch light, reset before leaving, and let the booked tour provide the evening flow.' },
-    { id: 'alfama-gold', title: 'Saturday Alfama Viewpoints', stops: ['Rua da Madalena', 'Sé Cathedral', 'Santa Luzia', 'Portas do Sol', 'Alfama lanes'], note: 'Do this slowly on Saturday. No Tram 28 line required.' },
+    { id: 'alfama-gold', title: 'Saturday Alfama Viewpoints', stops: ['Rua da Madalena', 'Sé Cathedral', 'Santa Luzia', 'Portas do Sol', 'Castelo de São Jorge', 'Alfama lanes'], note: 'Do this slowly on Saturday. No Tram 28 line required.' },
     { id: 'belem-water', title: 'Belém Waterfront', stops: ['Pastéis de Belém', 'Jerónimos exterior', 'Monument to the Discoveries', 'Belém Tower exterior', 'MAAT'], note: 'Monday default — exteriors only since interiors are closed Monday.' },
     { id: 'sintra-cascais', title: 'Sintra + Cascais Controlled Big Day', stops: ['Rossio / Sintra train', '10:00am Pena Palace', '12:30-1:30pm Quinta da Regaleira', 'Sintra snack / reset', 'Transfer to Guincho', '8:00pm Furnas do Guincho', 'Return Lisbon'], note: 'Pena, Regaleira, and Furnas are fixed. Monserrate is now optional only if timing is unusually smooth.' },
     { id: 'final-night', title: 'Final Night Discipline', stops: ['Pack before leaving', 'Bolt to Doca de Alcântara Gate 2 by 6:30pm', '7:00pm sunset Tagus cruise', 'Bolt straight home', 'no post-cruise dinner', 'bed early'], note: 'The 6:00am Dublin flight is the boss.' }
@@ -372,6 +374,7 @@ window.LISBON_DATA = {
   ],
   bookingTimeline: [
     ['Now / ASAP', 'Saturday Taberna logistics', 'high', ['Use Taberna da Rua das Flores as the Saturday dinner plan.', 'Go early, put the name down, and drink nearby while waiting.', 'Hold Ofício or Prado as a Saturday backup if the Taberna wait gets ugly.']],
+    ['Now / ASAP', 'Castelo de São Jorge entry', 'high', ['Book the official 12:00pm Saturday Jun 27 slot via castelodesaojorge.pt.', 'Skip resellers and combo tickets — plain castle entry only.', 'Arrive by 11:45am after Portas do Sol.']],
     ['Now / ASAP', 'Monday Canalha lunch', 'high', ['Reserve Canalha for around 1:30pm Monday as the main Belém meal.', 'Do not rely on O Vinhaca — wrong geography for the cruise day.']],
     ['Now / ASAP', 'Monday sunset cruise', 'high', ['Sunset Tagus cruise booked for Monday 7:00pm at Doca de Alcântara, Gate 2.', 'Leave Rua da Madalena by 6:00pm; arrive 6:30pm.', 'Pack before the cruise — no post-cruise dinner chase.']],
     ['Now / ASAP', 'Sintra tickets and dinner', 'high', ['Pena Palace is booked for 10:00am.', 'Quinta da Regaleira is booked for 12:30-1:30pm.', 'Furnas do Guincho is booked for 8:00pm.', 'Plan the Sintra to Guincho transfer before the day starts.']],
