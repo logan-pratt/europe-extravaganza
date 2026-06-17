@@ -316,7 +316,7 @@
       date: '2026-06-29',
       city: 'lisbon',
       dayId: 'mon',
-      label: 'Lisbon · Open final day',
+      label: 'Lisbon · Sunset cruise + pack',
       lodging: lisbonBase,
       anchors: [
         {
@@ -328,11 +328,59 @@
         },
         {
           time: 'Before dinner',
-          sortTime: '18:00',
+          sortTime: '17:30',
           type: 'prep',
-          title: 'Pack before dinner',
+          title: 'Pack before heading to the cruise',
           status: 'confirmed',
-          critical: true
+          critical: true,
+          note: 'Cruise ends 9:00-9:30pm — packing has to be done before you leave.'
+        },
+        {
+          time: '6:10pm',
+          sortTime: '18:10',
+          type: 'transfer',
+          title: 'Request Bolt/Uber',
+          status: 'planned',
+          critical: true,
+          note: 'Doca de Alcântara is ~15-20 min by car from Rua da Madalena.'
+        },
+        {
+          time: '6:15pm',
+          sortTime: '18:15',
+          type: 'transfer',
+          title: 'Leave Rua da Madalena (latest preferred)',
+          status: 'planned',
+          critical: true,
+          leaveBy: '6:15pm',
+          mapUrl: lisbonBase.mapUrl
+        },
+        {
+          time: '6:40-6:45pm',
+          sortTime: '18:40',
+          type: 'arrival',
+          title: 'Arrive Doca de Alcântara meeting point (Gate 2)',
+          status: 'planned',
+          critical: true,
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Doca%20de%20Alc%C3%A2ntara%20Gate%202%20R.%20da%20Cintura%20do%20Porto%20de%20Lisboa%201350-355%20Lisboa',
+          note: 'R. da Cintura do Porto de Lisboa 1350, Gate 2. Arrive 15 min before departure or lose the slot.'
+        },
+        {
+          time: '7:00pm',
+          sortTime: '19:00',
+          type: 'booking',
+          title: 'Sunset boat cruise departs',
+          status: 'confirmed',
+          critical: true,
+          siteUrl: 'https://l4ab.adj.st/bookings/7AVYZVOUS96LR63QR3EOIP97B6APFR1V/details?adj_t=6oimkb3_lut0srj&adj_deep_link=gyg%3A%2F%2Fbookings%2F7AVYZVOUS96LR63QR3EOIP97B6APFR1V%2Fdetails%3Fvisitor_id%3D3ATNRN99QG36BQY57XJ308TLSJJGUF6E%26utm_source%3Dgetyourguide%26utm_medium%3Demail_transactional%26utm_campaign%3Dshopping_cart_confirmation_v2%26utm_content%3Dbooking_summary_activity_details_move_v3&adj_fallback=https%3A%2F%2Fwww.getyourguide.com%2Fbooking%2F7AVYZVOUS96LR63QR3EOIP97B6APFR1V%3Fvisitor_id%3D3ATNRN99QG36BQY57XJ308TLSJJGUF6E%26utm_source%3Dgetyourguide%26utm_medium%3Demail_transactional%26utm_campaign%3Dshopping_cart_confirmation_v2%26utm_content%3Dbooking_summary_activity_details_move_v3&adj_redirect=https%3A%2F%2Fwww.getyourguide.com%2Fbooking%2F7AVYZVOUS96LR63QR3EOIP97B6APFR1V%3Fvisitor_id%3D3ATNRN99QG36BQY57XJ308TLSJJGUF6E%26utm_source%3Dgetyourguide%26utm_medium%3Demail_transactional%26utm_campaign%3Dshopping_cart_confirmation_v2%26utm_content%3Dbooking_summary_activity_details_move_v3&visitor_id=3ATNRN99QG36BQY57XJ308TLSJJGUF6E&utm_source=getyourguide&utm_medium=email_transactional&utm_campaign=shopping_cart_confirmation_v2&utm_content=booking_summary_activity_details_move_v3',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Doca%20de%20Alc%C3%A2ntara%20Gate%202%20R.%20da%20Cintura%20do%20Porto%20de%20Lisboa%201350-355%20Lisboa'
+        },
+        {
+          time: '9:00-9:30pm',
+          sortTime: '21:00',
+          type: 'arrival',
+          title: 'Cruise ends — Bolt back to Baixa',
+          status: 'planned',
+          mapUrl: lisbonBase.mapUrl
         },
         {
           time: 'Night',
@@ -344,8 +392,8 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'
         }
       ],
-      prep: ['Keep dinner early and close.', 'One drink max if the 6:00am flight is still the plan.'],
-      prepPreviousNight: ['Protect the final Lisbon day from late-night plans.']
+      prep: ['Pack before the cruise — you land back at 9:00-9:30pm with a 3:30am airport move.', 'Eat a small late lunch or snack pre-cruise; plan a light bite after if hungry.', 'One drink max if the 6:00am flight is still the plan.'],
+      prepPreviousNight: ['Protect the final Lisbon day from late-night plans.', 'Re-check cruise meeting point: Doca de Alcântara, Gate 2.']
     },
     {
       date: '2026-06-30',

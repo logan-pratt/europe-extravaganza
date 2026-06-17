@@ -13,7 +13,9 @@
       "mcp__supabase__execute_sql",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(node -e \"const d = require\\('./galway/data.js'.replace\\('require', ''\\)\\); console.log\\(Object.keys\\(window?.GALWAY_DATA || {}\\)\\)\")"
+      "Bash(node -e \"const d = require\\('./galway/data.js'.replace\\('require', ''\\)\\); console.log\\(Object.keys\\(window?.GALWAY_DATA || {}\\)\\)\")",
+      "Bash(node --check shared/schedule.js)",
+      "Bash(node --test today/schedule-logic.test.mjs)"
     ]
   }
 }

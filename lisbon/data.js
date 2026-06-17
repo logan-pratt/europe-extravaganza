@@ -164,8 +164,8 @@ window.LISBON_DATA = {
       id: 'mon',
       day: 'Monday',
       date: 'June 29',
-      title: 'Final Lisbon Day / Early Special Night',
-      mood: 'One last beautiful day, souvenir run, early dinner, disciplined night.',
+      title: 'Final Lisbon Day / Sunset Cruise',
+      mood: 'One last beautiful day, souvenir run, pack early, sunset cruise on the Tagus.',
       image: '../assets/lisbon-monday-senhora-monte.jpg',
       scores: { Stress: 4, Romance: 8, 'Group fun': 6, Food: 8 },
       timeline: [
@@ -174,9 +174,10 @@ window.LISBON_DATA = {
         ['Souvenirs', 'Conserveira de Lisboa, Loja das Conservas, A Vida Portuguesa, Bertrand/Chiado.'],
         ['Nata', 'Manteigaria in Chiado is the definitely-do nata stop.'],
         ['Afternoon', 'Keep flexible. Do not plan anything far away or hard to unwind from.'],
-        ['Before dinner', 'Pack before dinner. Confirm 3:30-3:45am airport move.'],
-        ['Early dinner', 'Prado Wine Bar, By The Wine, Prado, Ofício, Da Noi, or Time Out only as emergency fallback.'],
-        ['Night', 'One viewpoint toast or cocktail. Back to Airbnb by 10:00-10:30pm.']
+        ['Before cruise', 'Pack before leaving. Confirm 3:30-3:45am airport move.'],
+        ['6:15pm', 'Bolt/Uber from Rua da Madalena to Doca de Alcântara, Gate 2. Arrive 6:40-6:45pm.'],
+        ['7:00pm', 'Sunset boat cruise departs (booked). Cruise ends 9:00-9:30pm.'],
+        ['Night', 'Bolt back to Baixa. Light bite if hungry. Bed early — 6:00am flight.']
       ],
       optional: ['Loja das Conservas for tinned-fish gifts.', 'Lumi or São Pedro de Alcântara for one final toast.'],
       watch: ['No Bairro Alto, midnight fado, second bottle of wine, or hard-to-control dinner far from the Airbnb.'],
