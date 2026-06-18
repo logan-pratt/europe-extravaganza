@@ -83,6 +83,7 @@
           time: '5:00-9:00pm',
           sortTime: '17:00',
           type: 'booking',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Oh! My Cod: 17 Tastings Lisbon Food Tour',
           status: 'confirmed',
           critical: true,
@@ -298,6 +299,7 @@
           time: '10:00am',
           sortTime: '10:00',
           type: 'booking',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Pena Palace timed entry',
           status: 'confirmed',
           critical: true,
@@ -319,6 +321,7 @@
           time: '12:30pm',
           sortTime: '12:30',
           type: 'booking',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Quinta da Regaleira timed entry',
           status: 'confirmed',
           critical: true,
@@ -426,6 +429,7 @@
           time: '1:30pm',
           sortTime: '13:30',
           type: 'reservation',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Lunch at Canalha (main Monday meal)',
           status: 'planned',
           critical: true,
@@ -489,6 +493,7 @@
           time: '7:00pm',
           sortTime: '19:00',
           type: 'booking',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Sunset boat cruise departs',
           status: 'confirmed',
           critical: true,
@@ -542,6 +547,7 @@
           time: '6:00am',
           sortTime: '06:00',
           type: 'flight',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'LIS to Dublin flight',
           status: 'confirmed',
           critical: true,
@@ -609,6 +615,7 @@
           time: '1:02pm',
           sortTime: '13:02',
           type: 'train',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Dublin Heuston to Galway train',
           status: 'confirmed',
           critical: true,
@@ -657,6 +664,7 @@
           time: '8:00am-~1:30pm',
           sortTime: '08:00',
           type: 'tour',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Cliffs of Moher half-day express',
           status: 'confirmed',
           critical: true,
@@ -667,6 +675,7 @@
           time: '3:05pm',
           sortTime: '15:05',
           type: 'train',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Galway to Dublin train',
           status: 'confirmed',
           critical: true,
@@ -702,6 +711,7 @@
           time: '12:00pm',
           sortTime: '12:00',
           type: 'tour',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Guinness Storehouse tour',
           status: 'confirmed',
           critical: true,
@@ -729,6 +739,7 @@
           time: 'Travel day',
           sortTime: '10:00',
           type: 'flight',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Fly Dublin to London',
           status: 'planned',
           critical: true,
@@ -762,6 +773,7 @@
           time: 'Morning',
           sortTime: '07:00',
           type: 'event',
+          // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Wimbledon day',
           status: 'confirmed',
           critical: true,
