@@ -1,7 +1,7 @@
 // Bump CACHE whenever precached files or this worker's logic change, so the
 // activate handler clears the stale cache. (Add to the pre-deploy checklist.)
 // IMPORTANT: this version string must increment monotonically — never regress.
-const CACHE = 'ee-today-v12';
+const CACHE = 'ee-today-v13';
 
 // Paths are relative to sw.js (repo root).
 // REQUIRED: the Today view must render offline from these — a missing one

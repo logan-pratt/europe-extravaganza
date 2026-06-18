@@ -1274,18 +1274,57 @@ h3 {
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 8px;
+  width: 100%;
 }
 
 .actions .btn {
   padding: 6px 10px;
   font-size: 0.78rem;
   min-height: 36px;
+  flex: 0 0 auto;
 }
 
 .actions-lg .btn {
   padding: 10px 14px;
   font-size: 0.9rem;
   min-height: 48px;
+}
+
+/* Inside narrow rows (timeline cards, confirmation rows), the action cluster
+   should break to its own full-width row below the title rather than getting
+   squeezed into a side column. */
+.tl-card .actions,
+.wallet-item .actions {
+  flex-basis: 100%;
+  margin-top: 8px;
+}
+
+@media (max-width: 760px) {
+  .actions .btn {
+    padding: 5px 9px;
+    font-size: 0.74rem;
+    min-height: 32px;
+  }
+  .actions-lg .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    min-height: 44px;
+  }
+  /* Confirmation rows: stack time/title on top, actions as a new row below
+     instead of fighting for horizontal space with an ellipsed title. */
+  .wallet-item {
+    flex-wrap: wrap;
+  }
+  .wallet-item .wallet-title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.3;
+  }
+  .wallet-item .actions {
+    width: 100%;
+    margin-top: 6px;
+  }
 }
 
 /* #toast already exists above with .show class; add .visible alias for wireActionCluster */
