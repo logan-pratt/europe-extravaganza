@@ -82,6 +82,8 @@
           title: 'Oh! My Cod: 17 Tastings Lisbon Food Tour',
           status: 'confirmed',
           critical: true,
+          walkMinutes: 1,
+          walkMeters: 50,
           address: 'R. Augusta 2, 1100-053 Lisboa, Portugal',
           siteUrl: 'https://www.ohmycodtours.com/food-tours/lisbon-food-tour/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20Augusta%20Arch%20R.%20Augusta%202%20Lisboa%201100-053'
@@ -409,6 +411,8 @@
           type: 'sightseeing',
           title: 'Waterfront walk: Monument to the Discoveries + Belém Tower exterior',
           status: 'planned',
+          walkMinutes: 5,
+          walkMeters: 400,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Padr%C3%A3o%20dos%20Descobrimentos%20Lisbon'
         },
         {
@@ -418,6 +422,8 @@
           title: 'Lunch at Canalha (main Monday meal)',
           status: 'planned',
           critical: true,
+          walkMinutes: 8,
+          walkMeters: 600,
           address: 'Av. de Brasília 202, 1400-038 Lisboa, Portugal',
           siteUrl: 'https://www.canalha.pt/homepage/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Canalha%20Lisbon%20Portugal'
@@ -428,6 +434,8 @@
           type: 'optional',
           title: 'Optional MAAT or riverside coffee',
           status: 'tentative',
+          walkMinutes: 4,
+          walkMeters: 300,
           address: 'Av. de Brasília, Central Tejo, 1300-598 Lisboa, Portugal',
           siteUrl: 'https://www.maat.pt/en/plan-a-visit',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=MAAT%20Lisbon'
