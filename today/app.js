@@ -93,8 +93,12 @@ function getDayData(city, dayId) {
 }
 
 function boltUrl(address) {
+  return `https://bolt.eu/en/?pickup_address=&destination_address=${encodeURIComponent(address)}`;
+}
+
+function uberUrl(address) {
   const q = encodeURIComponent(address);
-  return `https://bolt.eu/en/?pickup_address=&destination_address=${q}`;
+  return `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${q}`;
 }
 
 function actionClusterHtml(target, { large = false } = {}) {
@@ -105,6 +109,7 @@ function actionClusterHtml(target, { large = false } = {}) {
   if (target.address) {
     parts.push(`<button class="btn ghost" type="button" data-copy="${escapeHtml(target.address)}">Copy</button>`);
     parts.push(`<a class="btn ghost" href="${escapeHtml(boltUrl(target.address))}" target="_blank" rel="noopener">Bolt</a>`);
+    parts.push(`<a class="btn ghost" href="${escapeHtml(uberUrl(target.address))}" target="_blank" rel="noopener">Uber</a>`);
   }
   return parts.length ? `<div class="${cls}">${parts.join('')}</div>` : '';
 }
@@ -189,6 +194,40 @@ function renderNowPanel(entry) {
     return;
   }
 
+  // Compute walking-mode next-preview values
+  const tomorrowEntry = SCHEDULE[getEntryIndex(entry) + 1] || null;
+  const walletRows = LOGIC.getWalletItems(entry, tomorrowEntry);
+  const allAnchors = LOGIC.sortAnchors(entry.anchors || []);
+  const walkLive = selectedIsToday ? LOGIC.getCurrentAndNextAnchors(entry, new Date()) : { current: null, next: allAnchors[0] };
+  const walkCurrent = walkLive.next || walkLive.current || allAnchors[0];
+  const walkCurrentIdx = walkCurrent ? allAnchors.indexOf(walkCurrent) : -1;
+  const walkNextAnchor = walkCurrentIdx >= 0 ? allAnchors[walkCurrentIdx + 1] : null;
+
+  const walkNextHtml = walkNextAnchor ? `
+    <div class="walk-only walk-next">
+      <span class="walk-next-time">${escapeHtml(walkNextAnchor.time)}</span>
+      <span class="walk-next-title">${escapeHtml(walkNextAnchor.title)}</span>
+      ${typeof walkNextAnchor.walkMinutes === 'number' ? `<span class="walk-next-delta">↘ ${walkNextAnchor.walkMinutes} min</span>` : ''}
+    </div>` : '';
+
+  // Find a wallet row matching the current or next anchor
+  const walletTitles = new Set([walkCurrent?.title, walkNextAnchor?.title].filter(Boolean));
+  const matchedWalletRows = walletRows.filter((r) => walletTitles.has(r.title));
+  const walletPanelHtml = matchedWalletRows.length
+    ? `<ul class="wallet-list">${matchedWalletRows.map((row) => `
+        <li class="wallet-row">
+          <div class="wallet-row-head">
+            <span class="wallet-time">${escapeHtml(row.time)}</span>
+            <span class="wallet-title">${escapeHtml(row.title)}</span>
+          </div>
+          <dl class="wallet-meta">
+            ${row.confirmation ? `<dt>Conf #</dt><dd><button class="btn ghost mono" data-copy="${escapeHtml(row.confirmation)}">${escapeHtml(row.confirmation)}</button></dd>` : ''}
+            ${row.reservedAs ? `<dt>Name</dt><dd>${escapeHtml(row.reservedAs)}</dd>` : ''}
+            ${row.phone ? `<dt>Phone</dt><dd><a class="btn ghost" href="tel:${escapeHtml(row.phone)}">${escapeHtml(row.phone)}</a></dd>` : ''}
+          </dl>
+        </li>`).join('')}</ul>`
+    : '<p class="empty">No booking for next move.</p>';
+
   $('#nowPanel').innerHTML = `
     <p class="now-eyebrow"><span class="now-pulse"></span>${label}</p>
     <h2 class="now-headline">${escapeHtml(focus.title)}</h2>
@@ -205,7 +244,21 @@ function renderNowPanel(entry) {
       ${focus.leaveBy ? `<span class="chip-flag leaveby">Leave by ${escapeHtml(focus.leaveBy)}</span>` : ''}
       ${actionClusterHtml(focus, { large: true })}
     </div>
+    ${walkNextHtml}
+    <button class="walk-only walk-wallet-btn btn ghost" type="button" id="walletRevealBtn">Wallet ↓</button>
+    <div class="walk-only walk-wallet-panel" id="walletRevealPanel" hidden>${walletPanelHtml}</div>
   `;
+
+  const revealBtn = document.getElementById('walletRevealBtn');
+  const revealPanel = document.getElementById('walletRevealPanel');
+  if (revealBtn && revealPanel) {
+    revealBtn.addEventListener('click', () => {
+      const isHidden = revealPanel.hasAttribute('hidden');
+      if (isHidden) revealPanel.removeAttribute('hidden');
+      else revealPanel.setAttribute('hidden', '');
+      revealBtn.textContent = isHidden ? 'Wallet ↑' : 'Wallet ↓';
+    });
+  }
 }
 
 function renderUtilityPanel(entry) {
