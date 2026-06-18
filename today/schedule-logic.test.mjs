@@ -319,3 +319,13 @@ test('getWalkLeg returns walking data and hides when prev is meal or lodging', (
   const e = { type: 'sightseeing', title: 'Next' };
   assert.equal(getWalkLeg(a, e), null);
 });
+
+test('getWalkLeg returns null when current anchor is a travel type', () => {
+  const prev = { type: 'sightseeing', title: 'View' };
+  const flight = { type: 'flight', title: 'LIS → DUB', walkMinutes: 10, walkMeters: 800 };
+  const train = { type: 'train', title: 'To Galway', walkMinutes: 5, walkMeters: 400 };
+  const transfer = { type: 'transfer', title: 'Walk to arch', walkMinutes: 6, walkMeters: 500 };
+  assert.equal(getWalkLeg(prev, flight), null);
+  assert.equal(getWalkLeg(prev, train), null);
+  assert.equal(getWalkLeg(prev, transfer), null);
+});

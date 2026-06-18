@@ -211,7 +211,7 @@
 
   const SLOT_WINDOWS = {
     breakfast: [6 * 60, 10 * 60 + 30],
-    lunch:     [11 * 60 + 30, 14 * 60 + 30],
+    lunch:     [11 * 60 + 30, 14 * 60],
     afternoon: [14 * 60 + 30, 17 * 60 + 30],
     drink:     [17 * 60, 19 * 60 + 30],
     dinner:    [19 * 60, 22 * 60],
@@ -334,9 +334,11 @@
   }
 
   const HIDE_WALK_FROM = new Set(['meal', 'lodging']);
+  const TRAVEL_TYPES_FOR_WALK = new Set(['flight', 'train', 'transfer']);
 
   function getWalkLeg(prevAnchor, anchor) {
     if (!anchor || typeof anchor.walkMinutes !== 'number') return null;
+    if (TRAVEL_TYPES_FOR_WALK.has(anchor.type)) return null;
     const hidden = !!(prevAnchor && HIDE_WALK_FROM.has(prevAnchor.type));
     return {
       minutes: anchor.walkMinutes,
