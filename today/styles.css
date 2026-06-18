@@ -1403,3 +1403,34 @@ h3 {
   margin-top: 8px;
   font-size: 0.8rem;
 }
+
+/* ── Walking mode ─────────────────────────────────────────── */
+[data-mode="walking"] .planner-context,
+[data-mode="walking"] .options-section,
+[data-mode="walking"] .deck-section,
+[data-mode="walking"] .utility-block:not([data-block="wallet"]) {
+  display: none;
+}
+
+[data-mode="walking"] .now-headline {
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+[data-mode="walking"] .actions-lg .btn {
+  min-height: 52px;
+  font-size: 1rem;
+}
+
+[data-mode="walking"] .today-grid {
+  grid-template-columns: 1fr;
+}
+
+[data-mode="walking"] .anchor-list .timeline > .tl-row:nth-of-type(n+3),
+[data-mode="walking"] .anchor-list .timeline > .tl-walk:nth-of-type(n+3) {
+  display: none;
+}
+
+[data-mode="walking"] body {
+  font-size: 18px;
+}

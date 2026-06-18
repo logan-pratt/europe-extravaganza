@@ -575,7 +575,34 @@ function startClock() {
   }, 45000);
 }
 
+const MODE_KEY = 'today.walking';
+
+function applyMode(mode) {
+  const shell = document.querySelector('.today-shell');
+  if (!shell) return;
+  shell.dataset.mode = mode;
+  const button = document.getElementById('modeToggle');
+  if (button) {
+    const walking = mode === 'walking';
+    button.textContent = walking ? '🛋 Full' : '🚶 Walking';
+    button.setAttribute('aria-pressed', walking ? 'true' : 'false');
+  }
+}
+
+function initModeToggle() {
+  const stored = localStorage.getItem(MODE_KEY) === '1' ? 'walking' : 'full';
+  applyMode(stored);
+  const button = document.getElementById('modeToggle');
+  if (!button) return;
+  button.addEventListener('click', () => {
+    const next = document.querySelector('.today-shell')?.dataset.mode === 'walking' ? 'full' : 'walking';
+    localStorage.setItem(MODE_KEY, next === 'walking' ? '1' : '0');
+    applyMode(next);
+  });
+}
+
 render();
+initModeToggle();
 startClock();
 
 (function initReactions() {
