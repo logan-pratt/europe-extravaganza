@@ -9,12 +9,14 @@
   const marlin = {
     name: 'Marlin Hotel Dublin',
     area: 'St Stephen’s Green / South Great George’s Street',
+    address: "11 Bow Lane East, St Stephen’s Green, Dublin 2, D02 AY81, Ireland",
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Marlin%20Hotel%20Dublin%2011%20Bow%20Lane%20East'
   };
 
   const kimpton = {
     name: 'Kimpton Fitzroy London',
     area: 'Bloomsbury / Russell Square',
+    address: 'Russell Square, London WC1B 5BE, United Kingdom',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kimpton%20Fitzroy%20London'
   };
 
@@ -33,6 +35,7 @@
           title: 'Logan and Emily land at LIS',
           status: 'confirmed',
           critical: true,
+          address: 'Aeroporto de Lisboa, 1749-078 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'
         },
         {
@@ -59,6 +62,7 @@
           type: 'arrival',
           title: 'Ashley and Max arrive',
           status: 'planned',
+          address: 'Aeroporto de Lisboa, 1749-078 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'
         },
         {
@@ -78,6 +82,7 @@
           title: 'Oh! My Cod: 17 Tastings Lisbon Food Tour',
           status: 'confirmed',
           critical: true,
+          address: 'R. Augusta 2, 1100-053 Lisboa, Portugal',
           siteUrl: 'https://www.ohmycodtours.com/food-tours/lisbon-food-tour/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20Augusta%20Arch%20R.%20Augusta%202%20Lisboa%201100-053'
         }
@@ -116,6 +121,7 @@
           status: 'planned',
           walkMinutes: 5,
           walkMeters: 350,
+          address: 'Largo da Sé, 1100-585 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=S%C3%A9%20Cathedral%20Lisbon'
         },
         {
@@ -126,6 +132,7 @@
           status: 'planned',
           walkMinutes: 6,
           walkMeters: 450,
+          address: 'Largo das Portas do Sol, 1100-411 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Miradouro%20das%20Portas%20do%20Sol%20Lisbon'
         },
         {
@@ -178,6 +185,7 @@
           status: 'planned',
           walkMinutes: 5,
           walkMeters: 350,
+          address: 'R. do Loreto 2, 1200-108 Lisboa, Portugal',
           siteUrl: 'https://manteigaria.com/en/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Manteigaria%20Chiado%20Lisbon'
         },
@@ -210,6 +218,7 @@
           critical: true,
           walkMinutes: 1,
           walkMeters: 50,
+          address: 'R. das Flores 103, 1200-193 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Taberna%20da%20Rua%20das%20Flores%20Lisbon'
         }
       ],
@@ -252,6 +261,7 @@
           title: 'Arrive Rossio Station — buy/load CP tickets',
           status: 'planned',
           critical: true,
+          address: 'Praça Dom Pedro IV, 1100-200 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rossio%20Station%20Lisbon',
           note: '~8 min to ticket, validate, and reach platform.'
         },
@@ -282,6 +292,7 @@
           title: 'Pena Palace timed entry',
           status: 'confirmed',
           critical: true,
+          address: 'Estrada da Pena, 2710-609 Sintra, Portugal',
           siteUrl: 'https://www.parquesdesintra.pt/en/parks-monuments/park-and-national-palace-of-pena/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pena%20Palace%20Sintra',
           note: 'Park entrance by 9:15am; Palace queue by 9:50am. Interior + terraces, then leave by 11:45am.'
@@ -302,6 +313,7 @@
           title: 'Quinta da Regaleira timed entry',
           status: 'confirmed',
           critical: true,
+          address: 'R. Barbosa du Bocage 5, 2710-567 Sintra, Portugal',
           siteUrl: 'https://www.regaleira.pt/en/visits',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Quinta%20da%20Regaleira%20Sintra',
           note: '1-hour grace period (in by 1:30pm). Hit Initiation Well + tunnels first.'
@@ -386,6 +398,7 @@
           type: 'sightseeing',
           title: 'Pastéis de Belém, then Jerónimos exterior photos',
           status: 'planned',
+          address: 'R. de Belém 84-92, 1300-085 Lisboa, Portugal',
           siteUrl: 'https://pasteisdebelem.pt/en/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Past%C3%A9is%20de%20Bel%C3%A9m%20Lisbon',
           note: 'Jerónimos and Belém Tower interiors are Monday-closed.'
@@ -405,6 +418,7 @@
           title: 'Lunch at Canalha (main Monday meal)',
           status: 'planned',
           critical: true,
+          address: 'Av. de Brasília 202, 1400-038 Lisboa, Portugal',
           siteUrl: 'https://www.canalha.pt/homepage/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Canalha%20Lisbon%20Portugal'
         },
@@ -414,6 +428,7 @@
           type: 'optional',
           title: 'Optional MAAT or riverside coffee',
           status: 'tentative',
+          address: 'Av. de Brasília, Central Tejo, 1300-598 Lisboa, Portugal',
           siteUrl: 'https://www.maat.pt/en/plan-a-visit',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=MAAT%20Lisbon'
         },
@@ -451,6 +466,7 @@
           title: 'Arrive Doca de Alcântara meeting point (Gate 2)',
           status: 'planned',
           critical: true,
+          address: 'R. da Cintura do Porto de Lisboa 1350, 1350-355 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Doca%20de%20Alc%C3%A2ntara%20Gate%202%20R.%20da%20Cintura%20do%20Porto%20de%20Lisboa%201350-355%20Lisboa',
           note: 'R. da Cintura do Porto de Lisboa 1350, Gate 2. Arrive 15 min before departure or lose the slot.'
         },
@@ -493,6 +509,7 @@
       lodging: {
         name: 'Kilkea Castle',
         area: 'County Kildare',
+        address: 'Kilkea, Castledermot, Co. Kildare, R14 XR82, Ireland',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kilkea%20Castle%20Kildare%20Ireland'
       },
       anchors: [
@@ -503,6 +520,7 @@
           title: 'Leave for Lisbon Airport',
           status: 'confirmed',
           critical: true,
+          address: 'Aeroporto de Lisboa, 1749-078 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'
         },
         {
@@ -513,6 +531,7 @@
           status: 'confirmed',
           critical: true,
           leaveBy: '3:30am',
+          address: 'Dublin Airport, Co. Dublin, K67 K8X0, Ireland',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Dublin%20Airport'
         },
         {
@@ -535,6 +554,7 @@
       lodging: {
         name: 'Kilkea Castle',
         area: 'County Kildare',
+        address: 'Kilkea, Castledermot, Co. Kildare, R14 XR82, Ireland',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kilkea%20Castle%20Kildare%20Ireland'
       },
       anchors: [
@@ -577,6 +597,7 @@
           title: 'Dublin Heuston to Galway train',
           status: 'confirmed',
           critical: true,
+          address: 'Dublin Heuston Station, Dublin 8, D08 HW07, Ireland',
           siteUrl: 'https://www.irishrail.ie/en-ie/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Dublin%20Heuston'
         },
@@ -587,6 +608,7 @@
           title: 'Arrive Galway',
           status: 'confirmed',
           critical: true,
+          address: 'Galway Ceannt Station, Eyre Square, Galway, H91 FHN3, Ireland',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Galway%20Train%20Station'
         }
       ],
@@ -609,6 +631,7 @@
           title: 'Meet Lally Tours outside HYDE Hotel',
           status: 'confirmed',
           critical: true,
+          address: '10 Forster St, Galway, H91 TCP0, Ireland',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=HYDE%20Hotel%2010%20Forster%20St%20Galway%20H91%20TCP0%20Ireland'
         },
         {
@@ -628,6 +651,7 @@
           title: 'Galway to Dublin train',
           status: 'confirmed',
           critical: true,
+          address: 'Galway Ceannt Station, Eyre Square, Galway, H91 FHN3, Ireland',
           siteUrl: 'https://www.irishrail.ie/en-ie/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Galway%20Train%20Station'
         },
@@ -638,6 +662,7 @@
           title: 'Arrive Dublin and transfer to Marlin',
           status: 'confirmed',
           critical: true,
+          address: marlin.address,
           mapUrl: marlin.mapUrl
         }
       ],
@@ -658,6 +683,7 @@
           title: 'Guinness Storehouse tour',
           status: 'confirmed',
           critical: true,
+          address: 'St James Gate, Dublin 8, D08 VF8H, Ireland',
           siteUrl: 'https://www.guinness-storehouse.com/en/booking',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Guinness%20Storehouse%20Dublin'
         }
@@ -680,6 +706,7 @@
           title: 'Fly Dublin to London',
           status: 'planned',
           critical: true,
+          address: 'Dublin Airport, Co. Dublin, K67 K8X0, Ireland',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Dublin%20Airport'
         },
         {
@@ -688,6 +715,7 @@
           type: 'lodging',
           title: 'Check in at Kimpton Fitzroy London',
           status: 'planned',
+          address: kimpton.address,
           mapUrl: kimpton.mapUrl
         }
       ],
@@ -708,6 +736,7 @@
           title: 'Wimbledon day',
           status: 'confirmed',
           critical: true,
+          address: 'All England Lawn Tennis Club, Church Rd, London SW19 5AG, United Kingdom',
           siteUrl: 'https://www.wimbledon.com/en_GB/tickets/the_queue',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Wimbledon%20All%20England%20Lawn%20Tennis%20Club'
         }
@@ -765,6 +794,7 @@
           title: 'Coffee, last look, airport buffer',
           status: 'planned',
           critical: true,
+          address: 'Heathrow Airport, Longford, Hounslow TW6 1QG, United Kingdom',
           siteUrl: 'https://tfl.gov.uk/plan-a-journey/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Heathrow%20Airport'
         }
