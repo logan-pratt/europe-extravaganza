@@ -47,6 +47,10 @@
           mapUrl: lisbonBase.mapUrl
         }
       ],
+      suggest: {
+        drink: ['pavilhao-chines', 'lumi-rooftop', 'park-bar'],
+        dinner: ['prado-wine-bar', 'by-the-wine', 'pica-pau']
+      },
       prep: ['Keep arrival day gentle.', 'Confirm bag-drop or luggage-storage plan if check-in timing is awkward.']
     },
     {
@@ -89,6 +93,9 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20Augusta%20Arch%20R.%20Augusta%202%20Lisboa%201100-053'
         }
       ],
+      suggest: {
+        lunch: ['frangasqueira', 'pica-pau', 'taberna-sal-grosso']
+      },
       prep: ['Keep lunch small before 17 tastings.', 'Wear comfortable shoes for the four-hour walking tour.']
     },
     {
@@ -620,6 +627,10 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Galway%20Train%20Station'
         }
       ],
+      suggest: {
+        drink: ['taaffes', 'tig-coili', 'tigh-neachtain'],
+        dinner: ['cava-bodega', 'ard-bia-nimmos', 'ruibin']
+      },
       prep: ['Keep luggage movement simple.', 'Set Friday Cliffs alarm before going out.'],
       prepPreviousNight: ['Confirm route from Kilkea to Dublin Heuston.', 'Keep train tickets handy.']
     },
@@ -674,6 +685,9 @@
           mapUrl: marlin.mapUrl
         }
       ],
+      suggest: {
+        dinner: ['mister-s', 'delahunt', 'library-street']
+      },
       prep: ['Waterproof shell and grip-friendly shoes for the Cliffs.', 'Keep Friday lunch fast and station-minded.'],
       prepPreviousNight: ['Set HYDE Hotel alarm.', 'Pack layers and rain shell.', 'Know where bags go during the tour.']
     },
@@ -696,6 +710,10 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Guinness%20Storehouse%20Dublin'
         }
       ],
+      suggest: {
+        drink: ['cobblestone', 'long-hall', 'kehoes'],
+        dinner: ['delahunt', 'library-street', 'mister-s']
+      },
       prep: ['Build the day around Guinness rather than trying to squeeze it in.', 'Pick one evening direction after the tour: central pubs, dinner, or trad.']
     },
     {
@@ -727,6 +745,9 @@
           mapUrl: kimpton.mapUrl
         }
       ],
+      suggest: {
+        dinner: ["The Harrison", "Noble Rot Lamb's Conduit", "Ciao Bella"]
+      },
       prep: ['Keep the London arrival night soft.', 'Confirm exact flight time and airport route once booked.'],
       prepPreviousNight: ['Confirm Dublin airport departure timing.', 'Pack for London transfer.']
     },
@@ -749,6 +770,9 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Wimbledon%20All%20England%20Lawn%20Tennis%20Club'
         }
       ],
+      suggest: {
+        dinner: ["Trullo", "The Tamil Prince", "Noble Rot Lamb's Conduit"]
+      },
       prep: ['Hydrate, sunscreen, portable battery.', 'Expect transport crowds leaving Wimbledon.'],
       prepPreviousNight: ['Check Wimbledon ticket/queue plan.', 'Lay out sunscreen, hats, water, and portable battery.']
     },
@@ -768,6 +792,10 @@
         }
       ],
       options: ['Bath day trip candidate', 'Central London wandering', 'Food-forward London day'],
+      suggest: {
+        lunch: ["Noble Rot Lamb's Conduit", "Andrew Edmunds", "Honey & Co"],
+        dinner: ["Andrew Edmunds", "Clos Maggiore", "Trullo"]
+      },
       prep: ['Bath can move here if you still want it and train/spa timing works.']
     },
     {
@@ -786,6 +814,10 @@
         }
       ],
       options: ['Bath day trip candidate', 'Mousetrap / Covent Garden finale', 'Borough to St Paul’s walk', 'Sir John Soane’s Museum'],
+      suggest: {
+        lunch: ["Noble Rot Lamb's Conduit", "Honey & Co", "Fortitude Bakehouse"],
+        dinner: ["Clos Maggiore", "Andrew Edmunds", "Noble Rot Lamb's Conduit"]
+      },
       prep: ['Protect this from becoming overstuffed.']
     },
     {
