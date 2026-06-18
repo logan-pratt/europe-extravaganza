@@ -213,6 +213,10 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Taberna%20da%20Rua%20das%20Flores%20Lisbon'
         }
       ],
+      suggest: {
+        lunch: ['taberna-sal-grosso', 'pica-pau', 'frangasqueira'],
+        dinner: ['oficio', 'prado', 'a-nossa-casa']
+      },
       prep: ['Skip Tram 28 and Santa Justa Lift lines — walk the hills.', 'Senhora do Monte is optional, not mandatory; protect legs for Sunday Sintra.', 'Taberna is walk-up: arrive ~5:45pm, put the name down, drink nearby, and set a hard pivot time.', 'Hold Ofício or Prado as a Saturday dinner backup if Taberna wait gets ugly.']
     },
     {

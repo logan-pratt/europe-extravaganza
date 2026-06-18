@@ -1357,3 +1357,49 @@ h3 {
 .mono {
   font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
 }
+
+/* ===== Task 5: Day-aware suggestions section ===== */
+
+.suggest-slot {
+  margin-top: 12px;
+}
+
+.suggest-slot-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+
+.suggest-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.suggest-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--paper);
+}
+
+.suggest-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.suggest-score {
+  color: var(--accent, var(--red));
+  font-weight: 800;
+}
+
+.lock-it {
+  margin-top: 8px;
+  font-size: 0.8rem;
+}

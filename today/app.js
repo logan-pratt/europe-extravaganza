@@ -9,6 +9,18 @@ const CITY_DATA = {
 
 let selectedDate = initialSelectedDate();
 
+const reactionsByCity = {};
+const subscribedCities = new Set();
+
+const SLOT_LABELS = {
+  breakfast: 'Breakfast',
+  lunch: 'Lunch',
+  afternoon: 'Afternoon',
+  drink: 'Drink',
+  dinner: 'Dinner',
+  late: 'Late night'
+};
+
 const $ = (selector) => document.querySelector(selector);
 
 function escapeHtml(value) {
@@ -61,6 +73,9 @@ function selectDate(dateKey, shouldUpdateHash = true) {
     history.replaceState(null, '', `#${selectedDate}`);
   }
   render();
+  if (entry.city && !(entry.city in reactionsByCity)) {
+    loadReactionsFor(entry.city);
+  }
 }
 
 function selectedDateLabel() {
@@ -428,9 +443,11 @@ function optionLabelMap(city) {
 }
 
 async function renderOptions(entry) {
-  const options = LOGIC.getOpenSlotOptions(entry);
+  const cityData = CITY_DATA[entry.city];
+  const pool = LOGIC.getSuggestionPool(entry, cityData, reactionsByCity[entry.city] || []);
+  const slots = Object.keys(pool);
 
-  if (!options.length) {
+  if (!slots.length) {
     $('#optionsSection').innerHTML = '';
     return;
   }
@@ -438,17 +455,63 @@ async function renderOptions(entry) {
   $('#optionsSection').innerHTML = `
     <div class="section-head">
       <p class="eyebrow">Open slots</p>
-      <h2>Useful options.</h2>
+      <h2>Loved picks for the gaps.</h2>
     </div>
-    <div class="options-grid">
-      ${options.map((option) => `
-        <article class="option-card">
-          <span class="status-badge tbd">TBD</span>
-          <h3>${escapeHtml(option)}</h3>
-        </article>
-      `).join('')}
-    </div>
+    ${slots.map((slot) => `
+      <div class="suggest-slot">
+        <p class="suggest-slot-label">${escapeHtml(SLOT_LABELS[slot] || slot)} · open</p>
+        <div class="suggest-grid">
+          ${pool[slot].map((pick) => `
+            <article class="suggest-card">
+              <div class="suggest-head">
+                ${pick.score > 0 ? `<span class="suggest-score">❤︎ ${pick.score}</span>` : ''}
+                <span class="suggest-tags">${escapeHtml((pick.tags || '').split(' ').filter(Boolean).slice(0, 2).map((t) => '#' + t).join(' '))}</span>
+              </div>
+              <h3>${escapeHtml(pick.name)}</h3>
+              ${pick.why ? `<p>${escapeHtml(pick.why)}</p>` : ''}
+              ${actionClusterHtml(pick)}
+              <button class="btn lock-it" type="button" data-lock="${escapeHtml(pick.name)}" data-slot="${escapeHtml(slot)}">Lock it in →</button>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    `).join('')}
   `;
+
+  document.querySelectorAll('[data-lock]').forEach((button) => {
+    if (button.dataset.wired === '1') return;
+    button.dataset.wired = '1';
+    button.addEventListener('click', async () => {
+      const text = `${button.dataset.slot}: ${button.dataset.lock}`;
+      try { await navigator.clipboard.writeText(text); showToast('Copied — add to schedule'); }
+      catch { showToast('Copy failed'); }
+    });
+  });
+}
+
+async function loadReactionsFor(city) {
+  if (!city) return;
+  try {
+    if (typeof window.fetchReactions === 'function') {
+      const result = await window.fetchReactions(city);
+      reactionsByCity[city] = result?.data || [];
+    }
+  } catch {
+    reactionsByCity[city] = reactionsByCity[city] || [];
+  }
+
+  if (!subscribedCities.has(city) && typeof window.subscribeReactions === 'function') {
+    subscribedCities.add(city);
+    window.subscribeReactions(city, async () => {
+      try {
+        const result = await window.fetchReactions(city);
+        reactionsByCity[city] = result?.data || [];
+      } catch { /* keep existing cache */ }
+      render();
+    });
+  }
+
+  render();
 }
 
 function renderEmpty() {
@@ -514,3 +577,8 @@ function startClock() {
 
 render();
 startClock();
+
+(function initReactions() {
+  const entry = getEntry(selectedDate) || SCHEDULE[0];
+  if (entry?.city) loadReactionsFor(entry.city);
+})();
