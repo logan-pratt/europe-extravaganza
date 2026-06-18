@@ -1309,3 +1309,51 @@ h3 {
   background: var(--paper);
   padding: 2px 6px;
 }
+
+/* ===== Task 4: Wallet block ===== */
+
+.wallet-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: grid;
+  gap: 8px;
+}
+
+.wallet-row {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.wallet-row-head {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-weight: 700;
+}
+
+.wallet-meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+}
+
+.wallet-meta dt {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  align-self: center;
+}
+
+.wallet-meta dd {
+  margin: 0;
+}
+
+.mono {
+  font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+}

@@ -328,6 +328,8 @@
           leaveBy: 'Arrive 7:45pm',
           siteUrl: 'https://www.furnasdoguincho.pt/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Furnas%20do%20Guincho%20Cascais',
+          address: 'Estrada do Guincho, 2750-642 Cascais, Portugal',
+          booking: { confirmation: 'FG-2026-0628', reservedAs: 'Pratt', phone: '+351 21 487 0388' },
           note: 'On the Guincho coast — not central Cascais; budget extra transfer time.'
         },
         {

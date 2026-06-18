@@ -197,6 +197,8 @@ function renderUtilityPanel(entry) {
   const lodging = entry.lodging;
   const prepItems = entry.prep || [];
   const bookingItems = (entry.anchors || []).filter((anchor) => anchor.status === 'confirmed' || anchor.critical);
+  const tomorrowEntry = SCHEDULE[getEntryIndex(entry) + 1] || null;
+  const walletRows = LOGIC.getWalletItems(entry, tomorrowEntry);
 
   $('#utilityPanel').innerHTML = `
     <div class="utility-block">
@@ -216,12 +218,31 @@ function renderUtilityPanel(entry) {
               <span class="wallet-time">${escapeHtml(item.time)}</span>
               <span class="wallet-title">${escapeHtml(item.title)}</span>
               ${item.leaveBy ? `<span class="chip-flag leaveby">Leave ${escapeHtml(item.leaveBy)}</span>` : ''}
-              ${item.mapUrl ? `<a class="wallet-map" href="${escapeHtml(item.mapUrl)}" target="_blank" rel="noopener" aria-label="Map ${escapeHtml(item.title)}">↗</a>` : ''}
               ${actionClusterHtml(item)}
             </li>
           `).join('')}
         </ul>
       ` : '<p class="empty">No confirmed bookings pinned yet.</p>'}
+    </div>
+    <div class="utility-block" data-block="wallet">
+      <p class="eyebrow">Wallet</p>
+      ${walletRows.length ? `
+        <ul class="wallet-list">
+          ${walletRows.map((row) => `
+            <li class="wallet-row">
+              <div class="wallet-row-head">
+                <span class="wallet-time">${escapeHtml(row.time)}</span>
+                <span class="wallet-title">${escapeHtml(row.title)}</span>
+              </div>
+              <dl class="wallet-meta">
+                ${row.confirmation ? `<dt>Conf #</dt><dd><button class="btn ghost mono" data-copy="${escapeHtml(row.confirmation)}">${escapeHtml(row.confirmation)}</button></dd>` : ''}
+                ${row.reservedAs ? `<dt>Name</dt><dd>${escapeHtml(row.reservedAs)}</dd>` : ''}
+                ${row.phone ? `<dt>Phone</dt><dd><a class="btn ghost" href="tel:${escapeHtml(row.phone)}">${escapeHtml(row.phone)}</a></dd>` : ''}
+              </dl>
+            </li>
+          `).join('')}
+        </ul>
+      ` : '<p class="empty">No bookings to surface for today or tomorrow.</p>'}
     </div>
     <div class="utility-block">
       <p class="eyebrow">Prep</p>
