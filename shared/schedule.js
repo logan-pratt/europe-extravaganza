@@ -104,6 +104,8 @@
           type: 'transfer',
           title: 'Walk from Rua da Madalena to Sé Cathedral',
           status: 'planned',
+          walkMinutes: 8,
+          walkMeters: 600,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=S%C3%A9%20Cathedral%20Lisbon'
         },
         {
@@ -112,6 +114,8 @@
           type: 'sightseeing',
           title: 'Sé Cathedral quick stop, then continue uphill',
           status: 'planned',
+          walkMinutes: 5,
+          walkMeters: 350,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=S%C3%A9%20Cathedral%20Lisbon'
         },
         {
@@ -120,6 +124,8 @@
           type: 'sightseeing',
           title: 'Santa Luzia + Portas do Sol viewpoints',
           status: 'planned',
+          walkMinutes: 6,
+          walkMeters: 450,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Miradouro%20das%20Portas%20do%20Sol%20Lisbon'
         },
         {
@@ -128,6 +134,8 @@
           type: 'transfer',
           title: 'Walk from Portas do Sol to Castelo de São Jorge',
           status: 'planned',
+          walkMinutes: 7,
+          walkMeters: 500,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Castelo+de+S%C3%A3o+Jorge+Lisbon'
         },
         {
@@ -137,6 +145,8 @@
           title: 'Castelo de São Jorge visit',
           status: 'planned',
           critical: true,
+          walkMinutes: 3,
+          walkMeters: 200,
           address: 'R. de Santa Cruz do Castelo, 1100-129 Lisboa, Portugal',
           siteUrl: 'https://castelodesaojorge.pt/en/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Castelo+de+S%C3%A3o+Jorge+Lisbon'
@@ -146,7 +156,9 @@
           sortTime: '14:00',
           type: 'food',
           title: 'Drift down through Alfama; casual lunch nearby',
-          status: 'planned'
+          status: 'planned',
+          walkMinutes: 10,
+          walkMeters: 700
         },
         {
           time: '3:15pm',
@@ -154,6 +166,8 @@
           type: 'shopping',
           title: 'Souvenir loop: Conserveira, Loja das Conservas, A Vida Portuguesa, Bertrand',
           status: 'planned',
+          walkMinutes: 12,
+          walkMeters: 900,
           mapUrl: 'https://www.google.com/maps/dir/?api=1&origin=Conserveira+de+Lisboa&destination=Bertrand+Chiado&waypoints=Loja+das+Conservas%7CA+Vida+Portuguesa+Chiado'
         },
         {
@@ -162,6 +176,8 @@
           type: 'snack',
           title: 'Manteigaria Chiado nata stop, then apartment reset',
           status: 'planned',
+          walkMinutes: 5,
+          walkMeters: 350,
           siteUrl: 'https://manteigaria.com/en/',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Manteigaria%20Chiado%20Lisbon'
         },
@@ -172,6 +188,8 @@
           title: 'Walk to Taberna da Rua das Flores and put the name down',
           status: 'planned',
           critical: true,
+          walkMinutes: 8,
+          walkMeters: 600,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Taberna%20da%20Rua%20das%20Flores%20Lisbon'
         },
         {
@@ -179,7 +197,9 @@
           sortTime: '18:00',
           type: 'bar',
           title: 'Drink nearby in Chiado while waiting; pivot if 7:30pm looks ugly',
-          status: 'planned'
+          status: 'planned',
+          walkMinutes: 2,
+          walkMeters: 150
         },
         {
           time: '7:00-9:00pm',
@@ -188,6 +208,8 @@
           title: 'Taberna da Rua das Flores dinner',
           status: 'planned',
           critical: true,
+          walkMinutes: 1,
+          walkMeters: 50,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Taberna%20da%20Rua%20das%20Flores%20Lisbon'
         }
       ],

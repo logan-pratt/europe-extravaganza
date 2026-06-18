@@ -298,6 +298,13 @@ function renderAnchors(entry) {
   const lineHtml = (frac) => `<div class="now-line" style="--frac:${frac}"><span>now</span></div>`;
 
   const body = annotated.map(({ anchor, timing }, i) => {
+    const prevAnchor = annotated[i - 1]?.anchor;
+    const leg = i > 0 ? LOGIC.getWalkLeg(prevAnchor, anchor) : null;
+    const legHtml = leg && !leg.hidden ? `
+    <div class="tl-walk">
+      <span>↘ ${leg.minutes} min walk${leg.meters ? ` · ${leg.meters} m` : ''}</span>
+    </div>` : '';
+
     let cardInner;
     if (i === 0 && topIsFocus && !TRAVEL_TYPES.has(anchor.type)) {
       cardInner = `<div class="tl-card is-echo"><span class="meta-time">${escapeHtml(anchor.time)}</span><span>${escapeHtml(anchor.title)} — shown above</span></div>`;
@@ -306,7 +313,7 @@ function renderAnchors(entry) {
     }
     const card = `<div class="tl-row ${timing ? `timing-${timing}` : ''}">${cardInner}</div>`;
     const line = nowLine && nowLine.index === i ? lineHtml(nowLine.fraction) : '';
-    return card + line;
+    return legHtml + card + line;
   }).join('');
 
   const topLine = nowLine && nowLine.index === -1 ? lineHtml(0) : '';
