@@ -201,8 +201,7 @@ function renderNowPanel(entry) {
   }
 
   // Compute walking-mode next-preview values
-  const tomorrowEntry = SCHEDULE[getEntryIndex(entry) + 1] || null;
-  const walletRows = LOGIC.getWalletItems(entry, tomorrowEntry);
+  const walletRows = LOGIC.getWalletItems(entry);
   const allAnchors = LOGIC.sortAnchors(entry.anchors || []);
   const walkLive = selectedIsToday ? LOGIC.getCurrentAndNextAnchors(entry, new Date()) : { current: null, next: allAnchors[0] };
   const walkCurrent = walkLive.next || walkLive.current || allAnchors[0];
@@ -273,8 +272,7 @@ function renderUtilityPanel(entry) {
   const bookingItems = (entry.anchors || []).filter((anchor) => (
     confirmedOnly ? LOGIC.isConfirmedPlan(anchor) : (anchor.status === 'confirmed' || anchor.critical)
   ));
-  const tomorrowEntry = SCHEDULE[getEntryIndex(entry) + 1] || null;
-  const walletRows = LOGIC.getWalletItems(entry, tomorrowEntry);
+  const walletRows = LOGIC.getWalletItems(entry);
 
   $('#utilityPanel').innerHTML = `
     <div class="utility-block">
@@ -318,7 +316,7 @@ function renderUtilityPanel(entry) {
             </li>
           `).join('')}
         </ul>
-      ` : '<p class="empty">No bookings to surface for today or tomorrow.</p>'}
+      ` : '<p class="empty">No bookings to surface for this day.</p>'}
     </div>
     <div class="utility-block">
       <p class="eyebrow">Prep</p>

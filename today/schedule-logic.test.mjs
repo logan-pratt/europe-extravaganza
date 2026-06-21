@@ -288,7 +288,7 @@ test('getSuggestionPool ranks by reactions within pool and caps at 3', () => {
   assert.ok(!pool.dinner.some((p) => p.id === 'd'));
 });
 
-test('getWalletItems collects bookings from today and tomorrow', () => {
+test('getWalletItems collects bookings from the selected day only', () => {
   const today = {
     date: '2026-06-28',
     anchors: [
@@ -304,8 +304,8 @@ test('getWalletItems collects bookings from today and tomorrow', () => {
     ]
   };
   const rows = getWalletItems(today, tomorrow);
-  assert.equal(rows.length, 3);
-  assert.deepEqual(rows.map((r) => r.title), ['Pena', 'Furnas', 'Canalha']);
+  assert.equal(rows.length, 2);
+  assert.deepEqual(rows.map((r) => r.title), ['Pena', 'Furnas']);
 });
 
 test('getWalkLeg returns walking data and hides when prev is meal or lodging', () => {

@@ -310,7 +310,7 @@
     return out;
   }
 
-  function getWalletItems(today, tomorrow) {
+  function getWalletItems(today) {
     const rows = [];
     const pushFrom = (entry) => {
       if (!entry) return;
@@ -329,7 +329,6 @@
       });
     };
     pushFrom(today);
-    pushFrom(tomorrow);
     return rows;
   }
 
