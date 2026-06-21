@@ -14,7 +14,7 @@ window.LISBON_DATA = {
   quickFacts: [
     ['Home base', 'Rua da Madalena 214', 'Excellent for Baixa, Alfama, Chiado, Rossio, and Praça do Comércio.', 'https://www.google.com/maps/search/?api=1&query=Rua%20da%20Madalena%20214%20Lisbon%201100-204%20Portugal'],
     ['Arrivals', 'Thu Jun 25 + Fri Jun 26', 'Logan and Emily land Thursday at 11:50am. Ashley and Max arrive Friday around 10:00am.', 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'],
-    ['Departure', 'Tue Jun 30', '6:00am flight to Dublin. Leave around 3:30-3:45am.', 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'],
+    ['Departure', 'Tue Jun 30', '6:00am flight to Dublin. Car driver booked for 3:00am.', 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'],
     ['Big day', 'Sunday Sintra', 'Train to Sintra, 10:00am Pena Palace, 12:30-1:30pm Regaleira, and 8:00pm Furnas do Guincho.', 'https://www.google.com/maps/search/?api=1&query=Quinta%20da%20Regaleira%20Sintra%20Portugal'],
     ['Main caution', 'Monday discipline', 'Pack before dinner, early meal, one drink max, airport plan confirmed.', 'https://www.google.com/maps/search/?api=1&query=Prado%20Wine%20Bar%20Lisbon']
   ],
@@ -33,7 +33,7 @@ window.LISBON_DATA = {
     { status: 'Add', title: 'Alfama viewpoints', text: 'Sé Cathedral, Santa Luzia, Portas do Sol, and Alfama lanes move to Saturday so the booked Friday food tour can breathe.' },
     { status: 'Add', title: 'One seafood feast', text: 'Ramiro if logistics work; otherwise Rosamar, Sea Me, Solar dos Presuntos, or Cascais seafood.' },
     { status: 'Add', title: 'Sintra, now timed', text: 'Sunday is booked around 10:00am Pena Palace, 12:30-1:30pm Regaleira, and an 8:00pm Furnas do Guincho dinner.' },
-    { status: 'Protect', title: 'Monday night discipline', text: 'Pack before dinner, eat early, one drink max, and pre-book the 3:30am airport move.' },
+    { status: 'Protect', title: 'Monday night discipline', text: 'Pack before dinner, eat early, one drink max, and protect the booked 3:00am airport driver.' },
     { status: 'Skip', title: 'Fake must-dos', text: 'Tram 28 lines, Santa Justa Lift lines, Belém Tower interior, Pink Street as destination, and Sintra+Cascais+Cabo da Roca.' }
   ],
   chapters: [
@@ -177,7 +177,7 @@ window.LISBON_DATA = {
         ['12:45pm', 'Confirmed lunch at Canalha; use this as the main Monday meal and do not use O Vinhaça as the Belém lunch plan.'],
         ['3:15pm', 'Optional MAAT stop or riverside coffee; keep this flexible based on heat, rain, and group energy.'],
         ['4:30pm', 'Bolt or taxi back to Rua da Madalena; build in late-afternoon traffic buffer and do not cut this close.'],
-        ['5:05pm', 'Apartment reset: finish packing, change for the cruise, charge phones, and leave airport bags ready for the 3:30-3:45am transfer.'],
+        ['5:05pm', 'Apartment reset: finish packing, change for the cruise, charge phones, and leave airport bags ready for the 3:00am driver.'],
         ['6:00pm', 'Bolt or taxi to Doca de Alcântara, Gate 2; aim to arrive by 6:30pm for the 7:00pm cruise.'],
         ['7:00-9:30pm', 'Sunset Tagus cruise; after docking, Bolt straight home, skip post-cruise dinner or Bairro Alto, set 3:15am and 3:25am alarms, and sleep.']
       ],
@@ -384,6 +384,6 @@ window.LISBON_DATA = {
     ['2-4 weeks ahead', 'Rooftop / fado choice', 'medium', ['Reserve Lumi sunset or O Faia/Clube/Mesa only if the group actually wants it.', 'Do not stack fado onto the Sintra night.']],
     ['Friday Jun 26', 'Tour-day logistics', 'high', ['Keep lunch light before 17 tastings.', 'Wear comfortable shoes, bring water, and arrive under Rua Augusta Arch by 4:50pm.']],
     ['Week of', 'Hours sanity check', 'high', ['Verify Sunday/Monday closures.', 'Check Belém Tower access and weather.']],
-    ['Sunday/Monday', 'Airport discipline', 'high', ['Pre-book or confirm 3:30-3:45am airport transfer.', 'Pack before Monday dinner.']]
+    ['Confirmed', 'Airport discipline', 'high', ['Car driver is booked for 3:00am Tuesday Jun 30.', 'Pack before Monday dinner.']]
   ]
 };

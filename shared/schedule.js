@@ -523,13 +523,13 @@
           time: 'Night',
           sortTime: '21:30',
           type: 'prep',
-          title: 'Confirm 3:30-3:45am airport move',
+          title: '3:00am airport car driver is booked',
           status: 'confirmed',
           critical: true,
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'
         }
       ],
-      prep: ['Pack before leaving for Belém — you land back from the cruise at 9:00-9:30pm with a 3:30am airport move.', 'Canalha is the Monday Belém lunch anchor; do not pivot to O Vinhaca.', 'Jerónimos and Belém Tower interiors are Monday-closed — exterior-first day.', 'Leave the apartment for the cruise by 6:00pm and skip any post-cruise dinner chase.', 'One drink max because of the 6:00am flight.'],
+      prep: ['Pack before leaving for Belém — you land back from the cruise at 9:00-9:30pm with a 3:00am airport driver booked.', 'Canalha is the Monday Belém lunch anchor; do not pivot to O Vinhaca.', 'Jerónimos and Belém Tower interiors are Monday-closed — exterior-first day.', 'Leave the apartment for the cruise by 6:00pm and skip any post-cruise dinner chase.', 'One drink max because of the 6:00am flight.'],
       prepPreviousNight: ['Protect Sunday recovery so Monday starts clean.', 'Re-check cruise meeting point: Doca de Alcântara, Gate 2.', 'Canalha is confirmed for 12:45pm.']
     },
     {
@@ -545,12 +545,13 @@
       },
       anchors: [
         {
-          time: '3:30-3:45am',
-          sortTime: '03:30',
+          time: '3:00am',
+          sortTime: '03:00',
           type: 'transfer',
-          title: 'Leave for Lisbon Airport',
+          title: 'Car driver to Lisbon Airport',
           status: 'confirmed',
           critical: true,
+          note: 'Booked driver pickup for the 6:00am LIS to Dublin flight.',
           address: 'Aeroporto de Lisboa, 1749-078 Lisboa, Portugal',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lisbon%20Airport'
         },
@@ -562,7 +563,7 @@
           title: 'LIS to Dublin flight',
           status: 'confirmed',
           critical: true,
-          leaveBy: '3:30am',
+          leaveBy: '3:00am',
           address: 'Dublin Airport, Co. Dublin, K67 K8X0, Ireland',
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Dublin%20Airport'
         },
@@ -576,7 +577,7 @@
         }
       ],
       prep: ['Keep passports and flight documents accessible.', 'Expect this day to be logistics-first.'],
-      prepPreviousNight: ['Pack before dinner.', 'Confirm the airport ride.', 'Put passports and flight documents somewhere obvious.']
+      prepPreviousNight: ['Pack before dinner.', 'Car driver is booked for 3:00am.', 'Put passports and flight documents somewhere obvious.']
     },
     {
       date: '2026-07-01',
