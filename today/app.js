@@ -8,6 +8,7 @@ const CITY_DATA = {
 };
 
 let selectedDate = initialSelectedDate();
+let confirmedOnly = localStorage.getItem('today.confirmedOnly') === '1';
 
 const reactionsByCity = {};
 const subscribedCities = new Set();
@@ -170,7 +171,12 @@ function renderStatus(entry) {
     message = `Between pinned days · Next up: ${liveState.next.label}`;
   }
 
-  $('#statusStrip').textContent = message;
+  $('#statusStrip').textContent = confirmedOnly ? `${message} · Confirmed only` : message;
+}
+
+function activeEntry(entry) {
+  if (!confirmedOnly) return entry;
+  return { ...entry, anchors: LOGIC.getConfirmedAnchors(entry) };
 }
 
 function renderNowPanel(entry) {
@@ -264,7 +270,9 @@ function renderNowPanel(entry) {
 function renderUtilityPanel(entry) {
   const lodging = entry.lodging;
   const prepItems = entry.prep || [];
-  const bookingItems = (entry.anchors || []).filter((anchor) => anchor.status === 'confirmed' || anchor.critical);
+  const bookingItems = (entry.anchors || []).filter((anchor) => (
+    confirmedOnly ? LOGIC.isConfirmedPlan(anchor) : (anchor.status === 'confirmed' || anchor.critical)
+  ));
   const tomorrowEntry = SCHEDULE[getEntryIndex(entry) + 1] || null;
   const walletRows = LOGIC.getWalletItems(entry, tomorrowEntry);
 
@@ -369,12 +377,15 @@ function renderAnchors(entry) {
   $('#todayTitle').textContent = `${formatLongDate(entry.date)} · ${entry.label}`;
   const actualTodayKey = LOGIC.dateKey(new Date());
   const selectedIsToday = entry.date === actualTodayKey;
+  const filteredEntry = activeEntry(entry);
   const annotated = selectedIsToday
-    ? LOGIC.annotateAnchors(entry, new Date())
-    : LOGIC.sortAnchors(entry.anchors || []).map((anchor) => ({ anchor, timing: '' }));
+    ? LOGIC.annotateAnchors(filteredEntry, new Date())
+    : LOGIC.sortAnchors(filteredEntry.anchors || []).map((anchor) => ({ anchor, timing: '' }));
 
   if (!annotated.length) {
-    $('#anchorList').innerHTML = '<p class="empty">No anchors for this day yet.</p>';
+    $('#anchorList').innerHTML = confirmedOnly
+      ? '<p class="empty">No confirmed plans or reservations for this day yet.</p>'
+      : '<p class="empty">No anchors for this day yet.</p>';
     return;
   }
 
@@ -383,12 +394,12 @@ function renderAnchors(entry) {
     || annotated[0].anchor.title;
   const topIsFocus = annotated[0].anchor.title === focusTitle;
 
-  const nowLine = selectedIsToday ? LOGIC.getNowLine(entry, new Date()) : null;
+  const nowLine = selectedIsToday ? LOGIC.getNowLine(filteredEntry, new Date()) : null;
   const lineHtml = (frac) => `<div class="now-line" style="--frac:${frac}"><span>now</span></div>`;
 
   const body = annotated.map(({ anchor, timing }, i) => {
     const prevAnchor = annotated[i - 1]?.anchor;
-    const leg = i > 0 ? LOGIC.getWalkLeg(prevAnchor, anchor) : null;
+    const leg = i > 0 && !confirmedOnly ? LOGIC.getWalkLeg(prevAnchor, anchor) : null;
     const legHtml = leg && !leg.hidden ? `
     <div class="tl-walk">
       <span>↘ ${leg.minutes} min walk${leg.meters ? ` · ${leg.meters} m` : ''}</span>
@@ -496,16 +507,25 @@ function optionLabelMap(city) {
 }
 
 async function renderOptions(entry) {
+  const section = $('#optionsSection');
+  if (confirmedOnly) {
+    section.hidden = true;
+    section.innerHTML = '';
+    return;
+  }
+
   const cityData = CITY_DATA[entry.city];
   const pool = LOGIC.getSuggestionPool(entry, cityData, reactionsByCity[entry.city] || []);
   const slots = Object.keys(pool);
 
   if (!slots.length) {
-    $('#optionsSection').innerHTML = '';
+    section.hidden = true;
+    section.innerHTML = '';
     return;
   }
 
-  $('#optionsSection').innerHTML = `
+  section.hidden = false;
+  section.innerHTML = `
     <div class="section-head">
       <p class="eyebrow">Open slots</p>
       <h2>Loved picks for the gaps.</h2>
@@ -595,7 +615,7 @@ function render() {
   applyTheme(entry);
   renderDayChips();
   renderStatus(entry);
-  renderNowPanel(entry);
+  renderNowPanel(activeEntry(entry));
   renderUtilityPanel(entry);
   renderAnchors(entry);
   renderDayContext(entry);
@@ -622,13 +642,14 @@ function startClock() {
     const entry = getEntry(selectedDate);
     if (!entry) return;
     renderStatus(entry);
-    renderNowPanel(entry);
+    renderNowPanel(activeEntry(entry));
     renderAnchors(entry);
     applyTheme(entry);
   }, 45000);
 }
 
 const MODE_KEY = 'today.walking';
+const CONFIRMED_ONLY_KEY = 'today.confirmedOnly';
 
 function applyMode(mode) {
   const shell = document.querySelector('.today-shell');
@@ -654,8 +675,30 @@ function initModeToggle() {
   });
 }
 
+function applyConfirmedOnlyToggle() {
+  const shell = document.querySelector('.today-shell');
+  if (shell) shell.dataset.confirmedOnly = confirmedOnly ? 'true' : 'false';
+  const button = document.getElementById('confirmedOnlyToggle');
+  if (!button) return;
+  button.classList.toggle('active', confirmedOnly);
+  button.setAttribute('aria-pressed', confirmedOnly ? 'true' : 'false');
+}
+
+function initConfirmedOnlyToggle() {
+  applyConfirmedOnlyToggle();
+  const button = document.getElementById('confirmedOnlyToggle');
+  if (!button) return;
+  button.addEventListener('click', () => {
+    confirmedOnly = !confirmedOnly;
+    localStorage.setItem(CONFIRMED_ONLY_KEY, confirmedOnly ? '1' : '0');
+    applyConfirmedOnlyToggle();
+    render();
+  });
+}
+
 render();
 initModeToggle();
+initConfirmedOnlyToggle();
 startClock();
 
 (function initReactions() {

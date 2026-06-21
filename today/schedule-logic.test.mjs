@@ -18,7 +18,9 @@ const {
   getOpenSlots,
   getSuggestionPool,
   getWalletItems,
-  getWalkLeg
+  getWalkLeg,
+  isConfirmedPlan,
+  getConfirmedAnchors
 } = globalThis.window.TODAY_LOGIC;
 
 const sampleSchedule = [
@@ -328,4 +330,24 @@ test('getWalkLeg returns null when current anchor is a travel type', () => {
   assert.equal(getWalkLeg(prev, flight), null);
   assert.equal(getWalkLeg(prev, train), null);
   assert.equal(getWalkLeg(prev, transfer), null);
+});
+
+test('confirmed-only helpers keep confirmed plans and booking-backed reservations', () => {
+  const entry = {
+    anchors: [
+      { time: '9:00am', sortTime: '09:00', title: 'Confirmed flight', status: 'confirmed' },
+      { time: '1:00pm', sortTime: '13:00', title: 'Booked lunch', status: 'planned', booking: { confirmation: 'L-2' } },
+      { time: '4:00pm', sortTime: '16:00', title: 'Loose walk', status: 'planned' },
+      { time: '8:00pm', sortTime: '20:00', title: 'Dinner maybe', status: 'tbd', critical: true }
+    ]
+  };
+
+  assert.equal(isConfirmedPlan(entry.anchors[0]), true);
+  assert.equal(isConfirmedPlan(entry.anchors[1]), true);
+  assert.equal(isConfirmedPlan(entry.anchors[2]), false);
+  assert.equal(isConfirmedPlan(entry.anchors[3]), false);
+  assert.deepEqual(getConfirmedAnchors(entry).map((anchor) => anchor.title), [
+    'Confirmed flight',
+    'Booked lunch'
+  ]);
 });

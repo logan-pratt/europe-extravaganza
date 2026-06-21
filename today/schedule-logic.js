@@ -347,6 +347,15 @@
     };
   }
 
+  function isConfirmedPlan(anchor) {
+    if (!anchor) return false;
+    return String(anchor.status || '').toLowerCase() === 'confirmed' || !!anchor.booking;
+  }
+
+  function getConfirmedAnchors(entry = {}) {
+    return sortAnchors(entry.anchors || []).filter(isConfirmedPlan);
+  }
+
   root.TODAY_LOGIC = {
     dateKey,
     getScheduleState,
@@ -362,6 +371,8 @@
     getOpenSlots,
     getSuggestionPool,
     getWalletItems,
-    getWalkLeg
+    getWalkLeg,
+    isConfirmedPlan,
+    getConfirmedAnchors
   };
 })(typeof window !== 'undefined' ? window : globalThis.window);

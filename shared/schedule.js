@@ -156,10 +156,10 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Castelo+de+S%C3%A3o+Jorge+Lisbon'
         },
         {
-          time: '12:00-2:00pm',
+          time: '12:00-12:20pm',
           sortTime: '12:00',
           type: 'sightseeing',
-          title: 'Castelo de São Jorge visit',
+          title: 'Castelo de São Jorge quick viewpoint stop',
           status: 'planned',
           critical: true,
           walkMinutes: 3,
@@ -169,13 +169,24 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Castelo+de+S%C3%A3o+Jorge+Lisbon'
         },
         {
+          time: '12:30pm',
+          sortTime: '12:30',
+          type: 'reservation',
+          title: 'O VINHAÇA: Tapas & Vinhos lunch',
+          status: 'confirmed',
+          critical: true,
+          walkMinutes: 10,
+          walkMeters: 700,
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=O%20Vinhaca%20Tapas%20%26%20Vinhos%20Lisbon%20Portugal'
+        },
+        {
           time: '2:00pm',
           sortTime: '14:00',
-          type: 'food',
-          title: 'Drift down through Alfama; casual lunch nearby',
+          type: 'walk',
+          title: 'Drift down through Alfama lanes after lunch',
           status: 'planned',
-          walkMinutes: 10,
-          walkMeters: 700
+          walkMinutes: 8,
+          walkMeters: 600
         },
         {
           time: '3:15pm',
@@ -233,10 +244,10 @@
         }
       ],
       suggest: {
-        lunch: ['taberna-sal-grosso', 'pica-pau', 'frangasqueira'],
+        lunch: ['o-vinhaca'],
         dinner: ['oficio', 'prado', 'a-nossa-casa']
       },
-      prep: ['Skip Tram 28 and Santa Justa Lift lines — walk the hills.', 'Senhora do Monte is optional, not mandatory; protect legs for Sunday Sintra.', 'Taberna is walk-up: arrive ~5:45pm, put the name down, drink nearby, and set a hard pivot time.', 'Hold Ofício or Prado as a Saturday dinner backup if Taberna wait gets ugly.']
+      prep: ['Skip Tram 28 and Santa Justa Lift lines — walk the hills.', 'O VINHAÇA is confirmed at 12:30pm, so keep the castle stop short.', 'Senhora do Monte is optional, not mandatory; protect legs for Sunday Sintra.', 'Taberna is walk-up: arrive ~5:45pm, put the name down, drink nearby, and set a hard pivot time.', 'Hold Ofício or Prado as a Saturday dinner backup if Taberna wait gets ugly.']
     },
     {
       date: '2026-06-28',
@@ -426,12 +437,12 @@
           mapUrl: 'https://www.google.com/maps/search/?api=1&query=Padr%C3%A3o%20dos%20Descobrimentos%20Lisbon'
         },
         {
-          time: '1:30pm',
-          sortTime: '13:30',
+          time: '12:45pm',
+          sortTime: '12:45',
           type: 'reservation',
           // TODO: booking — Pratt, confirm # ____, phone ____
           title: 'Lunch at Canalha (main Monday meal)',
-          status: 'planned',
+          status: 'confirmed',
           critical: true,
           walkMinutes: 8,
           walkMeters: 600,
@@ -519,7 +530,7 @@
         }
       ],
       prep: ['Pack before leaving for Belém — you land back from the cruise at 9:00-9:30pm with a 3:30am airport move.', 'Canalha is the Monday Belém lunch anchor; do not pivot to O Vinhaca.', 'Jerónimos and Belém Tower interiors are Monday-closed — exterior-first day.', 'Leave the apartment for the cruise by 6:00pm and skip any post-cruise dinner chase.', 'One drink max because of the 6:00am flight.'],
-      prepPreviousNight: ['Protect Sunday recovery so Monday starts clean.', 'Re-check cruise meeting point: Doca de Alcântara, Gate 2.', 'Reserve Canalha for around 1:30pm if not already booked.']
+      prepPreviousNight: ['Protect Sunday recovery so Monday starts clean.', 'Re-check cruise meeting point: Doca de Alcântara, Gate 2.', 'Canalha is confirmed for 12:45pm.']
     },
     {
       date: '2026-06-30',

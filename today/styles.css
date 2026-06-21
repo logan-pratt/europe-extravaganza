@@ -169,6 +169,12 @@ h3 {
   backdrop-filter: blur(14px);
 }
 
+.btn.toggle.active {
+  color: #fffaf0;
+  background: var(--olive);
+  border-color: var(--olive);
+}
+
 .day-rail {
   position: sticky;
   top: 0;

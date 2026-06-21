@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Today · Europe Extravaganza</title>
   <meta name="description" content="Day-by-day command center for the Europe Extravaganza trip." />
-  <link rel="stylesheet" href="styles.css?v=20260617-data1" />
+  <link rel="stylesheet" href="styles.css?v=20260621-confirmed2" />
 </head>
 <body>
   <div class="grain"></div>
@@ -28,6 +28,7 @@
       <div class="hero-actions">
         <button class="btn primary" id="jumpToday" type="button">Jump to today</button>
         <button class="btn glass" id="modeToggle" type="button" aria-pressed="false">🚶 Walking</button>
+        <button class="btn glass toggle" id="confirmedOnlyToggle" type="button" aria-pressed="false">Confirmed only</button>
         <a class="btn glass" href="../">Back to hub</a>
       </div>
     </section>
@@ -66,16 +67,16 @@
 
   <div id="toast" role="status" aria-live="polite"></div>
 
-  <script src="../lisbon/data.js?v=20260616-today"></script>
+  <script src="../lisbon/data.js?v=20260621-ovinhaca"></script>
   <script src="../galway/data.js?v=20260616-today"></script>
   <script src="../dublin/data.js?v=20260616-today"></script>
   <script src="../london/data.js?v=20260616-today"></script>
-  <script src="../shared/schedule.js?v=20260616-saturday-tentative"></script>
-  <script src="schedule-logic.js?v=20260617-data1"></script>
+  <script src="../shared/schedule.js?v=20260621-ovinhaca"></script>
+  <script src="schedule-logic.js?v=20260621-confirmed2"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="../shared/supabase-config.js"></script>
   <script src="../shared/submissions-api.js"></script>
-  <script src="app.js?v=20260617-data1"></script>
+  <script src="app.js?v=20260621-confirmed2"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
