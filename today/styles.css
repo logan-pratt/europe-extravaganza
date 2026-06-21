@@ -1355,50 +1355,6 @@ h3 {
   padding: 2px 6px;
 }
 
-/* ===== Task 4: Wallet block ===== */
-
-.wallet-list {
-  list-style: none;
-  padding: 0;
-  margin: 8px 0 0;
-  display: grid;
-  gap: 8px;
-}
-
-.wallet-row {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 12px;
-  background: rgba(0, 0, 0, 0.02);
-}
-
-.wallet-row-head {
-  display: flex;
-  gap: 10px;
-  align-items: baseline;
-  font-weight: 700;
-}
-
-.wallet-meta {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 4px 12px;
-  margin: 8px 0 0;
-  font-size: 0.85rem;
-}
-
-.wallet-meta dt {
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.7rem;
-  align-self: center;
-}
-
-.wallet-meta dd {
-  margin: 0;
-}
-
 .mono {
   font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
 }
@@ -1453,7 +1409,7 @@ h3 {
 [data-mode="walking"] .planner-context,
 [data-mode="walking"] .options-section,
 [data-mode="walking"] .deck-section,
-[data-mode="walking"] .utility-block:not([data-block="wallet"]) {
+[data-mode="walking"] .utility-panel {
   display: none;
 }
 
@@ -1479,7 +1435,7 @@ h3 {
   font-size: 18px;
 }
 
-/* ===== Walking mode: next preview + wallet reveal ===== */
+/* ===== Walking mode: next preview ===== */
 
 .walk-only { display: none; }
 [data-mode="walking"] .walk-only { display: block; }
@@ -1502,18 +1458,3 @@ h3 {
 .walk-next-time { font-weight: 800; }
 .walk-next-title { flex: 1; }
 .walk-next-delta { color: var(--muted); font-size: 0.82rem; }
-
-.walk-wallet-btn {
-  margin-top: 10px;
-  min-height: 48px;
-  width: 100%;
-  font-size: 0.95rem;
-}
-
-.walk-wallet-panel {
-  margin-top: 8px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 12px;
-  background: rgba(0, 0, 0, 0.02);
-}

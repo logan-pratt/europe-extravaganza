@@ -310,28 +310,6 @@
     return out;
   }
 
-  function getWalletItems(today) {
-    const rows = [];
-    const pushFrom = (entry) => {
-      if (!entry) return;
-      sortAnchors(entry.anchors || []).forEach((anchor) => {
-        if (!anchor.booking) return;
-        rows.push({
-          date: entry.date,
-          time: anchor.time,
-          title: anchor.title,
-          confirmation: anchor.booking.confirmation || '',
-          reservedAs: anchor.booking.reservedAs || '',
-          phone: anchor.booking.phone || '',
-          mapUrl: anchor.mapUrl || '',
-          address: anchor.address || ''
-        });
-      });
-    };
-    pushFrom(today);
-    return rows;
-  }
-
   const HIDE_WALK_FROM = new Set(['meal', 'lodging']);
   const TRAVEL_TYPES_FOR_WALK = new Set(['flight', 'train', 'transfer']);
 
@@ -369,7 +347,6 @@
     getNowLine,
     getOpenSlots,
     getSuggestionPool,
-    getWalletItems,
     getWalkLeg,
     isConfirmedPlan,
     getConfirmedAnchors

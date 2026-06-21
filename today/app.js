@@ -201,7 +201,6 @@ function renderNowPanel(entry) {
   }
 
   // Compute walking-mode next-preview values
-  const walletRows = LOGIC.getWalletItems(entry);
   const allAnchors = LOGIC.sortAnchors(entry.anchors || []);
   const walkLive = selectedIsToday ? LOGIC.getCurrentAndNextAnchors(entry, new Date()) : { current: null, next: allAnchors[0] };
   const walkCurrent = walkLive.next || walkLive.current || allAnchors[0];
@@ -214,24 +213,6 @@ function renderNowPanel(entry) {
       <span class="walk-next-title">${escapeHtml(walkNextAnchor.title)}</span>
       ${typeof walkNextAnchor.walkMinutes === 'number' ? `<span class="walk-next-delta">↘ ${walkNextAnchor.walkMinutes} min</span>` : ''}
     </div>` : '';
-
-  // Find a wallet row matching the current or next anchor
-  const walletTitles = new Set([walkCurrent?.title, walkNextAnchor?.title].filter(Boolean));
-  const matchedWalletRows = walletRows.filter((r) => walletTitles.has(r.title));
-  const walletPanelHtml = matchedWalletRows.length
-    ? `<ul class="wallet-list">${matchedWalletRows.map((row) => `
-        <li class="wallet-row">
-          <div class="wallet-row-head">
-            <span class="wallet-time">${escapeHtml(row.time)}</span>
-            <span class="wallet-title">${escapeHtml(row.title)}</span>
-          </div>
-          <dl class="wallet-meta">
-            ${row.confirmation ? `<dt>Conf #</dt><dd><button class="btn ghost mono" data-copy="${escapeHtml(row.confirmation)}">${escapeHtml(row.confirmation)}</button></dd>` : ''}
-            ${row.reservedAs ? `<dt>Name</dt><dd>${escapeHtml(row.reservedAs)}</dd>` : ''}
-            ${row.phone ? `<dt>Phone</dt><dd><a class="btn ghost" href="tel:${escapeHtml(row.phone)}">${escapeHtml(row.phone)}</a></dd>` : ''}
-          </dl>
-        </li>`).join('')}</ul>`
-    : '<p class="empty">No booking for next move.</p>';
 
   $('#nowPanel').innerHTML = `
     <p class="now-eyebrow"><span class="now-pulse"></span>${label}</p>
@@ -250,20 +231,7 @@ function renderNowPanel(entry) {
       ${actionClusterHtml(focus, { large: true })}
     </div>
     ${walkNextHtml}
-    <button class="walk-only walk-wallet-btn btn ghost" type="button" id="walletRevealBtn">Wallet ↓</button>
-    <div class="walk-only walk-wallet-panel" id="walletRevealPanel" hidden>${walletPanelHtml}</div>
   `;
-
-  const revealBtn = document.getElementById('walletRevealBtn');
-  const revealPanel = document.getElementById('walletRevealPanel');
-  if (revealBtn && revealPanel) {
-    revealBtn.addEventListener('click', () => {
-      const isHidden = revealPanel.hasAttribute('hidden');
-      if (isHidden) revealPanel.removeAttribute('hidden');
-      else revealPanel.setAttribute('hidden', '');
-      revealBtn.textContent = isHidden ? 'Wallet ↑' : 'Wallet ↓';
-    });
-  }
 }
 
 function renderUtilityPanel(entry) {
@@ -272,7 +240,6 @@ function renderUtilityPanel(entry) {
   const bookingItems = (entry.anchors || []).filter((anchor) => (
     confirmedOnly ? LOGIC.isConfirmedPlan(anchor) : (anchor.status === 'confirmed' || anchor.critical)
   ));
-  const walletRows = LOGIC.getWalletItems(entry);
 
   $('#utilityPanel').innerHTML = `
     <div class="utility-block">
@@ -297,26 +264,6 @@ function renderUtilityPanel(entry) {
           `).join('')}
         </ul>
       ` : '<p class="empty">No confirmed bookings pinned yet.</p>'}
-    </div>
-    <div class="utility-block" data-block="wallet">
-      <p class="eyebrow">Wallet</p>
-      ${walletRows.length ? `
-        <ul class="wallet-list">
-          ${walletRows.map((row) => `
-            <li class="wallet-row">
-              <div class="wallet-row-head">
-                <span class="wallet-time">${escapeHtml(row.time)}</span>
-                <span class="wallet-title">${escapeHtml(row.title)}</span>
-              </div>
-              <dl class="wallet-meta">
-                ${row.confirmation ? `<dt>Conf #</dt><dd><button class="btn ghost mono" data-copy="${escapeHtml(row.confirmation)}">${escapeHtml(row.confirmation)}</button></dd>` : ''}
-                ${row.reservedAs ? `<dt>Name</dt><dd>${escapeHtml(row.reservedAs)}</dd>` : ''}
-                ${row.phone ? `<dt>Phone</dt><dd><a class="btn ghost" href="tel:${escapeHtml(row.phone)}">${escapeHtml(row.phone)}</a></dd>` : ''}
-              </dl>
-            </li>
-          `).join('')}
-        </ul>
-      ` : '<p class="empty">No bookings to surface for this day.</p>'}
     </div>
     <div class="utility-block">
       <p class="eyebrow">Prep</p>
