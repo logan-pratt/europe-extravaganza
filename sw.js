@@ -1,7 +1,7 @@
 // Bump CACHE whenever precached files or this worker's logic change, so the
 // activate handler clears the stale cache. (Add to the pre-deploy checklist.)
 // IMPORTANT: this version string must increment monotonically — never regress.
-const CACHE = 'ee-today-v19';
+const CACHE = 'ee-today-v20';
 
 // Paths are relative to sw.js (repo root).
 // REQUIRED: the Today view must render offline from these — a missing one
@@ -93,22 +93,19 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Same-origin shell/data/scripts: stale-while-revalidate.
-  // Serve cache instantly (offline-first), refresh in the background under a
-  // canonical key so edits land on the next visit — not the current one.
+  // Same-origin shell/data/scripts: network-first, cached fallback.
+  // Trip plans change during planning; online reloads should show the latest
+  // files immediately while offline use still works from the cache.
   if (url.origin === self.location.origin) {
     const key = cacheKeyFor(url);
     event.respondWith(
       caches.open(CACHE).then((cache) =>
-        cache.match(key).then((cached) => {
-          const network = fetch(request)
-            .then((response) => {
-              if (response && response.ok) cache.put(key, response.clone());
-              return response;
-            })
-            .catch(() => cached);
-          return cached || network;
-        })
+        fetch(request)
+          .then((response) => {
+            if (response && response.ok) cache.put(key, response.clone());
+            return response;
+          })
+          .catch(() => cache.match(key))
       )
     );
     return;
